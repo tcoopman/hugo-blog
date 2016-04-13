@@ -3,6 +3,7 @@ date = "2014-11-13"
 tags = ["react", "flux", "cqrs"]
 title = "Flux and cqrs"
 description = "About the simularities between flux and cqrs"
+draft = true
 +++
 
 About flux and cqrs, what do I want to write about this???
