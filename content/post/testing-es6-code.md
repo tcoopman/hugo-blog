@@ -116,7 +116,7 @@ Now, if we want to run our test, we run:
 `node node_modules/karma/bin/karma start karma.conf.js`
 
 This should start Chrome (if you don't have chrome, see the [karma browser configuration](http://karma-runner.github.io/0.12/config/browsers.html)) and print this:
-```
+```bash
 INFO [karma]: Karma v0.12.31 server started at http://localhost:9876/
 INFO [launcher]: Starting browser Chrome
 INFO [Chrome 39.0.2171 (Windows 7)]: Connected on socket xBMICOzH9lh3Eo9INXDA with id 55389724

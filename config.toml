@@ -4,6 +4,9 @@ title = "Thomas Coopman - Infinite Tree"
 MetaDataFormat = "toml"
 theme = "hyde-x"
 paginate = 10
+pygmentsuseclasses = false
+pygmentsstyle = "pastie"
+PygmentsCodeFences = true
 
 [author]
     name = "Thomas Coopman"
