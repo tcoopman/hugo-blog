@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Testing ES6 code &middot; Thomas Coopman</title>
+
+  
+  <link rel="stylesheet" href="http://thomascoopman.eu/css/poole.css">
+  <link rel="stylesheet" href="http://thomascoopman.eu/css/hyde.css">
+  <link rel="stylesheet" href="http://thomascoopman.eu/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://thomascoopman.eu/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://thomascoopman.eu/css/hyde-x.css">
+  <link rel="stylesheet" href="http://thomascoopman.eu/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://thomascoopman.eu/touch-icon-144-precomposed.png">
+  <link href="http://thomascoopman.eu/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Testing with webpack and ES6">
+  <meta name="keywords" content="">
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-56701000-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+</head>
+<body class="theme-base-08">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Thomas Coopman</h1>
+      <p class="lead">Software Consultant</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://thomascoopman.eu/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://thomascoopman.eu/resume/">Resume</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/tcoopman/"><i class="fa fa-github-square fa-3x"></i></a>
+      <a href="https://bitbucket.org/tcoopman/"><i class="fa fa-bitbucket-square fa-3x"></i></a>
+      
+      <a href="https://www.linkedin.com/in/thomas-coopman-a6860622?trk=hp-identity-name"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      <a href="https://plus.google.com/u/0/109624499308077610663"><i class="fa fa-google-plus-square fa-3x"></i></a>
+      
+      <a href="https://twitter.com/tcoopman"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="http://thomascoopman.eu/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2016 <a href="http://thomascoopman.eu/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1 class="post-title">Testing ES6 code</h1>
+    <span class="post-date">Jan 13, 2015 &middot; 4 minute read
+    </span>
+    
+
+<p>Recently, I&rsquo;ve changed my webpack workflow, and switched to <a href="https://6to5.org/">6to5</a>, to be able to write more of my React code in ES6 than the current jsx transpiler supports (and because 6to5 just rocks!). You can find this workflow in my <a href="https://github.com/tcoopman/boilerplate-webpack-react">boilerplate-webpack-react</a> project. Switching was easy. I&rsquo;ve just replaced jsx-loader with 6to5-loader and everything worked correctly.</p>
+
+<p>Writing code and developing is a breeze with this workflow, especially with <a href="https://github.com/gaearon/react-hot-loader">react-hot-loader</a>. I didn&rsquo;t look into writing test though yet, and it took me a little while to find out how to do it, so I explain it here.</p>
+
+<h2 id="karma-webpack:6a452c0786128e7526af44fd8d33053c">Karma-webpack</h2>
+
+<p>Luckely, there exist a <a href="http://karma-runner.github.io/">karma</a> plugin <a href="https://github.com/webpack/karma-webpack">webpack-karma</a> that allows you to run webpack on files loaded by karma. This means, the test can be written in ES6 (or any other language you prefer that can be transpiled by a webpack loader), and your own code also gets transpiled.</p>
+
+<p>Let me show my setup.</p>
+
+<h3 id="install-dependencies:6a452c0786128e7526af44fd8d33053c">Install dependencies</h3>
+
+<p>First you need to install all dependencies:</p>
+
+<p><code>npm install --save-dev karma karma-mocha karma-webpack karma-chrome-launcher should</code></p>
+
+<p>I use <a href="http://mochajs.org/">mocha</a> as test framework and <a href="https://github.com/shouldjs/should.js">should</a> as assertion library, but this should work with anything that karma supports.</p>
+
+<h3 id="karma-configuration-file:6a452c0786128e7526af44fd8d33053c">Karma configuration file</h3>
+
+<p>Next we need to create the karma config file <em>karma.conf.js</em></p>
+
+<pre><code class="language-js">// Karma configuration
+var path = require('path');
+
+module.exports = function(config) {
+  config.set({
+    // ... normal karma configuration
+
+    files: [
+    // all files ending in &quot;_test&quot;
+    'test/*_test.jsx',
+    'test/**/*_test.jsx'
+    // each file acts as entry point for the webpack configuration
+    ],
+
+
+    frameworks: ['mocha'],
+
+
+    browsers: ['Chrome'],
+
+
+    preprocessors: {
+      // add webpack as preprocessor
+      'test/data/*.jsx': ['webpack'],
+      'test/*_test.jsx': ['webpack'],
+      'test/**/*_test.jsx': ['webpack']
+    },
+
+    webpack: {
+      // webpack configuration
+      output: {
+        path: path.join(__dirname, 'dist'),
+        publicPath: '/',
+        filename: 'app.js',
+        chunkFilename: '[chunkhash].js'
+      },
+
+
+      resolve: {
+        extensions: ['', '.js', '.jsx', '.styl'],
+        packageMains: [&quot;webpack&quot;, &quot;browser&quot;, &quot;web&quot;, &quot;browserify&quot;, &quot;main&quot;]
+      },
+
+
+      module: {
+        loaders: [
+          {test: /\.jsx$/, loaders: ['6to5-loader'] }
+        ]
+      }
+    },
+
+
+    webpackMiddleware: {
+      // webpack-dev-middleware configuration
+      // i. e.
+      noInfo: true
+    },
+
+    plugins: [
+      require('karma-chrome-launcher'),
+      require('karma-mocha'),
+      require('karma-webpack')
+    ]
+
+  });
+};
+</code></pre>
+
+<h3 id="first-test:6a452c0786128e7526af44fd8d33053c">First test</h3>
+
+<p>We also add a simple _sanity<em>test</em> to make sure everything is setup correctly</p>
+
+<pre><code class="language-js">import should from 'should';
+
+describe('sanity test', () =&gt; {
+  it('true should be true', () =&gt; {
+    true.should.be.ok;
+  });
+});
+</code></pre>
+
+<h3 id="first-run:6a452c0786128e7526af44fd8d33053c">First run</h3>
+
+<p>Now, if we want to run our test, we run:</p>
+
+<p><code>node node_modules/karma/bin/karma start karma.conf.js</code></p>
+
+<p>This should start Chrome (if you don&rsquo;t have chrome, see the <a href="http://karma-runner.github.io/0.12/config/browsers.html">karma browser configuration</a>) and print this:</p>
+
+<pre><code>INFO [karma]: Karma v0.12.31 server started at http://localhost:9876/
+INFO [launcher]: Starting browser Chrome
+INFO [Chrome 39.0.2171 (Windows 7)]: Connected on socket xBMICOzH9lh3Eo9INXDA with id 55389724
+Chrome 39.0.2171 (Windows 7): Executed 1 of 1 SUCCESS (0.009 secs / 0 secs)
+</code></pre>
+
+<p>Every time you change your code it will automatically rerun your tests.</p>
+
+<p>To make it a bit easier to run the test, add the test command to npm:</p>
+
+<pre><code class="language-json">&quot;scripts&quot;: {
+  &quot;test&quot;: &quot;node node_modules/karma/bin/karma start karma.conf.js&quot;
+}
+</code></pre>
+
+<p>You could also add <code>--single-run</code> if you want to run the test only once and don&rsquo;t watch.</p>
+
+<h2 id="testing-react-code:6a452c0786128e7526af44fd8d33053c">Testing React code</h2>
+
+<p>The steps above give you a working testing environment, now we can test our code:</p>
+
+<p>To test this we create a simple React component <em>Button.react.jsx</em>:</p>
+
+<pre><code class="language-js">import React from 'react';
+
+
+export default React.createClass({
+  displayName: 'Button',
+
+
+  render() {
+    return &lt;div&gt;button&lt;/div&gt;;
+  }
+});
+</code></pre>
+
+<p>And we test it in _Button.react<em>test.jsx</em>:</p>
+
+<pre><code class="language-js">import React from 'react/addons';
+import should from 'should';
+
+import Button from '../app/jsx/components/Button.react';
+
+const TestUtils = React.addons.TestUtils;
+
+
+describe('Button', () =&gt; {
+  it('renders button div', () =&gt; {
+    const button = TestUtils.renderIntoDocument(
+      &lt;Button /&gt;
+    );
+    TestUtils.isCompositeComponent(button).should.be.ok;
+    button.getDOMNode().textContent.should.be.eql('button');
+  });
+});
+</code></pre>
+
+<p><strong>Easy!</strong></p>
+
+<h3 id="remark:6a452c0786128e7526af44fd8d33053c">Remark</h3>
+
+<p>While testing, I ran into a problem. This line in HelloWorld.react.jsx: <code>var exampleImage = require('../../images/example.jpg');</code> proved to be a problem. But the problem was quiet obvious to solve, I just needed to add a image loader to the karma webpack configuration:</p>
+
+<pre><code class="language-js">module: {
+  loaders: [
+  {test: /\.jsx$/, loaders: ['6to5-loader'] },
+  // Add the image loader
+  {test: /.*\.(gif|png|jpg)$/, loaders: ['file?hash=sha512&amp;digest=hex&amp;size=16&amp;name=[hash].[ext]', 'image-webpack-loader?optimizationLevel=7&amp;interlaced=false']}
+  ]
+}
+</code></pre>
+
+<p>After this, I could test the HelloWorld component too.</p>
+
+<h2 id="conclusion:6a452c0786128e7526af44fd8d33053c">Conclusion</h2>
+
+<p>Once you have this up, you can test your code with the same setup you already have. Webpack rocks!</p>
+
+<p>If you have any questions, please leave them as an issue at my boilerplate repository (<a href="https://github.com/tcoopman/boilerplate-webpack-react/issues">https://github.com/tcoopman/boilerplate-webpack-react/issues</a>)</p>
+
+<h2 id="commits:6a452c0786128e7526af44fd8d33053c">Commits</h2>
+
+<p>All steps and code above can be found in the commits between tag 0.0.9 and 0.0.10: <a href="https://github.com/tcoopman/boilerplate-webpack-react/commits/master">https://github.com/tcoopman/boilerplate-webpack-react/commits/master</a></p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://thomascoopman.eu/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
+

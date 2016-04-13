@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Thomas Coopman - Infinite Tree</title>
+    <link>http://thomascoopman.eu/post/</link>
+    <description>Recent content in Posts on Thomas Coopman - Infinite Tree</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 Apr 2016 22:28:31 +0200</lastBuildDate>
+    <atom:link href="http://thomascoopman.eu/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Modelling money in Elm</title>
+      <link>http://thomascoopman.eu/blog/2016/04/12/modelling-money-in-elm/</link>
+      <pubDate>Tue, 12 Apr 2016 22:28:31 +0200</pubDate>
+      
+      <guid>http://thomascoopman.eu/blog/2016/04/12/modelling-money-in-elm/</guid>
+      <description>
+
+&lt;p&gt;After reading the blog post of Mathias Verraes (@mathiasverraes) on (Type Safety and Money)[&lt;a href=&#34;http://verraes.net/2016/02/type-safety-and-money/&#34;&gt;http://verraes.net/2016/02/type-safety-and-money/&lt;/a&gt;], and after doing a real short modelling attempt in Haskell at Socrates Belgium, I wanted to try to model Money in Elm.&lt;/p&gt;
+
+&lt;p&gt;I don&amp;rsquo;t want to go to deep and too far so I&amp;rsquo;ve set some basic constraints for myself:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You cannot add money of different currencies (you need an explicit conversion) - &lt;em&gt;Add constraint&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;We also want a Price. A Price is a Money and a VAT amount.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The goal is to explore different ways of modelling the money in Elm and to explore how a type safe language can support our constraints.&lt;/p&gt;
+
+&lt;h2 id=&#34;possible-type-declarations-of-money-in-elm:2012ba4f5f8746a94832610fb83d5960&#34;&gt;Possible type declarations of Money in Elm&lt;/h2&gt;
+
+&lt;p&gt;Money is an amount (Float) and a currency&lt;/p&gt;
+
+&lt;p&gt;If you are doing serious calculations with money, you might want to check if you don&amp;rsquo;t run into precision issues with Float. This is not the goal of the exercise, so we use Float.&lt;/p&gt;
+
+&lt;p&gt;There are some different options for modelling the money.&lt;/p&gt;
+
+&lt;p&gt;With a Tuple, a Currency and a Float:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-elm&#34;&gt;type alias Money = (Currency, Float)
+type Currency = Euro | Dollar
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or with union types&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-elm&#34;&gt;type Money = Euro Float | Dollar Float
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Both these implementations fulfill the requirement of a &lt;code&gt;Money&lt;/code&gt; type for the &lt;code&gt;Price&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;These implementations cannot enforce the &lt;em&gt;add constraint&lt;/em&gt; at compile time. Although, you can enforce that you don&amp;rsquo;t get wrong results:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-elm&#34;&gt;add : Money -&amp;gt; Money -&amp;gt; Maybe Money
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or, there can be invalid money&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-elm&#34;&gt;type Money = Euro Float | Dollar Float | Invalid
+add : Money -&amp;gt; Money -&amp;gt; Money
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This last one would be harder to implement with a Tuple. But in most other ways I believe the Tuple and the union types are very similar. I like the union types better, so I won&amp;rsquo;t explore the tuple any further.&lt;/p&gt;
+
+&lt;p&gt;When we have the choice between these 2 add type definitions, which one is best?
+I prefer &lt;code&gt;add : Money -&amp;gt; Money -&amp;gt; Maybe Money&lt;/code&gt; for 2 reasons: (1) Invalid is not an actual type of money and (2) returning Maybe makes it very explicit that this an operation that can fail.&lt;/p&gt;
+
+&lt;p&gt;Would it be possible to enforce the constraint of adding only the same currencies on compile time? Yes, like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-elm&#34;&gt;type Euro = Euro Float
+type Dollar = Dollar Float
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you have to implement 2 add functions for both types.&lt;/p&gt;
+
+&lt;p&gt;This does have some disadvantages, you have to implement add twice. If you want to have them in the same file, the names of the add methods can&amp;rsquo;t be the same, and we need some type to represent money (for our price constraint).
+This also means that it&amp;rsquo;s best to implement &lt;code&gt;Euro&lt;/code&gt; and &lt;code&gt;Dollar&lt;/code&gt; both in their own module, so that you can create 2 add functions.&lt;/p&gt;
+
+&lt;p&gt;But lets see if this is doable.&lt;/p&gt;
+
+&lt;p&gt;First the problem of the reimplementation. This is something that is unavailable in Elm (I believe it&amp;rsquo;s possible to avoid this with type classes in Haskell), but it&amp;rsquo;s not that bad.
+Suppose we needed to write many functions on money types, then we could write them like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-elm&#34;&gt;update2 : (Float -&amp;gt; Float -&amp;gt; Float) -&amp;gt; EUR -&amp;gt; EUR -&amp;gt; EUR
+update2 f e1 e2 =
+	case (e1, e2) of
+			(EUR a, EUR a&#39;) -&amp;gt; EUR (f a a&#39;)
+
+add : EUR -&amp;gt; EUR -&amp;gt; EUR
+add = update2 (+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Like this we can avoid writing complex functions twice&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-elm&#34;&gt;complexOperation : EUR -&amp;gt; EUR -&amp;gt; EUR
+complexOperation = update2 complexer
+
+complexer : Float -&amp;gt; Float -&amp;gt; Float
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The second constraint is that we need a &lt;code&gt;Price&lt;/code&gt; with a &lt;code&gt;Money&lt;/code&gt; type. With our first implementations this constraint was already fulfilled, but here we need to implement a &lt;code&gt;Money&lt;/code&gt; type too.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-elm&#34;&gt;type Money = Euro EUR | Dollar USD
+type VAT = VAT6 | VAT12 | VAT21
+type Price = (Money, VAT)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(Here it makes more sense to use a tuple for &lt;code&gt;Price&lt;/code&gt;, &lt;code&gt;Price&lt;/code&gt; is a &lt;code&gt;Money&lt;/code&gt; and a &lt;code&gt;VAT&lt;/code&gt;, while &lt;code&gt;Money&lt;/code&gt; is a amount of some currency)&lt;/p&gt;
+
+&lt;p&gt;We also need functions to transform a EUR or USD to Money, but these are trivial:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-elm&#34;&gt;EURToMoney : EUR -&amp;gt; Money
+EURToMoney eur = Euro eur
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;extra-currency-conversions:2012ba4f5f8746a94832610fb83d5960&#34;&gt;Extra - Currency Conversions&lt;/h2&gt;
+
+&lt;p&gt;What if you want to convert a currency. Then you need exchange rates.
+With Elm, these conversions can be typed checked to, although it&amp;rsquo;s a bit verbose.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say we want all the &lt;code&gt;Money&lt;/code&gt; of our &lt;code&gt;Price&lt;/code&gt;s to be converted to euro.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-elm&#34;&gt;type alias EURToUSD = Float
+type alias USDToEUR = Float
+type alias Exchanges = (EURToUSD, USDToEUR)
+
+
+moneyToEuro : Money -&amp;gt; Exchanges -&amp;gt; EUR
+moneyToEuro mon con =
+  case con of
+		(euroToUsd, usdToEur) -&amp;gt;
+			case mon of
+				Dollar usd -&amp;gt; EUR ((Usd.extract usd) * usdToEur)
+				Euro eur -&amp;gt; eur
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where extract is a function that extracts the amount of the USD.&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion:2012ba4f5f8746a94832610fb83d5960&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Elm doesn&amp;rsquo;t have type classes so some things are extra work and are a bit more verbose. But it is possible to enforce a lot at compile time. Furthermore everything is very readable.&lt;/p&gt;
+
+&lt;p&gt;Is it worth it of doing it like this? That totally depends on your use case. A lot of times you will want to use &lt;code&gt;type Money = EUR Float | USD Float&lt;/code&gt; and use a &lt;code&gt;Maybe&lt;/code&gt; type to enforce your constraints, but sometimes you will do the extra work to enforce some things at compile time.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>welcome</title>
+      <link>http://thomascoopman.eu/blog/2016/04/12/welcome/</link>
+      <pubDate>Tue, 12 Apr 2016 21:28:31 +0200</pubDate>
+      
+      <guid>http://thomascoopman.eu/blog/2016/04/12/welcome/</guid>
+      <description>&lt;p&gt;Welcome to the my new site written in &lt;a href=&#34;http://gohugo.io/&#34;&gt;hugo&lt;/a&gt;.
+This is a reboot of my site, and an attempt to blog some more.&lt;/p&gt;
+
+&lt;p&gt;So without further ado, let&amp;rsquo;s start blogging :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Testing ES6 code</title>
+      <link>http://thomascoopman.eu/blog/2015/01/13/testing-es6-code/</link>
+      <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://thomascoopman.eu/blog/2015/01/13/testing-es6-code/</guid>
+      <description>
+
+&lt;p&gt;Recently, I&amp;rsquo;ve changed my webpack workflow, and switched to &lt;a href=&#34;https://6to5.org/&#34;&gt;6to5&lt;/a&gt;, to be able to write more of my React code in ES6 than the current jsx transpiler supports (and because 6to5 just rocks!). You can find this workflow in my &lt;a href=&#34;https://github.com/tcoopman/boilerplate-webpack-react&#34;&gt;boilerplate-webpack-react&lt;/a&gt; project. Switching was easy. I&amp;rsquo;ve just replaced jsx-loader with 6to5-loader and everything worked correctly.&lt;/p&gt;
+
+&lt;p&gt;Writing code and developing is a breeze with this workflow, especially with &lt;a href=&#34;https://github.com/gaearon/react-hot-loader&#34;&gt;react-hot-loader&lt;/a&gt;. I didn&amp;rsquo;t look into writing test though yet, and it took me a little while to find out how to do it, so I explain it here.&lt;/p&gt;
+
+&lt;h2 id=&#34;karma-webpack:6a452c0786128e7526af44fd8d33053c&#34;&gt;Karma-webpack&lt;/h2&gt;
+
+&lt;p&gt;Luckely, there exist a &lt;a href=&#34;http://karma-runner.github.io/&#34;&gt;karma&lt;/a&gt; plugin &lt;a href=&#34;https://github.com/webpack/karma-webpack&#34;&gt;webpack-karma&lt;/a&gt; that allows you to run webpack on files loaded by karma. This means, the test can be written in ES6 (or any other language you prefer that can be transpiled by a webpack loader), and your own code also gets transpiled.&lt;/p&gt;
+
+&lt;p&gt;Let me show my setup.&lt;/p&gt;
+
+&lt;h3 id=&#34;install-dependencies:6a452c0786128e7526af44fd8d33053c&#34;&gt;Install dependencies&lt;/h3&gt;
+
+&lt;p&gt;First you need to install all dependencies:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;npm install --save-dev karma karma-mocha karma-webpack karma-chrome-launcher should&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I use &lt;a href=&#34;http://mochajs.org/&#34;&gt;mocha&lt;/a&gt; as test framework and &lt;a href=&#34;https://github.com/shouldjs/should.js&#34;&gt;should&lt;/a&gt; as assertion library, but this should work with anything that karma supports.&lt;/p&gt;
+
+&lt;h3 id=&#34;karma-configuration-file:6a452c0786128e7526af44fd8d33053c&#34;&gt;Karma configuration file&lt;/h3&gt;
+
+&lt;p&gt;Next we need to create the karma config file &lt;em&gt;karma.conf.js&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;// Karma configuration
+var path = require(&#39;path&#39;);
+
+module.exports = function(config) {
+  config.set({
+    // ... normal karma configuration
+
+    files: [
+    // all files ending in &amp;quot;_test&amp;quot;
+    &#39;test/*_test.jsx&#39;,
+    &#39;test/**/*_test.jsx&#39;
+    // each file acts as entry point for the webpack configuration
+    ],
+
+
+    frameworks: [&#39;mocha&#39;],
+
+
+    browsers: [&#39;Chrome&#39;],
+
+
+    preprocessors: {
+      // add webpack as preprocessor
+      &#39;test/data/*.jsx&#39;: [&#39;webpack&#39;],
+      &#39;test/*_test.jsx&#39;: [&#39;webpack&#39;],
+      &#39;test/**/*_test.jsx&#39;: [&#39;webpack&#39;]
+    },
+
+    webpack: {
+      // webpack configuration
+      output: {
+        path: path.join(__dirname, &#39;dist&#39;),
+        publicPath: &#39;/&#39;,
+        filename: &#39;app.js&#39;,
+        chunkFilename: &#39;[chunkhash].js&#39;
+      },
+
+
+      resolve: {
+        extensions: [&#39;&#39;, &#39;.js&#39;, &#39;.jsx&#39;, &#39;.styl&#39;],
+        packageMains: [&amp;quot;webpack&amp;quot;, &amp;quot;browser&amp;quot;, &amp;quot;web&amp;quot;, &amp;quot;browserify&amp;quot;, &amp;quot;main&amp;quot;]
+      },
+
+
+      module: {
+        loaders: [
+          {test: /\.jsx$/, loaders: [&#39;6to5-loader&#39;] }
+        ]
+      }
+    },
+
+
+    webpackMiddleware: {
+      // webpack-dev-middleware configuration
+      // i. e.
+      noInfo: true
+    },
+
+    plugins: [
+      require(&#39;karma-chrome-launcher&#39;),
+      require(&#39;karma-mocha&#39;),
+      require(&#39;karma-webpack&#39;)
+    ]
+
+  });
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;first-test:6a452c0786128e7526af44fd8d33053c&#34;&gt;First test&lt;/h3&gt;
+
+&lt;p&gt;We also add a simple _sanity&lt;em&gt;test&lt;/em&gt; to make sure everything is setup correctly&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import should from &#39;should&#39;;
+
+describe(&#39;sanity test&#39;, () =&amp;gt; {
+  it(&#39;true should be true&#39;, () =&amp;gt; {
+    true.should.be.ok;
+  });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;first-run:6a452c0786128e7526af44fd8d33053c&#34;&gt;First run&lt;/h3&gt;
+
+&lt;p&gt;Now, if we want to run our test, we run:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;node node_modules/karma/bin/karma start karma.conf.js&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This should start Chrome (if you don&amp;rsquo;t have chrome, see the &lt;a href=&#34;http://karma-runner.github.io/0.12/config/browsers.html&#34;&gt;karma browser configuration&lt;/a&gt;) and print this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;INFO [karma]: Karma v0.12.31 server started at http://localhost:9876/
+INFO [launcher]: Starting browser Chrome
+INFO [Chrome 39.0.2171 (Windows 7)]: Connected on socket xBMICOzH9lh3Eo9INXDA with id 55389724
+Chrome 39.0.2171 (Windows 7): Executed 1 of 1 SUCCESS (0.009 secs / 0 secs)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Every time you change your code it will automatically rerun your tests.&lt;/p&gt;
+
+&lt;p&gt;To make it a bit easier to run the test, add the test command to npm:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;&amp;quot;scripts&amp;quot;: {
+  &amp;quot;test&amp;quot;: &amp;quot;node node_modules/karma/bin/karma start karma.conf.js&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You could also add &lt;code&gt;--single-run&lt;/code&gt; if you want to run the test only once and don&amp;rsquo;t watch.&lt;/p&gt;
+
+&lt;h2 id=&#34;testing-react-code:6a452c0786128e7526af44fd8d33053c&#34;&gt;Testing React code&lt;/h2&gt;
+
+&lt;p&gt;The steps above give you a working testing environment, now we can test our code:&lt;/p&gt;
+
+&lt;p&gt;To test this we create a simple React component &lt;em&gt;Button.react.jsx&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import React from &#39;react&#39;;
+
+
+export default React.createClass({
+  displayName: &#39;Button&#39;,
+
+
+  render() {
+    return &amp;lt;div&amp;gt;button&amp;lt;/div&amp;gt;;
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And we test it in _Button.react&lt;em&gt;test.jsx&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;import React from &#39;react/addons&#39;;
+import should from &#39;should&#39;;
+
+import Button from &#39;../app/jsx/components/Button.react&#39;;
+
+const TestUtils = React.addons.TestUtils;
+
+
+describe(&#39;Button&#39;, () =&amp;gt; {
+  it(&#39;renders button div&#39;, () =&amp;gt; {
+    const button = TestUtils.renderIntoDocument(
+      &amp;lt;Button /&amp;gt;
+    );
+    TestUtils.isCompositeComponent(button).should.be.ok;
+    button.getDOMNode().textContent.should.be.eql(&#39;button&#39;);
+  });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Easy!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;remark:6a452c0786128e7526af44fd8d33053c&#34;&gt;Remark&lt;/h3&gt;
+
+&lt;p&gt;While testing, I ran into a problem. This line in HelloWorld.react.jsx: &lt;code&gt;var exampleImage = require(&#39;../../images/example.jpg&#39;);&lt;/code&gt; proved to be a problem. But the problem was quiet obvious to solve, I just needed to add a image loader to the karma webpack configuration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;module: {
+  loaders: [
+  {test: /\.jsx$/, loaders: [&#39;6to5-loader&#39;] },
+  // Add the image loader
+  {test: /.*\.(gif|png|jpg)$/, loaders: [&#39;file?hash=sha512&amp;amp;digest=hex&amp;amp;size=16&amp;amp;name=[hash].[ext]&#39;, &#39;image-webpack-loader?optimizationLevel=7&amp;amp;interlaced=false&#39;]}
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After this, I could test the HelloWorld component too.&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion:6a452c0786128e7526af44fd8d33053c&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Once you have this up, you can test your code with the same setup you already have. Webpack rocks!&lt;/p&gt;
+
+&lt;p&gt;If you have any questions, please leave them as an issue at my boilerplate repository (&lt;a href=&#34;https://github.com/tcoopman/boilerplate-webpack-react/issues&#34;&gt;https://github.com/tcoopman/boilerplate-webpack-react/issues&lt;/a&gt;)&lt;/p&gt;
+
+&lt;h2 id=&#34;commits:6a452c0786128e7526af44fd8d33053c&#34;&gt;Commits&lt;/h2&gt;
+
+&lt;p&gt;All steps and code above can be found in the commits between tag 0.0.9 and 0.0.10: &lt;a href=&#34;https://github.com/tcoopman/boilerplate-webpack-react/commits/master&#34;&gt;https://github.com/tcoopman/boilerplate-webpack-react/commits/master&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Flux and cqrs</title>
+      <link>http://thomascoopman.eu/blog/2014/11/13/flux-and-cqrs/</link>
+      <pubDate>Thu, 13 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://thomascoopman.eu/blog/2014/11/13/flux-and-cqrs/</guid>
+      <description>
+
+&lt;p&gt;About flux and cqrs, what do I want to write about this???&lt;/p&gt;
+
+&lt;p&gt;Things I want to find out.
+actions in the past: because it&amp;rsquo;s something that has happend. nothing todo about it.&lt;/p&gt;
+
+&lt;p&gt;deleting actions is not possible, only update.
+Store all actions in an event store for replay?&lt;/p&gt;
+
+&lt;p&gt;How about authentication and validation actions and flux.
+For example: action &amp;lsquo;MESSAGE_SUBMITTED&amp;rsquo;. But the message must be validated before
+it is added. The MessageStore is responsible for validating because it&amp;rsquo;s specific logic
+of the store.&lt;/p&gt;
+
+&lt;p&gt;(If you don&amp;rsquo;t want to solve it like this you have to wait on the server before moving on.
+You can move on as soon as the server says: everything ok.)&lt;/p&gt;
+
+&lt;p&gt;There are now 2 possible outcomes:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The message gets validated and it&amp;rsquo;s added to the store.&lt;/li&gt;
+&lt;li&gt;The message is invalid and can not be added.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Situation 1 easy: proceed. Situtation 2 is a bit harder. This is how I solve it:
+The store has an error object that gets set if there is an error. Now a component
+can see that the error is set, and that the object is not submitted.&lt;/p&gt;
+
+&lt;p&gt;The only problem I have with this setup is that the name of the actions is not a
+real mirror of the business event. For example:&lt;/p&gt;
+
+&lt;p&gt;MESSAGE_DELETED. If the MessageStore checks if the user has the necessary authentication
+to execute the delete and stops the delete, the name MESSAGE_DELETED is now
+incorrect. MESSAGE_TRY_DELETE would be better.&lt;/p&gt;
+
+&lt;p&gt;The problem also exists between client and server. The server cannot execute
+any of the actions from the client without verification, so every action
+can possible fail.&lt;/p&gt;
+
+&lt;p&gt;Replay is still possible, but the names are not good enough&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Solution for this:&lt;/p&gt;
+
+&lt;p&gt;name the actions not in the past.&lt;/p&gt;
+
+&lt;p&gt;what about the api???&lt;/p&gt;
+
+&lt;p&gt;Flux and API pattern (see blog about it&amp;hellip;)&lt;/p&gt;
+
+&lt;p&gt;ActionCreators (API) send the action and also send to the server.
+Wouldn&amp;rsquo;t it be nice to just sent the samen actions to the server? Yes but
+1. probably not necessary to send all actions to the server.
+2. pattern of confirmed, should not be sent to the server again. For example
+message submitted fails on the server because of &amp;hellip;. authentication. The api
+receives a new action: MESSAGE_SUBMITTED_FAILED (good name?). This action
+doesn&amp;rsquo;t need to be sent of to the server again.
+Should the server internally use the same action names??&lt;/p&gt;
+
+&lt;h2 id=&#34;resources:4ec0de84863d410c76a80e5b482ed58a&#34;&gt;Resources&lt;/h2&gt;
+
+&lt;p&gt;gist of &amp;hellip;.
+&lt;a href=&#34;https://gist.github.com/abdullin/5953ab4f5eae0a7fc8f9#comment-1326317&#34;&gt;https://gist.github.com/abdullin/5953ab4f5eae0a7fc8f9#comment-1326317&lt;/a&gt;
+&lt;a href=&#34;http://www.code-experience.com/async-requests-with-react-js-and-flux-revisited/&#34;&gt;http://www.code-experience.com/async-requests-with-react-js-and-flux-revisited/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>About the site, about me</title>
+      <link>http://thomascoopman.eu/blog/2014/10/04/about-the-site-about-me/</link>
+      <pubDate>Sat, 04 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://thomascoopman.eu/blog/2014/10/04/about-the-site-about-me/</guid>
+      <description>&lt;p&gt;My name is Thomas Coopman and I&amp;rsquo;m a 29 year old developer. Recently I&amp;rsquo;ve
+officially started freelancing/consulting in my spare time. That&amp;rsquo;s the main
+reason for creating this site and blog.&lt;/p&gt;
+
+&lt;p&gt;On this site you can find some more information &lt;a href=&#34;http://thomascoopman.eu/about&#34;&gt;about me&lt;/a&gt;. At the
+&lt;a href=&#34;http://thomascoopman.eu/portfolio&#34;&gt;portfolio&lt;/a&gt; page you can see some things I&amp;rsquo;ve created. That page is
+empty at the moment but it will be coming soon.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m a developer, mostly a web-developer (backend and frontend). In my main job,
+I&amp;rsquo;m a project manager and developer. The main things I do is implementing
+GIS systems and viewers, so I&amp;rsquo;ve got a lot of experience with GIS (mainly with
+ArcGIS, but I also know Geoserver and leaflet).&lt;/p&gt;
+
+&lt;p&gt;If you need someone to help you with the implementation of a custom solution,
+GIS or something else. You want to get a second opinion about something
+technical. Or you need some help on a project&amp;hellip;
+contact me and we can have a chat!&lt;/p&gt;
+
+&lt;p&gt;Greetings&lt;/p&gt;
+
+&lt;p&gt;Thomas&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Creating this site</title>
+      <link>http://thomascoopman.eu/blog/2014/09/29/creating-this-site/</link>
+      <pubDate>Mon, 29 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://thomascoopman.eu/blog/2014/09/29/creating-this-site/</guid>
+      <description>
+
+&lt;p&gt;&lt;em&gt;This is not valid anymore. The site is build with hugo&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;This blogpost will be a about the why, but mostly about how I&amp;rsquo;ve created
+this site.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve created this site mostly for these reasons:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make myself visible on the web.&lt;/li&gt;
+&lt;li&gt;Practice my design and web-development skills.&lt;/li&gt;
+&lt;li&gt;Practice my writing (blog).&lt;/li&gt;
+&lt;li&gt;Record things I&amp;rsquo;ve learned for myself. Maybe someone else will find
+something useful here.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;content:dc8f9a04806b6e0cacfc6b14f9ac10fd&#34;&gt;Content&lt;/h1&gt;
+
+&lt;p&gt;The contents of this site contain information about me, to make me more
+visible on the web. The site includes a blog with primarly technical content. In
+the first place javascript and web-development although this can change
+depending on my interests at that moment and what I&amp;rsquo;m working about.&lt;/p&gt;
+
+&lt;p&gt;Secondly, I&amp;rsquo;ll try to blog about some of my hobbies (hiking for example),
+but that will be very occasional.&lt;/p&gt;
+
+&lt;h1 id=&#34;framework:dc8f9a04806b6e0cacfc6b14f9ac10fd&#34;&gt;Framework&lt;/h1&gt;
+
+&lt;p&gt;I&amp;rsquo;ve created this site in &lt;a href=&#34;http://facebook.github.io/react/&#34;&gt;Reactjs&lt;/a&gt;, my
+current favorite javascript framework that I like for the same reasons everyone
+else likes it. There are lots of blogs
+about react so I&amp;rsquo;ll try to keep the redundancy low and only talk about the new
+things.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m using &lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;react-router&lt;/a&gt; for the routing.
+At the moment of writing there are some shortcomings
+(mostly no server-side rendering&lt;sup&gt;1&lt;/sup&gt;), but these guys are working
+on that and we can expect it shortly. As soon as server side rendering is
+supported, I&amp;rsquo;ll add it so this site can be easily searched with
+Google, and then it should also be mostly useful without javascript.&lt;/p&gt;
+
+&lt;p&gt;For the css I&amp;rsquo;m using the &lt;a href=&#34;http://learnboost.github.io/stylus/&#34;&gt;stylus&lt;/a&gt; preprocessor.
+I&amp;rsquo;ve tried Less and Sass in the past but I like stylus, and this site is a
+good way of exploring it. I try to keep the site low on css and don&amp;rsquo;t
+use a framework like bootstrap or foundation.&lt;/p&gt;
+
+&lt;h1 id=&#34;blog:dc8f9a04806b6e0cacfc6b14f9ac10fd&#34;&gt;Blog&lt;/h1&gt;
+
+&lt;p&gt;The blog is written with my own implementation of a React markdown component
+that I&amp;rsquo;ve &lt;a href=&#34;https://github.com/tcoopman/markdown-react&#34;&gt;published&lt;/a&gt;&lt;sup&gt;2&lt;/sup&gt;. In short, it uses an existing markdown parser,
+but instead of rendering a html string, it renders React components. The cool
+thing about this is that you can have full control over the React components, so
+you can do all kind of cool things with. For example add a custom subscript
+to every image or parse different html than what you normally want (like I do in
+this blog. Here I render &amp;lt;h2&amp;gt; elements instead of &amp;lt;h1&amp;gt;). Of course you can do
+all these things if you know something about parsing, but this component makes this
+super easy if you know React, just substitute the main component for your own and
+you&amp;rsquo;re started. I&amp;rsquo;m planning on writing a short blog post about this component too.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned!&lt;/p&gt;
+
+&lt;h1 id=&#34;hosting-and-deploying:dc8f9a04806b6e0cacfc6b14f9ac10fd&#34;&gt;Hosting and deploying&lt;/h1&gt;
+
+&lt;p&gt;I build this site with gulp and webpack. My boilerplate package
+can be found at &lt;a href=&#34;https://github.com/tcoopman/boilerplate-webpack-react&#34;&gt;boilerplate-webpack-react&lt;/a&gt;.
+This site uses a very similar build, with some adaptations for the blog.&lt;/p&gt;
+
+&lt;p&gt;This website is hosted on &lt;a href=&#34;https://www.digitalocean.com/&#34;&gt;DigitalOcean&lt;/a&gt; with Nginx.
+At the moment it&amp;rsquo;s just a static app, but as soon as react-router supports server
+rendering I&amp;rsquo;m going to implement it. I need to set up automatic deployment, probably with git.
+I don&amp;rsquo;t build my site on the server. I push the build to the server.
+When server side rendering is implemented, the way I deploy my code will change
+and I also have a blog about that in the pipeline.&lt;/p&gt;
+
+&lt;h1 id=&#34;conclusion:dc8f9a04806b6e0cacfc6b14f9ac10fd&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;A custom implementation of a blog, custom css and hosted on a vps. And that for
+a static site. It&amp;rsquo;s a bit more work, and you could say it&amp;rsquo;s not a best practice
+to do things this way, but it&amp;rsquo;s a good way to experiment and try new things and
+that&amp;rsquo;s exactly what I want to do with this site.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt; This has been fixed in a recent version.&lt;/p&gt;
+
+&lt;p&gt;&lt;sup&gt;2&lt;/sup&gt; I&amp;rsquo;ve switched to &lt;a href=&#34;https://github.com/jonschlinkert/remarkable&#34;&gt;remarkable&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
