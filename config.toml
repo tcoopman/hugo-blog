@@ -1,4 +1,4 @@
-baseurl = "http://thomascoopman.eu"
+baseurl = "https://thomascoopman.eu"
 languageCode = "en-us"
 title = "Thomas Coopman - Infinite Tree"
 MetaDataFormat = "toml"

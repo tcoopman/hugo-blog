@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Thomas Coopman - Infinite Tree</title>
-    <link>http://thomascoopman.eu/post/</link>
+    <link>https://thomascoopman.eu/post/</link>
     <description>Recent content in Posts on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 12 Apr 2016 22:28:31 +0200</lastBuildDate>
-    <atom:link href="http://thomascoopman.eu/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://thomascoopman.eu/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Modelling money in Elm</title>
-      <link>http://thomascoopman.eu/blog/2016/04/12/modelling-money-in-elm/</link>
+      <link>https://thomascoopman.eu/blog/2016/04/12/modelling-money-in-elm/</link>
       <pubDate>Tue, 12 Apr 2016 22:28:31 +0200</pubDate>
       
-      <guid>http://thomascoopman.eu/blog/2016/04/12/modelling-money-in-elm/</guid>
+      <guid>https://thomascoopman.eu/blog/2016/04/12/modelling-money-in-elm/</guid>
       <description>
 
 &lt;p&gt;After reading the blog post of Mathias Verraes (@mathiasverraes) on (Type Safety and Money)[&lt;a href=&#34;http://verraes.net/2016/02/type-safety-and-money/&#34;&gt;http://verraes.net/2016/02/type-safety-and-money/&lt;/a&gt;], and after doing a real short modelling attempt in Haskell at Socrates Belgium, I wanted to try to model Money in Elm.&lt;/p&gt;
@@ -145,12 +145,13 @@ moneyToEuro mon con =
     </item>
     
     <item>
-      <title>welcome</title>
-      <link>http://thomascoopman.eu/blog/2016/04/12/welcome/</link>
+      <title>Welcome</title>
+      <link>https://thomascoopman.eu/blog/2016/04/12/welcome/</link>
       <pubDate>Tue, 12 Apr 2016 21:28:31 +0200</pubDate>
       
-      <guid>http://thomascoopman.eu/blog/2016/04/12/welcome/</guid>
+      <guid>https://thomascoopman.eu/blog/2016/04/12/welcome/</guid>
       <description>&lt;p&gt;Welcome to the my new site written in &lt;a href=&#34;http://gohugo.io/&#34;&gt;hugo&lt;/a&gt;.
+While busy, I&amp;rsquo;ve set up https via letsencrypt. (see &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04&#34;&gt;tutorial&lt;/a&gt;
 This is a reboot of my site, and an attempt to blog some more.&lt;/p&gt;
 
 &lt;p&gt;So without further ado, let&amp;rsquo;s start blogging :)&lt;/p&gt;
@@ -159,10 +160,10 @@ This is a reboot of my site, and an attempt to blog some more.&lt;/p&gt;
     
     <item>
       <title>Testing ES6 code</title>
-      <link>http://thomascoopman.eu/blog/2015/01/13/testing-es6-code/</link>
+      <link>https://thomascoopman.eu/blog/2015/01/13/testing-es6-code/</link>
       <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://thomascoopman.eu/blog/2015/01/13/testing-es6-code/</guid>
+      <guid>https://thomascoopman.eu/blog/2015/01/13/testing-es6-code/</guid>
       <description>
 
 &lt;p&gt;Recently, I&amp;rsquo;ve changed my webpack workflow, and switched to &lt;a href=&#34;https://6to5.org/&#34;&gt;6to5&lt;/a&gt;, to be able to write more of my React code in ES6 than the current jsx transpiler supports (and because 6to5 just rocks!). You can find this workflow in my &lt;a href=&#34;https://github.com/tcoopman/boilerplate-webpack-react&#34;&gt;boilerplate-webpack-react&lt;/a&gt; project. Switching was easy. I&amp;rsquo;ve just replaced jsx-loader with 6to5-loader and everything worked correctly.&lt;/p&gt;
@@ -364,10 +365,10 @@ describe(&#39;Button&#39;, () =&amp;gt; {
     
     <item>
       <title>Flux and cqrs</title>
-      <link>http://thomascoopman.eu/blog/2014/11/13/flux-and-cqrs/</link>
+      <link>https://thomascoopman.eu/blog/2014/11/13/flux-and-cqrs/</link>
       <pubDate>Thu, 13 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://thomascoopman.eu/blog/2014/11/13/flux-and-cqrs/</guid>
+      <guid>https://thomascoopman.eu/blog/2014/11/13/flux-and-cqrs/</guid>
       <description>
 
 &lt;p&gt;About flux and cqrs, what do I want to write about this???&lt;/p&gt;
@@ -437,16 +438,16 @@ Should the server internally use the same action names??&lt;/p&gt;
     
     <item>
       <title>About the site, about me</title>
-      <link>http://thomascoopman.eu/blog/2014/10/04/about-the-site-about-me/</link>
+      <link>https://thomascoopman.eu/blog/2014/10/04/about-the-site-about-me/</link>
       <pubDate>Sat, 04 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://thomascoopman.eu/blog/2014/10/04/about-the-site-about-me/</guid>
+      <guid>https://thomascoopman.eu/blog/2014/10/04/about-the-site-about-me/</guid>
       <description>&lt;p&gt;My name is Thomas Coopman and I&amp;rsquo;m a 29 year old developer. Recently I&amp;rsquo;ve
 officially started freelancing/consulting in my spare time. That&amp;rsquo;s the main
 reason for creating this site and blog.&lt;/p&gt;
 
-&lt;p&gt;On this site you can find some more information &lt;a href=&#34;http://thomascoopman.eu/about&#34;&gt;about me&lt;/a&gt;. At the
-&lt;a href=&#34;http://thomascoopman.eu/portfolio&#34;&gt;portfolio&lt;/a&gt; page you can see some things I&amp;rsquo;ve created. That page is
+&lt;p&gt;On this site you can find some more information &lt;a href=&#34;https://thomascoopman.eu/about&#34;&gt;about me&lt;/a&gt;. At the
+&lt;a href=&#34;https://thomascoopman.eu/portfolio&#34;&gt;portfolio&lt;/a&gt; page you can see some things I&amp;rsquo;ve created. That page is
 empty at the moment but it will be coming soon.&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;m a developer, mostly a web-developer (backend and frontend). In my main job,
@@ -467,10 +468,10 @@ contact me and we can have a chat!&lt;/p&gt;
     
     <item>
       <title>Creating this site</title>
-      <link>http://thomascoopman.eu/blog/2014/09/29/creating-this-site/</link>
+      <link>https://thomascoopman.eu/blog/2014/09/29/creating-this-site/</link>
       <pubDate>Mon, 29 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://thomascoopman.eu/blog/2014/09/29/creating-this-site/</guid>
+      <guid>https://thomascoopman.eu/blog/2014/09/29/creating-this-site/</guid>
       <description>
 
 &lt;p&gt;&lt;em&gt;This is not valid anymore. The site is build with hugo&lt;/em&gt;&lt;/p&gt;
