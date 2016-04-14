@@ -113,7 +113,7 @@ EURToMoney eur = Euro eur
 ## Extra - Currency Conversions
 
 What if you want to convert a currency. Then you need exchange rates.
-With Elm, these conversions can be typed checked to, although it's a bit verbose.
+With Elm, these conversions can be typed checked too, although it's a bit verbose.
 
 Let's say we want all the `Money` of our `Price`s to be converted to euro.
 
