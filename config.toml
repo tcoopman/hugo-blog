@@ -7,6 +7,7 @@ paginate = 10
 pygmentsuseclasses = false
 pygmentsstyle = "pastie"
 PygmentsCodeFences = true
+disqusShortname = "thomascoopmaneu"
 
 [author]
     name = "Thomas Coopman"

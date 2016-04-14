@@ -139,3 +139,5 @@ Where extract is a function that extracts the amount of the USD.
 Elm doesn't have type classes so some things are extra work and are a bit more verbose. But it is possible to enforce a lot at compile time. Furthermore everything is very readable.
 
 Is it worth it of doing it like this? That totally depends on your use case. A lot of times you will want to use `type Money = EUR Float | USD Float` and use a `Maybe` type to enforce your constraints, but sometimes you will do the extra work to enforce some things at compile time.
+
+
