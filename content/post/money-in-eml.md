@@ -140,4 +140,20 @@ Elm doesn't have type classes so some things are extra work and are a bit more v
 
 Is it worth it of doing it like this? That totally depends on your use case. A lot of times you will want to use `type Money = EUR Float | USD Float` and use a `Maybe` type to enforce your constraints, but sometimes you will do the extra work to enforce some things at compile time.
 
+## Update 2016-04-18
 
+*Zach May* left a nice comment (Thanks!) on the blog about an alternative solution:
+
+```elm
+type USD = USD 
+type EUR = EUR
+
+type Money a = Money (Int, a)
+
+add : Money a -> Money a -> Money a
+add m m' =
+  case (m, m') of
+    (Money (i, a), Money (i', a')) -> Money (i + i', a)
+```
+
+This solution also enforces strict types when adding money with the advantage that you only need one implementation for add. A possible downside could be if you want your money types to have different number types (for example if you want to model bitcoins not with `Int`s but with `SomeBitcoinNumberType`). But like I said in my conclusion, you have to look at your constraints and chose a solution yourself.

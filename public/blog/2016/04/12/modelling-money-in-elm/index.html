@@ -178,7 +178,7 @@ Suppose we needed to write many functions on money types, then we could write th
 <h2 id="extra-currency-conversions:2012ba4f5f8746a94832610fb83d5960">Extra - Currency Conversions</h2>
 
 <p>What if you want to convert a currency. Then you need exchange rates.
-With Elm, these conversions can be typed checked to, although it&rsquo;s a bit verbose.</p>
+With Elm, these conversions can be typed checked too, although it&rsquo;s a bit verbose.</p>
 
 <p>Let&rsquo;s say we want all the <code>Money</code> of our <code>Price</code>s to be converted to euro.</p>
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #008800; font-weight: bold">type</span> <span style="color: #008800; font-weight: bold">alias</span> <span style="color: #888888; font-weight: bold">EURToUSD</span> <span style="color: #0066bb; font-weight: bold">=</span> <span style="color: #888888; font-weight: bold">Float</span>
@@ -202,6 +202,22 @@ With Elm, these conversions can be typed checked to, although it&rsquo;s a bit v
 <p>Elm doesn&rsquo;t have type classes so some things are extra work and are a bit more verbose. But it is possible to enforce a lot at compile time. Furthermore everything is very readable.</p>
 
 <p>Is it worth it of doing it like this? That totally depends on your use case. A lot of times you will want to use <code>type Money = EUR Float | USD Float</code> and use a <code>Maybe</code> type to enforce your constraints, but sometimes you will do the extra work to enforce some things at compile time.</p>
+
+<h2 id="update-2016-04-18:2012ba4f5f8746a94832610fb83d5960">Update 2016-04-18</h2>
+
+<p><em>Zach May</em> left a nice comment (Thanks!) on the blog about an alternative solution:</p>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #008800; font-weight: bold">type</span> <span style="color: #888888; font-weight: bold">USD</span> <span style="color: #0066bb; font-weight: bold">=</span> <span style="color: #888888; font-weight: bold">USD</span> 
+<span style="color: #008800; font-weight: bold">type</span> <span style="color: #888888; font-weight: bold">EUR</span> <span style="color: #0066bb; font-weight: bold">=</span> <span style="color: #888888; font-weight: bold">EUR</span>
+
+<span style="color: #008800; font-weight: bold">type</span> <span style="color: #888888; font-weight: bold">Money</span> <span style="color: #336699">a</span> <span style="color: #0066bb; font-weight: bold">=</span> <span style="color: #888888; font-weight: bold">Money</span> (<span style="color: #888888; font-weight: bold">Int</span>, <span style="color: #336699">a</span>)
+
+<span style="color: #336699">add</span> <span style="color: #0066bb; font-weight: bold">:</span> <span style="color: #888888; font-weight: bold">Money</span> <span style="color: #336699">a</span> <span style="color: #0066bb; font-weight: bold">-&gt;</span> <span style="color: #888888; font-weight: bold">Money</span> <span style="color: #336699">a</span> <span style="color: #0066bb; font-weight: bold">-&gt;</span> <span style="color: #888888; font-weight: bold">Money</span> <span style="color: #336699">a</span>
+<span style="color: #336699">add</span> <span style="color: #336699">m</span> <span style="color: #336699">m&#39;</span> <span style="color: #0066bb; font-weight: bold">=</span>
+  <span style="color: #008800; font-weight: bold">case</span> (<span style="color: #336699">m</span>, <span style="color: #336699">m&#39;</span>) <span style="color: #008800; font-weight: bold">of</span>
+    (<span style="color: #888888; font-weight: bold">Money</span> (<span style="color: #336699">i</span>, <span style="color: #336699">a</span>), <span style="color: #888888; font-weight: bold">Money</span> (<span style="color: #336699">i&#39;</span>, <span style="color: #336699">a&#39;</span>)) <span style="color: #0066bb; font-weight: bold">-&gt;</span> <span style="color: #888888; font-weight: bold">Money</span> (<span style="color: #336699">i</span> <span style="color: #0066bb; font-weight: bold">+</span> <span style="color: #336699">i&#39;</span>, <span style="color: #336699">a</span>)
+</pre></div>
+
+<p>This solution also enforces strict types when adding money with the advantage that you only need one implementation for add. A possible downside could be if you want your money types to have different number types (for example if you want to model bitcoins not with <code>Int</code>s but with <code>SomeBitcoinNumberType</code>). But like I said in my conclusion, you have to look at your constraints and chose a solution yourself.</p>
 
   </div>
   <div id="disqus_thread"></div>

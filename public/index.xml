@@ -223,7 +223,7 @@ Suppose we needed to write many functions on money types, then we could write th
 &lt;h2 id=&#34;extra-currency-conversions:2012ba4f5f8746a94832610fb83d5960&#34;&gt;Extra - Currency Conversions&lt;/h2&gt;
 
 &lt;p&gt;What if you want to convert a currency. Then you need exchange rates.
-With Elm, these conversions can be typed checked to, although it&amp;rsquo;s a bit verbose.&lt;/p&gt;
+With Elm, these conversions can be typed checked too, although it&amp;rsquo;s a bit verbose.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s say we want all the &lt;code&gt;Money&lt;/code&gt; of our &lt;code&gt;Price&lt;/code&gt;s to be converted to euro.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;alias&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EURToUSD&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;
@@ -247,6 +247,22 @@ With Elm, these conversions can be typed checked to, although it&amp;rsquo;s a b
 &lt;p&gt;Elm doesn&amp;rsquo;t have type classes so some things are extra work and are a bit more verbose. But it is possible to enforce a lot at compile time. Furthermore everything is very readable.&lt;/p&gt;
 
 &lt;p&gt;Is it worth it of doing it like this? That totally depends on your use case. A lot of times you will want to use &lt;code&gt;type Money = EUR Float | USD Float&lt;/code&gt; and use a &lt;code&gt;Maybe&lt;/code&gt; type to enforce your constraints, but sometimes you will do the extra work to enforce some things at compile time.&lt;/p&gt;
+
+&lt;h2 id=&#34;update-2016-04-18:2012ba4f5f8746a94832610fb83d5960&#34;&gt;Update 2016-04-18&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Zach May&lt;/em&gt; left a nice comment (Thanks!) on the blog about an alternative solution:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;USD&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;USD&lt;/span&gt; 
+&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt;
+
+&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; (&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Int&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt;)
+
+&lt;span style=&#34;color: #336699&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt;
+&lt;span style=&#34;color: #336699&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;m&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;m&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt;
+  &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;case&lt;/span&gt; (&lt;span style=&#34;color: #336699&#34;&gt;m&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;m&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;of&lt;/span&gt;
+    (&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; (&lt;span style=&#34;color: #336699&#34;&gt;i&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt;), &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; (&lt;span style=&#34;color: #336699&#34;&gt;i&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;a&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; (&lt;span style=&#34;color: #336699&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;i&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt;)
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This solution also enforces strict types when adding money with the advantage that you only need one implementation for add. A possible downside could be if you want your money types to have different number types (for example if you want to model bitcoins not with &lt;code&gt;Int&lt;/code&gt;s but with &lt;code&gt;SomeBitcoinNumberType&lt;/code&gt;). But like I said in my conclusion, you have to look at your constraints and chose a solution yourself.&lt;/p&gt;
 </description>
     </item>
     
