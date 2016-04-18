@@ -1,8 +1,8 @@
 +++
 draft = true
-date = "2016-12-04"
+date = "2015-12-04"
 tags = ["elm", "modelling", "DDD"]
-title = "Modelling money in Elm"
+title = "Refactor till you drop"
 +++
 
 # Introduction
