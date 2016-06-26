@@ -41,7 +41,7 @@ by Chris McCord, Bruce Tate, and José Valim was published recently, so this see
 &lt;p&gt;The first part of the book explains the basic parts of Phoenix as a MCV framework and is what you would expect in a book about web frameworks. The second part covers the fun part of Phoenix, channels and concurrency with Genserver and OTP (read about this if you haven&amp;rsquo;t!).
 The second part really invites me to explore Phoenix and Elixir more!&lt;/p&gt;
 
-&lt;p&gt;My biggest critique with the book is about testing. While the testing chapters are decent and they go deep enough. I think that a test driven approach would have been better for some chapters (especially for the OTP chapters). You have to write quite a bit of code before you can see the results. Doing test first would probably help with the understanding. Although the interaction with the elixir REPL helps quite a bit!&lt;/p&gt;
+&lt;p&gt;My biggest criticism with the book is about testing. While the testing chapters are decent and they go deep enough. I think that a test driven approach would have been better for some chapters (especially for the OTP chapters). You have to write quite a bit of code before you can see the results. Doing test first would probably help with the understanding. Although the interaction with the elixir REPL helps quite a bit!&lt;/p&gt;
 
 &lt;p&gt;The book covered all content that I wanted, except there is nothing about deploying the application. Some pointers and best practices into that direction would have been really nice!&lt;/p&gt;
 
