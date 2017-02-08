@@ -1,0 +1,35 @@
+html {
+  box-sizing: border-box;
+  font-family: 'Neuton', serif;
+  font-size: 1.5rem
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background: rgb(2, 2, 58);
+  color: rgb(255, 255, 217);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  padding: 20px;
+  margin-top: 3rem;
+}
+
+.center {
+  text-align: center;
+}
+
+.padded {
+  padding: 20px;
+}

@@ -3,8 +3,12 @@
   
   <url>
     <loc>https://thomascoopman.eu/</loc>
-    <lastmod>2016-06-26T10:49:59+02:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2017-01-03T19:18:13+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://thomascoopman.eu/blog/2017/01/03/2017/</loc>
+    <lastmod>2017-01-03T19:18:13+01:00</lastmod>
   </url>
   
   <url>
@@ -40,6 +44,10 @@
   <url>
     <loc>https://thomascoopman.eu/blog/2014/09/29/creating-this-site/</loc>
     <lastmod>2014-09-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://thomascoopman.eu/home/</loc>
   </url>
   
 </urlset>

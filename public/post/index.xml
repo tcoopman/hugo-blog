@@ -6,8 +6,91 @@
     <description>Recent content in Posts on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 26 Jun 2016 10:49:59 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 03 Jan 2017 19:18:13 +0100</lastBuildDate>
     <atom:link href="https://thomascoopman.eu/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>2017</title>
+      <link>https://thomascoopman.eu/blog/2017/01/03/2017/</link>
+      <pubDate>Tue, 03 Jan 2017 19:18:13 +0100</pubDate>
+      
+      <guid>https://thomascoopman.eu/blog/2017/01/03/2017/</guid>
+      <description>
+
+&lt;p&gt;The year is over, a new year has come.&lt;/p&gt;
+
+&lt;p&gt;I know, New Year is an arbitrary point in time but it is a tradition to look back on the past year and have some resolutions for the year to come.&lt;/p&gt;
+
+&lt;p&gt;So at this arbitrary point in time, lets look back and forward&lt;/p&gt;
+
+&lt;h2 id=&#34;2016&#34;&gt;2016&lt;/h2&gt;
+
+&lt;p&gt;I&amp;rsquo;m going to make this short, because I mostly want to look forward!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Became an independent software consultant&lt;/li&gt;
+&lt;li&gt;Bought a house with my girlfriend&lt;/li&gt;
+&lt;li&gt;Read lots of books&lt;/li&gt;
+&lt;li&gt;Became a teamleader&lt;/li&gt;
+&lt;li&gt;Lots of other cool stuff&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2017&#34;&gt;2017&lt;/h2&gt;
+
+&lt;p&gt;Last month I read &lt;a href=&#34;https://www.facebook.com/notes/mark-zuckerberg/building-jarvis/10154361492931634&#34;&gt;Building Jarvis&lt;/a&gt; from Mark Zuckerberg where he builds himself a Jarvis in 100 hours. I was, and still am, in awe. This looks like an awesome project and it was done in about 100 hours.&lt;/p&gt;
+
+&lt;p&gt;So I was thinking, last year, I had a goal of reading 30 books but I read way more &lt;a href=&#34;https://www.goodreads.com/user/year_in_books/2016/5366494&#34;&gt;46&lt;/a&gt;. This year I&amp;rsquo;m setting my goal lower because I kind of felt a pressure to read books. Even if it was without an underlying goal. Don&amp;rsquo;t get me wrong, it&amp;rsquo;s great to read this much books and I&amp;rsquo;m going to try to keep reading a lot, but reading much isn&amp;rsquo;t the goal. For me learning, recreation, relaxation are better goals.
+And reading books is absolutely not the only way to learn. Moreover it&amp;rsquo;s not the only way that I try to learn at the moment, but I believe my focus was a not alwasy correct, so that&amp;rsquo;s why I&amp;rsquo;m setting different goals this year.&lt;/p&gt;
+
+&lt;h3 id=&#34;concrete-goals&#34;&gt;Concrete goals:&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Last year, I built lots of small things. This year, I want to build a concrete side project, put a time limit to it and finish it. 100 hours? 8 hours each month?. The side project should allow me to learn some of the stuff that I&amp;rsquo;m interested in.&lt;/li&gt;
+&lt;li&gt;Read 20 books (reading still is fun and a great way to learn)&lt;/li&gt;
+&lt;li&gt;Read and understand 10 papers (1 each month)&lt;/li&gt;
+&lt;li&gt;Write 6 blog posts&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The books should be easy, the side project will probably be the hardest!&lt;/p&gt;
+
+&lt;h3 id=&#34;learn-stuff-that-i-m-interested-in&#34;&gt;Learn stuff that I&amp;rsquo;m interested in&lt;/h3&gt;
+
+&lt;p&gt;So what will the project be? I don&amp;rsquo;t know yet, but ideally, it should include some of the things that I&amp;rsquo;m interested in at the moment:&lt;/p&gt;
+
+&lt;p&gt;(In no specific order)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Machine learning and AI, natural language processing, neural networks,&amp;hellip;.&lt;/li&gt;
+&lt;li&gt;Virtual reality&lt;/li&gt;
+&lt;li&gt;Event sourcing and DDD&lt;/li&gt;
+&lt;li&gt;Complex systems&lt;/li&gt;
+&lt;li&gt;Functional programming&lt;/li&gt;
+&lt;li&gt;Static typing (ML) languages&lt;/li&gt;
+&lt;li&gt;Frontend functional programming languages and UX&lt;/li&gt;
+&lt;li&gt;Product design, let&amp;rsquo;s restate this: Building great products&lt;/li&gt;
+&lt;li&gt;Actor model - Erlang/Elixir&lt;/li&gt;
+&lt;li&gt;Mobile apps&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are way more things that I&amp;rsquo;m interested in, but this list is way too long already. So lets start with it!&lt;/p&gt;
+
+&lt;h3 id=&#34;languages-i-m-watching&#34;&gt;Languages I&amp;rsquo;m watching:&lt;/h3&gt;
+
+&lt;p&gt;To complete, here are some of the languages that I&amp;rsquo;m watching at the moment.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Elixir&lt;/li&gt;
+&lt;li&gt;Elm&lt;/li&gt;
+&lt;li&gt;Purescript&lt;/li&gt;
+&lt;li&gt;Haskell&lt;/li&gt;
+&lt;li&gt;Typescript&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Watching means, at least try to write code in them or improve at these languages.&lt;/p&gt;
+
+&lt;p&gt;Have a great 2017!&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Programming Phoenix review</title>
@@ -68,7 +151,7 @@ The second part really invites me to explore Phoenix and Elixir more!&lt;/p&gt;
 
 &lt;p&gt;The goal is to explore different ways of modelling the money in Elm and to explore how a type safe language can support our constraints.&lt;/p&gt;
 
-&lt;h2 id=&#34;possible-type-declarations-of-money-in-elm:2012ba4f5f8746a94832610fb83d5960&#34;&gt;Possible type declarations of Money in Elm&lt;/h2&gt;
+&lt;h2 id=&#34;possible-type-declarations-of-money-in-elm&#34;&gt;Possible type declarations of Money in Elm&lt;/h2&gt;
 
 &lt;p&gt;Money is an amount (Float) and a currency&lt;/p&gt;
 
@@ -144,7 +227,7 @@ Suppose we needed to write many functions on money types, then we could write th
 &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EURToMoney&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;eur&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;eur&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2 id=&#34;extra-currency-conversions:2012ba4f5f8746a94832610fb83d5960&#34;&gt;Extra - Currency Conversions&lt;/h2&gt;
+&lt;h2 id=&#34;extra-currency-conversions&#34;&gt;Extra - Currency Conversions&lt;/h2&gt;
 
 &lt;p&gt;What if you want to convert a currency. Then you need exchange rates.
 With Elm, these conversions can be typed checked too, although it&amp;rsquo;s a bit verbose.&lt;/p&gt;
@@ -166,13 +249,13 @@ With Elm, these conversions can be typed checked too, although it&amp;rsquo;s a 
 
 &lt;p&gt;Where extract is a function that extracts the amount of the USD.&lt;/p&gt;
 
-&lt;h2 id=&#34;conclusion:2012ba4f5f8746a94832610fb83d5960&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;Elm doesn&amp;rsquo;t have type classes so some things are extra work and are a bit more verbose. But it is possible to enforce a lot at compile time. Furthermore everything is very readable.&lt;/p&gt;
 
 &lt;p&gt;Is it worth it of doing it like this? That totally depends on your use case. A lot of times you will want to use &lt;code&gt;type Money = EUR Float | USD Float&lt;/code&gt; and use a &lt;code&gt;Maybe&lt;/code&gt; type to enforce your constraints, but sometimes you will do the extra work to enforce some things at compile time.&lt;/p&gt;
 
-&lt;h2 id=&#34;update-2016-04-18:2012ba4f5f8746a94832610fb83d5960&#34;&gt;Update 2016-04-18&lt;/h2&gt;
+&lt;h2 id=&#34;update-2016-04-18&#34;&gt;Update 2016-04-18&lt;/h2&gt;
 
 &lt;p&gt;&lt;em&gt;Zach May&lt;/em&gt; left a nice comment (Thanks!) on the blog about an alternative solution:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;USD&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;USD&lt;/span&gt; 
@@ -216,13 +299,13 @@ This is a reboot of my site, and an attempt to blog some more.&lt;/p&gt;
 
 &lt;p&gt;Writing code and developing is a breeze with this workflow, especially with &lt;a href=&#34;https://github.com/gaearon/react-hot-loader&#34;&gt;react-hot-loader&lt;/a&gt;. I didn&amp;rsquo;t look into writing test though yet, and it took me a little while to find out how to do it, so I explain it here.&lt;/p&gt;
 
-&lt;h2 id=&#34;karma-webpack:6a452c0786128e7526af44fd8d33053c&#34;&gt;Karma-webpack&lt;/h2&gt;
+&lt;h2 id=&#34;karma-webpack&#34;&gt;Karma-webpack&lt;/h2&gt;
 
 &lt;p&gt;Luckely, there exist a &lt;a href=&#34;http://karma-runner.github.io/&#34;&gt;karma&lt;/a&gt; plugin &lt;a href=&#34;https://github.com/webpack/karma-webpack&#34;&gt;webpack-karma&lt;/a&gt; that allows you to run webpack on files loaded by karma. This means, the test can be written in ES6 (or any other language you prefer that can be transpiled by a webpack loader), and your own code also gets transpiled.&lt;/p&gt;
 
 &lt;p&gt;Let me show my setup.&lt;/p&gt;
 
-&lt;h3 id=&#34;install-dependencies:6a452c0786128e7526af44fd8d33053c&#34;&gt;Install dependencies&lt;/h3&gt;
+&lt;h3 id=&#34;install-dependencies&#34;&gt;Install dependencies&lt;/h3&gt;
 
 &lt;p&gt;First you need to install all dependencies:&lt;/p&gt;
 
@@ -230,7 +313,7 @@ This is a reboot of my site, and an attempt to blog some more.&lt;/p&gt;
 
 &lt;p&gt;I use &lt;a href=&#34;http://mochajs.org/&#34;&gt;mocha&lt;/a&gt; as test framework and &lt;a href=&#34;https://github.com/shouldjs/should.js&#34;&gt;should&lt;/a&gt; as assertion library, but this should work with anything that karma supports.&lt;/p&gt;
 
-&lt;h3 id=&#34;karma-configuration-file:6a452c0786128e7526af44fd8d33053c&#34;&gt;Karma configuration file&lt;/h3&gt;
+&lt;h3 id=&#34;karma-configuration-file&#34;&gt;Karma configuration file&lt;/h3&gt;
 
 &lt;p&gt;Next we need to create the karma config file &lt;em&gt;karma.conf.js&lt;/em&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #888888&#34;&gt;// Karma configuration&lt;/span&gt;
@@ -301,7 +384,7 @@ module.exports = &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;f
 };
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;h3 id=&#34;first-test:6a452c0786128e7526af44fd8d33053c&#34;&gt;First test&lt;/h3&gt;
+&lt;h3 id=&#34;first-test&#34;&gt;First test&lt;/h3&gt;
 
 &lt;p&gt;We also add a simple _sanity&lt;em&gt;test&lt;/em&gt; to make sure everything is setup correctly&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;import&lt;/span&gt; should from &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;should&amp;#39;&lt;/span&gt;;
@@ -313,7 +396,7 @@ describe(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&
 });
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;h3 id=&#34;first-run:6a452c0786128e7526af44fd8d33053c&#34;&gt;First run&lt;/h3&gt;
+&lt;h3 id=&#34;first-run&#34;&gt;First run&lt;/h3&gt;
 
 &lt;p&gt;Now, if we want to run our test, we run:&lt;/p&gt;
 
@@ -336,7 +419,7 @@ Chrome 39.0.2171 (Windows 7): Executed &lt;span style=&#34;color: #0000DD; font-
 
 &lt;p&gt;You could also add &lt;code&gt;--single-run&lt;/code&gt; if you want to run the test only once and don&amp;rsquo;t watch.&lt;/p&gt;
 
-&lt;h2 id=&#34;testing-react-code:6a452c0786128e7526af44fd8d33053c&#34;&gt;Testing React code&lt;/h2&gt;
+&lt;h2 id=&#34;testing-react-code&#34;&gt;Testing React code&lt;/h2&gt;
 
 &lt;p&gt;The steps above give you a working testing environment, now we can test our code:&lt;/p&gt;
 
@@ -376,7 +459,7 @@ describe(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&
 
 &lt;p&gt;&lt;strong&gt;Easy!&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;remark:6a452c0786128e7526af44fd8d33053c&#34;&gt;Remark&lt;/h3&gt;
+&lt;h3 id=&#34;remark&#34;&gt;Remark&lt;/h3&gt;
 
 &lt;p&gt;While testing, I ran into a problem. This line in HelloWorld.react.jsx: &lt;code&gt;var exampleImage = require(&#39;../../images/example.jpg&#39;);&lt;/code&gt; proved to be a problem. But the problem was quiet obvious to solve, I just needed to add a image loader to the karma webpack configuration:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;module: {
@@ -390,13 +473,13 @@ describe(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&
 
 &lt;p&gt;After this, I could test the HelloWorld component too.&lt;/p&gt;
 
-&lt;h2 id=&#34;conclusion:6a452c0786128e7526af44fd8d33053c&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;Once you have this up, you can test your code with the same setup you already have. Webpack rocks!&lt;/p&gt;
 
 &lt;p&gt;If you have any questions, please leave them as an issue at my boilerplate repository (&lt;a href=&#34;https://github.com/tcoopman/boilerplate-webpack-react/issues&#34;&gt;https://github.com/tcoopman/boilerplate-webpack-react/issues&lt;/a&gt;)&lt;/p&gt;
 
-&lt;h2 id=&#34;commits:6a452c0786128e7526af44fd8d33053c&#34;&gt;Commits&lt;/h2&gt;
+&lt;h2 id=&#34;commits&#34;&gt;Commits&lt;/h2&gt;
 
 &lt;p&gt;All steps and code above can be found in the commits between tag 0.0.9 and 0.0.10: &lt;a href=&#34;https://github.com/tcoopman/boilerplate-webpack-react/commits/master&#34;&gt;https://github.com/tcoopman/boilerplate-webpack-react/commits/master&lt;/a&gt;&lt;/p&gt;
 </description>
@@ -455,7 +538,7 @@ this site.&lt;/p&gt;
 something useful here.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&#34;content:dc8f9a04806b6e0cacfc6b14f9ac10fd&#34;&gt;Content&lt;/h1&gt;
+&lt;h1 id=&#34;content&#34;&gt;Content&lt;/h1&gt;
 
 &lt;p&gt;The contents of this site contain information about me, to make me more
 visible on the web. The site includes a blog with primarly technical content. In
@@ -465,7 +548,7 @@ depending on my interests at that moment and what I&amp;rsquo;m working about.&l
 &lt;p&gt;Secondly, I&amp;rsquo;ll try to blog about some of my hobbies (hiking for example),
 but that will be very occasional.&lt;/p&gt;
 
-&lt;h1 id=&#34;framework:dc8f9a04806b6e0cacfc6b14f9ac10fd&#34;&gt;Framework&lt;/h1&gt;
+&lt;h1 id=&#34;framework&#34;&gt;Framework&lt;/h1&gt;
 
 &lt;p&gt;I&amp;rsquo;ve created this site in &lt;a href=&#34;http://facebook.github.io/react/&#34;&gt;Reactjs&lt;/a&gt;, my
 current favorite javascript framework that I like for the same reasons everyone
@@ -485,7 +568,7 @@ I&amp;rsquo;ve tried Less and Sass in the past but I like stylus, and this site 
 good way of exploring it. I try to keep the site low on css and don&amp;rsquo;t
 use a framework like bootstrap or foundation.&lt;/p&gt;
 
-&lt;h1 id=&#34;blog:dc8f9a04806b6e0cacfc6b14f9ac10fd&#34;&gt;Blog&lt;/h1&gt;
+&lt;h1 id=&#34;blog&#34;&gt;Blog&lt;/h1&gt;
 
 &lt;p&gt;The blog is written with my own implementation of a React markdown component
 that I&amp;rsquo;ve &lt;a href=&#34;https://github.com/tcoopman/markdown-react&#34;&gt;published&lt;/a&gt;&lt;sup&gt;2&lt;/sup&gt;. In short, it uses an existing markdown parser,
@@ -500,7 +583,7 @@ you&amp;rsquo;re started. I&amp;rsquo;m planning on writing a short blog post ab
 
 &lt;p&gt;Stay tuned!&lt;/p&gt;
 
-&lt;h1 id=&#34;hosting-and-deploying:dc8f9a04806b6e0cacfc6b14f9ac10fd&#34;&gt;Hosting and deploying&lt;/h1&gt;
+&lt;h1 id=&#34;hosting-and-deploying&#34;&gt;Hosting and deploying&lt;/h1&gt;
 
 &lt;p&gt;I build this site with gulp and webpack. My boilerplate package
 can be found at &lt;a href=&#34;https://github.com/tcoopman/boilerplate-webpack-react&#34;&gt;boilerplate-webpack-react&lt;/a&gt;.
@@ -513,7 +596,7 @@ I don&amp;rsquo;t build my site on the server. I push the build to the server.
 When server side rendering is implemented, the way I deploy my code will change
 and I also have a blog about that in the pipeline.&lt;/p&gt;
 
-&lt;h1 id=&#34;conclusion:dc8f9a04806b6e0cacfc6b14f9ac10fd&#34;&gt;Conclusion&lt;/h1&gt;
+&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
 
 &lt;p&gt;A custom implementation of a blog, custom css and hosted on a vps. And that for
 a static site. It&amp;rsquo;s a bit more work, and you could say it&amp;rsquo;s not a best practice

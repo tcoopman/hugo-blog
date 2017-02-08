@@ -60,8 +60,8 @@ disqusShortname = "thomascoopmaneu"
     github = "https://github.com/tcoopman/"
     bitbucket = "https://bitbucket.org/tcoopman/"
     twitter = "https://twitter.com/tcoopman"
-		linkedin = "https://www.linkedin.com/in/thomas-coopman-a6860622?trk=hp-identity-name"
-		googleplus = "https://plus.google.com/u/0/109624499308077610663"
+	linkedin = "https://www.linkedin.com/in/thomas-coopman-a6860622?trk=hp-identity-name"
+	googleplus = "https://plus.google.com/u/0/109624499308077610663"
 
     # Other social-like sidebar links
     rss = true  # switch to true to enable RSS icon link

@@ -75,7 +75,7 @@
 
     
 
-    <p>Copyright &copy; 2016 <a href="https://thomascoopman.eu/license/">License</a><br/>
+    <p>Copyright &copy; 2017 <a href="https://thomascoopman.eu/license/">License</a><br/>
        Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
   </div>
 </div>
@@ -92,13 +92,13 @@
 
 <p>Writing code and developing is a breeze with this workflow, especially with <a href="https://github.com/gaearon/react-hot-loader">react-hot-loader</a>. I didn&rsquo;t look into writing test though yet, and it took me a little while to find out how to do it, so I explain it here.</p>
 
-<h2 id="karma-webpack:6a452c0786128e7526af44fd8d33053c">Karma-webpack</h2>
+<h2 id="karma-webpack">Karma-webpack</h2>
 
 <p>Luckely, there exist a <a href="http://karma-runner.github.io/">karma</a> plugin <a href="https://github.com/webpack/karma-webpack">webpack-karma</a> that allows you to run webpack on files loaded by karma. This means, the test can be written in ES6 (or any other language you prefer that can be transpiled by a webpack loader), and your own code also gets transpiled.</p>
 
 <p>Let me show my setup.</p>
 
-<h3 id="install-dependencies:6a452c0786128e7526af44fd8d33053c">Install dependencies</h3>
+<h3 id="install-dependencies">Install dependencies</h3>
 
 <p>First you need to install all dependencies:</p>
 
@@ -106,7 +106,7 @@
 
 <p>I use <a href="http://mochajs.org/">mocha</a> as test framework and <a href="https://github.com/shouldjs/should.js">should</a> as assertion library, but this should work with anything that karma supports.</p>
 
-<h3 id="karma-configuration-file:6a452c0786128e7526af44fd8d33053c">Karma configuration file</h3>
+<h3 id="karma-configuration-file">Karma configuration file</h3>
 
 <p>Next we need to create the karma config file <em>karma.conf.js</em></p>
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #888888">// Karma configuration</span>
@@ -177,7 +177,7 @@ module.exports = <span style="color: #008800; font-weight: bold">function</span>
 };
 </pre></div>
 
-<h3 id="first-test:6a452c0786128e7526af44fd8d33053c">First test</h3>
+<h3 id="first-test">First test</h3>
 
 <p>We also add a simple _sanity<em>test</em> to make sure everything is setup correctly</p>
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span><span style="color: #008800; font-weight: bold">import</span> should from <span style="color: #dd2200; background-color: #fff0f0">&#39;should&#39;</span>;
@@ -189,7 +189,7 @@ describe(<span style="color: #dd2200; background-color: #fff0f0">&#39;sanity tes
 });
 </pre></div>
 
-<h3 id="first-run:6a452c0786128e7526af44fd8d33053c">First run</h3>
+<h3 id="first-run">First run</h3>
 
 <p>Now, if we want to run our test, we run:</p>
 
@@ -212,7 +212,7 @@ Chrome 39.0.2171 (Windows 7): Executed <span style="color: #0000DD; font-weight:
 
 <p>You could also add <code>--single-run</code> if you want to run the test only once and don&rsquo;t watch.</p>
 
-<h2 id="testing-react-code:6a452c0786128e7526af44fd8d33053c">Testing React code</h2>
+<h2 id="testing-react-code">Testing React code</h2>
 
 <p>The steps above give you a working testing environment, now we can test our code:</p>
 
@@ -252,7 +252,7 @@ describe(<span style="color: #dd2200; background-color: #fff0f0">&#39;Button&#39
 
 <p><strong>Easy!</strong></p>
 
-<h3 id="remark:6a452c0786128e7526af44fd8d33053c">Remark</h3>
+<h3 id="remark">Remark</h3>
 
 <p>While testing, I ran into a problem. This line in HelloWorld.react.jsx: <code>var exampleImage = require('../../images/example.jpg');</code> proved to be a problem. But the problem was quiet obvious to solve, I just needed to add a image loader to the karma webpack configuration:</p>
 <div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>module: {
@@ -266,13 +266,13 @@ describe(<span style="color: #dd2200; background-color: #fff0f0">&#39;Button&#39
 
 <p>After this, I could test the HelloWorld component too.</p>
 
-<h2 id="conclusion:6a452c0786128e7526af44fd8d33053c">Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 
 <p>Once you have this up, you can test your code with the same setup you already have. Webpack rocks!</p>
 
 <p>If you have any questions, please leave them as an issue at my boilerplate repository (<a href="https://github.com/tcoopman/boilerplate-webpack-react/issues">https://github.com/tcoopman/boilerplate-webpack-react/issues</a>)</p>
 
-<h2 id="commits:6a452c0786128e7526af44fd8d33053c">Commits</h2>
+<h2 id="commits">Commits</h2>
 
 <p>All steps and code above can be found in the commits between tag 0.0.9 and 0.0.10: <a href="https://github.com/tcoopman/boilerplate-webpack-react/commits/master">https://github.com/tcoopman/boilerplate-webpack-react/commits/master</a></p>
 

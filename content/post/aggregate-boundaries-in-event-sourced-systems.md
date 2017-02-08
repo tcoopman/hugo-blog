@@ -1,0 +1,102 @@
++++
+categories = []
+date = "2017-02-08T20:44:40+01:00"
+description = ""
+keywords = []
+title = "Exploring aggregate boundaries in event sourced systems"
+
++++
+
+In this post I'm trying to explore some ways of modelling aggregate boundaries in an event sourced system. This is mostly to clear up my mind about some things, but it might be interesting to someone else.
+
+The domain I'm using in this post is the same domain as the workshops [Michel Grootjans](https://twitter.com/michelgrootjans) and I have been doing about playing with projections. For example at [DDD Europe][1].
+
+## The domain: An online quiz platform
+
+In the online quiz platform:
+
+* a player can create a new quiz
+* they can add questions to the quiz
+* they can publish the quiz
+* once a quiz has been published, a game can be opened. A game is basically an instance of a quiz
+* Many games of a quiz can be opened (there is no limit)
+
+A game, once it is openend looks like this:
+
+* players can join a game
+* after some time the game is started
+* once the game is started, every question that is part of the quiz will be asked
+* players get a defined time to answer the question, if they are too late, a timeout passes
+* once all players have answered, or the timeout has passed a new question is asked
+* once all questions have been asked, the game is finished
+* if no players joined the game, the game will be cancelled
+
+## How can we model the domain?
+
+The first way to model the domain could be by having one aggregate: the quiz. A quiz can handle the whole life cycle and so it's very easy to enforce all rules in this desing. But we can see some problems with this design:
+
+* Our quiz aggregate stream can grow to huge sizes. When lots of games are played, there will be lots of events.
+* An aggregate, because it should keep its invariants, is a synchronization point. So when there are many games played, this could be a performance issue.
+
+Furthermore, at the moment the life cycle of the quiz is kind of strange. The defined business rules don't tell anything about ways of changing the quiz, archiving one, or preventing new games to be started. Suppose in a couple of weeks, business asks us to add these new features:
+
+* A player can change a quiz (add new questions) after it's been published.
+* A player can archive a quiz. No games can be started for archived quizzes.
+
+Of course we will ask business: 
+
+> "What happens to running games when a player changes something?"
+
+> "Running games must not be affected by changes"
+
+This provides a bit of a challenge in the current design. If we model this as one aggregate, we will need to provide extra logic to handle the changes in questions.
+Suppose we have a quiz with some open games. At some point we want to change some question of the quiz, and we know that started games should not be affected. So to solve this we would could save the old questions. But because multiple games can be started at different times, it's not enough to solve the previous set of questions. A better solution would be to copy over the questions to the game when it is started.
+
+At this point we can see a new design emering. We can split our domain into 2 aggregates. A quiz and a game.
+This solves the problem of the quiz that changes and also solves our initial problem of performance and a huge aggregate. The quiz will still be long lived, but will almost always be very small. A game on the other hand will be short lived. The performance will be solved because each game is now independent.
+
+The design with splitting the quiz and game aggregates introduces a new challenge though. A game can only be started for a quiz in the correct state. A game cannot be openend if the quiz isn't published yet or if it is archived. But the game doesn't have this information, the quiz has.
+
+So the solution is simple: *the quiz creates a new aggregate; the game.*
+
+It's perfectly acceptable that [aggregates create other aggregate][2].
+
+In pseudo code this could look like:
+
+```
+quiz.open_game(game_id)
+    case quiz_is_published
+        game = new Game(game_id, quiz_id, copy(questions))
+        # game contains unsaved event game_was_opened
+        return game
+    case _
+        return DomainError("A game can only be opened for published quizzes")
+```
+
+### Exploring a different route
+
+A different route we could take is something like this: The quiz will now handle the `open_game_request` command and returns an event `game_open_requested`. A proccess manager listens to this event and dispatches a `open_game` command. The `open_game` command is handled by a game. The `game_open_requested` means that it is allowed to open the game.
+
+So `open_game` is now an internal command and should not be exposed to users. Users can only request to open a game.
+
+This adds a bit of complexity so this is probably not always a good solution. On the other hand, maybe sometimes we need a solution like this. Let's say that the we have some problems with copyrighted materials in our quizzes and that we are enforced to terminate all quizzes and corresponding games immediately (I know, this is probably far fetched, but it is to explore the solution further).
+
+How could this look?
+
+```
+quiz.terminate_due_to_copyright
+    > returns quiz aggregate with unsaved event (quiz_was_terminated)
+```
+
+A process manager could listen to `quiz_was_terminated` and dispatch a `terminate_game` command to all open games for that quiz. But wait, *how does the process manager know what games are open for the quiz?* Well if we modelled our solution to have the process manager open the games, then it can also keep the state of all the open games for the quiz. So in this final solution we have a process manager that has to listen to `game_open_requested`, `quiz_was_terminated`, `game_was_closed`.
+
+## Closing thoughts
+
+Although the problem and the domain seems simple, exploring the solutions was fun. Furthermore, I only listed some probable solutions, more possible solutions can be found.
+
+One thing I didn't touch yet, but might in an other post, is how frameworks or programming styles can force you into some solution. I had some trouble trying to implement the aggregate that creates an other aggregate in at least one framework and if I were to some infrastructure myself, this could be something that I also easily miss.
+
+
+
+[1]: https://dddeurope.com/2017/speakers/thomas-coopman/#handson
+[2]: https://groups.google.com/forum/#!searchin/dddcqrs/aggregate$20instance|sort:relevance/dddcqrs/B6kxs7FK8_I/F_xcEdkOnHwJ
