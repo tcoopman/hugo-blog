@@ -3,13 +3,14 @@ categories = []
 date = "2017-02-08T20:44:40+01:00"
 description = ""
 keywords = []
+draft = true
 title = "Exploring aggregate boundaries in event sourced systems"
 
 +++
 
-In this post I'm trying to explore some ways of modelling aggregate boundaries in an event sourced system. This is mostly to clear up my mind about some things, but it might be interesting to someone else.
+In this post I'm exploring some ways of modelling aggregate boundaries in an event sourced system. This is mostly to crystallise some thoughts that I had after some event storming sessions, but it might be interesting to someone else.
 
-The domain I'm using in this post is the same domain as the workshops [Michel Grootjans](https://twitter.com/michelgrootjans) and I have been doing about playing with projections. For example at [DDD Europe][1].
+The domain I'm using in this post is the domain that [Michel Grootjans](https://twitter.com/michelgrootjans) and I have created for the workshop *Playing with projections* (We already gave it a few times, for example at [DDD Europe][DDDEU] and will also give a session at [I T.A.K.E.][ITAKE])
 
 ## The domain: An online quiz platform
 
@@ -18,7 +19,7 @@ In the online quiz platform:
 * a player can create a new quiz
 * they can add questions to the quiz
 * they can publish the quiz
-* once a quiz has been published, a game can be opened. A game is basically an instance of a quiz
+* once a quiz has been published, a game can be opened. A game is an instance of a quiz
 * Many games of a quiz can be opened (there is no limit)
 
 A game, once it is openend looks like this:
@@ -33,7 +34,7 @@ A game, once it is openend looks like this:
 
 ## How can we model the domain?
 
-The first way to model the domain could be by having one aggregate: the quiz. A quiz can handle the whole life cycle and so it's very easy to enforce all rules in this desing. But we can see some problems with this design:
+The first way to model the domain could be by having one aggregate: the quiz. A quiz can handle the whole life cycle and so it's very easy to enforce all rules in this design. But we can see some problems with this design:
 
 * Our quiz aggregate stream can grow to huge sizes. When lots of games are played, there will be lots of events.
 * An aggregate, because it should keep its invariants, is a synchronization point. So when there are many games played, this could be a performance issue.
@@ -52,7 +53,7 @@ Of course we will ask business:
 This provides a bit of a challenge in the current design. If we model this as one aggregate, we will need to provide extra logic to handle the changes in questions.
 Suppose we have a quiz with some open games. At some point we want to change some question of the quiz, and we know that started games should not be affected. So to solve this we would could save the old questions. But because multiple games can be started at different times, it's not enough to solve the previous set of questions. A better solution would be to copy over the questions to the game when it is started.
 
-At this point we can see a new design emering. We can split our domain into 2 aggregates. A quiz and a game.
+At this point we can see a new design emerging. We can split our domain into 2 aggregates. A quiz and a game.
 This solves the problem of the quiz that changes and also solves our initial problem of performance and a huge aggregate. The quiz will still be long lived, but will almost always be very small. A game on the other hand will be short lived. The performance will be solved because each game is now independent.
 
 The design with splitting the quiz and game aggregates introduces a new challenge though. A game can only be started for a quiz in the correct state. A game cannot be openend if the quiz isn't published yet or if it is archived. But the game doesn't have this information, the quiz has.
@@ -98,5 +99,6 @@ One thing I didn't touch yet, but might in an other post, is how frameworks or p
 
 
 
-[1]: https://dddeurope.com/2017/speakers/thomas-coopman/#handson
+[DDDEU]: https://dddeurope.com/2017/speakers/thomas-coopman/#handson
 [2]: https://groups.google.com/forum/#!searchin/dddcqrs/aggregate$20instance|sort:relevance/dddcqrs/B6kxs7FK8_I/F_xcEdkOnHwJ
+[ITAKE]: http://itakeunconf.com/
