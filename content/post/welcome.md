@@ -1,6 +1,7 @@
 +++
 date = "2016-04-12T21:28:31+02:00"
 title = "Welcome"
+tags = ["general"]
 
 +++
 

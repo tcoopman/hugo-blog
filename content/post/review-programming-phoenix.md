@@ -2,7 +2,7 @@
 categories = []
 date = "2016-06-26T10:49:59+02:00"
 description = "A short review of the book Programming Phoenix"
-keywords = ["elixir", "phoenix"]
+tags = ["elixir", "phoenix"]
 title = "Programming Phoenix review"
 
 +++

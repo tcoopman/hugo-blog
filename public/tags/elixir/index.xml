@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Elixir on Thomas Coopman - Infinite Tree</title>
+    <link>https://infinitetree.eu/tags/elixir/</link>
+    <description>Recent content in Elixir on Thomas Coopman - Infinite Tree</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Jun 2016 10:49:59 +0200</lastBuildDate>
+    <atom:link href="https://infinitetree.eu/tags/elixir/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Programming Phoenix review</title>
+      <link>https://infinitetree.eu/blog/2016/06/26/programming-phoenix-review/</link>
+      <pubDate>Sun, 26 Jun 2016 10:49:59 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2016/06/26/programming-phoenix-review/</guid>
+      <description>&lt;p&gt;Elixir and Phoenix crossed my path multiple times last year. I read a really interesting tutorial on &lt;a href=&#34;https://codewords.recurse.com/issues/five/building-a-web-framework-from-scratch-in-elixir&#34;&gt;building a web framework from scratch&lt;/a&gt;. Furthermore, Phoenix is really popular as an Elm backend, so I decided it was time to dive a bit deeper and learn myself some Phoenix.&lt;/p&gt;
+
+&lt;p&gt;It just happens that &lt;a href=&#34;https://pragprog.com/book/phoenix/programming-phoenix&#34;&gt;Program Phoenix&lt;/a&gt; by
+by Chris McCord, Bruce Tate, and José Valim was published recently, so this seemed like a good opportunity to learn more!&lt;/p&gt;
+
+
+&lt;figure &gt;
+    &lt;a href=&#34;https://pragprog.com/book/phoenix/programming-phoenix&#34;&gt;
+        &lt;img src=&#34;https://infinitetree.eu/images/phoenix.jpg&#34; /&gt;
+    &lt;/a&gt;
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;Programming Phoenix&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;I enjoyed reading the book from cover to cover. It&amp;rsquo;s been a long while since I&amp;rsquo;ve read a book about a web framework, because I always wondered what the added value of a book was over documentation and tutorials. But as this book is written by the creator of framework and the language, I didn&amp;rsquo;t bother looking any further.&lt;/p&gt;
+
+&lt;p&gt;When I started this book, I didn&amp;rsquo;t really know Elixir and while reading the book I had to take some detours to explore the language a bit. The &lt;a href=&#34;http://elixir-lang.org/getting-started/introduction.html&#34;&gt;getting-started&lt;/a&gt; guide in combination with this book were a great start into the language. Elixir is great in that is functional, runs on the BEAM (the Erlang VM) and is easy to get started with. On the other hand, I needed some time to get familiar and fluent with the syntax (especially if you compare it with something like Elm) and there a no static types (although &lt;a href=&#34;http://erlang.org/doc/man/dialyzer.html&#34;&gt;dialyzer&lt;/a&gt; could be a help with that - I haven&amp;rsquo;t explored that yet).&lt;/p&gt;
+
+&lt;p&gt;The first part of the book explains the basic parts of Phoenix as a MCV framework and is what you would expect in a book about web frameworks. The second part covers the fun part of Phoenix, channels and concurrency with Genserver and OTP (read about this if you haven&amp;rsquo;t!).
+The second part really invites me to explore Phoenix and Elixir more!&lt;/p&gt;
+
+&lt;p&gt;My biggest criticism with the book is about testing. While the testing chapters are decent and they go deep enough. I think that a test driven approach would have been better for some chapters (especially for the OTP chapters). You have to write quite a bit of code before you can see the results. Doing test first would probably help with the understanding. Although the interaction with the elixir REPL helps quite a bit!&lt;/p&gt;
+
+&lt;p&gt;The book covered all content that I wanted, except there is nothing about deploying the application. Some pointers and best practices into that direction would have been really nice!&lt;/p&gt;
+
+&lt;p&gt;Overall a very solid book and a good read. If you are interested in doing Phoenix programming, this is a very good starting point.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
