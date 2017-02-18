@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Thomas Coopman - Infinite Tree</title>
-    <link>https://thomascoopman.eu/</link>
+    <link>https://infinitetree.eu/</link>
     <description>Recent content on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 03 Jan 2017 19:18:13 +0100</lastBuildDate>
-    <atom:link href="https://thomascoopman.eu/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://infinitetree.eu/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>2017</title>
-      <link>https://thomascoopman.eu/blog/2017/01/03/2017/</link>
+      <link>https://infinitetree.eu/blog/2017/01/03/2017/</link>
       <pubDate>Tue, 03 Jan 2017 19:18:13 +0100</pubDate>
       
-      <guid>https://thomascoopman.eu/blog/2017/01/03/2017/</guid>
+      <guid>https://infinitetree.eu/blog/2017/01/03/2017/</guid>
       <description>
 
 &lt;p&gt;The year is over, a new year has come.&lt;/p&gt;
@@ -94,10 +94,10 @@ And reading books is absolutely not the only way to learn. Moreover it&amp;rsquo
     
     <item>
       <title>Programming Phoenix review</title>
-      <link>https://thomascoopman.eu/blog/2016/06/26/programming-phoenix-review/</link>
+      <link>https://infinitetree.eu/blog/2016/06/26/programming-phoenix-review/</link>
       <pubDate>Sun, 26 Jun 2016 10:49:59 +0200</pubDate>
       
-      <guid>https://thomascoopman.eu/blog/2016/06/26/programming-phoenix-review/</guid>
+      <guid>https://infinitetree.eu/blog/2016/06/26/programming-phoenix-review/</guid>
       <description>&lt;p&gt;Elixir and Phoenix crossed my path multiple times last year. I read a really interesting tutorial on &lt;a href=&#34;https://codewords.recurse.com/issues/five/building-a-web-framework-from-scratch-in-elixir&#34;&gt;building a web framework from scratch&lt;/a&gt;. Furthermore, Phoenix is really popular as an Elm backend, so I decided it was time to dive a bit deeper and learn myself some Phoenix.&lt;/p&gt;
 
 &lt;p&gt;It just happens that &lt;a href=&#34;https://pragprog.com/book/phoenix/programming-phoenix&#34;&gt;Program Phoenix&lt;/a&gt; by
@@ -106,7 +106,7 @@ by Chris McCord, Bruce Tate, and José Valim was published recently, so this see
 
 &lt;figure &gt;
     &lt;a href=&#34;https://pragprog.com/book/phoenix/programming-phoenix&#34;&gt;
-        &lt;img src=&#34;https://thomascoopman.eu/images/phoenix.jpg&#34; /&gt;
+        &lt;img src=&#34;https://infinitetree.eu/images/phoenix.jpg&#34; /&gt;
     &lt;/a&gt;
     
     &lt;figcaption&gt;
@@ -134,10 +134,10 @@ The second part really invites me to explore Phoenix and Elixir more!&lt;/p&gt;
     
     <item>
       <title>Resume</title>
-      <link>https://thomascoopman.eu/resume/</link>
+      <link>https://infinitetree.eu/resume/</link>
       <pubDate>Wed, 13 Apr 2016 13:20:35 +0200</pubDate>
       
-      <guid>https://thomascoopman.eu/resume/</guid>
+      <guid>https://infinitetree.eu/resume/</guid>
       <description>
 
 &lt;h2 id=&#34;thomas-coopman&#34;&gt;Thomas Coopman&lt;/h2&gt;
@@ -250,10 +250,10 @@ Projectleader for IT projects&lt;/p&gt;
     
     <item>
       <title>Modelling money in Elm</title>
-      <link>https://thomascoopman.eu/blog/2016/04/12/modelling-money-in-elm/</link>
+      <link>https://infinitetree.eu/blog/2016/04/12/modelling-money-in-elm/</link>
       <pubDate>Tue, 12 Apr 2016 22:28:31 +0200</pubDate>
       
-      <guid>https://thomascoopman.eu/blog/2016/04/12/modelling-money-in-elm/</guid>
+      <guid>https://infinitetree.eu/blog/2016/04/12/modelling-money-in-elm/</guid>
       <description>
 
 &lt;p&gt;After reading the blog post of Mathias Verraes (@mathiasverraes) on (Type Safety and Money)[&lt;a href=&#34;http://verraes.net/2016/02/type-safety-and-money/&#34;&gt;http://verraes.net/2016/02/type-safety-and-money/&lt;/a&gt;], and after doing a real short modelling attempt in Haskell at Socrates Belgium, I wanted to try to model Money in Elm.&lt;/p&gt;
@@ -391,10 +391,10 @@ With Elm, these conversions can be typed checked too, although it&amp;rsquo;s a 
     
     <item>
       <title>Welcome</title>
-      <link>https://thomascoopman.eu/blog/2016/04/12/welcome/</link>
+      <link>https://infinitetree.eu/blog/2016/04/12/welcome/</link>
       <pubDate>Tue, 12 Apr 2016 21:28:31 +0200</pubDate>
       
-      <guid>https://thomascoopman.eu/blog/2016/04/12/welcome/</guid>
+      <guid>https://infinitetree.eu/blog/2016/04/12/welcome/</guid>
       <description>&lt;p&gt;Welcome to the my new site written in &lt;a href=&#34;http://gohugo.io/&#34;&gt;hugo&lt;/a&gt;.
 While busy, I&amp;rsquo;ve set up https via letsencrypt. (see &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04&#34;&gt;tutorial&lt;/a&gt;. You can find the source code of the blog &lt;a href=&#34;https://github.com/tcoopman/hugo-blog&#34;&gt;here&lt;/a&gt;.
 This is a reboot of my site, and an attempt to blog some more.&lt;/p&gt;
@@ -405,10 +405,10 @@ This is a reboot of my site, and an attempt to blog some more.&lt;/p&gt;
     
     <item>
       <title>Testing ES6 code</title>
-      <link>https://thomascoopman.eu/blog/2015/01/13/testing-es6-code/</link>
+      <link>https://infinitetree.eu/blog/2015/01/13/testing-es6-code/</link>
       <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://thomascoopman.eu/blog/2015/01/13/testing-es6-code/</guid>
+      <guid>https://infinitetree.eu/blog/2015/01/13/testing-es6-code/</guid>
       <description>
 
 &lt;p&gt;Recently, I&amp;rsquo;ve changed my webpack workflow, and switched to &lt;a href=&#34;https://6to5.org/&#34;&gt;6to5&lt;/a&gt;, to be able to write more of my React code in ES6 than the current jsx transpiler supports (and because 6to5 just rocks!). You can find this workflow in my &lt;a href=&#34;https://github.com/tcoopman/boilerplate-webpack-react&#34;&gt;boilerplate-webpack-react&lt;/a&gt; project. Switching was easy. I&amp;rsquo;ve just replaced jsx-loader with 6to5-loader and everything worked correctly.&lt;/p&gt;
@@ -521,8 +521,8 @@ describe(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&
 &lt;p&gt;This should start Chrome (if you don&amp;rsquo;t have chrome, see the &lt;a href=&#34;http://karma-runner.github.io/0.12/config/browsers.html&#34;&gt;karma browser configuration&lt;/a&gt;) and print this:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;INFO [karma]: Karma v0.12.31 server started at http://localhost:9876/
 INFO [launcher]: Starting browser Chrome
-INFO [Chrome 39.0.2171 (Windows 7)]: Connected on socket xBMICOzH9lh3Eo9INXDA with id 55389724
-Chrome 39.0.2171 (Windows 7): Executed &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;1&lt;/span&gt; of &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;1&lt;/span&gt; SUCCESS (0.009 secs / &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;0&lt;/span&gt; secs)
+INFO [Chrome &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;39&lt;/span&gt;.0.2171 (Windows &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;7&lt;/span&gt;)]: Connected on socket xBMICOzH9lh3Eo9INXDA with id &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;55389724&lt;/span&gt;
+Chrome &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;39&lt;/span&gt;.0.2171 (Windows &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;7&lt;/span&gt;): Executed &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;1&lt;/span&gt; of &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;1&lt;/span&gt; SUCCESS (&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;0&lt;/span&gt;.009 secs / &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;0&lt;/span&gt; secs)
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Every time you change your code it will automatically rerun your tests.&lt;/p&gt;
@@ -603,16 +603,16 @@ describe(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&
     
     <item>
       <title>About the site, about me</title>
-      <link>https://thomascoopman.eu/blog/2014/10/04/about-the-site-about-me/</link>
+      <link>https://infinitetree.eu/blog/2014/10/04/about-the-site-about-me/</link>
       <pubDate>Sat, 04 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://thomascoopman.eu/blog/2014/10/04/about-the-site-about-me/</guid>
+      <guid>https://infinitetree.eu/blog/2014/10/04/about-the-site-about-me/</guid>
       <description>&lt;p&gt;My name is Thomas Coopman and I&amp;rsquo;m a 29 year old developer. Recently I&amp;rsquo;ve
 officially started freelancing/consulting in my spare time. That&amp;rsquo;s the main
 reason for creating this site and blog.&lt;/p&gt;
 
-&lt;p&gt;On this site you can find some more information &lt;a href=&#34;https://thomascoopman.eu/about&#34;&gt;about me&lt;/a&gt;. At the
-&lt;a href=&#34;https://thomascoopman.eu/portfolio&#34;&gt;portfolio&lt;/a&gt; page you can see some things I&amp;rsquo;ve created. That page is
+&lt;p&gt;On this site you can find some more information &lt;a href=&#34;https://infinitetree.eu/about&#34;&gt;about me&lt;/a&gt;. At the
+&lt;a href=&#34;https://infinitetree.eu/portfolio&#34;&gt;portfolio&lt;/a&gt; page you can see some things I&amp;rsquo;ve created. That page is
 empty at the moment but it will be coming soon.&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;m a developer, mostly a web-developer (backend and frontend). In my main job,
@@ -633,10 +633,10 @@ contact me and we can have a chat!&lt;/p&gt;
     
     <item>
       <title>Creating this site</title>
-      <link>https://thomascoopman.eu/blog/2014/09/29/creating-this-site/</link>
+      <link>https://infinitetree.eu/blog/2014/09/29/creating-this-site/</link>
       <pubDate>Mon, 29 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://thomascoopman.eu/blog/2014/09/29/creating-this-site/</guid>
+      <guid>https://infinitetree.eu/blog/2014/09/29/creating-this-site/</guid>
       <description>
 
 &lt;p&gt;&lt;em&gt;This is not valid anymore. The site is build with hugo&lt;/em&gt;&lt;/p&gt;
@@ -729,10 +729,10 @@ that&amp;rsquo;s exactly what I want to do with this site.&lt;/p&gt;
     
     <item>
       <title></title>
-      <link>https://thomascoopman.eu/home/</link>
+      <link>https://infinitetree.eu/home/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://thomascoopman.eu/home/</guid>
+      <guid>https://infinitetree.eu/home/</guid>
       <description>&lt;!doctype html&gt;
 
 &lt;html lang=&#34;en&#34;&gt;
@@ -743,13 +743,13 @@ that&amp;rsquo;s exactly what I want to do with this site.&lt;/p&gt;
   &lt;meta name=&#34;description&#34; content=&#34;Infinite Tree Website&#34;&gt;
   &lt;meta name=&#34;author&#34; content=&#34;Thomas Coopman&#34;&gt;
   &lt;link href=&#34;https://fonts.googleapis.com/css?family=Montserrat|Neuton&#34; rel=&#34;stylesheet&#34;&gt;
-  &lt;link rel=&#34;stylesheet&#34; href=&#34;https://thomascoopman.eu/css/index.css&#34;&gt;
+  &lt;link rel=&#34;stylesheet&#34; href=&#34;https://infinitetree.eu/css/index.css&#34;&gt;
 &lt;/head&gt;
 
 &lt;body&gt;
   &lt;main&gt;
       &lt;div&gt;
-          &lt;img src=&#34;https://thomascoopman.eu/images/logo.png&#34; /&gt;
+          &lt;img src=&#34;https://infinitetree.eu/images/logo.png&#34; /&gt;
       &lt;/div&gt;
       &lt;div class=&#34;header&#34;&gt;
           &lt;h2&gt;&lt;a href=&#34;https://thomascoopman.eu&#34;&gt;BLOG&lt;/a&gt;&lt;/h2&gt;

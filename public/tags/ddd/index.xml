@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ddd on Thomas Coopman - Infinite Tree</title>
+    <link>https://infinitetree.eu/tags/ddd/</link>
+    <description>Recent content in Ddd on Thomas Coopman - Infinite Tree</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 Apr 2016 22:28:31 +0200</lastBuildDate>
+    <atom:link href="https://infinitetree.eu/tags/ddd/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Modelling money in Elm</title>
+      <link>https://infinitetree.eu/blog/2016/04/12/modelling-money-in-elm/</link>
+      <pubDate>Tue, 12 Apr 2016 22:28:31 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2016/04/12/modelling-money-in-elm/</guid>
+      <description>
+
+&lt;p&gt;After reading the blog post of Mathias Verraes (@mathiasverraes) on (Type Safety and Money)[&lt;a href=&#34;http://verraes.net/2016/02/type-safety-and-money/&#34;&gt;http://verraes.net/2016/02/type-safety-and-money/&lt;/a&gt;], and after doing a real short modelling attempt in Haskell at Socrates Belgium, I wanted to try to model Money in Elm.&lt;/p&gt;
+
+&lt;p&gt;I don&amp;rsquo;t want to go to deep and too far so I&amp;rsquo;ve set some basic constraints for myself:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You cannot add money of different currencies (you need an explicit conversion) - &lt;em&gt;Add constraint&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;We also want a Price. A Price is a Money and a VAT amount.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The goal is to explore different ways of modelling the money in Elm and to explore how a type safe language can support our constraints.&lt;/p&gt;
+
+&lt;h2 id=&#34;possible-type-declarations-of-money-in-elm&#34;&gt;Possible type declarations of Money in Elm&lt;/h2&gt;
+
+&lt;p&gt;Money is an amount (Float) and a currency&lt;/p&gt;
+
+&lt;p&gt;If you are doing serious calculations with money, you might want to check if you don&amp;rsquo;t run into precision issues with Float. This is not the goal of the exercise, so we use Float.&lt;/p&gt;
+
+&lt;p&gt;There are some different options for modelling the money.&lt;/p&gt;
+
+&lt;p&gt;With a Tuple, a Currency and a Float:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;alias&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Currency&lt;/span&gt;, &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;)
+&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Currency&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Dollar&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Or with union types&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Dollar&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Both these implementations fulfill the requirement of a &lt;code&gt;Money&lt;/code&gt; type for the &lt;code&gt;Price&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;These implementations cannot enforce the &lt;em&gt;add constraint&lt;/em&gt; at compile time. Although, you can enforce that you don&amp;rsquo;t get wrong results:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #336699&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Maybe&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;or, there can be invalid money&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Dollar&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Invalid&lt;/span&gt;
+&lt;span style=&#34;color: #336699&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This last one would be harder to implement with a Tuple. But in most other ways I believe the Tuple and the union types are very similar. I like the union types better, so I won&amp;rsquo;t explore the tuple any further.&lt;/p&gt;
+
+&lt;p&gt;When we have the choice between these 2 add type definitions, which one is best?
+I prefer &lt;code&gt;add : Money -&amp;gt; Money -&amp;gt; Maybe Money&lt;/code&gt; for 2 reasons: (1) Invalid is not an actual type of money and (2) returning Maybe makes it very explicit that this an operation that can fail.&lt;/p&gt;
+
+&lt;p&gt;Would it be possible to enforce the constraint of adding only the same currencies on compile time? Yes, like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;
+&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Dollar&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Dollar&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now you have to implement 2 add functions for both types.&lt;/p&gt;
+
+&lt;p&gt;This does have some disadvantages, you have to implement add twice. If you want to have them in the same file, the names of the add methods can&amp;rsquo;t be the same, and we need some type to represent money (for our price constraint).
+This also means that it&amp;rsquo;s best to implement &lt;code&gt;Euro&lt;/code&gt; and &lt;code&gt;Dollar&lt;/code&gt; both in their own module, so that you can create 2 add functions.&lt;/p&gt;
+
+&lt;p&gt;But lets see if this is doable.&lt;/p&gt;
+
+&lt;p&gt;First the problem of the reimplementation. This is something that is unavailable in Elm (I believe it&amp;rsquo;s possible to avoid this with type classes in Haskell), but it&amp;rsquo;s not that bad.
+Suppose we needed to write many functions on money types, then we could write them like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #336699&#34;&gt;update&lt;/span&gt;&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; (&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;) &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt;
+&lt;span style=&#34;color: #336699&#34;&gt;update&lt;/span&gt;&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;f&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;e&lt;/span&gt;&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;e&lt;/span&gt;&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt;
+	&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;case&lt;/span&gt; (&lt;span style=&#34;color: #336699&#34;&gt;e&lt;/span&gt;&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;e&lt;/span&gt;&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;2&lt;/span&gt;) &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;of&lt;/span&gt;
+			(&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt;, &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; (&lt;span style=&#34;color: #336699&#34;&gt;f&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&amp;#39;&lt;/span&gt;)
+
+&lt;span style=&#34;color: #336699&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt;
+&lt;span style=&#34;color: #336699&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;update&lt;/span&gt;&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;(+)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Like this we can avoid writing complex functions twice&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #336699&#34;&gt;complexOperation&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt;
+&lt;span style=&#34;color: #336699&#34;&gt;complexOperation&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;update&lt;/span&gt;&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;complexer&lt;/span&gt;
+
+&lt;span style=&#34;color: #336699&#34;&gt;complexer&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The second constraint is that we need a &lt;code&gt;Price&lt;/code&gt; with a &lt;code&gt;Money&lt;/code&gt; type. With our first implementations this constraint was already fulfilled, but here we need to implement a &lt;code&gt;Money&lt;/code&gt; type too.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Dollar&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;USD&lt;/span&gt;
+&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;VAT&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;VAT6&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;VAT12&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;VAT21&lt;/span&gt;
+&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Price&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt;, &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;VAT&lt;/span&gt;)
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;(Here it makes more sense to use a tuple for &lt;code&gt;Price&lt;/code&gt;, &lt;code&gt;Price&lt;/code&gt; is a &lt;code&gt;Money&lt;/code&gt; and a &lt;code&gt;VAT&lt;/code&gt;, while &lt;code&gt;Money&lt;/code&gt; is a amount of some currency)&lt;/p&gt;
+
+&lt;p&gt;We also need functions to transform a EUR or USD to Money, but these are trivial:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EURToMoney&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt;
+&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EURToMoney&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;eur&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;eur&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&#34;extra-currency-conversions&#34;&gt;Extra - Currency Conversions&lt;/h2&gt;
+
+&lt;p&gt;What if you want to convert a currency. Then you need exchange rates.
+With Elm, these conversions can be typed checked too, although it&amp;rsquo;s a bit verbose.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say we want all the &lt;code&gt;Money&lt;/code&gt; of our &lt;code&gt;Price&lt;/code&gt;s to be converted to euro.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;alias&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EURToUSD&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;
+&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;alias&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;USDToEUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;
+&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;alias&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Exchanges&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EURToUSD&lt;/span&gt;, &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;USDToEUR&lt;/span&gt;)
+
+
+&lt;span style=&#34;color: #336699&#34;&gt;moneyToEuro&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Exchanges&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt;
+&lt;span style=&#34;color: #336699&#34;&gt;moneyToEuro&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;mon&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;con&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt;
+  &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;con&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;of&lt;/span&gt;
+		(&lt;span style=&#34;color: #336699&#34;&gt;euroToUsd&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;usdToEur&lt;/span&gt;) &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt;
+			&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;mon&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;of&lt;/span&gt;
+				&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Dollar&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;usd&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; ((&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Usd&lt;/span&gt;&lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #336699&#34;&gt;extract&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;usd&lt;/span&gt;) &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;usdToEur&lt;/span&gt;)
+				&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;eur&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;eur&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Where extract is a function that extracts the amount of the USD.&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Elm doesn&amp;rsquo;t have type classes so some things are extra work and are a bit more verbose. But it is possible to enforce a lot at compile time. Furthermore everything is very readable.&lt;/p&gt;
+
+&lt;p&gt;Is it worth it of doing it like this? That totally depends on your use case. A lot of times you will want to use &lt;code&gt;type Money = EUR Float | USD Float&lt;/code&gt; and use a &lt;code&gt;Maybe&lt;/code&gt; type to enforce your constraints, but sometimes you will do the extra work to enforce some things at compile time.&lt;/p&gt;
+
+&lt;h2 id=&#34;update-2016-04-18&#34;&gt;Update 2016-04-18&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Zach May&lt;/em&gt; left a nice comment (Thanks!) on the blog about an alternative solution:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;USD&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;USD&lt;/span&gt; 
+&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt;
+
+&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; (&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Int&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt;)
+
+&lt;span style=&#34;color: #336699&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt;
+&lt;span style=&#34;color: #336699&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;m&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;m&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt;
+  &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;case&lt;/span&gt; (&lt;span style=&#34;color: #336699&#34;&gt;m&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;m&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;of&lt;/span&gt;
+    (&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; (&lt;span style=&#34;color: #336699&#34;&gt;i&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt;), &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; (&lt;span style=&#34;color: #336699&#34;&gt;i&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;a&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; (&lt;span style=&#34;color: #336699&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;i&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt;)
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This solution also enforces strict types when adding money with the advantage that you only need one implementation for add. A possible downside could be if you want your money types to have different number types (for example if you want to model bitcoins not with &lt;code&gt;Int&lt;/code&gt;s but with &lt;code&gt;SomeBitcoinNumberType&lt;/code&gt;). But like I said in my conclusion, you have to look at your constraints and chose a solution yourself.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
