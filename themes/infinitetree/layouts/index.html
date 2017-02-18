@@ -22,6 +22,11 @@
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
+            <div class="front-logo">
+                <img width="60%" src="{{.Site.BaseURL}}{{ .Site.Params.frontLogo }}" />
+            </div>
+            <h2 class="page-description">{{ .Site.Params.description }}</h2>
+            <br />
             {{ if .Site.Params.linkedinName }}
                 <a class="bloglogo" href="https://www.linkedin.com/in/{{ .Site.Params.linkedinName }}" target="_blank">
                     <span class="icon-linkedin" style="color:white;font-size:2em"></span>
@@ -65,8 +70,6 @@
             &nbsp;
             {{end}}
 
-            <h1 class="page-title">{{ .Site.Title }}</h1>
-            <h2 class="page-description">{{ .Site.Params.description }}</h2>
         </div>
     </div>
     <a class="scroll-down icon-arrow-left" href="#content"><span class="hidden">Scroll Down</span></a>

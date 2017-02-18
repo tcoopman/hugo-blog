@@ -58,6 +58,8 @@ authorlocation = "Belgium"
 authorwebsite = "https://infinitetree.eu"
 bio = "Software Consultant"
 cover = "images/cover_mistysun.jpg"
+frontLogo = "images/front_logo_infinite_tree.png"
+description = "Thomas Coopman - Software Consultant"
 # If false display full article contents in blog index.
 # Otherwise show description and 'read on' link to individual blog post page.
 # Default (if omitted) is true.
@@ -89,6 +91,7 @@ home = "Blog"
 # Metadata used to drive integrations.
 googleAnalytics = "UA-56701000-2"
 twitterName = "tcoopman"
+githubName = "tcoopman"
 
 
 # Other social-like sidebar links
