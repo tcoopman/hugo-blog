@@ -1,0 +1,17 @@
+name = "InfiniteTree"
+license = "MIT"
+licenselink = "https://github.com/vjeantet/hugo-theme-casper/blob/master/LICENSE.md"
+description = "Casper theme from Ghost Foundation"
+homepage = "https://infinitetree.eu"
+tags = ["blog"]
+features = ["disqus", "google analytics","share"]
+min_version=0.14
+
+[author]
+  name = "Thomas Coopman"
+  homepage = "https://infinitetree.eu"
+
+[original]
+  name = "Casper"
+  homepage = "https://github.com/TryGhost/Casper"
+  repo = "https://github.com/TryGhost/Casper"
