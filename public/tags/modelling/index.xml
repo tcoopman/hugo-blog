@@ -6,8 +6,114 @@
     <description>Recent content in Modelling on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 Apr 2016 22:28:31 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 08 Feb 2017 20:44:40 +0100</lastBuildDate>
     <atom:link href="https://infinitetree.eu/tags/modelling/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Exploring aggregate boundaries in event sourced systems</title>
+      <link>https://infinitetree.eu/blog/2017/02/08/exploring-aggregate-boundaries-in-event-sourced-systems/</link>
+      <pubDate>Wed, 08 Feb 2017 20:44:40 +0100</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2017/02/08/exploring-aggregate-boundaries-in-event-sourced-systems/</guid>
+      <description>
+
+&lt;p&gt;In this post I&amp;rsquo;m exploring some ways of modelling aggregate boundaries in an event sourced system. This is mostly to crystallise some thoughts that I had after some event storming sessions, but it might be interesting to someone else.&lt;/p&gt;
+
+&lt;p&gt;The domain I&amp;rsquo;m using in this post is the domain that &lt;a href=&#34;https://twitter.com/michelgrootjans&#34;&gt;Michel Grootjans&lt;/a&gt; and I have created for the workshop &lt;em&gt;Playing with projections&lt;/em&gt; (We already gave it a few times, for example at &lt;a href=&#34;https://dddeurope.com/2017/speakers/thomas-coopman/#handson&#34;&gt;DDD Europe&lt;/a&gt; and will also give a session at &lt;a href=&#34;http://itakeunconf.com/&#34;&gt;I T.A.K.E.&lt;/a&gt;)&lt;/p&gt;
+
+&lt;h2 id=&#34;the-domain-an-online-quiz-platform&#34;&gt;The domain: An online quiz platform&lt;/h2&gt;
+
+&lt;p&gt;In the online quiz platform:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;a player can create a new quiz&lt;/li&gt;
+&lt;li&gt;they can add questions to the quiz&lt;/li&gt;
+&lt;li&gt;they can publish the quiz&lt;/li&gt;
+&lt;li&gt;once a quiz has been published, a game can be opened. A game is an instance of a quiz&lt;/li&gt;
+&lt;li&gt;Many games of a quiz can be opened (there is no limit)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A game, once it is opened looks like this:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;players can join a game&lt;/li&gt;
+&lt;li&gt;after some time the game is started&lt;/li&gt;
+&lt;li&gt;once the game is started, every question that is part of the quiz will be asked&lt;/li&gt;
+&lt;li&gt;players get a limited time to answer the question, if they are too late, a timeout passes&lt;/li&gt;
+&lt;li&gt;once all players have answered, or the timeout has passed a new question is asked&lt;/li&gt;
+&lt;li&gt;once all questions have been asked, the game is finished&lt;/li&gt;
+&lt;li&gt;if no players joined the game, the game will be cancelled&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;how-can-we-model-the-domain&#34;&gt;How can we model the domain?&lt;/h2&gt;
+
+&lt;p&gt;Now we will take a look at how we can model parts of the domain.&lt;/p&gt;
+
+&lt;p&gt;The first way to model could be by having one aggregate: the quiz. A quiz can handle its whole life cycle and so it&amp;rsquo;s very easy to enforce all rules in this design. But we can see some problems with this design:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Our quiz aggregate stream can grow to huge sizes. When lots of games are played, there will be lots of events.&lt;/li&gt;
+&lt;li&gt;An aggregate, because it should keep its invariants, is a synchronization point. So when there are many games played, this could be a performance issue.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Furthermore, at the moment the life cycle of the quiz seems a bit incomplete. The defined business rules don&amp;rsquo;t tell anything about ways of changing the quiz, archiving one, or preventing new games to be started. Suppose in a couple of weeks, business asks us to add these new features:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A player can change a quiz (add new questions) after it&amp;rsquo;s been published.&lt;/li&gt;
+&lt;li&gt;A player can archive a quiz. No games can be started for archived quizzes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Of course we will ask business:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;What happens to running games when a player changes something?&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;Running games must not be affected by changes&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This provides a bit of a challenge in the current design. If we model this as one aggregate, we will need to provide extra logic to handle changed questions.&lt;/p&gt;
+
+&lt;p&gt;Suppose we have a quiz with currently open games and change some questions of the quiz. We know that started games should not be affected. To solve this we would could save the old questions. But because multiple games can be started at different times, it&amp;rsquo;s not enough to solve the previous set of questions. A better solution would be to copy the questions to the game when it is started.&lt;/p&gt;
+
+&lt;p&gt;At this point we can see a new design emerging. We can split our domain into 2 aggregates. A quiz and a game.
+This can solve the problem of the changing questions and also solves our initial problem of performance and a huge aggregate. The quiz will still be long lived, but will almost always be very small. A game on the other hand will be short lived. The performance will be solved because each game is now independent.&lt;/p&gt;
+
+&lt;p&gt;The design with splitting the quiz and game aggregates introduces a new challenge though. A game can only be started for a quiz in the correct state. A game cannot be opened if the quiz isn&amp;rsquo;t published yet or if it is archived. But the game doesn&amp;rsquo;t have this information, the quiz has.&lt;/p&gt;
+
+&lt;p&gt;So the solution is simple: &lt;em&gt;the quiz creates a new aggregate; the game&lt;/em&gt; (&lt;a href=&#34;https://groups.google.com/forum/#!searchin/dddcqrs/aggregate$20instance|sort:relevance/dddcqrs/B6kxs7FK8_I/F_xcEdkOnHwJ&#34;&gt;aggregates create other aggregate&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;In pseudo code this could look like:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;quiz.open_game(game_id)
+    &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;case&lt;/span&gt; quiz_is_published
+        game = new &lt;span style=&#34;color: #bb0066; font-weight: bold&#34;&gt;Game&lt;/span&gt;(game_id, quiz_id, copy(questions))
+        &lt;span style=&#34;color: #888888&#34;&gt;# game contains unsaved event game_was_opened&lt;/span&gt;
+        return game
+    &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color: #003388&#34;&gt;_&lt;/span&gt;
+        return &lt;span style=&#34;color: #bb0066; font-weight: bold&#34;&gt;DomainError&lt;/span&gt;(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;quot;A game can only be opened for published quizzes&amp;quot;&lt;/span&gt;)
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;exploring-a-different-implementation&#34;&gt;Exploring a different implementation&lt;/h3&gt;
+
+&lt;p&gt;Instead of the quiz aggregate that creates a new aggregate, we could also try something like this: The quiz handles the &lt;code&gt;open_game_request&lt;/code&gt; command and returns an event &lt;code&gt;game_open_requested&lt;/code&gt;. A process manager listens to this event and dispatches a &lt;code&gt;open_game&lt;/code&gt; command. The &lt;code&gt;open_game&lt;/code&gt; command is handled by a game. The &lt;code&gt;game_open_requested&lt;/code&gt; means that it is allowed to open the game.&lt;/p&gt;
+
+&lt;p&gt;So &lt;code&gt;open_game&lt;/code&gt; is now an internal command and should not be exposed to users. Users can only request to open a game.&lt;/p&gt;
+
+&lt;p&gt;This adds some complexity and is probably not always a good solution. But sometimes we might need a solution like this. Let&amp;rsquo;s say that the we have some problems with copyrighted materials in our quizzes and that we are enforced to terminate all quizzes and corresponding games immediately (I know, this is probably far fetched, but it is to explore the solution further).&lt;/p&gt;
+
+&lt;p&gt;How could this look?&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;quiz.terminate_due_to_copyright
+&lt;span style=&#34;color: #888888&#34;&gt;# returns quiz aggregate with unsaved event (quiz_was_terminated)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;A process manager could listen to &lt;code&gt;quiz_was_terminated&lt;/code&gt; and dispatch a &lt;code&gt;terminate_game&lt;/code&gt; command to all open games for that quiz. But &lt;em&gt;how does the process manager know what games are open for the quiz&lt;/em&gt;? Well if we modelled our solution to have the process manager open the games, then it can also keep the state of all the open games for the quiz. So in this final solution we have a process manager that listens to &lt;code&gt;game_open_requested&lt;/code&gt;, &lt;code&gt;quiz_was_terminated&lt;/code&gt;, &lt;code&gt;game_was_closed&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;closing-thoughts&#34;&gt;Closing thoughts&lt;/h2&gt;
+
+&lt;p&gt;Although the problem and the domain seems simple, exploring the solution was fun. Furthermore, I only listed some probable solutions, more possible solutions can be found.&lt;/p&gt;
+
+&lt;p&gt;One thing I didn&amp;rsquo;t touch yet, but might in an other post, is how frameworks or programming styles can force you into some solution. I had some trouble trying to implement the aggregate that creates an other aggregate in at least one framework and gave seen some other frameworks where this solution is not obvious to implement.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Modelling money in Elm</title>

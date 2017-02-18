@@ -8,6 +8,7 @@ pygmentsuseclasses = false
 pygmentsstyle = "pastie"
 PygmentsCodeFences = true
 disqusShortname = "thomascoopmaneu"
+googleAnalytics = "UA-56701000-2"
 
 [author]
 name = "Thomas Coopman"
@@ -89,7 +90,6 @@ tagline = "Software Consultant"
 home = "Blog"
 
 # Metadata used to drive integrations.
-googleAnalytics = "UA-56701000-2"
 twitterName = "tcoopman"
 githubName = "tcoopman"
 

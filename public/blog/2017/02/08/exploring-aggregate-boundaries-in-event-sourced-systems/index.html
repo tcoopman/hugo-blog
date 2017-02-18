@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" Exploring aggregate boundaries in event sourced systems &middot;  Thomas Coopman - Infinite Tree" />
+  	<meta property="og:site_name" content="Thomas Coopman - Infinite Tree" />
+  	<meta property="og:url" content="https://infinitetree.eu/blog/2017/02/08/exploring-aggregate-boundaries-in-event-sourced-systems/" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2017-02-08T20:44:40&#43;01:00" />
+
+    
+    <meta property="og:article:tag" content="modelling" />
+    
+    <meta property="og:article:tag" content="DDD" />
+    
+    
+
+
+  <title>
+     Exploring aggregate boundaries in event sourced systems &middot;  Thomas Coopman - Infinite Tree
+  </title>
+
+    <meta name="description" content="Thomas Coopman - Software Consultant" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://infinitetree.eu/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="https://infinitetree.eu/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="https://infinitetree.eu/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://infinitetree.eu/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
+
+
+    
+      
+          <link href="https://infinitetree.eu/index.xml" rel="alternate" type="application/rss+xml" title="Thomas Coopman - Infinite Tree" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.16" />
+
+    <link rel="canonical" href="https://infinitetree.eu/blog/2017/02/08/exploring-aggregate-boundaries-in-event-sourced-systems/" />
+
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/resume/">Resume</a>
+            </li>
+        
+            <h3>Follow me</h3>
+            <li class="nav-opened" role="presentation">
+            	<a href="https://twitter.com/tcoopman">Twitter timeline</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://github.com/tcoopman/">Github repos</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://bitbucket.org/tcoopman/">Bitbucket repos</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://www.linkedin.com/in/thomas-coopman-a6860622?trk=hp-identity-name">Linkedin</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://plus.google.com/u/0/109624499308077610663">Google Plus</a>
+            </li>
+        
+    </ul>
+    
+    
+    <a class="subscribe-button icon-feed" href="https://infinitetree.eu/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Exploring aggregate boundaries in event sourced systems</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-02-08T20:44:40&#43;01:00">
+            Feb 8, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="https://infinitetree.eu/tags/modelling/">#modelling</a></span>
+         
+          <span class="post-tag small"><a href="https://infinitetree.eu/tags/ddd/">#DDD</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      
+
+<p>In this post I&rsquo;m exploring some ways of modelling aggregate boundaries in an event sourced system. This is mostly to crystallise some thoughts that I had after some event storming sessions, but it might be interesting to someone else.</p>
+
+<p>The domain I&rsquo;m using in this post is the domain that <a href="https://twitter.com/michelgrootjans">Michel Grootjans</a> and I have created for the workshop <em>Playing with projections</em> (We already gave it a few times, for example at <a href="https://dddeurope.com/2017/speakers/thomas-coopman/#handson">DDD Europe</a> and will also give a session at <a href="http://itakeunconf.com/">I T.A.K.E.</a>)</p>
+
+<h2 id="the-domain-an-online-quiz-platform">The domain: An online quiz platform</h2>
+
+<p>In the online quiz platform:</p>
+
+<ul>
+<li>a player can create a new quiz</li>
+<li>they can add questions to the quiz</li>
+<li>they can publish the quiz</li>
+<li>once a quiz has been published, a game can be opened. A game is an instance of a quiz</li>
+<li>Many games of a quiz can be opened (there is no limit)</li>
+</ul>
+
+<p>A game, once it is opened looks like this:</p>
+
+<ul>
+<li>players can join a game</li>
+<li>after some time the game is started</li>
+<li>once the game is started, every question that is part of the quiz will be asked</li>
+<li>players get a limited time to answer the question, if they are too late, a timeout passes</li>
+<li>once all players have answered, or the timeout has passed a new question is asked</li>
+<li>once all questions have been asked, the game is finished</li>
+<li>if no players joined the game, the game will be cancelled</li>
+</ul>
+
+<h2 id="how-can-we-model-the-domain">How can we model the domain?</h2>
+
+<p>Now we will take a look at how we can model parts of the domain.</p>
+
+<p>The first way to model could be by having one aggregate: the quiz. A quiz can handle its whole life cycle and so it&rsquo;s very easy to enforce all rules in this design. But we can see some problems with this design:</p>
+
+<ul>
+<li>Our quiz aggregate stream can grow to huge sizes. When lots of games are played, there will be lots of events.</li>
+<li>An aggregate, because it should keep its invariants, is a synchronization point. So when there are many games played, this could be a performance issue.</li>
+</ul>
+
+<p>Furthermore, at the moment the life cycle of the quiz seems a bit incomplete. The defined business rules don&rsquo;t tell anything about ways of changing the quiz, archiving one, or preventing new games to be started. Suppose in a couple of weeks, business asks us to add these new features:</p>
+
+<ul>
+<li>A player can change a quiz (add new questions) after it&rsquo;s been published.</li>
+<li>A player can archive a quiz. No games can be started for archived quizzes.</li>
+</ul>
+
+<p>Of course we will ask business:</p>
+
+<blockquote>
+<p>&ldquo;What happens to running games when a player changes something?&rdquo;</p>
+
+<p>&ldquo;Running games must not be affected by changes&rdquo;</p>
+</blockquote>
+
+<p>This provides a bit of a challenge in the current design. If we model this as one aggregate, we will need to provide extra logic to handle changed questions.</p>
+
+<p>Suppose we have a quiz with currently open games and change some questions of the quiz. We know that started games should not be affected. To solve this we would could save the old questions. But because multiple games can be started at different times, it&rsquo;s not enough to solve the previous set of questions. A better solution would be to copy the questions to the game when it is started.</p>
+
+<p>At this point we can see a new design emerging. We can split our domain into 2 aggregates. A quiz and a game.
+This can solve the problem of the changing questions and also solves our initial problem of performance and a huge aggregate. The quiz will still be long lived, but will almost always be very small. A game on the other hand will be short lived. The performance will be solved because each game is now independent.</p>
+
+<p>The design with splitting the quiz and game aggregates introduces a new challenge though. A game can only be started for a quiz in the correct state. A game cannot be opened if the quiz isn&rsquo;t published yet or if it is archived. But the game doesn&rsquo;t have this information, the quiz has.</p>
+
+<p>So the solution is simple: <em>the quiz creates a new aggregate; the game</em> (<a href="https://groups.google.com/forum/#!searchin/dddcqrs/aggregate$20instance|sort:relevance/dddcqrs/B6kxs7FK8_I/F_xcEdkOnHwJ">aggregates create other aggregate</a>).</p>
+
+<p>In pseudo code this could look like:</p>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>quiz.open_game(game_id)
+    <span style="color: #008800; font-weight: bold">case</span> quiz_is_published
+        game = new <span style="color: #bb0066; font-weight: bold">Game</span>(game_id, quiz_id, copy(questions))
+        <span style="color: #888888"># game contains unsaved event game_was_opened</span>
+        return game
+    <span style="color: #008800; font-weight: bold">case</span> <span style="color: #003388">_</span>
+        return <span style="color: #bb0066; font-weight: bold">DomainError</span>(<span style="color: #dd2200; background-color: #fff0f0">&quot;A game can only be opened for published quizzes&quot;</span>)
+</pre></div>
+
+<h3 id="exploring-a-different-implementation">Exploring a different implementation</h3>
+
+<p>Instead of the quiz aggregate that creates a new aggregate, we could also try something like this: The quiz handles the <code>open_game_request</code> command and returns an event <code>game_open_requested</code>. A process manager listens to this event and dispatches a <code>open_game</code> command. The <code>open_game</code> command is handled by a game. The <code>game_open_requested</code> means that it is allowed to open the game.</p>
+
+<p>So <code>open_game</code> is now an internal command and should not be exposed to users. Users can only request to open a game.</p>
+
+<p>This adds some complexity and is probably not always a good solution. But sometimes we might need a solution like this. Let&rsquo;s say that the we have some problems with copyrighted materials in our quizzes and that we are enforced to terminate all quizzes and corresponding games immediately (I know, this is probably far fetched, but it is to explore the solution further).</p>
+
+<p>How could this look?</p>
+<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span></span>quiz.terminate_due_to_copyright
+<span style="color: #888888"># returns quiz aggregate with unsaved event (quiz_was_terminated)</span>
+</pre></div>
+
+<p>A process manager could listen to <code>quiz_was_terminated</code> and dispatch a <code>terminate_game</code> command to all open games for that quiz. But <em>how does the process manager know what games are open for the quiz</em>? Well if we modelled our solution to have the process manager open the games, then it can also keep the state of all the open games for the quiz. So in this final solution we have a process manager that listens to <code>game_open_requested</code>, <code>quiz_was_terminated</code>, <code>game_was_closed</code>.</p>
+
+<h2 id="closing-thoughts">Closing thoughts</h2>
+
+<p>Although the problem and the domain seems simple, exploring the solution was fun. Furthermore, I only listed some probable solutions, more possible solutions can be found.</p>
+
+<p>One thing I didn&rsquo;t touch yet, but might in an other post, is how frameworks or programming styles can force you into some solution. I had some trouble trying to implement the aggregate that creates an other aggregate in at least one framework and gave seen some other frameworks where this solution is not obvious to implement.</p>
+
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="https://infinitetree.eu/">Thomas Coopman</a></h4>
+  
+  <p>Software Consultant</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Belgium</span>
+    <span class="author-link icon-link"><a href="https://infinitetree.eu">https://infinitetree.eu</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Exploring%20aggregate%20boundaries%20in%20event%20sourced%20systems&amp;url=https%3a%2f%2finfinitetree.eu%2fblog%2f2017%2f02%2f08%2fexploring-aggregate-boundaries-in-event-sourced-systems%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2finfinitetree.eu%2fblog%2f2017%2f02%2f08%2fexploring-aggregate-boundaries-in-event-sourced-systems%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2finfinitetree.eu%2fblog%2f2017%2f02%2f08%2fexploring-aggregate-boundaries-in-event-sourced-systems%2f&amp;description=Exploring%20aggregate%20boundaries%20in%20event%20sourced%20systems"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=https%3a%2f%2finfinitetree.eu%2fblog%2f2017%2f02%2f08%2fexploring-aggregate-boundaries-in-event-sourced-systems%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'thomascoopmaneu';
+  var disqus_url = 'https:\/\/infinitetree.eu\/blog\/2017\/02\/08\/exploring-aggregate-boundaries-in-event-sourced-systems\/';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Thomas Coopman - Infinite Tree</a> </section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="https://infinitetree.eu/js/jquery.js"></script>
+    <script type="text/javascript" src="https://infinitetree.eu/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://infinitetree.eu/js/index.js"></script>
+    
+</body>
+</html>
+
