@@ -95,7 +95,7 @@ A process manager could listen to `quiz_was_terminated` and dispatch a `terminat
 
 Although the problem and the domain seems simple, exploring the solution was fun. Furthermore, I only listed some probable solutions, more possible solutions can be found.
 
-One thing I didn't touch yet, but might in an other post, is how frameworks or programming styles can force you into some solution. I had some trouble trying to implement the aggregate that creates an other aggregate in at least one framework and gave seen some other frameworks where this solution is not obvious to implement.
+One thing I didn't touch yet, but might in an other post, is how frameworks or programming styles can force you into some solution. I had some trouble trying to implement the aggregate that creates an other aggregate in at least one framework and have seen some other frameworks where this solution is not obvious to implement.
 
 
 
