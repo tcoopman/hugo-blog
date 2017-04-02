@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Thomas Coopman - Infinite Tree</title>
-    <link>https://infinitetree.eu/</link>
+    <link>https://infinitetree.eu/index.xml</link>
     <description>Recent content on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -111,7 +111,7 @@ This can solve the problem of the changing questions and also solves our initial
 
 &lt;p&gt;Although the problem and the domain seems simple, exploring the solution was fun. Furthermore, I only listed some probable solutions, more possible solutions can be found.&lt;/p&gt;
 
-&lt;p&gt;One thing I didn&amp;rsquo;t touch yet, but might in an other post, is how frameworks or programming styles can force you into some solution. I had some trouble trying to implement the aggregate that creates an other aggregate in at least one framework and gave seen some other frameworks where this solution is not obvious to implement.&lt;/p&gt;
+&lt;p&gt;One thing I didn&amp;rsquo;t touch yet, but might in an other post, is how frameworks or programming styles can force you into some solution. I had some trouble trying to implement the aggregate that creates an other aggregate in at least one framework and have seen some other frameworks where this solution is not obvious to implement.&lt;/p&gt;
 </description>
     </item>
     
@@ -246,65 +246,51 @@ The second part really invites me to explore Phoenix and Elixir more!&lt;/p&gt;
       <guid>https://infinitetree.eu/resume/</guid>
       <description>
 
-&lt;h2 id=&#34;thomas-coopman&#34;&gt;Thomas Coopman&lt;/h2&gt;
-
-&lt;p&gt;Born 1985-12-06&lt;/p&gt;
-
 &lt;h3 id=&#34;independent-software-consultant&#34;&gt;Independent Software Consultant&lt;/h3&gt;
 
-&lt;h3 id=&#34;contact&#34;&gt;Contact&lt;/h3&gt;
+&lt;p&gt;Thomas Coopman has been fascinated with computers since he was a kid. Playing around at first, became programming later and after learning some programming for himself and a small detour starting studies for nursing, he went on and studied Master of Informatics at the KULeuven.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Email&lt;/strong&gt;&lt;br /&gt;
-&lt;a href=&#34;mailto:thomas.coopman@infitetree.eu&#34;&gt;thomas.coopman@infinitetree.eu&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Phone&lt;/strong&gt;&lt;br /&gt;
-+32 491 08 06 16&lt;br /&gt;
-&lt;strong&gt;Website&lt;/strong&gt;&lt;br /&gt;
-&lt;a href=&#34;http://www.thomascoopman.eu/&#34;&gt;www.thomascoopman.eu&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Location&lt;/strong&gt;&lt;br /&gt;
-Antwerp - Belgium&lt;/p&gt;
+&lt;p&gt;Thomas is a polyglot and loves to learn new languages. His latest language studies have taken him to Elixir and Elm, and he has a special affinity for functional programming languages.&lt;/p&gt;
 
-&lt;h3 id=&#34;profiles&#34;&gt;Profiles&lt;/h3&gt;
+&lt;p&gt;Thomas is an independent software engineer and consultant focused on the full stack: frontend, backend and mostly people, practices and processes. Thomas is also currently active in the DDD Belgium and Software Craftsmanship Belgium community.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Github&lt;/strong&gt;&lt;br /&gt;
-&lt;a href=&#34;https://github.com/tcoopman&#34;&gt;tcoopman&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Bitbucket&lt;/strong&gt;&lt;br /&gt;
-&lt;a href=&#34;https://bitbucket.org/tcoopman/&#34;&gt;tcoopman&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Twitter&lt;/strong&gt;&lt;br /&gt;
-&lt;a href=&#34;https://twitter.com/tcoopman&#34;&gt;tcoopman&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Google+&lt;/strong&gt;&lt;br /&gt;
-&lt;a href=&#34;https://plus.google.com/u/0/109624499308077610663&#34;&gt;thomascoopman&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;One of Thomas overal goals is to help to raise the software industry to a greater level, although he does not know yet how to do this. At the moment he is mostly trying to raise his own level by learning all the time from all his peers, and hopefully by learning and sharing he can gain some deeper insights in how to improve.&lt;/p&gt;
 
 &lt;h4 id=&#34;work&#34;&gt;Work&lt;/h4&gt;
 
-&lt;p&gt;&lt;strong&gt;Infinite Tree&lt;/strong&gt;
-2016-01-01
-Started as an independent consultant.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://infinitetree.eu/&#34;&gt;Infinite Tree&lt;/a&gt;&lt;/strong&gt; 2016-01 - Current&lt;/p&gt;
+
+&lt;p&gt;Independent software consultant.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;a href=&#34;www.protime.eu&#34;&gt;Protime&lt;/a&gt;&lt;/strong&gt;
-2015-05-01 - Current
-Senior software developer Ruby, Javascript and C#&lt;/p&gt;
+2015-05 - Current&lt;/p&gt;
 
 &lt;ul&gt;
+&lt;li&gt;Team leader&lt;/li&gt;
+&lt;li&gt;Senior software developer Ruby, Javascript and C#&lt;/li&gt;
 &lt;li&gt;Agile software development&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;Kenniscentrum Openbaar Domein (K-O-D)&lt;/strong&gt;&lt;br /&gt;
-2010-07-01 - 2015-04-30
-Projectleader for IT projects&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Highlights&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Kenniscentrum Openbaar Domein (K-O-D)&lt;/strong&gt; 2010-07 - 2015-04 Projectleader for IT projects&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Development and project leader for a GIS Viewer, mostly for sewers&lt;/li&gt;
 &lt;li&gt;Project lead and development of a platform for searching and creating public domain projects in synergy&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;h4 id=&#34;interests&#34;&gt;Interests&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Co-organiser of &lt;a href=&#34;https://www.meetup.com/dddbelgium/&#34;&gt;DDD Belgium&lt;/a&gt; and &lt;a href=&#34;https://www.meetup.com/socratesbe/&#34;&gt;Socrates Belgium&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Speaking at conferences: &lt;a href=&#34;https://dddeurope.com/2017/speakers/thomas-coopman/#handson&#34;&gt;DDD Europe&lt;/a&gt;, &lt;a href=&#34;http://itakeunconf.com/sessions/playing-with-projections/&#34;&gt;I T.A.K.E.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.goodreads.com/&#34;&gt;Reading&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h4 id=&#34;education&#34;&gt;Education&lt;/h4&gt;
 
-&lt;h5 id=&#34;master-of-informatics&#34;&gt;Master of Informatics&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;Master of Informatics (&lt;a href=&#34;http://www.kuleuven.be/&#34;&gt;KULeuven&lt;/a&gt;)&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://www.kuleuven.be/&#34;&gt;KULeuven&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Masterthesis:&lt;/strong&gt; A framework for dynamic extensible and context-driven domotics systems&lt;/p&gt;
+&lt;p&gt;Masterthesis: A framework for dynamic extensible and context-driven domotics systems (&lt;a href=&#34;https://link.springer.com/chapter/10.1007/978-3-642-13268-1_8&#34;&gt;A User-Oriented and Context-Aware Service Orchestration Framework for Dynamic Home Automation Systems&lt;/a&gt;)&lt;/p&gt;
 
 &lt;h4 id=&#34;skills&#34;&gt;Skills&lt;/h4&gt;
 
@@ -313,6 +299,7 @@ Projectleader for IT projects&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Domain Driven Design&lt;/li&gt;
 &lt;li&gt;Kanban and Agile software development&lt;/li&gt;
+&lt;li&gt;Continious improvement&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Frontend:&lt;/p&gt;
@@ -322,12 +309,14 @@ Projectleader for IT projects&lt;/p&gt;
 &lt;li&gt;Elm&lt;/li&gt;
 &lt;li&gt;HTML&lt;/li&gt;
 &lt;li&gt;CSS&lt;/li&gt;
-&lt;li&gt;Reactjs + Flux&lt;/li&gt;
+&lt;li&gt;Reactjs + Redux&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Backend:&lt;/p&gt;
 
 &lt;ul&gt;
+&lt;li&gt;C#&lt;/li&gt;
+&lt;li&gt;Elixir&lt;/li&gt;
 &lt;li&gt;Node&lt;/li&gt;
 &lt;li&gt;Ruby&lt;/li&gt;
 &lt;li&gt;Python&lt;/li&gt;
@@ -342,14 +331,6 @@ Projectleader for IT projects&lt;/p&gt;
 &lt;li&gt;Geoserver&lt;/li&gt;
 &lt;li&gt;Leaflet&lt;/li&gt;
 &lt;li&gt;Openlayers&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;interests&#34;&gt;Interests&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.chiro.be/&#34;&gt;Chiro&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Reading&lt;/li&gt;
-&lt;li&gt;Movies&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -830,6 +811,36 @@ that&amp;rsquo;s exactly what I want to do with this site.&lt;/p&gt;
 &lt;p&gt;&lt;sup&gt;1&lt;/sup&gt; This has been fixed in a recent version.&lt;/p&gt;
 
 &lt;p&gt;&lt;sup&gt;2&lt;/sup&gt; I&amp;rsquo;ve switched to &lt;a href=&#34;https://github.com/jonschlinkert/remarkable&#34;&gt;remarkable&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>https://infinitetree.eu/contact/</link>
+      <pubDate>Fri, 11 Jul 2014 10:54:24 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/contact/</guid>
+      <description>
+
+&lt;p&gt;&lt;strong&gt;Email&lt;/strong&gt;&lt;br /&gt;
+&lt;a href=&#34;mailto:thomas.coopman@infitetree.eu&#34;&gt;thomas.coopman@infinitetree.eu&lt;/a&gt;&lt;br /&gt;
+&lt;strong&gt;Phone&lt;/strong&gt;&lt;br /&gt;
++32 491 08 06 16&lt;br /&gt;
+&lt;strong&gt;Website&lt;/strong&gt;&lt;br /&gt;
+&lt;a href=&#34;http://infinitetree.eu&#34;&gt;infinitetree.eu&lt;/a&gt;&lt;br /&gt;
+&lt;strong&gt;Location&lt;/strong&gt;&lt;br /&gt;
+Aartselaar - Belgium&lt;/p&gt;
+
+&lt;h3 id=&#34;profiles&#34;&gt;Profiles&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Github&lt;/strong&gt;&lt;br /&gt;
+&lt;a href=&#34;https://github.com/tcoopman&#34;&gt;tcoopman&lt;/a&gt;&lt;br /&gt;
+&lt;strong&gt;Bitbucket&lt;/strong&gt;&lt;br /&gt;
+&lt;a href=&#34;https://bitbucket.org/tcoopman/&#34;&gt;tcoopman&lt;/a&gt;&lt;br /&gt;
+&lt;strong&gt;Twitter&lt;/strong&gt;&lt;br /&gt;
+&lt;a href=&#34;https://twitter.com/tcoopman&#34;&gt;tcoopman&lt;/a&gt;&lt;br /&gt;
+&lt;strong&gt;Google+&lt;/strong&gt;&lt;br /&gt;
+&lt;a href=&#34;https://plus.google.com/u/0/109624499308077610663&#34;&gt;thomascoopman&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

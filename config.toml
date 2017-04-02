@@ -30,6 +30,16 @@ tag = "tags"
 identifier = "blog"
 name = "Blog"
 url = "/"
+weight = -160
+[[menu.main]]
+identifier = "contact"
+name = "Contact"
+url = "/contact"
+weight = -140
+[[menu.main]]
+identifier = "resume"
+name = "Resume"
+url = "/resume"
 weight = -120
 [[menu.main]]
 name = "Twitter timeline"
