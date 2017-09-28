@@ -2,11 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2017 on Thomas Coopman - Infinite Tree</title>
-    <link>https://infinitetree.eu/tags/2017/index.xml</link>
+    <link>https://infinitetree.eu/tags/2017/</link>
     <description>Recent content in 2017 on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://infinitetree.eu/tags/2017/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Jan 2017 19:18:13 +0100</lastBuildDate>
+    
+	<atom:link href="https://infinitetree.eu/tags/2017/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>2017</title>
@@ -14,81 +17,11 @@
       <pubDate>Tue, 03 Jan 2017 19:18:13 +0100</pubDate>
       
       <guid>https://infinitetree.eu/blog/2017/01/03/2017/</guid>
-      <description>
-
-&lt;p&gt;The year is over, a new year has come.&lt;/p&gt;
-
-&lt;p&gt;I know, New Year is an arbitrary point in time but it is a tradition to look back on the past year and have some resolutions for the year to come.&lt;/p&gt;
-
-&lt;p&gt;So at this arbitrary point in time, lets look back and forward&lt;/p&gt;
-
-&lt;h2 id=&#34;2016&#34;&gt;2016&lt;/h2&gt;
-
-&lt;p&gt;I&amp;rsquo;m going to make this short, because I mostly want to look forward!&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Became an independent software consultant&lt;/li&gt;
-&lt;li&gt;Bought a house with my girlfriend&lt;/li&gt;
-&lt;li&gt;Read lots of books&lt;/li&gt;
-&lt;li&gt;Became a teamleader&lt;/li&gt;
-&lt;li&gt;Lots of other cool stuff&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;2017&#34;&gt;2017&lt;/h2&gt;
-
-&lt;p&gt;Last month I read &lt;a href=&#34;https://www.facebook.com/notes/mark-zuckerberg/building-jarvis/10154361492931634&#34;&gt;Building Jarvis&lt;/a&gt; from Mark Zuckerberg where he builds himself a Jarvis in 100 hours. I was, and still am, in awe. This looks like an awesome project and it was done in about 100 hours.&lt;/p&gt;
-
-&lt;p&gt;So I was thinking, last year, I had a goal of reading 30 books but I read way more &lt;a href=&#34;https://www.goodreads.com/user/year_in_books/2016/5366494&#34;&gt;46&lt;/a&gt;. This year I&amp;rsquo;m setting my goal lower because I kind of felt a pressure to read books. Even if it was without an underlying goal. Don&amp;rsquo;t get me wrong, it&amp;rsquo;s great to read this much books and I&amp;rsquo;m going to try to keep reading a lot, but reading much isn&amp;rsquo;t the goal. For me learning, recreation, relaxation are better goals.
-And reading books is absolutely not the only way to learn. Moreover it&amp;rsquo;s not the only way that I try to learn at the moment, but I believe my focus was a not alwasy correct, so that&amp;rsquo;s why I&amp;rsquo;m setting different goals this year.&lt;/p&gt;
-
-&lt;h3 id=&#34;concrete-goals&#34;&gt;Concrete goals:&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Last year, I built lots of small things. This year, I want to build a concrete side project, put a time limit to it and finish it. 100 hours? 8 hours each month?. The side project should allow me to learn some of the stuff that I&amp;rsquo;m interested in.&lt;/li&gt;
-&lt;li&gt;Read 20 books (reading still is fun and a great way to learn)&lt;/li&gt;
-&lt;li&gt;Read and understand 10 papers (1 each month)&lt;/li&gt;
-&lt;li&gt;Write 6 blog posts&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The books should be easy, the side project will probably be the hardest!&lt;/p&gt;
-
-&lt;h3 id=&#34;learn-stuff-that-i-m-interested-in&#34;&gt;Learn stuff that I&amp;rsquo;m interested in&lt;/h3&gt;
-
-&lt;p&gt;So what will the project be? I don&amp;rsquo;t know yet, but ideally, it should include some of the things that I&amp;rsquo;m interested in at the moment:&lt;/p&gt;
-
-&lt;p&gt;(In no specific order)&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Machine learning and AI, natural language processing, neural networks,&amp;hellip;.&lt;/li&gt;
-&lt;li&gt;Virtual reality&lt;/li&gt;
-&lt;li&gt;Event sourcing and DDD&lt;/li&gt;
-&lt;li&gt;Complex systems&lt;/li&gt;
-&lt;li&gt;Functional programming&lt;/li&gt;
-&lt;li&gt;Static typing (ML) languages&lt;/li&gt;
-&lt;li&gt;Frontend functional programming languages and UX&lt;/li&gt;
-&lt;li&gt;Product design, let&amp;rsquo;s restate this: Building great products&lt;/li&gt;
-&lt;li&gt;Actor model - Erlang/Elixir&lt;/li&gt;
-&lt;li&gt;Mobile apps&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;There are way more things that I&amp;rsquo;m interested in, but this list is way too long already. So lets start with it!&lt;/p&gt;
-
-&lt;h3 id=&#34;languages-i-m-watching&#34;&gt;Languages I&amp;rsquo;m watching:&lt;/h3&gt;
-
-&lt;p&gt;To complete, here are some of the languages that I&amp;rsquo;m watching at the moment.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Elixir&lt;/li&gt;
-&lt;li&gt;Elm&lt;/li&gt;
-&lt;li&gt;Purescript&lt;/li&gt;
-&lt;li&gt;Haskell&lt;/li&gt;
-&lt;li&gt;Typescript&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Watching means, at least try to write code in them or improve at these languages.&lt;/p&gt;
-
-&lt;p&gt;Have a great 2017!&lt;/p&gt;
-</description>
+      <description>The year is over, a new year has come.
+I know, New Year is an arbitrary point in time but it is a tradition to look back on the past year and have some resolutions for the year to come.
+So at this arbitrary point in time, lets look back and forward
+2016 I&amp;rsquo;m going to make this short, because I mostly want to look forward!
+ Became an independent software consultant Bought a house with my girlfriend Read lots of books Became a teamleader Lots of other cool stuff  2017 Last month I read Building Jarvis from Mark Zuckerberg where he builds himself a Jarvis in 100 hours.</description>
     </item>
     
   </channel>

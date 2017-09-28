@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" A big ball of frontend &middot;  Thomas Coopman - Infinite Tree" />
+  	<meta property="og:site_name" content="Thomas Coopman - Infinite Tree" />
+  	<meta property="og:url" content="https://infinitetree.eu/blog/2017/09/27/a-big-ball-of-frontend/" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2017-09-27T14:39:00&#43;01:00" />
+
+    
+    <meta property="og:article:tag" content="frontend" />
+    
+    <meta property="og:article:tag" content="microservices" />
+    
+    
+
+
+  <title>
+     A big ball of frontend &middot;  Thomas Coopman - Infinite Tree
+  </title>
+
+    <meta name="description" content="Thomas Coopman - Software Consultant" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://infinitetree.eu/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="https://infinitetree.eu/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="https://infinitetree.eu/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://infinitetree.eu/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
+
+
+    
+      
+          <link href="https://infinitetree.eu/index.xml" rel="alternate" type="application/rss+xml" title="Thomas Coopman - Infinite Tree" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.27.1" />
+
+    <link rel="canonical" href="https://infinitetree.eu/blog/2017/09/27/a-big-ball-of-frontend/" />
+
+    
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-56701000-2', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/contact">Contact</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/resume">Resume</a>
+            </li>
+        
+            <h3>Follow me</h3>
+            <li class="nav-opened" role="presentation">
+            	<a href="https://twitter.com/tcoopman">Twitter timeline</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://github.com/tcoopman/">Github repos</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://bitbucket.org/tcoopman/">Bitbucket repos</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://www.linkedin.com/in/thomas-coopman-a6860622?trk=hp-identity-name">Linkedin</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://plus.google.com/u/0/109624499308077610663">Google Plus</a>
+            </li>
+        
+    </ul>
+    
+    
+    <a class="subscribe-button icon-feed" href="https://infinitetree.eu/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">A big ball of frontend</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2017-09-27T14:39:00&#43;01:00">
+            Sep 27, 2017
+          </time>
+        
+         
+          <span class="post-tag small"><a href="https://infinitetree.eu/tags/frontend/">#frontend</a></span>
+         
+          <span class="post-tag small"><a href="https://infinitetree.eu/tags/microservices/">#microservices</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p>Tonight I&rsquo;m giving a talk at <a href="https://fronteers.nl/bijeenkomsten/2017/teamleader">Fronteers</a> about Frontend microservices. Mind you, I don&rsquo;t want to go into what a microservice is, so a talk about Frontend services is fine as well.</p>
+
+<p>What is important for me is that we&rsquo;re not building a big ball of frontend. We&rsquo;re paying so much attention to having a good architecture on the backend, with lots of (micro)services but at the same time, we&rsquo;re building one huge single page application (SPA). The talk I&rsquo;m giving is about how we can prevent that, and what alternatives are for the huge SPA.</p>
+
+<p>This blog is a real short introduction into the talk. You can find the slides below, hopefully they give you enough of information, and if you still want to know more, just ask me!</p>
+
+<p>There is no reason why you can&rsquo;t apply architectual patterns to a frontend application as well. Don&rsquo;t just go out building whatever if you would not do that for your backend as well. There are a lot of questions you can ask yourself, do we really need a SPA or does this only benifit some parts of our application?
+If you do decide that you need a SPA, are you ready to commit on one frontend framework/library, maybe <del>in a couple of years</del>, <del>in a year</del>, <del>next month</del>, tomorrow there will be a cooler, faster, better library available that you want to use, and now your whole application is written in <em>enter framework here</em>.</p>
+
+<p>How many people are working on your frontend, do you have multiple teams working on the backend, why not on the frontend as well? So let&rsquo;s split our frontend in multiple services/applications so multiple teams can work on it.</p>
+
+<p>The talk below goes into some techniques that can be used to do this. The slides are low on detail, most of the meat is in the talk, but if I get poked enough I might write more details down or give an other talk. The important thing is that this is not rocket sience, it&rsquo;s not that hard. If you&rsquo;re able to create architecture for your backend, you should be able to do it for your frontend as well.</p>
+
+<p>Go to the <a href="https://tcoopman.github.io/big-ball-of-frontend-talk/">slides</a>!</p>
+
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="https://infinitetree.eu/">Thomas Coopman</a></h4>
+  
+  <p>Software Consultant</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Belgium</span>
+    <span class="author-link icon-link"><a href="https://infinitetree.eu">https://infinitetree.eu</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=A%20big%20ball%20of%20frontend&amp;url=https%3a%2f%2finfinitetree.eu%2fblog%2f2017%2f09%2f27%2fa-big-ball-of-frontend%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2finfinitetree.eu%2fblog%2f2017%2f09%2f27%2fa-big-ball-of-frontend%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2finfinitetree.eu%2fblog%2f2017%2f09%2f27%2fa-big-ball-of-frontend%2f&amp;description=A%20big%20ball%20of%20frontend"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=https%3a%2f%2finfinitetree.eu%2fblog%2f2017%2f09%2f27%2fa-big-ball-of-frontend%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'thomascoopmaneu';
+  var disqus_url = 'https:\/\/infinitetree.eu\/blog\/2017\/09\/27\/a-big-ball-of-frontend\/';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Thomas Coopman - Infinite Tree</a> </section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="https://infinitetree.eu/js/jquery.js"></script>
+    <script type="text/javascript" src="https://infinitetree.eu/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://infinitetree.eu/js/index.js"></script>
+    
+</body>
+</html>
+

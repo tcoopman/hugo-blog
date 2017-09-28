@@ -2,11 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Other on Thomas Coopman - Infinite Tree</title>
-    <link>https://infinitetree.eu/tags/other/index.xml</link>
+    <link>https://infinitetree.eu/tags/other/</link>
     <description>Recent content in Other on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://infinitetree.eu/tags/other/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Oct 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://infinitetree.eu/tags/other/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>About the site, about me</title>
@@ -14,28 +17,9 @@
       <pubDate>Sat, 04 Oct 2014 00:00:00 +0000</pubDate>
       
       <guid>https://infinitetree.eu/blog/2014/10/04/about-the-site-about-me/</guid>
-      <description>&lt;p&gt;My name is Thomas Coopman and I&amp;rsquo;m a 29 year old developer. Recently I&amp;rsquo;ve
-officially started freelancing/consulting in my spare time. That&amp;rsquo;s the main
-reason for creating this site and blog.&lt;/p&gt;
-
-&lt;p&gt;On this site you can find some more information &lt;a href=&#34;https://infinitetree.eu/about&#34;&gt;about me&lt;/a&gt;. At the
-&lt;a href=&#34;https://infinitetree.eu/portfolio&#34;&gt;portfolio&lt;/a&gt; page you can see some things I&amp;rsquo;ve created. That page is
-empty at the moment but it will be coming soon.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m a developer, mostly a web-developer (backend and frontend). In my main job,
-I&amp;rsquo;m a project manager and developer. The main things I do is implementing
-GIS systems and viewers, so I&amp;rsquo;ve got a lot of experience with GIS (mainly with
-ArcGIS, but I also know Geoserver and leaflet).&lt;/p&gt;
-
-&lt;p&gt;If you need someone to help you with the implementation of a custom solution,
-GIS or something else. You want to get a second opinion about something
-technical. Or you need some help on a project&amp;hellip;
-contact me and we can have a chat!&lt;/p&gt;
-
-&lt;p&gt;Greetings&lt;/p&gt;
-
-&lt;p&gt;Thomas&lt;/p&gt;
-</description>
+      <description>My name is Thomas Coopman and I&amp;rsquo;m a 29 year old developer. Recently I&amp;rsquo;ve officially started freelancing/consulting in my spare time. That&amp;rsquo;s the main reason for creating this site and blog.
+On this site you can find some more information about me. At the portfolio page you can see some things I&amp;rsquo;ve created. That page is empty at the moment but it will be coming soon.
+I&amp;rsquo;m a developer, mostly a web-developer (backend and frontend).</description>
     </item>
     
     <item>
@@ -44,94 +28,10 @@ contact me and we can have a chat!&lt;/p&gt;
       <pubDate>Mon, 29 Sep 2014 00:00:00 +0000</pubDate>
       
       <guid>https://infinitetree.eu/blog/2014/09/29/creating-this-site/</guid>
-      <description>
-
-&lt;p&gt;&lt;em&gt;This is not valid anymore. The site is build with hugo&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;This blogpost will be a about the why, but mostly about how I&amp;rsquo;ve created
-this site.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve created this site mostly for these reasons:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Make myself visible on the web.&lt;/li&gt;
-&lt;li&gt;Practice my design and web-development skills.&lt;/li&gt;
-&lt;li&gt;Practice my writing (blog).&lt;/li&gt;
-&lt;li&gt;Record things I&amp;rsquo;ve learned for myself. Maybe someone else will find
-something useful here.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;content&#34;&gt;Content&lt;/h1&gt;
-
-&lt;p&gt;The contents of this site contain information about me, to make me more
-visible on the web. The site includes a blog with primarly technical content. In
-the first place javascript and web-development although this can change
-depending on my interests at that moment and what I&amp;rsquo;m working about.&lt;/p&gt;
-
-&lt;p&gt;Secondly, I&amp;rsquo;ll try to blog about some of my hobbies (hiking for example),
-but that will be very occasional.&lt;/p&gt;
-
-&lt;h1 id=&#34;framework&#34;&gt;Framework&lt;/h1&gt;
-
-&lt;p&gt;I&amp;rsquo;ve created this site in &lt;a href=&#34;http://facebook.github.io/react/&#34;&gt;Reactjs&lt;/a&gt;, my
-current favorite javascript framework that I like for the same reasons everyone
-else likes it. There are lots of blogs
-about react so I&amp;rsquo;ll try to keep the redundancy low and only talk about the new
-things.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m using &lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;react-router&lt;/a&gt; for the routing.
-At the moment of writing there are some shortcomings
-(mostly no server-side rendering&lt;sup&gt;1&lt;/sup&gt;), but these guys are working
-on that and we can expect it shortly. As soon as server side rendering is
-supported, I&amp;rsquo;ll add it so this site can be easily searched with
-Google, and then it should also be mostly useful without javascript.&lt;/p&gt;
-
-&lt;p&gt;For the css I&amp;rsquo;m using the &lt;a href=&#34;http://learnboost.github.io/stylus/&#34;&gt;stylus&lt;/a&gt; preprocessor.
-I&amp;rsquo;ve tried Less and Sass in the past but I like stylus, and this site is a
-good way of exploring it. I try to keep the site low on css and don&amp;rsquo;t
-use a framework like bootstrap or foundation.&lt;/p&gt;
-
-&lt;h1 id=&#34;blog&#34;&gt;Blog&lt;/h1&gt;
-
-&lt;p&gt;The blog is written with my own implementation of a React markdown component
-that I&amp;rsquo;ve &lt;a href=&#34;https://github.com/tcoopman/markdown-react&#34;&gt;published&lt;/a&gt;&lt;sup&gt;2&lt;/sup&gt;. In short, it uses an existing markdown parser,
-but instead of rendering a html string, it renders React components. The cool
-thing about this is that you can have full control over the React components, so
-you can do all kind of cool things with. For example add a custom subscript
-to every image or parse different html than what you normally want (like I do in
-this blog. Here I render &amp;lt;h2&amp;gt; elements instead of &amp;lt;h1&amp;gt;). Of course you can do
-all these things if you know something about parsing, but this component makes this
-super easy if you know React, just substitute the main component for your own and
-you&amp;rsquo;re started. I&amp;rsquo;m planning on writing a short blog post about this component too.&lt;/p&gt;
-
-&lt;p&gt;Stay tuned!&lt;/p&gt;
-
-&lt;h1 id=&#34;hosting-and-deploying&#34;&gt;Hosting and deploying&lt;/h1&gt;
-
-&lt;p&gt;I build this site with gulp and webpack. My boilerplate package
-can be found at &lt;a href=&#34;https://github.com/tcoopman/boilerplate-webpack-react&#34;&gt;boilerplate-webpack-react&lt;/a&gt;.
-This site uses a very similar build, with some adaptations for the blog.&lt;/p&gt;
-
-&lt;p&gt;This website is hosted on &lt;a href=&#34;https://www.digitalocean.com/&#34;&gt;DigitalOcean&lt;/a&gt; with Nginx.
-At the moment it&amp;rsquo;s just a static app, but as soon as react-router supports server
-rendering I&amp;rsquo;m going to implement it. I need to set up automatic deployment, probably with git.
-I don&amp;rsquo;t build my site on the server. I push the build to the server.
-When server side rendering is implemented, the way I deploy my code will change
-and I also have a blog about that in the pipeline.&lt;/p&gt;
-
-&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;A custom implementation of a blog, custom css and hosted on a vps. And that for
-a static site. It&amp;rsquo;s a bit more work, and you could say it&amp;rsquo;s not a best practice
-to do things this way, but it&amp;rsquo;s a good way to experiment and try new things and
-that&amp;rsquo;s exactly what I want to do with this site.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt; This has been fixed in a recent version.&lt;/p&gt;
-
-&lt;p&gt;&lt;sup&gt;2&lt;/sup&gt; I&amp;rsquo;ve switched to &lt;a href=&#34;https://github.com/jonschlinkert/remarkable&#34;&gt;remarkable&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>This is not valid anymore. The site is build with hugo
+This blogpost will be a about the why, but mostly about how I&amp;rsquo;ve created this site.
+I&amp;rsquo;ve created this site mostly for these reasons:
+ Make myself visible on the web. Practice my design and web-development skills. Practice my writing (blog). Record things I&amp;rsquo;ve learned for myself. Maybe someone else will find something useful here.  Content The contents of this site contain information about me, to make me more visible on the web.</description>
     </item>
     
   </channel>

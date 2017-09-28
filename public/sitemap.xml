@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://infinitetree.eu/blog/2017/09/27/a-big-ball-of-frontend/</loc>
+    <lastmod>2017-09-27T14:39:00+01:00</lastmod>
+  </url>
   
   <url>
     <loc>https://infinitetree.eu/blog/2017/02/08/exploring-aggregate-boundaries-in-event-sourced-systems/</loc>
@@ -62,6 +68,11 @@
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/tags/ddd/</loc>
     <lastmod>2017-02-08T20:44:40+01:00</lastmod>
     <priority>0</priority>
@@ -86,6 +97,12 @@
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/tags/frontend/</loc>
+    <lastmod>2017-09-27T14:39:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/tags/general/</loc>
     <lastmod>2017-01-03T19:18:13+01:00</lastmod>
     <priority>0</priority>
@@ -94,6 +111,12 @@
   <url>
     <loc>https://infinitetree.eu/tags/goals/</loc>
     <lastmod>2017-01-03T19:18:13+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/microservices/</loc>
+    <lastmod>2017-09-27T14:39:00+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -117,7 +140,7 @@
   
   <url>
     <loc>https://infinitetree.eu/post/</loc>
-    <lastmod>2017-02-08T20:44:40+01:00</lastmod>
+    <lastmod>2017-09-27T14:39:00+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -129,12 +152,13 @@
   
   <url>
     <loc>https://infinitetree.eu/tags/</loc>
+    <lastmod>2017-01-03T19:18:13+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://infinitetree.eu/</loc>
-    <lastmod>2017-02-08T20:44:40+01:00</lastmod>
+    <lastmod>2017-09-27T14:39:00+01:00</lastmod>
     <priority>0</priority>
   </url>
   

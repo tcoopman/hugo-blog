@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Frontend on Thomas Coopman - Infinite Tree</title>
+    <link>https://infinitetree.eu/tags/frontend/</link>
+    <description>Recent content in Frontend on Thomas Coopman - Infinite Tree</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 27 Sep 2017 14:39:00 +0100</lastBuildDate>
+    
+	<atom:link href="https://infinitetree.eu/tags/frontend/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A big ball of frontend</title>
+      <link>https://infinitetree.eu/blog/2017/09/27/a-big-ball-of-frontend/</link>
+      <pubDate>Wed, 27 Sep 2017 14:39:00 +0100</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2017/09/27/a-big-ball-of-frontend/</guid>
+      <description>Tonight I&amp;rsquo;m giving a talk at Fronteers about Frontend microservices. Mind you, I don&amp;rsquo;t want to go into what a microservice is, so a talk about Frontend services is fine as well.
+What is important for me is that we&amp;rsquo;re not building a big ball of frontend. We&amp;rsquo;re paying so much attention to having a good architecture on the backend, with lots of (micro)services but at the same time, we&amp;rsquo;re building one huge single page application (SPA).</description>
+    </item>
+    
+  </channel>
+</rss>

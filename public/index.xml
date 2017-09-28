@@ -2,12 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Thomas Coopman - Infinite Tree</title>
-    <link>https://infinitetree.eu/index.xml</link>
+    <link>https://infinitetree.eu/</link>
     <description>Recent content on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Feb 2017 20:44:40 +0100</lastBuildDate>
-    <atom:link href="https://infinitetree.eu/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 Sep 2017 14:39:00 +0100</lastBuildDate>
+    
+	<atom:link href="https://infinitetree.eu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A big ball of frontend</title>
+      <link>https://infinitetree.eu/blog/2017/09/27/a-big-ball-of-frontend/</link>
+      <pubDate>Wed, 27 Sep 2017 14:39:00 +0100</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2017/09/27/a-big-ball-of-frontend/</guid>
+      <description>Tonight I&amp;rsquo;m giving a talk at Fronteers about Frontend microservices. Mind you, I don&amp;rsquo;t want to go into what a microservice is, so a talk about Frontend services is fine as well.
+What is important for me is that we&amp;rsquo;re not building a big ball of frontend. We&amp;rsquo;re paying so much attention to having a good architecture on the backend, with lots of (micro)services but at the same time, we&amp;rsquo;re building one huge single page application (SPA).</description>
+    </item>
     
     <item>
       <title>Exploring aggregate boundaries in event sourced systems</title>
@@ -15,104 +27,8 @@
       <pubDate>Wed, 08 Feb 2017 20:44:40 +0100</pubDate>
       
       <guid>https://infinitetree.eu/blog/2017/02/08/exploring-aggregate-boundaries-in-event-sourced-systems/</guid>
-      <description>
-
-&lt;p&gt;In this post I&amp;rsquo;m exploring some ways of modelling aggregate boundaries in an event sourced system. This is mostly to crystallise some thoughts that I had after some event storming sessions, but it might be interesting to someone else.&lt;/p&gt;
-
-&lt;p&gt;The domain I&amp;rsquo;m using in this post is the domain that &lt;a href=&#34;https://twitter.com/michelgrootjans&#34;&gt;Michel Grootjans&lt;/a&gt; and I have created for the workshop &lt;em&gt;Playing with projections&lt;/em&gt; (We already gave it a few times, for example at &lt;a href=&#34;https://dddeurope.com/2017/speakers/thomas-coopman/#handson&#34;&gt;DDD Europe&lt;/a&gt; and will also give a session at &lt;a href=&#34;http://itakeunconf.com/&#34;&gt;I T.A.K.E.&lt;/a&gt;)&lt;/p&gt;
-
-&lt;h2 id=&#34;the-domain-an-online-quiz-platform&#34;&gt;The domain: An online quiz platform&lt;/h2&gt;
-
-&lt;p&gt;In the online quiz platform:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;a player can create a new quiz&lt;/li&gt;
-&lt;li&gt;they can add questions to the quiz&lt;/li&gt;
-&lt;li&gt;they can publish the quiz&lt;/li&gt;
-&lt;li&gt;once a quiz has been published, a game can be opened. A game is an instance of a quiz&lt;/li&gt;
-&lt;li&gt;Many games of a quiz can be opened (there is no limit)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;A game, once it is opened looks like this:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;players can join a game&lt;/li&gt;
-&lt;li&gt;after some time the game is started&lt;/li&gt;
-&lt;li&gt;once the game is started, every question that is part of the quiz will be asked&lt;/li&gt;
-&lt;li&gt;players get a limited time to answer the question, if they are too late, a timeout passes&lt;/li&gt;
-&lt;li&gt;once all players have answered, or the timeout has passed a new question is asked&lt;/li&gt;
-&lt;li&gt;once all questions have been asked, the game is finished&lt;/li&gt;
-&lt;li&gt;if no players joined the game, the game will be cancelled&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;how-can-we-model-the-domain&#34;&gt;How can we model the domain?&lt;/h2&gt;
-
-&lt;p&gt;Now we will take a look at how we can model parts of the domain.&lt;/p&gt;
-
-&lt;p&gt;The first way to model could be by having one aggregate: the quiz. A quiz can handle its whole life cycle and so it&amp;rsquo;s very easy to enforce all rules in this design. But we can see some problems with this design:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Our quiz aggregate stream can grow to huge sizes. When lots of games are played, there will be lots of events.&lt;/li&gt;
-&lt;li&gt;An aggregate, because it should keep its invariants, is a synchronization point. So when there are many games played, this could be a performance issue.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Furthermore, at the moment the life cycle of the quiz seems a bit incomplete. The defined business rules don&amp;rsquo;t tell anything about ways of changing the quiz, archiving one, or preventing new games to be started. Suppose in a couple of weeks, business asks us to add these new features:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;A player can change a quiz (add new questions) after it&amp;rsquo;s been published.&lt;/li&gt;
-&lt;li&gt;A player can archive a quiz. No games can be started for archived quizzes.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Of course we will ask business:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&amp;ldquo;What happens to running games when a player changes something?&amp;rdquo;&lt;/p&gt;
-
-&lt;p&gt;&amp;ldquo;Running games must not be affected by changes&amp;rdquo;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This provides a bit of a challenge in the current design. If we model this as one aggregate, we will need to provide extra logic to handle changed questions.&lt;/p&gt;
-
-&lt;p&gt;Suppose we have a quiz with currently open games and change some questions of the quiz. We know that started games should not be affected. To solve this we would could save the old questions. But because multiple games can be started at different times, it&amp;rsquo;s not enough to solve the previous set of questions. A better solution would be to copy the questions to the game when it is started.&lt;/p&gt;
-
-&lt;p&gt;At this point we can see a new design emerging. We can split our domain into 2 aggregates. A quiz and a game.
-This can solve the problem of the changing questions and also solves our initial problem of performance and a huge aggregate. The quiz will still be long lived, but will almost always be very small. A game on the other hand will be short lived. The performance will be solved because each game is now independent.&lt;/p&gt;
-
-&lt;p&gt;The design with splitting the quiz and game aggregates introduces a new challenge though. A game can only be started for a quiz in the correct state. A game cannot be opened if the quiz isn&amp;rsquo;t published yet or if it is archived. But the game doesn&amp;rsquo;t have this information, the quiz has.&lt;/p&gt;
-
-&lt;p&gt;So the solution is simple: &lt;em&gt;the quiz creates a new aggregate; the game&lt;/em&gt; (&lt;a href=&#34;https://groups.google.com/forum/#!searchin/dddcqrs/aggregate$20instance|sort:relevance/dddcqrs/B6kxs7FK8_I/F_xcEdkOnHwJ&#34;&gt;aggregates create other aggregate&lt;/a&gt;).&lt;/p&gt;
-
-&lt;p&gt;In pseudo code this could look like:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;quiz.open_game(game_id)
-    &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;case&lt;/span&gt; quiz_is_published
-        game = new &lt;span style=&#34;color: #bb0066; font-weight: bold&#34;&gt;Game&lt;/span&gt;(game_id, quiz_id, copy(questions))
-        &lt;span style=&#34;color: #888888&#34;&gt;# game contains unsaved event game_was_opened&lt;/span&gt;
-        return game
-    &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color: #003388&#34;&gt;_&lt;/span&gt;
-        return &lt;span style=&#34;color: #bb0066; font-weight: bold&#34;&gt;DomainError&lt;/span&gt;(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;quot;A game can only be opened for published quizzes&amp;quot;&lt;/span&gt;)
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id=&#34;exploring-a-different-implementation&#34;&gt;Exploring a different implementation&lt;/h3&gt;
-
-&lt;p&gt;Instead of the quiz aggregate that creates a new aggregate, we could also try something like this: The quiz handles the &lt;code&gt;open_game_request&lt;/code&gt; command and returns an event &lt;code&gt;game_open_requested&lt;/code&gt;. A process manager listens to this event and dispatches a &lt;code&gt;open_game&lt;/code&gt; command. The &lt;code&gt;open_game&lt;/code&gt; command is handled by a game. The &lt;code&gt;game_open_requested&lt;/code&gt; means that it is allowed to open the game.&lt;/p&gt;
-
-&lt;p&gt;So &lt;code&gt;open_game&lt;/code&gt; is now an internal command and should not be exposed to users. Users can only request to open a game.&lt;/p&gt;
-
-&lt;p&gt;This adds some complexity and is probably not always a good solution. But sometimes we might need a solution like this. Let&amp;rsquo;s say that the we have some problems with copyrighted materials in our quizzes and that we are enforced to terminate all quizzes and corresponding games immediately (I know, this is probably far fetched, but it is to explore the solution further).&lt;/p&gt;
-
-&lt;p&gt;How could this look?&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;quiz.terminate_due_to_copyright
-&lt;span style=&#34;color: #888888&#34;&gt;# returns quiz aggregate with unsaved event (quiz_was_terminated)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;A process manager could listen to &lt;code&gt;quiz_was_terminated&lt;/code&gt; and dispatch a &lt;code&gt;terminate_game&lt;/code&gt; command to all open games for that quiz. But &lt;em&gt;how does the process manager know what games are open for the quiz&lt;/em&gt;? Well if we modelled our solution to have the process manager open the games, then it can also keep the state of all the open games for the quiz. So in this final solution we have a process manager that listens to &lt;code&gt;game_open_requested&lt;/code&gt;, &lt;code&gt;quiz_was_terminated&lt;/code&gt;, &lt;code&gt;game_was_closed&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;closing-thoughts&#34;&gt;Closing thoughts&lt;/h2&gt;
-
-&lt;p&gt;Although the problem and the domain seems simple, exploring the solution was fun. Furthermore, I only listed some probable solutions, more possible solutions can be found.&lt;/p&gt;
-
-&lt;p&gt;One thing I didn&amp;rsquo;t touch yet, but might in an other post, is how frameworks or programming styles can force you into some solution. I had some trouble trying to implement the aggregate that creates an other aggregate in at least one framework and have seen some other frameworks where this solution is not obvious to implement.&lt;/p&gt;
-</description>
+      <description>In this post I&amp;rsquo;m exploring some ways of modelling aggregate boundaries in an event sourced system. This is mostly to crystallise some thoughts that I had after some event storming sessions, but it might be interesting to someone else.
+The domain I&amp;rsquo;m using in this post is the domain that Michel Grootjans and I have created for the workshop Playing with projections (We already gave it a few times, for example at DDD Europe and will also give a session at I T.</description>
     </item>
     
     <item>
@@ -121,81 +37,11 @@ This can solve the problem of the changing questions and also solves our initial
       <pubDate>Tue, 03 Jan 2017 19:18:13 +0100</pubDate>
       
       <guid>https://infinitetree.eu/blog/2017/01/03/2017/</guid>
-      <description>
-
-&lt;p&gt;The year is over, a new year has come.&lt;/p&gt;
-
-&lt;p&gt;I know, New Year is an arbitrary point in time but it is a tradition to look back on the past year and have some resolutions for the year to come.&lt;/p&gt;
-
-&lt;p&gt;So at this arbitrary point in time, lets look back and forward&lt;/p&gt;
-
-&lt;h2 id=&#34;2016&#34;&gt;2016&lt;/h2&gt;
-
-&lt;p&gt;I&amp;rsquo;m going to make this short, because I mostly want to look forward!&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Became an independent software consultant&lt;/li&gt;
-&lt;li&gt;Bought a house with my girlfriend&lt;/li&gt;
-&lt;li&gt;Read lots of books&lt;/li&gt;
-&lt;li&gt;Became a teamleader&lt;/li&gt;
-&lt;li&gt;Lots of other cool stuff&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;2017&#34;&gt;2017&lt;/h2&gt;
-
-&lt;p&gt;Last month I read &lt;a href=&#34;https://www.facebook.com/notes/mark-zuckerberg/building-jarvis/10154361492931634&#34;&gt;Building Jarvis&lt;/a&gt; from Mark Zuckerberg where he builds himself a Jarvis in 100 hours. I was, and still am, in awe. This looks like an awesome project and it was done in about 100 hours.&lt;/p&gt;
-
-&lt;p&gt;So I was thinking, last year, I had a goal of reading 30 books but I read way more &lt;a href=&#34;https://www.goodreads.com/user/year_in_books/2016/5366494&#34;&gt;46&lt;/a&gt;. This year I&amp;rsquo;m setting my goal lower because I kind of felt a pressure to read books. Even if it was without an underlying goal. Don&amp;rsquo;t get me wrong, it&amp;rsquo;s great to read this much books and I&amp;rsquo;m going to try to keep reading a lot, but reading much isn&amp;rsquo;t the goal. For me learning, recreation, relaxation are better goals.
-And reading books is absolutely not the only way to learn. Moreover it&amp;rsquo;s not the only way that I try to learn at the moment, but I believe my focus was a not alwasy correct, so that&amp;rsquo;s why I&amp;rsquo;m setting different goals this year.&lt;/p&gt;
-
-&lt;h3 id=&#34;concrete-goals&#34;&gt;Concrete goals:&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Last year, I built lots of small things. This year, I want to build a concrete side project, put a time limit to it and finish it. 100 hours? 8 hours each month?. The side project should allow me to learn some of the stuff that I&amp;rsquo;m interested in.&lt;/li&gt;
-&lt;li&gt;Read 20 books (reading still is fun and a great way to learn)&lt;/li&gt;
-&lt;li&gt;Read and understand 10 papers (1 each month)&lt;/li&gt;
-&lt;li&gt;Write 6 blog posts&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The books should be easy, the side project will probably be the hardest!&lt;/p&gt;
-
-&lt;h3 id=&#34;learn-stuff-that-i-m-interested-in&#34;&gt;Learn stuff that I&amp;rsquo;m interested in&lt;/h3&gt;
-
-&lt;p&gt;So what will the project be? I don&amp;rsquo;t know yet, but ideally, it should include some of the things that I&amp;rsquo;m interested in at the moment:&lt;/p&gt;
-
-&lt;p&gt;(In no specific order)&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Machine learning and AI, natural language processing, neural networks,&amp;hellip;.&lt;/li&gt;
-&lt;li&gt;Virtual reality&lt;/li&gt;
-&lt;li&gt;Event sourcing and DDD&lt;/li&gt;
-&lt;li&gt;Complex systems&lt;/li&gt;
-&lt;li&gt;Functional programming&lt;/li&gt;
-&lt;li&gt;Static typing (ML) languages&lt;/li&gt;
-&lt;li&gt;Frontend functional programming languages and UX&lt;/li&gt;
-&lt;li&gt;Product design, let&amp;rsquo;s restate this: Building great products&lt;/li&gt;
-&lt;li&gt;Actor model - Erlang/Elixir&lt;/li&gt;
-&lt;li&gt;Mobile apps&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;There are way more things that I&amp;rsquo;m interested in, but this list is way too long already. So lets start with it!&lt;/p&gt;
-
-&lt;h3 id=&#34;languages-i-m-watching&#34;&gt;Languages I&amp;rsquo;m watching:&lt;/h3&gt;
-
-&lt;p&gt;To complete, here are some of the languages that I&amp;rsquo;m watching at the moment.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Elixir&lt;/li&gt;
-&lt;li&gt;Elm&lt;/li&gt;
-&lt;li&gt;Purescript&lt;/li&gt;
-&lt;li&gt;Haskell&lt;/li&gt;
-&lt;li&gt;Typescript&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Watching means, at least try to write code in them or improve at these languages.&lt;/p&gt;
-
-&lt;p&gt;Have a great 2017!&lt;/p&gt;
-</description>
+      <description>The year is over, a new year has come.
+I know, New Year is an arbitrary point in time but it is a tradition to look back on the past year and have some resolutions for the year to come.
+So at this arbitrary point in time, lets look back and forward
+2016 I&amp;rsquo;m going to make this short, because I mostly want to look forward!
+ Became an independent software consultant Bought a house with my girlfriend Read lots of books Became a teamleader Lots of other cool stuff  2017 Last month I read Building Jarvis from Mark Zuckerberg where he builds himself a Jarvis in 100 hours.</description>
     </item>
     
     <item>
@@ -204,38 +50,8 @@ And reading books is absolutely not the only way to learn. Moreover it&amp;rsquo
       <pubDate>Sun, 26 Jun 2016 10:49:59 +0200</pubDate>
       
       <guid>https://infinitetree.eu/blog/2016/06/26/programming-phoenix-review/</guid>
-      <description>&lt;p&gt;Elixir and Phoenix crossed my path multiple times last year. I read a really interesting tutorial on &lt;a href=&#34;https://codewords.recurse.com/issues/five/building-a-web-framework-from-scratch-in-elixir&#34;&gt;building a web framework from scratch&lt;/a&gt;. Furthermore, Phoenix is really popular as an Elm backend, so I decided it was time to dive a bit deeper and learn myself some Phoenix.&lt;/p&gt;
-
-&lt;p&gt;It just happens that &lt;a href=&#34;https://pragprog.com/book/phoenix/programming-phoenix&#34;&gt;Program Phoenix&lt;/a&gt; by
-by Chris McCord, Bruce Tate, and José Valim was published recently, so this seemed like a good opportunity to learn more!&lt;/p&gt;
-
-
-&lt;figure &gt;
-    &lt;a href=&#34;https://pragprog.com/book/phoenix/programming-phoenix&#34;&gt;
-        &lt;img src=&#34;https://infinitetree.eu/images/phoenix.jpg&#34; /&gt;
-    &lt;/a&gt;
-    
-    &lt;figcaption&gt;
-        &lt;h4&gt;Programming Phoenix&lt;/h4&gt;
-        
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
-
-
-&lt;p&gt;I enjoyed reading the book from cover to cover. It&amp;rsquo;s been a long while since I&amp;rsquo;ve read a book about a web framework, because I always wondered what the added value of a book was over documentation and tutorials. But as this book is written by the creator of framework and the language, I didn&amp;rsquo;t bother looking any further.&lt;/p&gt;
-
-&lt;p&gt;When I started this book, I didn&amp;rsquo;t really know Elixir and while reading the book I had to take some detours to explore the language a bit. The &lt;a href=&#34;http://elixir-lang.org/getting-started/introduction.html&#34;&gt;getting-started&lt;/a&gt; guide in combination with this book were a great start into the language. Elixir is great in that is functional, runs on the BEAM (the Erlang VM) and is easy to get started with. On the other hand, I needed some time to get familiar and fluent with the syntax (especially if you compare it with something like Elm) and there a no static types (although &lt;a href=&#34;http://erlang.org/doc/man/dialyzer.html&#34;&gt;dialyzer&lt;/a&gt; could be a help with that - I haven&amp;rsquo;t explored that yet).&lt;/p&gt;
-
-&lt;p&gt;The first part of the book explains the basic parts of Phoenix as a MCV framework and is what you would expect in a book about web frameworks. The second part covers the fun part of Phoenix, channels and concurrency with Genserver and OTP (read about this if you haven&amp;rsquo;t!).
-The second part really invites me to explore Phoenix and Elixir more!&lt;/p&gt;
-
-&lt;p&gt;My biggest criticism with the book is about testing. While the testing chapters are decent and they go deep enough. I think that a test driven approach would have been better for some chapters (especially for the OTP chapters). You have to write quite a bit of code before you can see the results. Doing test first would probably help with the understanding. Although the interaction with the elixir REPL helps quite a bit!&lt;/p&gt;
-
-&lt;p&gt;The book covered all content that I wanted, except there is nothing about deploying the application. Some pointers and best practices into that direction would have been really nice!&lt;/p&gt;
-
-&lt;p&gt;Overall a very solid book and a good read. If you are interested in doing Phoenix programming, this is a very good starting point.&lt;/p&gt;
-</description>
+      <description>Elixir and Phoenix crossed my path multiple times last year. I read a really interesting tutorial on building a web framework from scratch. Furthermore, Phoenix is really popular as an Elm backend, so I decided it was time to dive a bit deeper and learn myself some Phoenix.
+It just happens that Program Phoenix by by Chris McCord, Bruce Tate, and José Valim was published recently, so this seemed like a good opportunity to learn more!</description>
     </item>
     
     <item>
@@ -244,95 +60,8 @@ The second part really invites me to explore Phoenix and Elixir more!&lt;/p&gt;
       <pubDate>Wed, 13 Apr 2016 13:20:35 +0200</pubDate>
       
       <guid>https://infinitetree.eu/resume/</guid>
-      <description>
-
-&lt;h3 id=&#34;independent-software-consultant&#34;&gt;Independent Software Consultant&lt;/h3&gt;
-
-&lt;p&gt;Thomas Coopman has been fascinated with computers since he was a kid. Playing around at first, became programming later and after learning some programming for himself and a small detour starting studies for nursing, he went on and studied Master of Informatics at the KULeuven.&lt;/p&gt;
-
-&lt;p&gt;Thomas is a polyglot and loves to learn new languages. His latest language studies have taken him to Elixir and Elm, and he has a special affinity for functional programming languages.&lt;/p&gt;
-
-&lt;p&gt;Thomas is an independent software engineer and consultant focused on the full stack: frontend, backend and mostly people, practices and processes. Thomas is also currently active in the DDD Belgium and Software Craftsmanship Belgium community.&lt;/p&gt;
-
-&lt;p&gt;One of Thomas overal goals is to help to raise the software industry to a greater level, although he does not know yet how to do this. At the moment he is mostly trying to raise his own level by learning all the time from all his peers, and hopefully by learning and sharing he can gain some deeper insights in how to improve.&lt;/p&gt;
-
-&lt;h4 id=&#34;work&#34;&gt;Work&lt;/h4&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://infinitetree.eu/&#34;&gt;Infinite Tree&lt;/a&gt;&lt;/strong&gt; 2016-01 - Current&lt;/p&gt;
-
-&lt;p&gt;Independent software consultant.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;www.protime.eu&#34;&gt;Protime&lt;/a&gt;&lt;/strong&gt;
-2015-05 - Current&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Team leader&lt;/li&gt;
-&lt;li&gt;Senior software developer Ruby, Javascript and C#&lt;/li&gt;
-&lt;li&gt;Agile software development&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Kenniscentrum Openbaar Domein (K-O-D)&lt;/strong&gt; 2010-07 - 2015-04 Projectleader for IT projects&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Development and project leader for a GIS Viewer, mostly for sewers&lt;/li&gt;
-&lt;li&gt;Project lead and development of a platform for searching and creating public domain projects in synergy&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;interests&#34;&gt;Interests&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Co-organiser of &lt;a href=&#34;https://www.meetup.com/dddbelgium/&#34;&gt;DDD Belgium&lt;/a&gt; and &lt;a href=&#34;https://www.meetup.com/socratesbe/&#34;&gt;Socrates Belgium&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Speaking at conferences: &lt;a href=&#34;https://dddeurope.com/2017/speakers/thomas-coopman/#handson&#34;&gt;DDD Europe&lt;/a&gt;, &lt;a href=&#34;http://itakeunconf.com/sessions/playing-with-projections/&#34;&gt;I T.A.K.E.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.goodreads.com/&#34;&gt;Reading&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;education&#34;&gt;Education&lt;/h4&gt;
-
-&lt;p&gt;&lt;strong&gt;Master of Informatics (&lt;a href=&#34;http://www.kuleuven.be/&#34;&gt;KULeuven&lt;/a&gt;)&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Masterthesis: A framework for dynamic extensible and context-driven domotics systems (&lt;a href=&#34;https://link.springer.com/chapter/10.1007/978-3-642-13268-1_8&#34;&gt;A User-Oriented and Context-Aware Service Orchestration Framework for Dynamic Home Automation Systems&lt;/a&gt;)&lt;/p&gt;
-
-&lt;h4 id=&#34;skills&#34;&gt;Skills&lt;/h4&gt;
-
-&lt;p&gt;Methodologies:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Domain Driven Design&lt;/li&gt;
-&lt;li&gt;Kanban and Agile software development&lt;/li&gt;
-&lt;li&gt;Continious improvement&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Frontend:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Javascript&lt;/li&gt;
-&lt;li&gt;Elm&lt;/li&gt;
-&lt;li&gt;HTML&lt;/li&gt;
-&lt;li&gt;CSS&lt;/li&gt;
-&lt;li&gt;Reactjs + Redux&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Backend:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;C#&lt;/li&gt;
-&lt;li&gt;Elixir&lt;/li&gt;
-&lt;li&gt;Node&lt;/li&gt;
-&lt;li&gt;Ruby&lt;/li&gt;
-&lt;li&gt;Python&lt;/li&gt;
-&lt;li&gt;Java&lt;/li&gt;
-&lt;li&gt;Go&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;GIS:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ArcGIS Server + Desktop&lt;/li&gt;
-&lt;li&gt;Geoserver&lt;/li&gt;
-&lt;li&gt;Leaflet&lt;/li&gt;
-&lt;li&gt;Openlayers&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>Independent Software Consultant Thomas Coopman has been fascinated with computers since he was a kid. Playing around at first, became programming later and after learning some programming for himself and a small detour starting studies for nursing, he went on and studied Master of Informatics at the KULeuven.
+Thomas is a polyglot and loves to learn new languages. His latest language studies have taken him to Elixir and Elm, and he has a special affinity for functional programming languages.</description>
     </item>
     
     <item>
@@ -341,139 +70,9 @@ The second part really invites me to explore Phoenix and Elixir more!&lt;/p&gt;
       <pubDate>Tue, 12 Apr 2016 22:28:31 +0200</pubDate>
       
       <guid>https://infinitetree.eu/blog/2016/04/12/modelling-money-in-elm/</guid>
-      <description>
-
-&lt;p&gt;After reading the blog post of Mathias Verraes (@mathiasverraes) on (Type Safety and Money)[&lt;a href=&#34;http://verraes.net/2016/02/type-safety-and-money/&#34;&gt;http://verraes.net/2016/02/type-safety-and-money/&lt;/a&gt;], and after doing a real short modelling attempt in Haskell at Socrates Belgium, I wanted to try to model Money in Elm.&lt;/p&gt;
-
-&lt;p&gt;I don&amp;rsquo;t want to go to deep and too far so I&amp;rsquo;ve set some basic constraints for myself:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;You cannot add money of different currencies (you need an explicit conversion) - &lt;em&gt;Add constraint&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;We also want a Price. A Price is a Money and a VAT amount.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The goal is to explore different ways of modelling the money in Elm and to explore how a type safe language can support our constraints.&lt;/p&gt;
-
-&lt;h2 id=&#34;possible-type-declarations-of-money-in-elm&#34;&gt;Possible type declarations of Money in Elm&lt;/h2&gt;
-
-&lt;p&gt;Money is an amount (Float) and a currency&lt;/p&gt;
-
-&lt;p&gt;If you are doing serious calculations with money, you might want to check if you don&amp;rsquo;t run into precision issues with Float. This is not the goal of the exercise, so we use Float.&lt;/p&gt;
-
-&lt;p&gt;There are some different options for modelling the money.&lt;/p&gt;
-
-&lt;p&gt;With a Tuple, a Currency and a Float:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;alias&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Currency&lt;/span&gt;, &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;)
-&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Currency&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Dollar&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Or with union types&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Dollar&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Both these implementations fulfill the requirement of a &lt;code&gt;Money&lt;/code&gt; type for the &lt;code&gt;Price&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;These implementations cannot enforce the &lt;em&gt;add constraint&lt;/em&gt; at compile time. Although, you can enforce that you don&amp;rsquo;t get wrong results:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #336699&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Maybe&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;or, there can be invalid money&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Dollar&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Invalid&lt;/span&gt;
-&lt;span style=&#34;color: #336699&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This last one would be harder to implement with a Tuple. But in most other ways I believe the Tuple and the union types are very similar. I like the union types better, so I won&amp;rsquo;t explore the tuple any further.&lt;/p&gt;
-
-&lt;p&gt;When we have the choice between these 2 add type definitions, which one is best?
-I prefer &lt;code&gt;add : Money -&amp;gt; Money -&amp;gt; Maybe Money&lt;/code&gt; for 2 reasons: (1) Invalid is not an actual type of money and (2) returning Maybe makes it very explicit that this an operation that can fail.&lt;/p&gt;
-
-&lt;p&gt;Would it be possible to enforce the constraint of adding only the same currencies on compile time? Yes, like this:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;
-&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Dollar&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Dollar&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Now you have to implement 2 add functions for both types.&lt;/p&gt;
-
-&lt;p&gt;This does have some disadvantages, you have to implement add twice. If you want to have them in the same file, the names of the add methods can&amp;rsquo;t be the same, and we need some type to represent money (for our price constraint).
-This also means that it&amp;rsquo;s best to implement &lt;code&gt;Euro&lt;/code&gt; and &lt;code&gt;Dollar&lt;/code&gt; both in their own module, so that you can create 2 add functions.&lt;/p&gt;
-
-&lt;p&gt;But lets see if this is doable.&lt;/p&gt;
-
-&lt;p&gt;First the problem of the reimplementation. This is something that is unavailable in Elm (I believe it&amp;rsquo;s possible to avoid this with type classes in Haskell), but it&amp;rsquo;s not that bad.
-Suppose we needed to write many functions on money types, then we could write them like this:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #336699&#34;&gt;update&lt;/span&gt;&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; (&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;) &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt;
-&lt;span style=&#34;color: #336699&#34;&gt;update&lt;/span&gt;&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;f&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;e&lt;/span&gt;&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;e&lt;/span&gt;&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt;
-	&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;case&lt;/span&gt; (&lt;span style=&#34;color: #336699&#34;&gt;e&lt;/span&gt;&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;e&lt;/span&gt;&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;2&lt;/span&gt;) &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;of&lt;/span&gt;
-			(&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt;, &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; (&lt;span style=&#34;color: #336699&#34;&gt;f&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&amp;#39;&lt;/span&gt;)
-
-&lt;span style=&#34;color: #336699&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt;
-&lt;span style=&#34;color: #336699&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;update&lt;/span&gt;&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;(+)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Like this we can avoid writing complex functions twice&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #336699&#34;&gt;complexOperation&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt;
-&lt;span style=&#34;color: #336699&#34;&gt;complexOperation&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;update&lt;/span&gt;&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;complexer&lt;/span&gt;
-
-&lt;span style=&#34;color: #336699&#34;&gt;complexer&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The second constraint is that we need a &lt;code&gt;Price&lt;/code&gt; with a &lt;code&gt;Money&lt;/code&gt; type. With our first implementations this constraint was already fulfilled, but here we need to implement a &lt;code&gt;Money&lt;/code&gt; type too.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Dollar&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;USD&lt;/span&gt;
-&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;VAT&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;VAT6&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;VAT12&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;VAT21&lt;/span&gt;
-&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Price&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt;, &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;VAT&lt;/span&gt;)
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;(Here it makes more sense to use a tuple for &lt;code&gt;Price&lt;/code&gt;, &lt;code&gt;Price&lt;/code&gt; is a &lt;code&gt;Money&lt;/code&gt; and a &lt;code&gt;VAT&lt;/code&gt;, while &lt;code&gt;Money&lt;/code&gt; is a amount of some currency)&lt;/p&gt;
-
-&lt;p&gt;We also need functions to transform a EUR or USD to Money, but these are trivial:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EURToMoney&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt;
-&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EURToMoney&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;eur&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;eur&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h2 id=&#34;extra-currency-conversions&#34;&gt;Extra - Currency Conversions&lt;/h2&gt;
-
-&lt;p&gt;What if you want to convert a currency. Then you need exchange rates.
-With Elm, these conversions can be typed checked too, although it&amp;rsquo;s a bit verbose.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s say we want all the &lt;code&gt;Money&lt;/code&gt; of our &lt;code&gt;Price&lt;/code&gt;s to be converted to euro.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;alias&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EURToUSD&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;
-&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;alias&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;USDToEUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Float&lt;/span&gt;
-&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;alias&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Exchanges&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EURToUSD&lt;/span&gt;, &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;USDToEUR&lt;/span&gt;)
-
-
-&lt;span style=&#34;color: #336699&#34;&gt;moneyToEuro&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Exchanges&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt;
-&lt;span style=&#34;color: #336699&#34;&gt;moneyToEuro&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;mon&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;con&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt;
-  &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;con&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;of&lt;/span&gt;
-		(&lt;span style=&#34;color: #336699&#34;&gt;euroToUsd&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;usdToEur&lt;/span&gt;) &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt;
-			&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;mon&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;of&lt;/span&gt;
-				&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Dollar&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;usd&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; ((&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Usd&lt;/span&gt;&lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #336699&#34;&gt;extract&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;usd&lt;/span&gt;) &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;usdToEur&lt;/span&gt;)
-				&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Euro&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;eur&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;eur&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Where extract is a function that extracts the amount of the USD.&lt;/p&gt;
-
-&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;Elm doesn&amp;rsquo;t have type classes so some things are extra work and are a bit more verbose. But it is possible to enforce a lot at compile time. Furthermore everything is very readable.&lt;/p&gt;
-
-&lt;p&gt;Is it worth it of doing it like this? That totally depends on your use case. A lot of times you will want to use &lt;code&gt;type Money = EUR Float | USD Float&lt;/code&gt; and use a &lt;code&gt;Maybe&lt;/code&gt; type to enforce your constraints, but sometimes you will do the extra work to enforce some things at compile time.&lt;/p&gt;
-
-&lt;h2 id=&#34;update-2016-04-18&#34;&gt;Update 2016-04-18&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;Zach May&lt;/em&gt; left a nice comment (Thanks!) on the blog about an alternative solution:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;USD&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;USD&lt;/span&gt; 
-&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;EUR&lt;/span&gt;
-
-&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; (&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Int&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt;)
-
-&lt;span style=&#34;color: #336699&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt;
-&lt;span style=&#34;color: #336699&#34;&gt;add&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;m&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;m&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;=&lt;/span&gt;
-  &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;case&lt;/span&gt; (&lt;span style=&#34;color: #336699&#34;&gt;m&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;m&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;of&lt;/span&gt;
-    (&lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; (&lt;span style=&#34;color: #336699&#34;&gt;i&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt;), &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; (&lt;span style=&#34;color: #336699&#34;&gt;i&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;a&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #888888; font-weight: bold&#34;&gt;Money&lt;/span&gt; (&lt;span style=&#34;color: #336699&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color: #0066bb; font-weight: bold&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #336699&#34;&gt;i&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #336699&#34;&gt;a&lt;/span&gt;)
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This solution also enforces strict types when adding money with the advantage that you only need one implementation for add. A possible downside could be if you want your money types to have different number types (for example if you want to model bitcoins not with &lt;code&gt;Int&lt;/code&gt;s but with &lt;code&gt;SomeBitcoinNumberType&lt;/code&gt;). But like I said in my conclusion, you have to look at your constraints and chose a solution yourself.&lt;/p&gt;
-</description>
+      <description>After reading the blog post of Mathias Verraes (@mathiasverraes) on (Type Safety and Money)[http://verraes.net/2016/02/type-safety-and-money/], and after doing a real short modelling attempt in Haskell at Socrates Belgium, I wanted to try to model Money in Elm.
+I don&amp;rsquo;t want to go to deep and too far so I&amp;rsquo;ve set some basic constraints for myself:
+ You cannot add money of different currencies (you need an explicit conversion) - Add constraint We also want a Price.</description>
     </item>
     
     <item>
@@ -482,12 +81,8 @@ With Elm, these conversions can be typed checked too, although it&amp;rsquo;s a 
       <pubDate>Tue, 12 Apr 2016 21:28:31 +0200</pubDate>
       
       <guid>https://infinitetree.eu/blog/2016/04/12/welcome/</guid>
-      <description>&lt;p&gt;Welcome to the my new site written in &lt;a href=&#34;http://gohugo.io/&#34;&gt;hugo&lt;/a&gt;.
-While busy, I&amp;rsquo;ve set up https via letsencrypt. (see &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04&#34;&gt;tutorial&lt;/a&gt;. You can find the source code of the blog &lt;a href=&#34;https://github.com/tcoopman/hugo-blog&#34;&gt;here&lt;/a&gt;.
-This is a reboot of my site, and an attempt to blog some more.&lt;/p&gt;
-
-&lt;p&gt;So without further ado, let&amp;rsquo;s start blogging :)&lt;/p&gt;
-</description>
+      <description>Welcome to the my new site written in hugo. While busy, I&amp;rsquo;ve set up https via letsencrypt. (see tutorial. You can find the source code of the blog here. This is a reboot of my site, and an attempt to blog some more.
+So without further ado, let&amp;rsquo;s start blogging :)</description>
     </item>
     
     <item>
@@ -496,196 +91,8 @@ This is a reboot of my site, and an attempt to blog some more.&lt;/p&gt;
       <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
       
       <guid>https://infinitetree.eu/blog/2015/01/13/testing-es6-code/</guid>
-      <description>
-
-&lt;p&gt;Recently, I&amp;rsquo;ve changed my webpack workflow, and switched to &lt;a href=&#34;https://6to5.org/&#34;&gt;6to5&lt;/a&gt;, to be able to write more of my React code in ES6 than the current jsx transpiler supports (and because 6to5 just rocks!). You can find this workflow in my &lt;a href=&#34;https://github.com/tcoopman/boilerplate-webpack-react&#34;&gt;boilerplate-webpack-react&lt;/a&gt; project. Switching was easy. I&amp;rsquo;ve just replaced jsx-loader with 6to5-loader and everything worked correctly.&lt;/p&gt;
-
-&lt;p&gt;Writing code and developing is a breeze with this workflow, especially with &lt;a href=&#34;https://github.com/gaearon/react-hot-loader&#34;&gt;react-hot-loader&lt;/a&gt;. I didn&amp;rsquo;t look into writing test though yet, and it took me a little while to find out how to do it, so I explain it here.&lt;/p&gt;
-
-&lt;h2 id=&#34;karma-webpack&#34;&gt;Karma-webpack&lt;/h2&gt;
-
-&lt;p&gt;Luckely, there exist a &lt;a href=&#34;http://karma-runner.github.io/&#34;&gt;karma&lt;/a&gt; plugin &lt;a href=&#34;https://github.com/webpack/karma-webpack&#34;&gt;webpack-karma&lt;/a&gt; that allows you to run webpack on files loaded by karma. This means, the test can be written in ES6 (or any other language you prefer that can be transpiled by a webpack loader), and your own code also gets transpiled.&lt;/p&gt;
-
-&lt;p&gt;Let me show my setup.&lt;/p&gt;
-
-&lt;h3 id=&#34;install-dependencies&#34;&gt;Install dependencies&lt;/h3&gt;
-
-&lt;p&gt;First you need to install all dependencies:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;npm install --save-dev karma karma-mocha karma-webpack karma-chrome-launcher should&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;I use &lt;a href=&#34;http://mochajs.org/&#34;&gt;mocha&lt;/a&gt; as test framework and &lt;a href=&#34;https://github.com/shouldjs/should.js&#34;&gt;should&lt;/a&gt; as assertion library, but this should work with anything that karma supports.&lt;/p&gt;
-
-&lt;h3 id=&#34;karma-configuration-file&#34;&gt;Karma configuration file&lt;/h3&gt;
-
-&lt;p&gt;Next we need to create the karma config file &lt;em&gt;karma.conf.js&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #888888&#34;&gt;// Karma configuration&lt;/span&gt;
-&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;var&lt;/span&gt; path = require(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;path&amp;#39;&lt;/span&gt;);
-
-module.exports = &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;function&lt;/span&gt;(config) {
-  config.set({
-    &lt;span style=&#34;color: #888888&#34;&gt;// ... normal karma configuration&lt;/span&gt;
-
-    files: [
-    &lt;span style=&#34;color: #888888&#34;&gt;// all files ending in &amp;quot;_test&amp;quot;&lt;/span&gt;
-    &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;test/*_test.jsx&amp;#39;&lt;/span&gt;,
-    &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;test/**/*_test.jsx&amp;#39;&lt;/span&gt;
-    &lt;span style=&#34;color: #888888&#34;&gt;// each file acts as entry point for the webpack configuration&lt;/span&gt;
-    ],
-
-
-    frameworks: [&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;mocha&amp;#39;&lt;/span&gt;],
-
-
-    browsers: [&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;Chrome&amp;#39;&lt;/span&gt;],
-
-
-    preprocessors: {
-      &lt;span style=&#34;color: #888888&#34;&gt;// add webpack as preprocessor&lt;/span&gt;
-      &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;test/data/*.jsx&amp;#39;&lt;/span&gt;: [&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;webpack&amp;#39;&lt;/span&gt;],
-      &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;test/*_test.jsx&amp;#39;&lt;/span&gt;: [&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;webpack&amp;#39;&lt;/span&gt;],
-      &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;test/**/*_test.jsx&amp;#39;&lt;/span&gt;: [&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;webpack&amp;#39;&lt;/span&gt;]
-    },
-
-    webpack: {
-      &lt;span style=&#34;color: #888888&#34;&gt;// webpack configuration&lt;/span&gt;
-      output: {
-        path: path.join(__dirname, &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;dist&amp;#39;&lt;/span&gt;),
-        publicPath: &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;,
-        filename: &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;app.js&amp;#39;&lt;/span&gt;,
-        chunkFilename: &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;[chunkhash].js&amp;#39;&lt;/span&gt;
-      },
-
-
-      resolve: {
-        extensions: [&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;.js&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;.jsx&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;.styl&amp;#39;&lt;/span&gt;],
-        packageMains: [&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;quot;webpack&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;quot;browser&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;quot;web&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;quot;browserify&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;quot;main&amp;quot;&lt;/span&gt;]
-      },
-
-
-      module: {
-        loaders: [
-          {test: &lt;span style=&#34;color: #008800; background-color: #fff0ff&#34;&gt;/\.jsx$/&lt;/span&gt;, loaders: [&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;6to5-loader&amp;#39;&lt;/span&gt;] }
-        ]
-      }
-    },
-
-
-    webpackMiddleware: {
-      &lt;span style=&#34;color: #888888&#34;&gt;// webpack-dev-middleware configuration&lt;/span&gt;
-      &lt;span style=&#34;color: #888888&#34;&gt;// i. e.&lt;/span&gt;
-      noInfo: &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;true&lt;/span&gt;
-    },
-
-    plugins: [
-      require(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;karma-chrome-launcher&amp;#39;&lt;/span&gt;),
-      require(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;karma-mocha&amp;#39;&lt;/span&gt;),
-      require(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;karma-webpack&amp;#39;&lt;/span&gt;)
-    ]
-
-  });
-};
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id=&#34;first-test&#34;&gt;First test&lt;/h3&gt;
-
-&lt;p&gt;We also add a simple _sanity&lt;em&gt;test&lt;/em&gt; to make sure everything is setup correctly&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;import&lt;/span&gt; should from &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;should&amp;#39;&lt;/span&gt;;
-
-describe(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;sanity test&amp;#39;&lt;/span&gt;, () =&amp;gt; {
-  it(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;true should be true&amp;#39;&lt;/span&gt;, () =&amp;gt; {
-    &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;true&lt;/span&gt;.should.be.ok;
-  });
-});
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;h3 id=&#34;first-run&#34;&gt;First run&lt;/h3&gt;
-
-&lt;p&gt;Now, if we want to run our test, we run:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;node node_modules/karma/bin/karma start karma.conf.js&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;This should start Chrome (if you don&amp;rsquo;t have chrome, see the &lt;a href=&#34;http://karma-runner.github.io/0.12/config/browsers.html&#34;&gt;karma browser configuration&lt;/a&gt;) and print this:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;INFO [karma]: Karma v0.12.31 server started at http://localhost:9876/
-INFO [launcher]: Starting browser Chrome
-INFO [Chrome &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;39&lt;/span&gt;.0.2171 (Windows &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;7&lt;/span&gt;)]: Connected on socket xBMICOzH9lh3Eo9INXDA with id &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;55389724&lt;/span&gt;
-Chrome &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;39&lt;/span&gt;.0.2171 (Windows &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;7&lt;/span&gt;): Executed &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;1&lt;/span&gt; of &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;1&lt;/span&gt; SUCCESS (&lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;0&lt;/span&gt;.009 secs / &lt;span style=&#34;color: #0000DD; font-weight: bold&#34;&gt;0&lt;/span&gt; secs)
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Every time you change your code it will automatically rerun your tests.&lt;/p&gt;
-
-&lt;p&gt;To make it a bit easier to run the test, add the test command to npm:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;quot;scripts&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #a61717; background-color: #e3d2d2&#34;&gt;:&lt;/span&gt; {
-  &lt;span style=&#34;color: #bb0066; font-weight: bold&#34;&gt;&amp;quot;test&amp;quot;&lt;/span&gt;: &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;quot;node node_modules/karma/bin/karma start karma.conf.js&amp;quot;&lt;/span&gt;
-}
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;You could also add &lt;code&gt;--single-run&lt;/code&gt; if you want to run the test only once and don&amp;rsquo;t watch.&lt;/p&gt;
-
-&lt;h2 id=&#34;testing-react-code&#34;&gt;Testing React code&lt;/h2&gt;
-
-&lt;p&gt;The steps above give you a working testing environment, now we can test our code:&lt;/p&gt;
-
-&lt;p&gt;To test this we create a simple React component &lt;em&gt;Button.react.jsx&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;import&lt;/span&gt; React from &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;react&amp;#39;&lt;/span&gt;;
-
-
-&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;default&lt;/span&gt; React.createClass({
-  displayName: &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;Button&amp;#39;&lt;/span&gt;,
-
-
-  render() {
-    &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;return&lt;/span&gt; &amp;lt;div&amp;gt;button&amp;lt;&lt;span style=&#34;color: #a61717; background-color: #e3d2d2&#34;&gt;/div&amp;gt;;&lt;/span&gt;
-  }
-});
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;And we test it in _Button.react&lt;em&gt;test.jsx&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;import&lt;/span&gt; React from &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;react/addons&amp;#39;&lt;/span&gt;;
-&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;import&lt;/span&gt; should from &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;should&amp;#39;&lt;/span&gt;;
-
-&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;import&lt;/span&gt; Button from &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;../app/jsx/components/Button.react&amp;#39;&lt;/span&gt;;
-
-&lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;const&lt;/span&gt; TestUtils = React.addons.TestUtils;
-
-
-describe(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;Button&amp;#39;&lt;/span&gt;, () =&amp;gt; {
-  it(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;renders button div&amp;#39;&lt;/span&gt;, () =&amp;gt; {
-    &lt;span style=&#34;color: #008800; font-weight: bold&#34;&gt;const&lt;/span&gt; button = TestUtils.renderIntoDocument(
-      &amp;lt;Button /&amp;gt;
-    );
-    TestUtils.isCompositeComponent(button).should.be.ok;
-    button.getDOMNode().textContent.should.be.eql(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;button&amp;#39;&lt;/span&gt;);
-  });
-});
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Easy!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;remark&#34;&gt;Remark&lt;/h3&gt;
-
-&lt;p&gt;While testing, I ran into a problem. This line in HelloWorld.react.jsx: &lt;code&gt;var exampleImage = require(&#39;../../images/example.jpg&#39;);&lt;/code&gt; proved to be a problem. But the problem was quiet obvious to solve, I just needed to add a image loader to the karma webpack configuration:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34; style=&#34;background: #ffffff&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;module: {
-  loaders: [
-  {test: &lt;span style=&#34;color: #008800; background-color: #fff0ff&#34;&gt;/\.jsx$/&lt;/span&gt;, loaders: [&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;6to5-loader&amp;#39;&lt;/span&gt;] },
-  &lt;span style=&#34;color: #888888&#34;&gt;// Add the image loader&lt;/span&gt;
-  {test: &lt;span style=&#34;color: #008800; background-color: #fff0ff&#34;&gt;/.*\.(gif|png|jpg)$/&lt;/span&gt;, loaders: [&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;file?hash=sha512&amp;amp;digest=hex&amp;amp;size=16&amp;amp;name=[hash].[ext]&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&amp;#39;image-webpack-loader?optimizationLevel=7&amp;amp;interlaced=false&amp;#39;&lt;/span&gt;]}
-  ]
-}
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;After this, I could test the HelloWorld component too.&lt;/p&gt;
-
-&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;Once you have this up, you can test your code with the same setup you already have. Webpack rocks!&lt;/p&gt;
-
-&lt;p&gt;If you have any questions, please leave them as an issue at my boilerplate repository (&lt;a href=&#34;https://github.com/tcoopman/boilerplate-webpack-react/issues&#34;&gt;https://github.com/tcoopman/boilerplate-webpack-react/issues&lt;/a&gt;)&lt;/p&gt;
-
-&lt;h2 id=&#34;commits&#34;&gt;Commits&lt;/h2&gt;
-
-&lt;p&gt;All steps and code above can be found in the commits between tag 0.0.9 and 0.0.10: &lt;a href=&#34;https://github.com/tcoopman/boilerplate-webpack-react/commits/master&#34;&gt;https://github.com/tcoopman/boilerplate-webpack-react/commits/master&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>Recently, I&amp;rsquo;ve changed my webpack workflow, and switched to 6to5, to be able to write more of my React code in ES6 than the current jsx transpiler supports (and because 6to5 just rocks!). You can find this workflow in my boilerplate-webpack-react project. Switching was easy. I&amp;rsquo;ve just replaced jsx-loader with 6to5-loader and everything worked correctly.
+Writing code and developing is a breeze with this workflow, especially with react-hot-loader. I didn&amp;rsquo;t look into writing test though yet, and it took me a little while to find out how to do it, so I explain it here.</description>
     </item>
     
     <item>
@@ -694,28 +101,9 @@ describe(&lt;span style=&#34;color: #dd2200; background-color: #fff0f0&#34;&gt;&
       <pubDate>Sat, 04 Oct 2014 00:00:00 +0000</pubDate>
       
       <guid>https://infinitetree.eu/blog/2014/10/04/about-the-site-about-me/</guid>
-      <description>&lt;p&gt;My name is Thomas Coopman and I&amp;rsquo;m a 29 year old developer. Recently I&amp;rsquo;ve
-officially started freelancing/consulting in my spare time. That&amp;rsquo;s the main
-reason for creating this site and blog.&lt;/p&gt;
-
-&lt;p&gt;On this site you can find some more information &lt;a href=&#34;https://infinitetree.eu/about&#34;&gt;about me&lt;/a&gt;. At the
-&lt;a href=&#34;https://infinitetree.eu/portfolio&#34;&gt;portfolio&lt;/a&gt; page you can see some things I&amp;rsquo;ve created. That page is
-empty at the moment but it will be coming soon.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m a developer, mostly a web-developer (backend and frontend). In my main job,
-I&amp;rsquo;m a project manager and developer. The main things I do is implementing
-GIS systems and viewers, so I&amp;rsquo;ve got a lot of experience with GIS (mainly with
-ArcGIS, but I also know Geoserver and leaflet).&lt;/p&gt;
-
-&lt;p&gt;If you need someone to help you with the implementation of a custom solution,
-GIS or something else. You want to get a second opinion about something
-technical. Or you need some help on a project&amp;hellip;
-contact me and we can have a chat!&lt;/p&gt;
-
-&lt;p&gt;Greetings&lt;/p&gt;
-
-&lt;p&gt;Thomas&lt;/p&gt;
-</description>
+      <description>My name is Thomas Coopman and I&amp;rsquo;m a 29 year old developer. Recently I&amp;rsquo;ve officially started freelancing/consulting in my spare time. That&amp;rsquo;s the main reason for creating this site and blog.
+On this site you can find some more information about me. At the portfolio page you can see some things I&amp;rsquo;ve created. That page is empty at the moment but it will be coming soon.
+I&amp;rsquo;m a developer, mostly a web-developer (backend and frontend).</description>
     </item>
     
     <item>
@@ -724,94 +112,10 @@ contact me and we can have a chat!&lt;/p&gt;
       <pubDate>Mon, 29 Sep 2014 00:00:00 +0000</pubDate>
       
       <guid>https://infinitetree.eu/blog/2014/09/29/creating-this-site/</guid>
-      <description>
-
-&lt;p&gt;&lt;em&gt;This is not valid anymore. The site is build with hugo&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;This blogpost will be a about the why, but mostly about how I&amp;rsquo;ve created
-this site.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve created this site mostly for these reasons:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Make myself visible on the web.&lt;/li&gt;
-&lt;li&gt;Practice my design and web-development skills.&lt;/li&gt;
-&lt;li&gt;Practice my writing (blog).&lt;/li&gt;
-&lt;li&gt;Record things I&amp;rsquo;ve learned for myself. Maybe someone else will find
-something useful here.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;content&#34;&gt;Content&lt;/h1&gt;
-
-&lt;p&gt;The contents of this site contain information about me, to make me more
-visible on the web. The site includes a blog with primarly technical content. In
-the first place javascript and web-development although this can change
-depending on my interests at that moment and what I&amp;rsquo;m working about.&lt;/p&gt;
-
-&lt;p&gt;Secondly, I&amp;rsquo;ll try to blog about some of my hobbies (hiking for example),
-but that will be very occasional.&lt;/p&gt;
-
-&lt;h1 id=&#34;framework&#34;&gt;Framework&lt;/h1&gt;
-
-&lt;p&gt;I&amp;rsquo;ve created this site in &lt;a href=&#34;http://facebook.github.io/react/&#34;&gt;Reactjs&lt;/a&gt;, my
-current favorite javascript framework that I like for the same reasons everyone
-else likes it. There are lots of blogs
-about react so I&amp;rsquo;ll try to keep the redundancy low and only talk about the new
-things.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m using &lt;a href=&#34;https://github.com/rackt/react-router&#34;&gt;react-router&lt;/a&gt; for the routing.
-At the moment of writing there are some shortcomings
-(mostly no server-side rendering&lt;sup&gt;1&lt;/sup&gt;), but these guys are working
-on that and we can expect it shortly. As soon as server side rendering is
-supported, I&amp;rsquo;ll add it so this site can be easily searched with
-Google, and then it should also be mostly useful without javascript.&lt;/p&gt;
-
-&lt;p&gt;For the css I&amp;rsquo;m using the &lt;a href=&#34;http://learnboost.github.io/stylus/&#34;&gt;stylus&lt;/a&gt; preprocessor.
-I&amp;rsquo;ve tried Less and Sass in the past but I like stylus, and this site is a
-good way of exploring it. I try to keep the site low on css and don&amp;rsquo;t
-use a framework like bootstrap or foundation.&lt;/p&gt;
-
-&lt;h1 id=&#34;blog&#34;&gt;Blog&lt;/h1&gt;
-
-&lt;p&gt;The blog is written with my own implementation of a React markdown component
-that I&amp;rsquo;ve &lt;a href=&#34;https://github.com/tcoopman/markdown-react&#34;&gt;published&lt;/a&gt;&lt;sup&gt;2&lt;/sup&gt;. In short, it uses an existing markdown parser,
-but instead of rendering a html string, it renders React components. The cool
-thing about this is that you can have full control over the React components, so
-you can do all kind of cool things with. For example add a custom subscript
-to every image or parse different html than what you normally want (like I do in
-this blog. Here I render &amp;lt;h2&amp;gt; elements instead of &amp;lt;h1&amp;gt;). Of course you can do
-all these things if you know something about parsing, but this component makes this
-super easy if you know React, just substitute the main component for your own and
-you&amp;rsquo;re started. I&amp;rsquo;m planning on writing a short blog post about this component too.&lt;/p&gt;
-
-&lt;p&gt;Stay tuned!&lt;/p&gt;
-
-&lt;h1 id=&#34;hosting-and-deploying&#34;&gt;Hosting and deploying&lt;/h1&gt;
-
-&lt;p&gt;I build this site with gulp and webpack. My boilerplate package
-can be found at &lt;a href=&#34;https://github.com/tcoopman/boilerplate-webpack-react&#34;&gt;boilerplate-webpack-react&lt;/a&gt;.
-This site uses a very similar build, with some adaptations for the blog.&lt;/p&gt;
-
-&lt;p&gt;This website is hosted on &lt;a href=&#34;https://www.digitalocean.com/&#34;&gt;DigitalOcean&lt;/a&gt; with Nginx.
-At the moment it&amp;rsquo;s just a static app, but as soon as react-router supports server
-rendering I&amp;rsquo;m going to implement it. I need to set up automatic deployment, probably with git.
-I don&amp;rsquo;t build my site on the server. I push the build to the server.
-When server side rendering is implemented, the way I deploy my code will change
-and I also have a blog about that in the pipeline.&lt;/p&gt;
-
-&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;A custom implementation of a blog, custom css and hosted on a vps. And that for
-a static site. It&amp;rsquo;s a bit more work, and you could say it&amp;rsquo;s not a best practice
-to do things this way, but it&amp;rsquo;s a good way to experiment and try new things and
-that&amp;rsquo;s exactly what I want to do with this site.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt; This has been fixed in a recent version.&lt;/p&gt;
-
-&lt;p&gt;&lt;sup&gt;2&lt;/sup&gt; I&amp;rsquo;ve switched to &lt;a href=&#34;https://github.com/jonschlinkert/remarkable&#34;&gt;remarkable&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>This is not valid anymore. The site is build with hugo
+This blogpost will be a about the why, but mostly about how I&amp;rsquo;ve created this site.
+I&amp;rsquo;ve created this site mostly for these reasons:
+ Make myself visible on the web. Practice my design and web-development skills. Practice my writing (blog). Record things I&amp;rsquo;ve learned for myself. Maybe someone else will find something useful here.  Content The contents of this site contain information about me, to make me more visible on the web.</description>
     </item>
     
     <item>
@@ -820,28 +124,22 @@ that&amp;rsquo;s exactly what I want to do with this site.&lt;/p&gt;
       <pubDate>Fri, 11 Jul 2014 10:54:24 +0200</pubDate>
       
       <guid>https://infinitetree.eu/contact/</guid>
-      <description>
-
-&lt;p&gt;&lt;strong&gt;Email&lt;/strong&gt;&lt;br /&gt;
-&lt;a href=&#34;mailto:thomas.coopman@infitetree.eu&#34;&gt;thomas.coopman@infinitetree.eu&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Phone&lt;/strong&gt;&lt;br /&gt;
-+32 491 08 06 16&lt;br /&gt;
-&lt;strong&gt;Website&lt;/strong&gt;&lt;br /&gt;
-&lt;a href=&#34;http://infinitetree.eu&#34;&gt;infinitetree.eu&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Location&lt;/strong&gt;&lt;br /&gt;
-Aartselaar - Belgium&lt;/p&gt;
-
-&lt;h3 id=&#34;profiles&#34;&gt;Profiles&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Github&lt;/strong&gt;&lt;br /&gt;
-&lt;a href=&#34;https://github.com/tcoopman&#34;&gt;tcoopman&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Bitbucket&lt;/strong&gt;&lt;br /&gt;
-&lt;a href=&#34;https://bitbucket.org/tcoopman/&#34;&gt;tcoopman&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Twitter&lt;/strong&gt;&lt;br /&gt;
-&lt;a href=&#34;https://twitter.com/tcoopman&#34;&gt;tcoopman&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Google+&lt;/strong&gt;&lt;br /&gt;
-&lt;a href=&#34;https://plus.google.com/u/0/109624499308077610663&#34;&gt;thomascoopman&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>Email
+thomas.coopman@infinitetree.eu
+Phone
++32 491 08 06 16
+Website
+infinitetree.eu
+Location
+Aartselaar - Belgium
+Profiles Github
+tcoopman
+Bitbucket
+tcoopman
+Twitter
+tcoopman
+Google+
+thomascoopman</description>
     </item>
     
     <item>
@@ -850,31 +148,7 @@ Aartselaar - Belgium&lt;/p&gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://infinitetree.eu/home/</guid>
-      <description>&lt;!doctype html&gt;
-
-&lt;html lang=&#34;en&#34;&gt;
-&lt;head&gt;
-  &lt;meta charset=&#34;utf-8&#34;&gt;
-
-  &lt;title&gt;Infinite Tree&lt;/title&gt;
-  &lt;meta name=&#34;description&#34; content=&#34;Infinite Tree Website&#34;&gt;
-  &lt;meta name=&#34;author&#34; content=&#34;Thomas Coopman&#34;&gt;
-  &lt;link href=&#34;https://fonts.googleapis.com/css?family=Montserrat|Neuton&#34; rel=&#34;stylesheet&#34;&gt;
-  &lt;link rel=&#34;stylesheet&#34; href=&#34;https://infinitetree.eu/css/index.css&#34;&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-  &lt;main&gt;
-      &lt;div&gt;
-          &lt;img src=&#34;https://infinitetree.eu/images/logo.png&#34; /&gt;
-      &lt;/div&gt;
-      &lt;div class=&#34;header&#34;&gt;
-          &lt;h2&gt;&lt;a href=&#34;https://thomascoopman.eu&#34;&gt;BLOG&lt;/a&gt;&lt;/h2&gt;
-      &lt;/div&gt;
-  &lt;/main&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</description>
+      <description> Infinite Tree      BLOG     </description>
     </item>
     
   </channel>

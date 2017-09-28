@@ -24,4 +24,11 @@ How many people are working on your frontend, do you have multiple teams working
 
 The talk below goes into some techniques that can be used to do this. The slides are low on detail, most of the meat is in the talk, but if I get poked enough I might write more details down or give an other talk. The important thing is that this is not rocket sience, it's not that hard. If you're able to create architecture for your backend, you should be able to do it for your frontend as well.
 
+### Update, the day after the talk
+
+I think the talk went reasonably well yesterday (I you find otherwise or have other feedback, please let me know). At the end there was a great discussion about the complexity of this solution. This is something I mentioned, but not stressed enough or didn't explain correctly. So let me add it here as well.
+
+Splitting your frontend in multiple services adds complexity, the same way that microservices add complexity to the backend. When you choose for a solution like this, think hard if you need it. Do you want to scale work, work with multiple teams, smaller services that you can evolve faster,... then this solution *can* be a possible solution.
+
+
 Go to the [slides](https://tcoopman.github.io/big-ball-of-frontend-talk/)!
