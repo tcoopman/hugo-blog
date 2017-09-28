@@ -26,7 +26,7 @@ The talk below goes into some techniques that can be used to do this. The slides
 
 ### Update, the day after the talk
 
-I think the talk went reasonably well yesterday (I you find otherwise or have other feedback, please let me know). At the end there was a great discussion about the complexity of this solution. This is something I mentioned, but not stressed enough or didn't explain correctly. So let me add it here as well.
+I think the talk went reasonably well yesterday (If you find otherwise or have other feedback, please let me know). At the end there was a great discussion about the complexity of this solution. This is something I mentioned, but not stressed enough or didn't explain correctly. So let me add it here as well.
 
 Splitting your frontend in multiple services adds complexity, the same way that microservices add complexity to the backend. When you choose for a solution like this, think hard if you need it. Do you want to scale work, work with multiple teams, smaller services that you can evolve faster,... then this solution *can* be a possible solution.
 
