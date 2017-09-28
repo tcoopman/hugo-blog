@@ -1,3 +1,4 @@
 rm -rf public
 hugo
-rsync -avz -e ssh public/ thomascoopman.eu:/home/thomas/hugo
+chmod -R 755 public
+rsync -avzp -e ssh public/ thomascoopman.eu:/home/thomas/hugo
