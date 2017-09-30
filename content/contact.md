@@ -15,7 +15,7 @@ draft = false
 **Phone**  
 +32 491 08 06 16  
 **Website**  
-[infinitetree.eu](http://infinitetree.eu)  
+[infinitetree.eu](https://infinitetree.eu)  
 **Location**  
 Aartselaar - Belgium  
 

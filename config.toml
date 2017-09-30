@@ -4,8 +4,10 @@ title = "Thomas Coopman - Infinite Tree"
 MetaDataFormat = "toml"
 theme = "infinitetree"
 paginate = 10
-pygmentsuseclasses = false
-pygmentsstyle = "pastie"
+
+PygmentsStyle = "pastie"
+PygmentsUseClasses = false
+PygmentsCodeFencesGuessSyntax = true
 PygmentsCodeFences = true
 disqusShortname = "thomascoopmaneu"
 googleAnalytics = "UA-56701000-2"
@@ -86,10 +88,9 @@ hideReadingTime = false
 
 # Select a syntax highight.
 # Check the static/css/highlight directory for options.
-highlight = "sunburst"
 
 # Optional additional custom CSS file URL, will override other styles.
-# customCSS = "/css/images.css"
+# customCSS = "/css/syntax.css"
 
 # Displays under the author name in the sidebar, keep it short.
 # You can use markdown here.
