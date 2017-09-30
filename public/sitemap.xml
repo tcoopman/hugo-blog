@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://infinitetree.eu/blog/2017/09/30/integrating-bucklescript-with-typescript/</loc>
+    <lastmod>2017-09-30T18:19:24+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/blog/2017/09/27/a-big-ball-of-frontend/</loc>
     <lastmod>2017-09-27T14:39:00+01:00</lastmod>
   </url>
@@ -64,6 +69,12 @@
   <url>
     <loc>https://infinitetree.eu/tags/2017/</loc>
     <lastmod>2017-01-03T19:18:13+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/bucklescript/</loc>
+    <lastmod>2017-09-30T18:19:24+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -140,7 +151,7 @@
   
   <url>
     <loc>https://infinitetree.eu/post/</loc>
-    <lastmod>2017-09-27T14:39:00+01:00</lastmod>
+    <lastmod>2017-09-30T18:19:24+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -158,7 +169,13 @@
   
   <url>
     <loc>https://infinitetree.eu/</loc>
-    <lastmod>2017-09-27T14:39:00+01:00</lastmod>
+    <lastmod>2017-09-30T18:19:24+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/typescript/</loc>
+    <lastmod>2017-09-30T18:19:24+02:00</lastmod>
     <priority>0</priority>
   </url>
   

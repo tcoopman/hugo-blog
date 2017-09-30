@@ -45,7 +45,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.27.1" />
+    <meta name="generator" content="Hugo 0.29" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2017/02/08/exploring-aggregate-boundaries-in-event-sourced-systems/" />
 
@@ -232,14 +232,14 @@ This can solve the problem of the changing questions and also solves our initial
 <p>So the solution is simple: <em>the quiz creates a new aggregate; the game</em> (<a href="https://groups.google.com/forum/#!searchin/dddcqrs/aggregate$20instance|sort:relevance/dddcqrs/B6kxs7FK8_I/F_xcEdkOnHwJ">aggregates create other aggregate</a>).</p>
 
 <p>In pseudo code this could look like:</p>
-quiz.open_game(game_id)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir">quiz.open_game(game_id)
     case quiz_is_published
-        game = new Game(game_id, quiz_id, copy(questions))
-        # game contains unsaved event game_was_opened
+        game = new <span style="color:#b06;font-weight:bold">Game</span>(game_id, quiz_id, copy(questions))
+        <span style="color:#888"># game contains unsaved event game_was_opened</span>
         return game
     case _
-        return DomainError("A game can only be opened for published quizzes")
-
+        return <span style="color:#b06;font-weight:bold">DomainError</span>(<span style="color:#d20;background-color:#fff0f0">&#34;A game can only be opened for published quizzes&#34;</span>)</code></pre>
+</div>
 <h3 id="exploring-a-different-implementation">Exploring a different implementation</h3>
 
 <p>Instead of the quiz aggregate that creates a new aggregate, we could also try something like this: The quiz handles the <code>open_game_request</code> command and returns an event <code>game_open_requested</code>. A process manager listens to this event and dispatches a <code>open_game</code> command. The <code>open_game</code> command is handled by a game. The <code>game_open_requested</code> means that it is allowed to open the game.</p>
@@ -249,9 +249,9 @@ quiz.open_game(game_id)
 <p>This adds some complexity and is probably not always a good solution. But sometimes we might need a solution like this. Let&rsquo;s say that the we have some problems with copyrighted materials in our quizzes and that we are enforced to terminate all quizzes and corresponding games immediately (I know, this is probably far fetched, but it is to explore the solution further).</p>
 
 <p>How could this look?</p>
-quiz.terminate_due_to_copyright
-# returns quiz aggregate with unsaved event (quiz_was_terminated)
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir">quiz.terminate_due_to_copyright
+<span style="color:#888"># returns quiz aggregate with unsaved event (quiz_was_terminated)</span></code></pre>
+</div>
 <p>A process manager could listen to <code>quiz_was_terminated</code> and dispatch a <code>terminate_game</code> command to all open games for that quiz. But <em>how does the process manager know what games are open for the quiz</em>? Well if we modelled our solution to have the process manager open the games, then it can also keep the state of all the open games for the quiz. So in this final solution we have a process manager that listens to <code>game_open_requested</code>, <code>quiz_was_terminated</code>, <code>game_was_closed</code>.</p>
 
 <h2 id="closing-thoughts">Closing thoughts</h2>

@@ -47,7 +47,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.27.1" />
+    <meta name="generator" content="Hugo 0.29" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2016/04/12/modelling-money-in-elm/" />
 
@@ -190,30 +190,30 @@ ga('send', 'pageview');
 <p>There are some different options for modelling the money.</p>
 
 <p>With a Tuple, a Currency and a Float:</p>
-type alias Money = (Currency, Float)
-type Currency = Euro | Dollar
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#080;font-weight:bold">type</span> <span style="color:#080;font-weight:bold">alias</span> <span style="color:#888;font-weight:bold">Money</span> <span style="color:#06b;font-weight:bold">=</span> (<span style="color:#888;font-weight:bold">Currency</span>, <span style="color:#888;font-weight:bold">Float</span>)
+<span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">Currency</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Euro</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Dollar</span></code></pre>
+</div>
 <p>Or with union types</p>
-type Money = Euro Float | Dollar Float
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">Money</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Euro</span> <span style="color:#888;font-weight:bold">Float</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Dollar</span> <span style="color:#888;font-weight:bold">Float</span></code></pre>
+</div>
 <p>Both these implementations fulfill the requirement of a <code>Money</code> type for the <code>Price</code>.</p>
 
 <p>These implementations cannot enforce the <em>add constraint</em> at compile time. Although, you can enforce that you don&rsquo;t get wrong results:</p>
-add : Money -> Money -> Maybe Money
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#369">add</span> <span style="color:#06b;font-weight:bold">:</span> <span style="color:#888;font-weight:bold">Money</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">Money</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">Maybe</span> <span style="color:#888;font-weight:bold">Money</span></code></pre>
+</div>
 <p>or, there can be invalid money</p>
-type Money = Euro Float | Dollar Float | Invalid
-add : Money -> Money -> Money
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">Money</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Euro</span> <span style="color:#888;font-weight:bold">Float</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Dollar</span> <span style="color:#888;font-weight:bold">Float</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Invalid</span>
+<span style="color:#369">add</span> <span style="color:#06b;font-weight:bold">:</span> <span style="color:#888;font-weight:bold">Money</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">Money</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">Money</span></code></pre>
+</div>
 <p>This last one would be harder to implement with a Tuple. But in most other ways I believe the Tuple and the union types are very similar. I like the union types better, so I won&rsquo;t explore the tuple any further.</p>
 
 <p>When we have the choice between these 2 add type definitions, which one is best?
 I prefer <code>add : Money -&gt; Money -&gt; Maybe Money</code> for 2 reasons: (1) Invalid is not an actual type of money and (2) returning Maybe makes it very explicit that this an operation that can fail.</p>
 
 <p>Would it be possible to enforce the constraint of adding only the same currencies on compile time? Yes, like this:</p>
-type Euro = Euro Float
-type Dollar = Dollar Float
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">Euro</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Euro</span> <span style="color:#888;font-weight:bold">Float</span>
+<span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">Dollar</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Dollar</span> <span style="color:#888;font-weight:bold">Float</span></code></pre>
+</div>
 <p>Now you have to implement 2 add functions for both types.</p>
 
 <p>This does have some disadvantages, you have to implement add twice. If you want to have them in the same file, the names of the add methods can&rsquo;t be the same, and we need some type to represent money (for our price constraint).
@@ -223,50 +223,50 @@ This also means that it&rsquo;s best to implement <code>Euro</code> and <code>Do
 
 <p>First the problem of the reimplementation. This is something that is unavailable in Elm (I believe it&rsquo;s possible to avoid this with type classes in Haskell), but it&rsquo;s not that bad.
 Suppose we needed to write many functions on money types, then we could write them like this:</p>
-update2 : (Float -> Float -> Float) -> EUR -> EUR -> EUR
-update2 f e1 e2 =
-	case (e1, e2) of
-			(EUR a, EUR a') -> EUR (f a a')
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#369">update</span><span style="color:#00d;font-weight:bold">2</span> <span style="color:#06b;font-weight:bold">:</span> (<span style="color:#888;font-weight:bold">Float</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">Float</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">Float</span>) <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">EUR</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">EUR</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">EUR</span>
+<span style="color:#369">update</span><span style="color:#00d;font-weight:bold">2</span> <span style="color:#369">f</span> <span style="color:#369">e</span><span style="color:#00d;font-weight:bold">1</span> <span style="color:#369">e</span><span style="color:#00d;font-weight:bold">2</span> <span style="color:#06b;font-weight:bold">=</span>
+	<span style="color:#080;font-weight:bold">case</span> (<span style="color:#369">e</span><span style="color:#00d;font-weight:bold">1</span>, <span style="color:#369">e</span><span style="color:#00d;font-weight:bold">2</span>) <span style="color:#080;font-weight:bold">of</span>
+			(<span style="color:#888;font-weight:bold">EUR</span> <span style="color:#369">a</span>, <span style="color:#888;font-weight:bold">EUR</span> <span style="color:#369">a&#39;</span>) <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">EUR</span> (<span style="color:#369">f</span> <span style="color:#369">a</span> <span style="color:#369">a&#39;</span>)
 
-add : EUR -> EUR -> EUR
-add = update2 (+)
-
+<span style="color:#369">add</span> <span style="color:#06b;font-weight:bold">:</span> <span style="color:#888;font-weight:bold">EUR</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">EUR</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">EUR</span>
+<span style="color:#369">add</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#369">update</span><span style="color:#00d;font-weight:bold">2</span> <span style="color:#06b;font-weight:bold">(+)</span></code></pre>
+</div>
 <p>Like this we can avoid writing complex functions twice</p>
-complexOperation : EUR -> EUR -> EUR
-complexOperation = update2 complexer
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#369">complexOperation</span> <span style="color:#06b;font-weight:bold">:</span> <span style="color:#888;font-weight:bold">EUR</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">EUR</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">EUR</span>
+<span style="color:#369">complexOperation</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#369">update</span><span style="color:#00d;font-weight:bold">2</span> <span style="color:#369">complexer</span>
 
-complexer : Float -> Float -> Float
-
+<span style="color:#369">complexer</span> <span style="color:#06b;font-weight:bold">:</span> <span style="color:#888;font-weight:bold">Float</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">Float</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">Float</span></code></pre>
+</div>
 <p>The second constraint is that we need a <code>Price</code> with a <code>Money</code> type. With our first implementations this constraint was already fulfilled, but here we need to implement a <code>Money</code> type too.</p>
-type Money = Euro EUR | Dollar USD
-type VAT = VAT6 | VAT12 | VAT21
-type Price = (Money, VAT)
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">Money</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Euro</span> <span style="color:#888;font-weight:bold">EUR</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Dollar</span> <span style="color:#888;font-weight:bold">USD</span>
+<span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">VAT</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">VAT6</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">VAT12</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">VAT21</span>
+<span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">Price</span> <span style="color:#06b;font-weight:bold">=</span> (<span style="color:#888;font-weight:bold">Money</span>, <span style="color:#888;font-weight:bold">VAT</span>)</code></pre>
+</div>
 <p>(Here it makes more sense to use a tuple for <code>Price</code>, <code>Price</code> is a <code>Money</code> and a <code>VAT</code>, while <code>Money</code> is a amount of some currency)</p>
 
 <p>We also need functions to transform a EUR or USD to Money, but these are trivial:</p>
-EURToMoney : EUR -> Money
-EURToMoney eur = Euro eur
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#888;font-weight:bold">EURToMoney</span> <span style="color:#06b;font-weight:bold">:</span> <span style="color:#888;font-weight:bold">EUR</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">Money</span>
+<span style="color:#888;font-weight:bold">EURToMoney</span> <span style="color:#369">eur</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Euro</span> <span style="color:#369">eur</span></code></pre>
+</div>
 <h2 id="extra-currency-conversions">Extra - Currency Conversions</h2>
 
 <p>What if you want to convert a currency. Then you need exchange rates.
 With Elm, these conversions can be typed checked too, although it&rsquo;s a bit verbose.</p>
 
 <p>Let&rsquo;s say we want all the <code>Money</code> of our <code>Price</code>s to be converted to euro.</p>
-type alias EURToUSD = Float
-type alias USDToEUR = Float
-type alias Exchanges = (EURToUSD, USDToEUR)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#080;font-weight:bold">type</span> <span style="color:#080;font-weight:bold">alias</span> <span style="color:#888;font-weight:bold">EURToUSD</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Float</span>
+<span style="color:#080;font-weight:bold">type</span> <span style="color:#080;font-weight:bold">alias</span> <span style="color:#888;font-weight:bold">USDToEUR</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Float</span>
+<span style="color:#080;font-weight:bold">type</span> <span style="color:#080;font-weight:bold">alias</span> <span style="color:#888;font-weight:bold">Exchanges</span> <span style="color:#06b;font-weight:bold">=</span> (<span style="color:#888;font-weight:bold">EURToUSD</span>, <span style="color:#888;font-weight:bold">USDToEUR</span>)
 
 
-moneyToEuro : Money -> Exchanges -> EUR
-moneyToEuro mon con =
-  case con of
-		(euroToUsd, usdToEur) ->
-			case mon of
-				Dollar usd -> EUR ((Usd.extract usd) * usdToEur)
-				Euro eur -> eur
-
+<span style="color:#369">moneyToEuro</span> <span style="color:#06b;font-weight:bold">:</span> <span style="color:#888;font-weight:bold">Money</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">Exchanges</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">EUR</span>
+<span style="color:#369">moneyToEuro</span> <span style="color:#369">mon</span> <span style="color:#369">con</span> <span style="color:#06b;font-weight:bold">=</span>
+  <span style="color:#080;font-weight:bold">case</span> <span style="color:#369">con</span> <span style="color:#080;font-weight:bold">of</span>
+		(<span style="color:#369">euroToUsd</span>, <span style="color:#369">usdToEur</span>) <span style="color:#06b;font-weight:bold">-&gt;</span>
+			<span style="color:#080;font-weight:bold">case</span> <span style="color:#369">mon</span> <span style="color:#080;font-weight:bold">of</span>
+				<span style="color:#888;font-weight:bold">Dollar</span> <span style="color:#369">usd</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">EUR</span> ((<span style="color:#888;font-weight:bold">Usd</span><span style="color:#06b;font-weight:bold">.</span><span style="color:#369">extract</span> <span style="color:#369">usd</span>) <span style="color:#06b;font-weight:bold">*</span> <span style="color:#369">usdToEur</span>)
+				<span style="color:#888;font-weight:bold">Euro</span> <span style="color:#369">eur</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#369">eur</span></code></pre>
+</div>
 <p>Where extract is a function that extracts the amount of the USD.</p>
 
 <h2 id="conclusion">Conclusion</h2>
@@ -278,16 +278,16 @@ moneyToEuro mon con =
 <h2 id="update-2016-04-18">Update 2016-04-18</h2>
 
 <p><em>Zach May</em> left a nice comment (Thanks!) on the blog about an alternative solution:</p>
-type USD = USD 
-type EUR = EUR
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">USD</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">USD</span> 
+<span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">EUR</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">EUR</span>
 
-type Money a = Money (Int, a)
+<span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">Money</span> <span style="color:#369">a</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Money</span> (<span style="color:#888;font-weight:bold">Int</span>, <span style="color:#369">a</span>)
 
-add : Money a -> Money a -> Money a
-add m m' =
-  case (m, m') of
-    (Money (i, a), Money (i', a')) -> Money (i + i', a)
-
+<span style="color:#369">add</span> <span style="color:#06b;font-weight:bold">:</span> <span style="color:#888;font-weight:bold">Money</span> <span style="color:#369">a</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">Money</span> <span style="color:#369">a</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">Money</span> <span style="color:#369">a</span>
+<span style="color:#369">add</span> <span style="color:#369">m</span> <span style="color:#369">m&#39;</span> <span style="color:#06b;font-weight:bold">=</span>
+  <span style="color:#080;font-weight:bold">case</span> (<span style="color:#369">m</span>, <span style="color:#369">m&#39;</span>) <span style="color:#080;font-weight:bold">of</span>
+    (<span style="color:#888;font-weight:bold">Money</span> (<span style="color:#369">i</span>, <span style="color:#369">a</span>), <span style="color:#888;font-weight:bold">Money</span> (<span style="color:#369">i&#39;</span>, <span style="color:#369">a&#39;</span>)) <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">Money</span> (<span style="color:#369">i</span> <span style="color:#06b;font-weight:bold">+</span> <span style="color:#369">i&#39;</span>, <span style="color:#369">a</span>)</code></pre>
+</div>
 <p>This solution also enforces strict types when adding money with the advantage that you only need one implementation for add. A possible downside could be if you want your money types to have different number types (for example if you want to model bitcoins not with <code>Int</code>s but with <code>SomeBitcoinNumberType</code>). But like I said in my conclusion, you have to look at your constraints and chose a solution yourself.</p>
 
     </section>

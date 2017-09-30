@@ -1,6 +1,6 @@
 +++
-date = "2017-09-30T13:19:24+02:00"
-draft = true
+date = "2017-09-30T18:19:24+02:00"
+draft = false
 title = "Integrating bucklescript with typescript"
 tags = ["typescript","bucklescript"]
 image = ""

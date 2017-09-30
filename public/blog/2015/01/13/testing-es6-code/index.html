@@ -47,7 +47,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.27.1" />
+    <meta name="generator" content="Hugo 0.29" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2015/01/13/testing-es6-code/" />
 
@@ -191,84 +191,84 @@ ga('send', 'pageview');
 <h3 id="karma-configuration-file">Karma configuration file</h3>
 
 <p>Next we need to create the karma config file <em>karma.conf.js</em></p>
-// Karma configuration
-var path = require('path');
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#888">// Karma configuration
+</span><span style="color:#888"></span><span style="color:#080;font-weight:bold">var</span> path = require(<span style="color:#d20;background-color:#fff0f0">&#39;path&#39;</span>);
 
-module.exports = function(config) {
+module.exports = <span style="color:#080;font-weight:bold">function</span>(config) {
   config.set({
-    // ... normal karma configuration
-
+    <span style="color:#888">// ... normal karma configuration
+</span><span style="color:#888"></span>
     files: [
-    // all files ending in "_test"
-    'test/*_test.jsx',
-    'test/**/*_test.jsx'
-    // each file acts as entry point for the webpack configuration
-    ],
+    <span style="color:#888">// all files ending in &#34;_test&#34;
+</span><span style="color:#888"></span>    <span style="color:#d20;background-color:#fff0f0">&#39;test/*_test.jsx&#39;</span>,
+    <span style="color:#d20;background-color:#fff0f0">&#39;test/**/*_test.jsx&#39;</span>
+    <span style="color:#888">// each file acts as entry point for the webpack configuration
+</span><span style="color:#888"></span>    ],
 
 
-    frameworks: ['mocha'],
+    frameworks: [<span style="color:#d20;background-color:#fff0f0">&#39;mocha&#39;</span>],
 
 
-    browsers: ['Chrome'],
+    browsers: [<span style="color:#d20;background-color:#fff0f0">&#39;Chrome&#39;</span>],
 
 
     preprocessors: {
-      // add webpack as preprocessor
-      'test/data/*.jsx': ['webpack'],
-      'test/*_test.jsx': ['webpack'],
-      'test/**/*_test.jsx': ['webpack']
+      <span style="color:#888">// add webpack as preprocessor
+</span><span style="color:#888"></span>      <span style="color:#d20;background-color:#fff0f0">&#39;test/data/*.jsx&#39;</span>: [<span style="color:#d20;background-color:#fff0f0">&#39;webpack&#39;</span>],
+      <span style="color:#d20;background-color:#fff0f0">&#39;test/*_test.jsx&#39;</span>: [<span style="color:#d20;background-color:#fff0f0">&#39;webpack&#39;</span>],
+      <span style="color:#d20;background-color:#fff0f0">&#39;test/**/*_test.jsx&#39;</span>: [<span style="color:#d20;background-color:#fff0f0">&#39;webpack&#39;</span>]
     },
 
     webpack: {
-      // webpack configuration
-      output: {
-        path: path.join(__dirname, 'dist'),
-        publicPath: '/',
-        filename: 'app.js',
-        chunkFilename: '[chunkhash].js'
+      <span style="color:#888">// webpack configuration
+</span><span style="color:#888"></span>      output: {
+        path: path.join(__dirname, <span style="color:#d20;background-color:#fff0f0">&#39;dist&#39;</span>),
+        publicPath: <span style="color:#d20;background-color:#fff0f0">&#39;/&#39;</span>,
+        filename: <span style="color:#d20;background-color:#fff0f0">&#39;app.js&#39;</span>,
+        chunkFilename: <span style="color:#d20;background-color:#fff0f0">&#39;[chunkhash].js&#39;</span>
       },
 
 
       resolve: {
-        extensions: ['', '.js', '.jsx', '.styl'],
-        packageMains: ["webpack", "browser", "web", "browserify", "main"]
+        extensions: [<span style="color:#d20;background-color:#fff0f0">&#39;&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;.js&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;.jsx&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;.styl&#39;</span>],
+        packageMains: [<span style="color:#d20;background-color:#fff0f0">&#34;webpack&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;browser&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;web&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;browserify&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;main&#34;</span>]
       },
 
 
       module: {
         loaders: [
-          {test: /\.jsx$/, loaders: ['6to5-loader'] }
+          {test: <span style="color:#080;background-color:#fff0ff">/\.jsx$/</span>, loaders: [<span style="color:#d20;background-color:#fff0f0">&#39;6to5-loader&#39;</span>] }
         ]
       }
     },
 
 
     webpackMiddleware: {
-      // webpack-dev-middleware configuration
-      // i. e.
-      noInfo: true
+      <span style="color:#888">// webpack-dev-middleware configuration
+</span><span style="color:#888"></span>      <span style="color:#888">// i. e.
+</span><span style="color:#888"></span>      noInfo: <span style="color:#080;font-weight:bold">true</span>
     },
 
     plugins: [
-      require('karma-chrome-launcher'),
-      require('karma-mocha'),
-      require('karma-webpack')
+      require(<span style="color:#d20;background-color:#fff0f0">&#39;karma-chrome-launcher&#39;</span>),
+      require(<span style="color:#d20;background-color:#fff0f0">&#39;karma-mocha&#39;</span>),
+      require(<span style="color:#d20;background-color:#fff0f0">&#39;karma-webpack&#39;</span>)
     ]
 
   });
-};
-
+};</code></pre>
+</div>
 <h3 id="first-test">First test</h3>
 
 <p>We also add a simple _sanity<em>test</em> to make sure everything is setup correctly</p>
-import should from 'should';
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#080;font-weight:bold">import</span> should from <span style="color:#d20;background-color:#fff0f0">&#39;should&#39;</span>;
 
-describe('sanity test', () => {
-  it('true should be true', () => {
-    true.should.be.ok;
+describe(<span style="color:#d20;background-color:#fff0f0">&#39;sanity test&#39;</span>, () =&gt; {
+  it(<span style="color:#d20;background-color:#fff0f0">&#39;true should be true&#39;</span>, () =&gt; {
+    <span style="color:#080;font-weight:bold">true</span>.should.be.ok;
   });
-});
-
+});</code></pre>
+</div>
 <h3 id="first-run">First run</h3>
 
 <p>Now, if we want to run our test, we run:</p>
@@ -276,18 +276,18 @@ describe('sanity test', () => {
 <p><code>node node_modules/karma/bin/karma start karma.conf.js</code></p>
 
 <p>This should start Chrome (if you don&rsquo;t have chrome, see the <a href="http://karma-runner.github.io/0.12/config/browsers.html">karma browser configuration</a>) and print this:</p>
-INFO [karma]: Karma v0.12.31 server started at http://localhost:9876/
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">INFO [karma]: Karma v0.12.31 server started at http://localhost:9876/
 INFO [launcher]: Starting browser Chrome
-INFO [Chrome 39.0.2171 (Windows 7)]: Connected on socket xBMICOzH9lh3Eo9INXDA with id 55389724
-Chrome 39.0.2171 (Windows 7): Executed 1 of 1 SUCCESS (0.009 secs / 0 secs)
-
+INFO [Chrome <span style="color:#00d;font-weight:bold">39</span>.0.2171 (Windows <span style="color:#00d;font-weight:bold">7</span>)]: Connected on socket xBMICOzH9lh3Eo9INXDA with id <span style="color:#00d;font-weight:bold">55389724</span>
+Chrome <span style="color:#00d;font-weight:bold">39</span>.0.2171 (Windows <span style="color:#00d;font-weight:bold">7</span>): Executed <span style="color:#00d;font-weight:bold">1</span> of <span style="color:#00d;font-weight:bold">1</span> SUCCESS (<span style="color:#00d;font-weight:bold">0</span>.009 secs / <span style="color:#00d;font-weight:bold">0</span> secs)</code></pre>
+</div>
 <p>Every time you change your code it will automatically rerun your tests.</p>
 
 <p>To make it a bit easier to run the test, add the test command to npm:</p>
-"scripts": {
-  "test": "node node_modules/karma/bin/karma start karma.conf.js"
-}
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d20;background-color:#fff0f0">&#34;scripts&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
+  <span style="color:#b06;font-weight:bold">&#34;test&#34;</span>: <span style="color:#d20;background-color:#fff0f0">&#34;node node_modules/karma/bin/karma start karma.conf.js&#34;</span>
+}</code></pre>
+</div>
 <p>You could also add <code>--single-run</code> if you want to run the test only once and don&rsquo;t watch.</p>
 
 <h2 id="testing-react-code">Testing React code</h2>
@@ -295,50 +295,50 @@ Chrome 39.0.2171 (Windows 7): Executed 1 of 1 SUCCESS (0.009 secs / 0 secs)
 <p>The steps above give you a working testing environment, now we can test our code:</p>
 
 <p>To test this we create a simple React component <em>Button.react.jsx</em>:</p>
-import React from 'react';
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#080;font-weight:bold">import</span> React from <span style="color:#d20;background-color:#fff0f0">&#39;react&#39;</span>;
 
 
-export default React.createClass({
-  displayName: 'Button',
+<span style="color:#080;font-weight:bold">export</span> <span style="color:#080;font-weight:bold">default</span> React.createClass({
+  displayName: <span style="color:#d20;background-color:#fff0f0">&#39;Button&#39;</span>,
 
 
   render() {
-    return <div>button</div>;
+    <span style="color:#080;font-weight:bold">return</span> &lt;div&gt;button&lt;<span style="color:#a61717;background-color:#e3d2d2">/div&gt;;</span>
   }
-});
-
+});</code></pre>
+</div>
 <p>And we test it in _Button.react<em>test.jsx</em>:</p>
-import React from 'react/addons';
-import should from 'should';
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#080;font-weight:bold">import</span> React from <span style="color:#d20;background-color:#fff0f0">&#39;react/addons&#39;</span>;
+<span style="color:#080;font-weight:bold">import</span> should from <span style="color:#d20;background-color:#fff0f0">&#39;should&#39;</span>;
 
-import Button from '../app/jsx/components/Button.react';
+<span style="color:#080;font-weight:bold">import</span> Button from <span style="color:#d20;background-color:#fff0f0">&#39;../app/jsx/components/Button.react&#39;</span>;
 
-const TestUtils = React.addons.TestUtils;
+<span style="color:#080;font-weight:bold">const</span> TestUtils = React.addons.TestUtils;
 
 
-describe('Button', () => {
-  it('renders button div', () => {
-    const button = TestUtils.renderIntoDocument(
-      <Button />
+describe(<span style="color:#d20;background-color:#fff0f0">&#39;Button&#39;</span>, () =&gt; {
+  it(<span style="color:#d20;background-color:#fff0f0">&#39;renders button div&#39;</span>, () =&gt; {
+    <span style="color:#080;font-weight:bold">const</span> button = TestUtils.renderIntoDocument(
+      &lt;Button <span style="color:#a61717;background-color:#e3d2d2">/&gt;</span>
     );
     TestUtils.isCompositeComponent(button).should.be.ok;
-    button.getDOMNode().textContent.should.be.eql('button');
+    button.getDOMNode().textContent.should.be.eql(<span style="color:#d20;background-color:#fff0f0">&#39;button&#39;</span>);
   });
-});
-
+});</code></pre>
+</div>
 <p><strong>Easy!</strong></p>
 
 <h3 id="remark">Remark</h3>
 
 <p>While testing, I ran into a problem. This line in HelloWorld.react.jsx: <code>var exampleImage = require('../../images/example.jpg');</code> proved to be a problem. But the problem was quiet obvious to solve, I just needed to add a image loader to the karma webpack configuration:</p>
-module: {
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">module: {
   loaders: [
-  {test: /\.jsx$/, loaders: ['6to5-loader'] },
-  // Add the image loader
-  {test: /.*\.(gif|png|jpg)$/, loaders: ['file?hash=sha512&digest=hex&size=16&name=[hash].[ext]', 'image-webpack-loader?optimizationLevel=7&interlaced=false']}
+  {test: <span style="color:#080;background-color:#fff0ff">/\.jsx$/</span>, loaders: [<span style="color:#d20;background-color:#fff0f0">&#39;6to5-loader&#39;</span>] },
+  <span style="color:#888">// Add the image loader
+</span><span style="color:#888"></span>  {test: <span style="color:#080;background-color:#fff0ff">/.*\.(gif|png|jpg)$/</span>, loaders: [<span style="color:#d20;background-color:#fff0f0">&#39;file?hash=sha512&amp;digest=hex&amp;size=16&amp;name=[hash].[ext]&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;image-webpack-loader?optimizationLevel=7&amp;interlaced=false&#39;</span>]}
   ]
-}
-
+}</code></pre>
+</div>
 <p>After this, I could test the HelloWorld component too.</p>
 
 <h2 id="conclusion">Conclusion</h2>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bucklescript on Thomas Coopman - Infinite Tree</title>
+    <link>https://infinitetree.eu/tags/bucklescript/</link>
+    <description>Recent content in Bucklescript on Thomas Coopman - Infinite Tree</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 30 Sep 2017 18:19:24 +0200</lastBuildDate>
+    
+	<atom:link href="https://infinitetree.eu/tags/bucklescript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Integrating bucklescript with typescript</title>
+      <link>https://infinitetree.eu/blog/2017/09/30/integrating-bucklescript-with-typescript/</link>
+      <pubDate>Sat, 30 Sep 2017 18:19:24 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2017/09/30/integrating-bucklescript-with-typescript/</guid>
+      <description>Recently I&amp;rsquo;ve started using Bucklescript (and Reason) over Elm for various reasons (Something I might blog about later). In this post I&amp;rsquo;m exploring integrating Bucklescript with Typescript.
+Let&amp;rsquo;s start with a blank typescript project with webpack You can find the inital commit of a Typescript project here.
+There is nothing special in this commit, some npm dependencies: source-map-loader, ts-loader, typescript, webpack, webpack-dev-server. The ts-config.json file is generated with tsc --init, nothing is changed.</description>
+    </item>
+    
+  </channel>
+</rss>
