@@ -45,7 +45,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.29" />
+    <meta name="generator" content="Hugo 0.36.1" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2017/09/30/integrating-bucklescript-with-typescript/" />
 
@@ -192,8 +192,7 @@ In the <code>webpack.config.js</code> I have one entry file <code>./src/index.ts
   ],
   <span style="color:#b06;font-weight:bold">&#34;package-specs&#34;</span>: [<span style="color:#d20;background-color:#fff0f0">&#34;es6&#34;</span>],
   <span style="color:#b06;font-weight:bold">&#34;bsc-flags&#34;</span>: [ <span style="color:#d20;background-color:#fff0f0">&#34;-bs-super-errors -no-alias-deps&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;-color&#34;</span>, <span style="color:#d20;background-color:#fff0f0">&#34;always&#34;</span>]
-}</code></pre>
-</div>
+}</code></pre></div>
 <p>Nothing to special in here, we look for our source files in <code>src</code>, compile to <code>es6</code> and enable some compiler flags.</p>
 
 <p>In <code>webpack.config.js</code> we add the <code>bs-loader</code> and resolve <code>.ml</code> and <code>.re</code> files:</p>
@@ -224,22 +223,19 @@ In the <code>webpack.config.js</code> I have one entry file <code>./src/index.ts
 </span><span style="color:#000;background-color:#dfd"></span>         ]
      }
  };
-<span style="color:#a61717;background-color:#e3d2d2">\ No newline at end of file</span></code></pre>
-</div>
+\ No newline at end of file
+</code></pre></div>
 <p>Now we are able to create 2 files: <code>src/Bucklescript.ml</code>:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> hello name =
-  <span style="color:#b06;font-weight:bold">Js</span>.log {j|<span style="color:#b06;font-weight:bold">Hi</span> $(name), from <span style="color:#b06;font-weight:bold">Bucklescript</span>.|j}</code></pre>
-</div>
+  <span style="color:#b06;font-weight:bold">Js</span>.log {j|<span style="color:#b06;font-weight:bold">Hi</span> $(name), from <span style="color:#b06;font-weight:bold">Bucklescript</span>.|j}</code></pre></div>
 <p>and <code>src/Reason.re</code>:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-reason" data-lang="reason">let hello name =&gt; Js.log {j|Hi $(name), from Reason.|j};</code></pre>
-</div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-reason" data-lang="reason">let hello name =&gt; Js.log {j|Hi $(name), from Reason.|j};</code></pre></div>
 <p>both of which can be called from <code>index.ts</code>:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#080;font-weight:bold">const</span> helloBucklescript = require(<span style="color:#d20;background-color:#fff0f0">&#39;./Bucklescript&#39;</span>).hello;
 <span style="color:#080;font-weight:bold">const</span> helloReason = require(<span style="color:#d20;background-color:#fff0f0">&#39;./Reason&#39;</span>).hello;
 
 helloBucklescript(<span style="color:#d20;background-color:#fff0f0">&#39;Typescript&#39;</span>);
-helloReason(<span style="color:#d20;background-color:#fff0f0">&#39;Typescript&#39;</span>);</code></pre>
-</div>
+helloReason(<span style="color:#d20;background-color:#fff0f0">&#39;Typescript&#39;</span>);</code></pre></div>
 <p>When you run <code>npm start</code> you will get an error from typescript <code>Cannot find name 'require'</code>, to solve this we need to install <code>@types/node</code></p>
 
 <p>Now you can run <code>npm start</code> and everything should work. The full commit of this step can be found <a href="https://github.com/tcoopman/bucklescript-with-typescript/commit/b22bacef7629ae574282c31a46e9445ba7759456">here</a>.</p>
@@ -255,8 +251,8 @@ helloReason(<span style="color:#d20;background-color:#fff0f0">&#39;Typescript&#3
 <span style="color:#000;background-color:#dfd">+    &#34;clean&#34;: &#34;bsb -clean&#34;,
 </span><span style="color:#000;background-color:#dfd">+    &#34;build&#34;: &#34;webpack&#34;,
 </span><span style="color:#000;background-color:#dfd"></span>     &#34;start&#34;: &#34;webpack-dev-server --inline --hot&#34;
-<span style="color:#a61717;background-color:#e3d2d2">},</span></code></pre>
-</div>
+},
+</code></pre></div>
 <p>If we first run <code>npm run clean</code> and then <code>npm run build</code> we get the error that <code>.../lib/es6/src/Reason.js</code> does not exist.  If you would run <code>npm run build</code> again the build would succeed because the file will be there.</p>
 
 <p>Well, after some searching, it looks like this is a bug in <code>bs-loader</code> so I submitted a <a href="https://github.com/reasonml-community/bs-loader/pull/31">PR</a>. The bug only manifests itself because we load 2 files and <code>bs-loader</code> won&rsquo;t wait for the compiler for the second file.</p>

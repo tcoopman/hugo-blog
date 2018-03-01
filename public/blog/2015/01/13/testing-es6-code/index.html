@@ -47,7 +47,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.29" />
+    <meta name="generator" content="Hugo 0.36.1" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2015/01/13/testing-es6-code/" />
 
@@ -256,8 +256,7 @@ module.exports = <span style="color:#080;font-weight:bold">function</span>(confi
     ]
 
   });
-};</code></pre>
-</div>
+};</code></pre></div>
 <h3 id="first-test">First test</h3>
 
 <p>We also add a simple _sanity<em>test</em> to make sure everything is setup correctly</p>
@@ -267,8 +266,7 @@ describe(<span style="color:#d20;background-color:#fff0f0">&#39;sanity test&#39;
   it(<span style="color:#d20;background-color:#fff0f0">&#39;true should be true&#39;</span>, () =&gt; {
     <span style="color:#080;font-weight:bold">true</span>.should.be.ok;
   });
-});</code></pre>
-</div>
+});</code></pre></div>
 <h3 id="first-run">First run</h3>
 
 <p>Now, if we want to run our test, we run:</p>
@@ -279,15 +277,13 @@ describe(<span style="color:#d20;background-color:#fff0f0">&#39;sanity test&#39;
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">INFO [karma]: Karma v0.12.31 server started at http://localhost:9876/
 INFO [launcher]: Starting browser Chrome
 INFO [Chrome <span style="color:#00d;font-weight:bold">39</span>.0.2171 (Windows <span style="color:#00d;font-weight:bold">7</span>)]: Connected on socket xBMICOzH9lh3Eo9INXDA with id <span style="color:#00d;font-weight:bold">55389724</span>
-Chrome <span style="color:#00d;font-weight:bold">39</span>.0.2171 (Windows <span style="color:#00d;font-weight:bold">7</span>): Executed <span style="color:#00d;font-weight:bold">1</span> of <span style="color:#00d;font-weight:bold">1</span> SUCCESS (<span style="color:#00d;font-weight:bold">0</span>.009 secs / <span style="color:#00d;font-weight:bold">0</span> secs)</code></pre>
-</div>
+Chrome <span style="color:#00d;font-weight:bold">39</span>.0.2171 (Windows <span style="color:#00d;font-weight:bold">7</span>): Executed <span style="color:#00d;font-weight:bold">1</span> of <span style="color:#00d;font-weight:bold">1</span> SUCCESS (<span style="color:#00d;font-weight:bold">0</span>.009 secs / <span style="color:#00d;font-weight:bold">0</span> secs)</code></pre></div>
 <p>Every time you change your code it will automatically rerun your tests.</p>
 
 <p>To make it a bit easier to run the test, add the test command to npm:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#d20;background-color:#fff0f0">&#34;scripts&#34;</span><span style="color:#a61717;background-color:#e3d2d2">:</span> {
   <span style="color:#b06;font-weight:bold">&#34;test&#34;</span>: <span style="color:#d20;background-color:#fff0f0">&#34;node node_modules/karma/bin/karma start karma.conf.js&#34;</span>
-}</code></pre>
-</div>
+}</code></pre></div>
 <p>You could also add <code>--single-run</code> if you want to run the test only once and don&rsquo;t watch.</p>
 
 <h2 id="testing-react-code">Testing React code</h2>
@@ -305,8 +301,7 @@ Chrome <span style="color:#00d;font-weight:bold">39</span>.0.2171 (Windows <span
   render() {
     <span style="color:#080;font-weight:bold">return</span> &lt;div&gt;button&lt;<span style="color:#a61717;background-color:#e3d2d2">/div&gt;;</span>
   }
-});</code></pre>
-</div>
+});</code></pre></div>
 <p>And we test it in _Button.react<em>test.jsx</em>:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#080;font-weight:bold">import</span> React from <span style="color:#d20;background-color:#fff0f0">&#39;react/addons&#39;</span>;
 <span style="color:#080;font-weight:bold">import</span> should from <span style="color:#d20;background-color:#fff0f0">&#39;should&#39;</span>;
@@ -324,8 +319,7 @@ describe(<span style="color:#d20;background-color:#fff0f0">&#39;Button&#39;</spa
     TestUtils.isCompositeComponent(button).should.be.ok;
     button.getDOMNode().textContent.should.be.eql(<span style="color:#d20;background-color:#fff0f0">&#39;button&#39;</span>);
   });
-});</code></pre>
-</div>
+});</code></pre></div>
 <p><strong>Easy!</strong></p>
 
 <h3 id="remark">Remark</h3>
@@ -337,8 +331,7 @@ describe(<span style="color:#d20;background-color:#fff0f0">&#39;Button&#39;</spa
   <span style="color:#888">// Add the image loader
 </span><span style="color:#888"></span>  {test: <span style="color:#080;background-color:#fff0ff">/.*\.(gif|png|jpg)$/</span>, loaders: [<span style="color:#d20;background-color:#fff0f0">&#39;file?hash=sha512&amp;digest=hex&amp;size=16&amp;name=[hash].[ext]&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;image-webpack-loader?optimizationLevel=7&amp;interlaced=false&#39;</span>]}
   ]
-}</code></pre>
-</div>
+}</code></pre></div>
 <p>After this, I could test the HelloWorld component too.</p>
 
 <h2 id="conclusion">Conclusion</h2>

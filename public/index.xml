@@ -6,10 +6,20 @@
     <description>Recent content on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 30 Sep 2017 18:19:24 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 28 Oct 2017 08:56:00 +0100</lastBuildDate>
     
 	<atom:link href="https://infinitetree.eu/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Why I choose Bucklescript</title>
+      <link>https://infinitetree.eu/blog/2017/10/28/why-i-choose-bucklescript/</link>
+      <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2017/10/28/why-i-choose-bucklescript/</guid>
+      <description>On the meetups I attend, some people know me as the Elm guy. Yet, when reading the title of this post, you can see that I&amp;rsquo;m going for Bucklescript lately.
+In this post I&amp;rsquo;m going to try to explain my choice for Bucklescript. If you are in doubt, maybe some points in this post can help, but my advice would be to just try and research both languages and see for yourself.</description>
+    </item>
     
     <item>
       <title>Integrating bucklescript with typescript</title>
@@ -72,7 +82,7 @@ It just happens that Program Phoenix by by Chris McCord, Bruce Tate, and José V
       
       <guid>https://infinitetree.eu/resume/</guid>
       <description>Independent Software Consultant Thomas Coopman has been fascinated with computers since he was a kid. Playing around at first, became programming later and after learning some programming for himself and a small detour starting studies for nursing, he went on and studied Master of Informatics at the KULeuven.
-Thomas is a polyglot and loves to learn new languages. His latest language studies have taken him to Elixir and Elm, and he has a special affinity for functional programming languages.</description>
+Thomas is a polyglot and loves to learn new languages. His latest language studies have taken him to Elixir, Elm, OCaml and he has a special affinity for functional programming languages.</description>
     </item>
     
     <item>

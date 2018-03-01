@@ -45,7 +45,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.29" />
+    <meta name="generator" content="Hugo 0.36.1" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2017/02/08/exploring-aggregate-boundaries-in-event-sourced-systems/" />
 
@@ -238,8 +238,7 @@ This can solve the problem of the changing questions and also solves our initial
         <span style="color:#888"># game contains unsaved event game_was_opened</span>
         return game
     case _
-        return <span style="color:#b06;font-weight:bold">DomainError</span>(<span style="color:#d20;background-color:#fff0f0">&#34;A game can only be opened for published quizzes&#34;</span>)</code></pre>
-</div>
+        return <span style="color:#b06;font-weight:bold">DomainError</span>(<span style="color:#d20;background-color:#fff0f0">&#34;A game can only be opened for published quizzes&#34;</span>)</code></pre></div>
 <h3 id="exploring-a-different-implementation">Exploring a different implementation</h3>
 
 <p>Instead of the quiz aggregate that creates a new aggregate, we could also try something like this: The quiz handles the <code>open_game_request</code> command and returns an event <code>game_open_requested</code>. A process manager listens to this event and dispatches a <code>open_game</code> command. The <code>open_game</code> command is handled by a game. The <code>game_open_requested</code> means that it is allowed to open the game.</p>
@@ -250,8 +249,7 @@ This can solve the problem of the changing questions and also solves our initial
 
 <p>How could this look?</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir">quiz.terminate_due_to_copyright
-<span style="color:#888"># returns quiz aggregate with unsaved event (quiz_was_terminated)</span></code></pre>
-</div>
+<span style="color:#888"># returns quiz aggregate with unsaved event (quiz_was_terminated)</span></code></pre></div>
 <p>A process manager could listen to <code>quiz_was_terminated</code> and dispatch a <code>terminate_game</code> command to all open games for that quiz. But <em>how does the process manager know what games are open for the quiz</em>? Well if we modelled our solution to have the process manager open the games, then it can also keep the state of all the open games for the quiz. So in this final solution we have a process manager that listens to <code>game_open_requested</code>, <code>quiz_was_terminated</code>, <code>game_was_closed</code>.</p>
 
 <h2 id="closing-thoughts">Closing thoughts</h2>

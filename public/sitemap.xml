@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://infinitetree.eu/blog/2017/10/28/why-i-choose-bucklescript/</loc>
+    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/blog/2017/09/30/integrating-bucklescript-with-typescript/</loc>
     <lastmod>2017-09-30T18:19:24+02:00</lastmod>
   </url>
@@ -74,7 +79,7 @@
   
   <url>
     <loc>https://infinitetree.eu/tags/bucklescript/</loc>
-    <lastmod>2017-09-30T18:19:24+02:00</lastmod>
+    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -97,7 +102,7 @@
   
   <url>
     <loc>https://infinitetree.eu/tags/elm/</loc>
-    <lastmod>2016-04-12T22:28:31+02:00</lastmod>
+    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -109,7 +114,7 @@
   
   <url>
     <loc>https://infinitetree.eu/tags/frontend/</loc>
-    <lastmod>2017-09-27T14:39:00+01:00</lastmod>
+    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -132,8 +137,20 @@
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/tags/ml/</loc>
+    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/tags/modelling/</loc>
     <lastmod>2017-02-08T20:44:40+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/ocaml/</loc>
+    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -151,7 +168,7 @@
   
   <url>
     <loc>https://infinitetree.eu/post/</loc>
-    <lastmod>2017-09-30T18:19:24+02:00</lastmod>
+    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -169,7 +186,7 @@
   
   <url>
     <loc>https://infinitetree.eu/</loc>
-    <lastmod>2017-09-30T18:19:24+02:00</lastmod>
+    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
     <priority>0</priority>
   </url>
   

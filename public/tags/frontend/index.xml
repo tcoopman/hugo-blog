@@ -6,10 +6,20 @@
     <description>Recent content in Frontend on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Sep 2017 14:39:00 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 28 Oct 2017 08:56:00 +0100</lastBuildDate>
     
 	<atom:link href="https://infinitetree.eu/tags/frontend/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Why I choose Bucklescript</title>
+      <link>https://infinitetree.eu/blog/2017/10/28/why-i-choose-bucklescript/</link>
+      <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2017/10/28/why-i-choose-bucklescript/</guid>
+      <description>On the meetups I attend, some people know me as the Elm guy. Yet, when reading the title of this post, you can see that I&amp;rsquo;m going for Bucklescript lately.
+In this post I&amp;rsquo;m going to try to explain my choice for Bucklescript. If you are in doubt, maybe some points in this post can help, but my advice would be to just try and research both languages and see for yourself.</description>
+    </item>
     
     <item>
       <title>A big ball of frontend</title>

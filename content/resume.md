@@ -11,11 +11,11 @@ title = "Resume"
 
 Thomas Coopman has been fascinated with computers since he was a kid. Playing around at first, became programming later and after learning some programming for himself and a small detour starting studies for nursing, he went on and studied Master of Informatics at the KULeuven.
 
-Thomas is a polyglot and loves to learn new languages. His latest language studies have taken him to Elixir and Elm, and he has a special affinity for functional programming languages.
+Thomas is a polyglot and loves to learn new languages. His latest language studies have taken him to Elixir, Elm, OCaml and he has a special affinity for functional programming languages.
 
-Thomas is an independent software engineer and consultant focused on the full stack: frontend, backend and mostly people, practices and processes. Thomas is also currently active in the DDD Belgium and Software Craftsmanship Belgium community.
+Thomas is an independent software consultant, coach and architect focused on improving software through people. Thomas is also currently active in the DDD Belgium and Software Craftsmanship Belgium community.
 
-One of Thomas overal goals is to help to raise the software industry to a greater level, although he does not know yet how to do this. At the moment he is mostly trying to raise his own level by learning all the time from all his peers, and hopefully by learning and sharing he can gain some deeper insights in how to improve.
+One of Thomas overall goals is to help to raise the software industry to a greater level, although he does not know yet how to do this. At the moment he is mostly trying to raise his own level by learning all the time from all his peers, and hopefully by learning and sharing he can gain some deeper insights in how to improve.
 
 #### Work
 
@@ -23,9 +23,14 @@ One of Thomas overal goals is to help to raise the software industry to a greate
 
 Independent software consultant.
 
+**[SD Worx](https://www.sdworx.com/)**
+2018-01 - 2018-03
+
+- Coaching with Continuous Deployment
+
 
 **[Protime](www.protime.eu)**
-2015-05 - Current
+2015-05 - 2017-12
 
 - Team leader
 - Senior software developer Ruby, Javascript and C#
@@ -40,7 +45,9 @@ Independent software consultant.
 #### Interests
 
 - Co-organiser of [DDD Belgium](https://www.meetup.com/dddbelgium/) and [Socrates Belgium](https://www.meetup.com/socratesbe/)
-- Speaking at conferences: [DDD Europe](https://dddeurope.com/2017/speakers/thomas-coopman/#handson), [I T.A.K.E.](http://itakeunconf.com/sessions/playing-with-projections/)
+- Speaking and workshops at conferences:
+    - 2018 [DDD Europe](https://dddeurope.com/2018/speakers/thomas-coopman/)
+    - 2017 [DDD Europe](https://dddeurope.com/2017/speakers/thomas-coopman/#handson), [I T.A.K.E.](http://itakeunconf.com/sessions/playing-with-projections/), [NCrafts](http://ncrafts.io/)
 - [Reading](https://www.goodreads.com/)
  
 #### Education
@@ -54,6 +61,7 @@ Masterthesis: A framework for dynamic extensible and context-driven domotics sy
 Methodologies:
 
 - Domain Driven Design
+- Evolutionary Architecture
 - Kanban and Agile software development
 - Continious improvement
 
@@ -61,14 +69,17 @@ Frontend:
 
 - Javascript
 - Elm
+- ReasonML/Bucklescript
 - HTML
 - CSS
 - Reactjs + Redux
+- ...
 
 Backend:
 
 - C#
 - Elixir
+- OCaml
 - Node
 - Ruby
 - Python

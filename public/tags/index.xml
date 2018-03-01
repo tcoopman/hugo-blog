@@ -23,7 +23,7 @@
     <item>
       <title>Bucklescript</title>
       <link>https://infinitetree.eu/tags/bucklescript/</link>
-      <pubDate>Sat, 30 Sep 2017 18:19:24 +0200</pubDate>
+      <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
       
       <guid>https://infinitetree.eu/tags/bucklescript/</guid>
       <description></description>
@@ -50,7 +50,7 @@
     <item>
       <title>Elm</title>
       <link>https://infinitetree.eu/tags/elm/</link>
-      <pubDate>Tue, 12 Apr 2016 22:28:31 +0200</pubDate>
+      <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
       
       <guid>https://infinitetree.eu/tags/elm/</guid>
       <description></description>
@@ -68,7 +68,7 @@
     <item>
       <title>Frontend</title>
       <link>https://infinitetree.eu/tags/frontend/</link>
-      <pubDate>Wed, 27 Sep 2017 14:39:00 +0100</pubDate>
+      <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
       
       <guid>https://infinitetree.eu/tags/frontend/</guid>
       <description></description>
@@ -102,11 +102,29 @@
     </item>
     
     <item>
+      <title>Ml</title>
+      <link>https://infinitetree.eu/tags/ml/</link>
+      <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/ml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Modelling</title>
       <link>https://infinitetree.eu/tags/modelling/</link>
       <pubDate>Wed, 08 Feb 2017 20:44:40 +0100</pubDate>
       
       <guid>https://infinitetree.eu/tags/modelling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ocaml</title>
+      <link>https://infinitetree.eu/tags/ocaml/</link>
+      <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/ocaml/</guid>
       <description></description>
     </item>
     
