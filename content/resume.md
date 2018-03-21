@@ -26,8 +26,14 @@ Independent software consultant.
 **[SD Worx](https://www.sdworx.com/)**
 2018-01 - 2018-03
 
-- Coaching with Continuous Deployment
+- Continuous Deployment: Investigate if it's possible to roll out a continuous deployment pipeline across many teams.
 
+** [Teamleader](https://www.teamleader.eu/)
+2017-01 - 2018-01
+
+- Frontend Consultant: 
+    * Coaching the frontend developers in building clean frontend applications with React and Redux.
+    * Designing a frontend architecture that avoids the frontend monolith. I also gave a talk about this (https://fronteers.nl/bijeenkomsten/2017/teamleader)
 
 **[Protime](www.protime.eu)**
 2015-05 - 2017-12
@@ -35,9 +41,13 @@ Independent software consultant.
 - Team leader
 - Senior software developer Ruby, Javascript and C#
 - Agile software development
+- Architect
 
+I started as senior developer on a ruby on rails project. Soon I helped reducing accidental complexity in the code base and transformed the team from sprints to kanban. After this I joined a different team on a C#(Event Sourcing/CQRS)/Javascript(React/Redux) project that was struggling to deliver. Here I started reducing the complexity in both the frontend and backend and also transformed this team to kanban. After a few months we went live with our first customers and started growing quickly. To support the grow we invested heavily in continuous deployment and continuous improvement. During the whole time at Protime I was also part of the architecture board where we discussed and guided architectural discissions and helped implementing a transformation to smaller feature teams so that more people were able to work on the same product. This transformation was both in architecture (microservices) and organisational.
 
-**Kenniscentrum Openbaar Domein (K-O-D)** 2010-07 - 2015-04 Projectleader for IT projects  
+Keywords: C#, Javascript, Ruby, React, Redux, Vue, Kanban, Event Sourcing, CQRS, DDD, Authorization engine
+
+**Kenniscentrum Openbaar Domein (K-O-D)** 2010-07 - 2015-04 Projectleader for IT projects 
 
 - Development and project leader for a GIS Viewer, mostly for sewers
 - Project lead and development of a platform for searching and creating public domain projects in synergy
@@ -79,9 +89,9 @@ Backend:
 
 - C#
 - Elixir
-- OCaml
-- Node
+- NodeJs
 - Ruby
+- OCaml
 - Python
 - Java
 - Go
