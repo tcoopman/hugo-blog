@@ -13,14 +13,14 @@ author = "Thomas Coopman"
 
 ## What?
 
-Have you ever played looked at elixir and thought, this looks like a cool language with nice features. This is a language that I want to know?
+Have you ever looked at elixir and thought, this looks like a cool language with nice features. This is a language that I want to know!
 Have you ever thought about toying with a raspberry pi or an arduino, playing with some leds, buttons, but never got around to it, or thought it would take too much time to start with it.
-Maybe you're just interested in functional programming, or you want to learn a new programming language?
+Maybe you're just interested in functional programming or you want to learn a new programming language?
 
 This is your chance to do all of this! In this beginner friendly elixir workshop we will learn the basics of elixir by building our own [pomodoro timer](https://en.wikipedia.org/wiki/Pomodoro_Technique).
-If you this sounds like something you want to change, then come to this one day, *high intensity* workshop.
+If this sounds like something you want to change, then come to this one day, *high intensity* workshop.
 
-You want a bit more convincing, you want to know what this elixir or nerves is? Read on to see if this is something for you!
+Want more convincing, you want to know what this elixir or nerves is? Read on to see if this is something for you! ([Convinced](#convinced))
 
 ### Elixir
 
@@ -28,12 +28,11 @@ You want a bit more convincing, you want to know what this elixir or nerves is? 
 > Elixir leverages the Erlang VM, known for running low-latency, distributed and fault-tolerant systems, while also being successfully used in web development and the embedded software domain.
 > ([https://elixir-lang.org/](https://elixir-lang.org/))
 
-If you read this description from the elixir website than you should already have a good grasp of what it can leverage for you, but let's jump a bit deeper:
+If you read this description then you should already have a good grasp of what it can leverage for you, but let's jump a bit deeper:
 
-* a dynamic, functional language: dynamic yes, but also compiled, with pattern matching, immutability,...
-* Elixr runs on the Erlang VM (BEAM) and this enables you to build highly distributed fault-tolerant systems. In the workshop we won't be able to go deep into the distributed part, but we will touch upon it, as well as on the fault-tolerant system.
+* A dynamic, functional language: dynamic yes, but also compiled, with pattern matching, immutability,...
+* Elixir runs on the Erlang VM (BEAM) and this enables you to build highly distributed fault-tolerant systems. In the workshop we won't be able to go deep into the distributed part, but we will touch upon it, as well as on the fault-tolerant system.
 * The default web framework is [Phoenix](http://phoenixframework.org/) which allows you to build fast, scalable web applications.
-* Something that's also important is that it's gives a lot of importance to developer happiness.
 
 ### Nerves
 
