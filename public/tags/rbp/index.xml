@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rbp on Thomas Coopman - Infinite Tree</title>
+    <link>https://infinitetree.eu/tags/rbp/</link>
+    <description>Recent content in Rbp on Thomas Coopman - Infinite Tree</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 21 Mar 2018 15:16:24 +0200</lastBuildDate>
+    
+	<atom:link href="https://infinitetree.eu/tags/rbp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Elixir and Nerves beginner workshop</title>
+      <link>https://infinitetree.eu/workshop/elixir-and-nerves-beginner-workshop/</link>
+      <pubDate>Wed, 21 Mar 2018 15:16:24 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/workshop/elixir-and-nerves-beginner-workshop/</guid>
+      <description>What? Have you ever played looked at elixir and thought, this looks like a cool language with nice features. This is a language that I want to know? Have you ever thought about toying with a raspberry pi or an arduino, playing with some leds, buttons, but never got around to it, or thought it would take too much time to start with it. Maybe you&amp;rsquo;re just interested in functional programming, or you want to learn a new programming language?</description>
+    </item>
+    
+  </channel>
+</rss>

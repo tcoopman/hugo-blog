@@ -38,6 +38,7 @@
 
     <link rel="stylesheet" type="text/css" href="https://infinitetree.eu/css/screen.css" />
     <link rel="stylesheet" type="text/css" href="https://infinitetree.eu/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="https://infinitetree.eu/css/table.css" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
 
 
@@ -47,7 +48,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.36.1" />
+    <meta name="generator" content="Hugo 0.37.1" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2015/01/13/testing-es6-code/" />
 
@@ -111,6 +112,11 @@ ga('send', 'pageview');
             
             <li class="nav-opened" role="presentation">
             	<a href="https://plus.google.com/u/0/109624499308077610663">Google Plus</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href=""></a>
             </li>
         
     </ul>
@@ -256,7 +262,8 @@ module.exports = <span style="color:#080;font-weight:bold">function</span>(confi
     ]
 
   });
-};</code></pre></div>
+};
+</code></pre></div>
 <h3 id="first-test">First test</h3>
 
 <p>We also add a simple _sanity<em>test</em> to make sure everything is setup correctly</p>
@@ -266,7 +273,8 @@ describe(<span style="color:#d20;background-color:#fff0f0">&#39;sanity test&#39;
   it(<span style="color:#d20;background-color:#fff0f0">&#39;true should be true&#39;</span>, () =&gt; {
     <span style="color:#080;font-weight:bold">true</span>.should.be.ok;
   });
-});</code></pre></div>
+});
+</code></pre></div>
 <h3 id="first-run">First run</h3>
 
 <p>Now, if we want to run our test, we run:</p>
@@ -301,7 +309,8 @@ Chrome <span style="color:#00d;font-weight:bold">39</span>.0.2171 (Windows <span
   render() {
     <span style="color:#080;font-weight:bold">return</span> &lt;div&gt;button&lt;<span style="color:#a61717;background-color:#e3d2d2">/div&gt;;</span>
   }
-});</code></pre></div>
+});
+</code></pre></div>
 <p>And we test it in _Button.react<em>test.jsx</em>:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#080;font-weight:bold">import</span> React from <span style="color:#d20;background-color:#fff0f0">&#39;react/addons&#39;</span>;
 <span style="color:#080;font-weight:bold">import</span> should from <span style="color:#d20;background-color:#fff0f0">&#39;should&#39;</span>;
@@ -319,7 +328,8 @@ describe(<span style="color:#d20;background-color:#fff0f0">&#39;Button&#39;</spa
     TestUtils.isCompositeComponent(button).should.be.ok;
     button.getDOMNode().textContent.should.be.eql(<span style="color:#d20;background-color:#fff0f0">&#39;button&#39;</span>);
   });
-});</code></pre></div>
+});
+</code></pre></div>
 <p><strong>Easy!</strong></p>
 
 <h3 id="remark">Remark</h3>
@@ -331,7 +341,8 @@ describe(<span style="color:#d20;background-color:#fff0f0">&#39;Button&#39;</spa
   <span style="color:#888">// Add the image loader
 </span><span style="color:#888"></span>  {test: <span style="color:#080;background-color:#fff0ff">/.*\.(gif|png|jpg)$/</span>, loaders: [<span style="color:#d20;background-color:#fff0f0">&#39;file?hash=sha512&amp;digest=hex&amp;size=16&amp;name=[hash].[ext]&#39;</span>, <span style="color:#d20;background-color:#fff0f0">&#39;image-webpack-loader?optimizationLevel=7&amp;interlaced=false&#39;</span>]}
   ]
-}</code></pre></div>
+}
+</code></pre></div>
 <p>After this, I could test the HelloWorld component too.</p>
 
 <h2 id="conclusion">Conclusion</h2>

@@ -6,10 +6,19 @@
     <description>Recent content on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 Oct 2017 08:56:00 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 21 Mar 2018 15:16:24 +0200</lastBuildDate>
     
 	<atom:link href="https://infinitetree.eu/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Elixir and Nerves beginner workshop</title>
+      <link>https://infinitetree.eu/workshop/elixir-and-nerves-beginner-workshop/</link>
+      <pubDate>Wed, 21 Mar 2018 15:16:24 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/workshop/elixir-and-nerves-beginner-workshop/</guid>
+      <description>What? Have you ever played looked at elixir and thought, this looks like a cool language with nice features. This is a language that I want to know? Have you ever thought about toying with a raspberry pi or an arduino, playing with some leds, buttons, but never got around to it, or thought it would take too much time to start with it. Maybe you&amp;rsquo;re just interested in functional programming, or you want to learn a new programming language?</description>
+    </item>
     
     <item>
       <title>Why I choose Bucklescript</title>
@@ -81,7 +90,7 @@ It just happens that Program Phoenix by by Chris McCord, Bruce Tate, and José V
       <pubDate>Wed, 13 Apr 2016 13:20:35 +0200</pubDate>
       
       <guid>https://infinitetree.eu/resume/</guid>
-      <description>Independent Software Consultant Thomas Coopman has been fascinated with computers since he was a kid. Playing around at first, became programming later and after learning some programming for himself and a small detour starting studies for nursing, he went on and studied Master of Informatics at the KULeuven.
+      <description>Thomas Coopman - Independent Software Consultant Thomas Coopman has been fascinated with computers since he was a kid. Playing around at first, became programming later and after learning some programming for himself and a small detour starting studies for nursing, he went on and studied Master of Informatics at the KULeuven.
 Thomas is a polyglot and loves to learn new languages. His latest language studies have taken him to Elixir, Elm, OCaml and he has a special affinity for functional programming languages.</description>
     </item>
     

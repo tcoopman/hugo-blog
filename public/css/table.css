@@ -1,0 +1,15 @@
+table{
+  width:100%; 
+  border-collapse:collapse; 
+}
+td {
+  padding:7px; 
+  width: 30%;
+  /* border-left:#e4e4e4 1px solid; */
+}
+tr:nth-child(odd){ 
+  background: #fff;
+}
+tr:nth-child(even){
+  background: #dae5f4;
+}

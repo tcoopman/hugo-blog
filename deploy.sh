@@ -1,3 +1,4 @@
+#! /usr/bin/env bash
 rm -rf public
 hugo
 chmod -R 755 public

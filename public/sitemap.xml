@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://infinitetree.eu/workshop/elixir-and-nerves-beginner-workshop/</loc>
+    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/blog/2017/10/28/why-i-choose-bucklescript/</loc>
     <lastmod>2017-10-28T08:56:00+01:00</lastmod>
   </url>
@@ -34,7 +39,7 @@
   
   <url>
     <loc>https://infinitetree.eu/resume/</loc>
-    <lastmod>2016-04-13T13:20:35+02:00</lastmod>
+    <lastmod>2018-03-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -72,6 +77,11 @@
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/workshop/</loc>
+    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/tags/2017/</loc>
     <lastmod>2017-01-03T19:18:13+01:00</lastmod>
     <priority>0</priority>
@@ -96,7 +106,7 @@
   
   <url>
     <loc>https://infinitetree.eu/tags/elixir/</loc>
-    <lastmod>2016-06-26T10:49:59+02:00</lastmod>
+    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -149,6 +159,12 @@
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/tags/nerves/</loc>
+    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/tags/ocaml/</loc>
     <lastmod>2017-10-28T08:56:00+01:00</lastmod>
     <priority>0</priority>
@@ -173,6 +189,18 @@
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/tags/raspberry-pi/</loc>
+    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/rbp/</loc>
+    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/tags/react/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -186,7 +214,7 @@
   
   <url>
     <loc>https://infinitetree.eu/</loc>
-    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
+    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
     <priority>0</priority>
   </url>
   
