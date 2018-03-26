@@ -11,16 +11,15 @@ menu= "workshop"		# set "main" to add this content to the main menu
 author = "Thomas Coopman"
 +++
 
-## What?
-
-Have you ever looked at elixir and thought, this looks like a cool language with nice features. This is a language that I want to know!
-Have you ever thought about toying with a raspberry pi or an arduino, playing with some leds, buttons, but never got around to it, or thought it would take too much time to start with it.
+Have you ever looked at Elixir and thought, this looks like a nice language with great features. This is a language that I want to know!
+Have you ever thought about toying with a raspberry pi or an arduino, playing with some leds, buttons, but never got around to it thinking it would take too much time to start with it.
 Maybe you're just interested in functional programming or you want to learn a new programming language?
 
-This is your chance to do all of this! In this beginner friendly elixir workshop we will learn the basics of elixir by building our own [pomodoro timer](https://en.wikipedia.org/wiki/Pomodoro_Technique).
-If this sounds like something you want to change, then come to this one day, *high intensity* workshop.
+This is your chance to do all of this! In this beginner friendly Elixir workshop we will learn the basics of Elixir by building our own [pomodoro timer](https://en.wikipedia.org/wiki/Pomodoro_Technique).
 
-Want more convincing, you want to know what this elixir or nerves is? Read on to see if this is something for you! ([Convinced](#convinced))
+If this sounds like something you want to learn, then come to this one day, *high intensity* workshop.
+
+Want more convincing, you want to know what this Elixir or Nerves is? Read on to see if this is something for you! ([Convinced](#convinced))
 
 ### Elixir
 
@@ -28,7 +27,7 @@ Want more convincing, you want to know what this elixir or nerves is? Read on to
 > Elixir leverages the Erlang VM, known for running low-latency, distributed and fault-tolerant systems, while also being successfully used in web development and the embedded software domain.
 > ([https://elixir-lang.org/](https://elixir-lang.org/))
 
-If you read this description then you should already have a good grasp of what it can leverage for you, but let's jump a bit deeper:
+If you read this description then you should already have a good grasp of what it can bring for you, but let's jump a bit deeper:
 
 * A dynamic, functional language: dynamic yes, but also compiled, with pattern matching, immutability,...
 * Elixir runs on the Erlang VM (BEAM) and this enables you to build highly distributed fault-tolerant systems. In the workshop we won't be able to go deep into the distributed part, but we will touch upon it, as well as on the fault-tolerant system.
@@ -47,7 +46,7 @@ In other words, a rock solid platform for building your hardware projects!
 
 ### Hardware projects in a professional environment
 
-Maybe you're thinking, a pomodoro timer is fun, but that's not very useful for me (You already know when to take breaks!), what can I do with the hardware in a professional environment? Anything you can imagine I would say, but here are some concrete and simple projects:
+Maybe you're thinking, a pomodoro timer is fun, but that's not very useful for me, what can I do with the hardware in a professional environment? *Anything you can imagine* I would say, but here are some concrete and simple projects:
 
 * A buzzer and light when the build is broken
 * A button to deploy to production
@@ -73,7 +72,8 @@ Then read on, for all practical information!
 
 * Interested in Elixir but no or not a lot of prior knowledge
 * Loves to play and tinker with hardware
-* Ready for an intensive day of coding, thinkering and learning!
+* Ready for an fun and intensive day of coding, thinkering and learning!
+* Any of the above
 
 ### Prerequisites
 
@@ -87,19 +87,20 @@ Then read on, for all practical information!
 
 You can expect these steps:
 
-* Introduction to elixir
-* Basic concepts of elixir
+* Introduction to Elixir
+* Basic concepts of Elixir
 * Playing in the REPL
 * Basics of OTP (GenServers!)
-* Installing nerves on a raspberry pi
-* Lighting a led with elixir
+* Installing Nerves on a raspberry pi
+* Creating a simple circuit
+* Lighting a led with Elixir
 * Implementation of a pomodoro timer
 * Creating a circuit for the pomodoro timer
 
 If the time allows it:
 
 * Adding an api/web application to configure the pomodoro timer
-* Think about testing the nerves hardware implementation
+* Think about testing the Nerves hardware implementation
 * Distributed team pomodoro timer
 
 Did I say it will be an intense workshop?
@@ -110,15 +111,15 @@ We'll start at 09:00 sharp, we will have regular breaks and expect the end aroun
 
 ### When
 
-To be defined, probably somewhere in the second half of May.
+Friday May 25th from 09:00 to 19:00
 
 ### Where
 
-The location is not yet known, but it will be in the broad area of Gent/Antwerpen.
+The location is not yet final, but it will be in the broad area of Gent/Antwerpen.
 
 ### Cost and what's included
 
-The price for the 1 day training is (VAT not included): 580 euro.
+The price for the 1 day training is (VAT not included): 560 euro.
 
 Included in the price:
 
@@ -132,8 +133,10 @@ There are a limited amount of 16 places, so be quick!
 
 ### Tickets
 
-You can buy a ticket by clicking the button below. Please fill in your company details if you wish to receive an invoice.
+<!-- Ticket Tailor Widget. Paste this in to your website where you want the widget to appear. Do no change the code or the widget may not work properly. -->
+<div class="tt-widget"><div class="tt-widget-fallback"><p><a href="https://www.tickettailor.com/new-order/157073/21a4/ref/website_widget/" target="_blank">Click here to buy tickets</a><br /><small><a href="http://www.tickettailor.com?rf=wdg" class="tt-widget-powered">Sell tickets online with Ticket Tailor</a></small></p></div><script src="https://dc161a0a89fedd6639c9-03787a0970cd749432e2a6d3b34c55df.ssl.cf3.rackcdn.com/tt-widget.js" data-url="https://www.tickettailor.com/new-order/157073/21a4/ref/website_widget/" data-type="inline" data-inline-minimal="true" data-inline-show-logo="false"  data-inline-bg-fill="false"></script></div>
+<!-- End of Ticket Tailor Widget -->
 
-**Coming soon**
+Please fill in your company details if you wish to receive an invoice.
 
 Tickets are non-refundable, but can be transferred to another person if you choose to do so (enrollments are not bound to a specific person). If you have a good reason why you can't make it, please contact me and we'll see what can be done.
