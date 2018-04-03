@@ -44,10 +44,10 @@ name = "Resume"
 url = "/resume"
 weight = -120
 [[menu.main]]
-# identifier = "workshop"
-# name = "Workshop"
-# url = "/workshop"
-# weight = -100
+identifier = "workshop"
+name = "Workshop"
+url = "/workshop"
+weight = -100
 [[menu.main]]
 name = "Twitter timeline"
 pre = "<h3>Follow me</h3>"
