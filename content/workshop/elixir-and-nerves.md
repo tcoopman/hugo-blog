@@ -11,6 +11,8 @@ menu= "workshop"		# set "main" to add this content to the main menu
 author = "Thomas Coopman"
 +++
 
+**Update: changed the date to Thursday June 21st**
+
 Have you ever looked at Elixir and thought, this looks like a nice language with great features. This is a language that I want to know!
 Have you ever thought about toying with a raspberry pi or an arduino, playing with some leds, buttons, but never got around to it thinking it would take too much time to start with it.
 Maybe you're just interested in functional programming or you want to learn a new programming language?
@@ -111,7 +113,7 @@ We'll start at 09:00 sharp, we will have regular breaks and expect the end aroun
 
 ### When
 
-Friday May 25th from 09:00 to 19:00
+Thursday June 21st from 09:00 to 19:00
 
 ### Where
 
