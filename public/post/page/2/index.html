@@ -40,17 +40,21 @@
         <link href="https://infinitetree.eu/post/index.xml" rel="alternate" type="application/rss+xml" title="Posts &middot; Thomas Coopman - Infinite Tree" />
       
     
-    <meta name="generator" content="Hugo 0.37.1" />
+    <meta name="generator" content="Hugo 0.46" />
 
     <link rel="canonical" href="https://infinitetree.eu/post/" />
 
     
 <script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-56701000-2', 'auto');
-ga('send', 'pageview');
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-56701000-2', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
     
@@ -156,6 +160,256 @@ ga('send', 'pageview');
 </nav>
 
 	</div>
+
+	
+	   
+<article class="post post">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/blog/2016/04/18/explain-manillen-with-types-and-elm/">Explain Manillen with types and Elm</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>At Domain Drive Design Europe I met the wonderful @Felienne. In the evening we played the card game bridge (a game the Felienne likes a lot). As a West-Vlaming I love the card game Manillen more, of course, and we joked about it. Felienne has the ambition to create an AI to compete at the world championship of Computer Bridge, and I have joked about some similar ambitions of mine at Socrates Belgium, but this blog post has a much more humble goal. <a class="read-more" href="/blog/2016/04/18/explain-manillen-with-types-and-elm/">&raquo;</a></p>
+    </section>
+    <footer class="post-meta">
+        
+        
+        
+            Thomas Coopman
+        
+        on
+            
+                <a href="https://infinitetree.eu/tags/elm/">#elm</a>,
+            
+                <a href="https://infinitetree.eu/tags/modelling/">#modelling</a>,
+            
+                <a href="https://infinitetree.eu/tags/manillen/">#manillen</a>,
+            
+        
+        <time class="post-date" datetime="2016-04-18T21:01:30&#43;02:00">
+            18 Apr 2016
+        </time>
+    </footer>
+</article>
+
+	
+	   
+<article class="post post">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/blog/2016/04/12/modelling-money-in-elm/">Modelling money in Elm</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>After reading the blog post of Mathias Verraes (@mathiasverraes) on (Type Safety and Money)[http://verraes.net/2016/02/type-safety-and-money/], and after doing a real short modelling attempt in Haskell at Socrates Belgium, I wanted to try to model Money in Elm.
+I don&rsquo;t want to go to deep and too far so I&rsquo;ve set some basic constraints for myself:
+ You cannot add money of different currencies (you need an explicit conversion) - Add constraint We also want a Price. <a class="read-more" href="/blog/2016/04/12/modelling-money-in-elm/">&raquo;</a></p>
+    </section>
+    <footer class="post-meta">
+        
+        
+        
+            Thomas Coopman
+        
+        on
+            
+                <a href="https://infinitetree.eu/tags/elm/">#elm</a>,
+            
+                <a href="https://infinitetree.eu/tags/modelling/">#modelling</a>,
+            
+                <a href="https://infinitetree.eu/tags/ddd/">#DDD</a>,
+            
+        
+        <time class="post-date" datetime="2016-04-12T22:28:31&#43;02:00">
+            12 Apr 2016
+        </time>
+    </footer>
+</article>
+
+	
+	   
+<article class="post post">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/blog/2016/04/12/welcome/">Welcome</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>Welcome to the my new site written in hugo. While busy, I&rsquo;ve set up https via letsencrypt. (see tutorial. You can find the source code of the blog here. This is a reboot of my site, and an attempt to blog some more.
+So without further ado, let&rsquo;s start blogging :) <a class="read-more" href="/blog/2016/04/12/welcome/">&raquo;</a></p>
+    </section>
+    <footer class="post-meta">
+        
+        
+        
+            Thomas Coopman
+        
+        on
+            
+                <a href="https://infinitetree.eu/tags/general/">#general</a>,
+            
+        
+        <time class="post-date" datetime="2016-04-12T21:28:31&#43;02:00">
+            12 Apr 2016
+        </time>
+    </footer>
+</article>
+
+	
+	   
+<article class="post post">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/blog/2015/12/04/refactor-till-you-drop/">Refactor till you drop</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>Introduction Iteration 1 function getSymbol(symbolName) { return &#39;replace&#39;; } function escapeRegExp(string) { return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, &#34;\\$1&#34;); } function SymbolReplacer(s) { this.alreadyReplaced = []; this.stringToReplace = s; } //iteration 1 https://sites.google.com/site/unclebobconsultingllc/one-thing-extract-till-you-drop SymbolReplacer.prototype.replace = function() { var symbolPattern = /\$([a-zA-Z]\w*)/g; var matches; while (matches = symbolPattern.exec(this.stringToReplace)) { var symbolName = matches[1]; if (getSymbol(symbolName) !== null &amp;&amp; this.alreadyReplaced.indexOf(symbolName) === -1) { this.alreadyReplaced.push(symbolName); var toReplace = new RegExp(escapeRegExp(matches[0]), &#39;g&#39;); this.stringToReplace = this.stringToReplace.replace(toReplace, getSymbol(symbolName)); } } } var x = new SymbolReplacer(&#39;dit $is een $test $test $test $is $complex gewoon woord&#39;); console. <a class="read-more" href="/blog/2015/12/04/refactor-till-you-drop/">&raquo;</a></p>
+    </section>
+    <footer class="post-meta">
+        
+        
+        
+            Thomas Coopman
+        
+        on
+            
+                <a href="https://infinitetree.eu/tags/elm/">#elm</a>,
+            
+                <a href="https://infinitetree.eu/tags/modelling/">#modelling</a>,
+            
+                <a href="https://infinitetree.eu/tags/ddd/">#DDD</a>,
+            
+        
+        <time class="post-date" datetime="2015-12-04T00:00:00Z">
+            4 Dec 2015
+        </time>
+    </footer>
+</article>
+
+	
+	   
+<article class="post post">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/blog/2015/01/13/testing-es6-code/">Testing ES6 code</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>Recently, I&rsquo;ve changed my webpack workflow, and switched to 6to5, to be able to write more of my React code in ES6 than the current jsx transpiler supports (and because 6to5 just rocks!). You can find this workflow in my boilerplate-webpack-react project. Switching was easy. I&rsquo;ve just replaced jsx-loader with 6to5-loader and everything worked correctly.
+Writing code and developing is a breeze with this workflow, especially with react-hot-loader. I didn&rsquo;t look into writing test though yet, and it took me a little while to find out how to do it, so I explain it here. <a class="read-more" href="/blog/2015/01/13/testing-es6-code/">&raquo;</a></p>
+    </section>
+    <footer class="post-meta">
+        
+        
+        
+            Thomas Coopman
+        
+        on
+            
+                <a href="https://infinitetree.eu/tags/es6/">#es6</a>,
+            
+                <a href="https://infinitetree.eu/tags/react/">#react</a>,
+            
+                <a href="https://infinitetree.eu/tags/webpack/">#webpack</a>,
+            
+        
+        <time class="post-date" datetime="2015-01-13T00:00:00Z">
+            13 Jan 2015
+        </time>
+    </footer>
+</article>
+
+	
+	   
+<article class="post post">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/blog/2014/11/13/flux-and-cqrs/">Flux and cqrs</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>About flux and cqrs, what do I want to write about this???
+Things I want to find out. actions in the past: because it&rsquo;s something that has happend. nothing todo about it.
+deleting actions is not possible, only update. Store all actions in an event store for replay?
+How about authentication and validation actions and flux. For example: action &lsquo;MESSAGE_SUBMITTED&rsquo;. But the message must be validated before it is added. <a class="read-more" href="/blog/2014/11/13/flux-and-cqrs/">&raquo;</a></p>
+    </section>
+    <footer class="post-meta">
+        
+        
+        
+            Thomas Coopman
+        
+        on
+            
+                <a href="https://infinitetree.eu/tags/react/">#react</a>,
+            
+                <a href="https://infinitetree.eu/tags/flux/">#flux</a>,
+            
+                <a href="https://infinitetree.eu/tags/cqrs/">#cqrs</a>,
+            
+        
+        <time class="post-date" datetime="2014-11-13T00:00:00Z">
+            13 Nov 2014
+        </time>
+    </footer>
+</article>
+
+	
+	   
+<article class="post post">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/blog/2014/10/04/about-the-site-about-me/">About the site, about me</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>My name is Thomas Coopman and I&rsquo;m a 29 year old developer. Recently I&rsquo;ve officially started freelancing/consulting in my spare time. That&rsquo;s the main reason for creating this site and blog.
+On this site you can find some more information about me. At the portfolio page you can see some things I&rsquo;ve created. That page is empty at the moment but it will be coming soon.
+I&rsquo;m a developer, mostly a web-developer (backend and frontend). <a class="read-more" href="/blog/2014/10/04/about-the-site-about-me/">&raquo;</a></p>
+    </section>
+    <footer class="post-meta">
+        
+        
+        
+            Thomas Coopman
+        
+        on
+            
+                <a href="https://infinitetree.eu/tags/other/">#other</a>,
+            
+        
+        <time class="post-date" datetime="2014-10-04T00:00:00Z">
+            4 Oct 2014
+        </time>
+    </footer>
+</article>
+
+	
+	   
+<article class="post post">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/blog/2014/09/29/creating-my-first-cordova-app/">Creating my first cordova app</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>installation on ubuntu 14.04 prerequisites sudo apt-get install default-jdk
+sudo apt-get install ant
+npm install -g cordova android sdk http://developer.android.com/sdk/index.html
+creating a project in folder cordova create test-app cd test-app
+set the android emulator PATH=$PATH:~/Software/android-sdk-linux_x64/platform-tools/:~/Software/android-sdk-linux_x64/tools/  android installed Android 4.4.2 (API 19)
+add a platform cordova platform add android
+set everything in www run connect device in debugg
+cordova run android
+emulate android tools cordova emulate android
+webview chrome://inspect/#devices https://developer. <a class="read-more" href="/blog/2014/09/29/creating-my-first-cordova-app/">&raquo;</a></p>
+    </section>
+    <footer class="post-meta">
+        
+        
+        
+            Thomas Coopman
+        
+        on
+            
+                <a href="https://infinitetree.eu/tags/blog/">#blog</a>,
+            
+                <a href="https://infinitetree.eu/tags/cordova/">#cordova</a>,
+            
+                <a href="https://infinitetree.eu/tags/react/">#react</a>,
+            
+        
+        <time class="post-date" datetime="2014-09-29T00:00:00Z">
+            29 Sep 2014
+        </time>
+    </footer>
+</article>
 
 	
 	   

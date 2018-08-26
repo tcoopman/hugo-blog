@@ -21,5 +21,35 @@
 Writing code and developing is a breeze with this workflow, especially with react-hot-loader. I didn&amp;rsquo;t look into writing test though yet, and it took me a little while to find out how to do it, so I explain it here.</description>
     </item>
     
+    <item>
+      <title>Flux and cqrs</title>
+      <link>https://infinitetree.eu/blog/2014/11/13/flux-and-cqrs/</link>
+      <pubDate>Thu, 13 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2014/11/13/flux-and-cqrs/</guid>
+      <description>About flux and cqrs, what do I want to write about this???
+Things I want to find out. actions in the past: because it&amp;rsquo;s something that has happend. nothing todo about it.
+deleting actions is not possible, only update. Store all actions in an event store for replay?
+How about authentication and validation actions and flux. For example: action &amp;lsquo;MESSAGE_SUBMITTED&amp;rsquo;. But the message must be validated before it is added.</description>
+    </item>
+    
+    <item>
+      <title>Creating my first cordova app</title>
+      <link>https://infinitetree.eu/blog/2014/09/29/creating-my-first-cordova-app/</link>
+      <pubDate>Mon, 29 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2014/09/29/creating-my-first-cordova-app/</guid>
+      <description>installation on ubuntu 14.04 prerequisites sudo apt-get install default-jdk
+sudo apt-get install ant
+npm install -g cordova android sdk http://developer.android.com/sdk/index.html
+creating a project in folder cordova create test-app cd test-app
+set the android emulator PATH=$PATH:~/Software/android-sdk-linux_x64/platform-tools/:~/Software/android-sdk-linux_x64/tools/  android installed Android 4.4.2 (API 19)
+add a platform cordova platform add android
+set everything in www run connect device in debugg
+cordova run android
+emulate android tools cordova emulate android
+webview chrome://inspect/#devices https://developer.</description>
+    </item>
+    
   </channel>
 </rss>

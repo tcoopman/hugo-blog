@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
 rm -rf public
-hugo
+hugo --buildDrafts
 chmod -R 755 public
 rsync -avzp -e ssh public/ thomascoopman.eu:/home/thomas/hugo

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" The Bank Kata in Ocaml - Part 2: implementing the kata &middot;  Thomas Coopman - Infinite Tree" />
+  	<meta property="og:site_name" content="Thomas Coopman - Infinite Tree" />
+  	<meta property="og:url" content="https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml---part-2-implementing-the-kata/" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2018-08-25T14:45:26&#43;02:00" />
+
+    
+    <meta property="og:article:tag" content="ocaml" />
+    
+    <meta property="og:article:tag" content="bank-kata" />
+    
+    <meta property="og:article:tag" content="kata" />
+    
+    
+
+
+  <title>
+     The Bank Kata in Ocaml - Part 2: implementing the kata &middot;  Thomas Coopman - Infinite Tree
+  </title>
+
+    <meta name="description" content="Thomas Coopman - Software Consultant" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://infinitetree.eu/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="https://infinitetree.eu/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="https://infinitetree.eu/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://infinitetree.eu/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="https://infinitetree.eu/css/table.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
+
+
+    
+      
+          <link href="https://infinitetree.eu/index.xml" rel="alternate" type="application/rss+xml" title="Thomas Coopman - Infinite Tree" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.46" />
+
+    <link rel="canonical" href="https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml---part-2-implementing-the-kata/" />
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-56701000-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/contact">Contact</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/resume">Resume</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/workshop">Workshop</a>
+            </li>
+        
+            <h3>Follow me</h3>
+            <li class="nav-opened" role="presentation">
+            	<a href="https://twitter.com/tcoopman">Twitter timeline</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://github.com/tcoopman/">Github repos</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://bitbucket.org/tcoopman/">Bitbucket repos</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://www.linkedin.com/in/thomas-coopman-a6860622?trk=hp-identity-name">Linkedin</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://plus.google.com/u/0/109624499308077610663">Google Plus</a>
+            </li>
+        
+    </ul>
+    
+    
+    <a class="subscribe-button icon-feed" href="https://infinitetree.eu/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">The Bank Kata in Ocaml - Part 2: implementing the kata</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2018-08-25T14:45:26&#43;02:00">
+            Aug 25, 2018
+          </time>
+        
+         
+          <span class="post-tag small"><a href="https://infinitetree.eu/tags/ocaml/">#ocaml</a></span>
+         
+          <span class="post-tag small"><a href="https://infinitetree.eu/tags/bank-kata/">#bank-kata</a></span>
+         
+          <span class="post-tag small"><a href="https://infinitetree.eu/tags/kata/">#kata</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p>In <a href="https://infinitetree.eu/blog/2018/08/23/the-bank-kata-in-ocaml-part-1-setting-everything-up/">part 1</a> we&rsquo;ve set everything up, let&rsquo;s implement the kata now. If we check the <a href="https://github.com/sandromancuso/Bank-kata">readme</a> we can see a simple acceptance test, let&rsquo;s start with that.</p>
+
+<p>We create a file <code>test/account_test.ml</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">open</span>! <span style="color:#b06;font-weight:bold">Base</span>
+<span style="color:#080;font-weight:bold">open</span>! <span style="color:#b06;font-weight:bold">Stdio</span>
+
+<span style="color:#080;font-weight:bold">let</span>%expect_test <span style="color:#d20;background-color:#fff0f0">&#34;Printing the statements should contain all transactions&#34;</span> =
+  <span style="color:#b06;font-weight:bold">Lib</span>.<span style="color:#b06;font-weight:bold">Account</span>.create ()
+  |&gt; <span style="color:#b06;font-weight:bold">Lib</span>.<span style="color:#b06;font-weight:bold">Account</span>.deposit ~amount:1000.0 ~on:<span style="color:#d20;background-color:#fff0f0">&#34;10/01/2012&#34;</span>
+  |&gt; <span style="color:#b06;font-weight:bold">Lib</span>.<span style="color:#b06;font-weight:bold">Account</span>.deposit ~amount:2000.0 ~on:<span style="color:#d20;background-color:#fff0f0">&#34;13/01/2012&#34;</span>
+  |&gt; <span style="color:#b06;font-weight:bold">Lib</span>.<span style="color:#b06;font-weight:bold">Account</span>.withdrawal ~amount:500.0 ~on:<span style="color:#d20;background-color:#fff0f0">&#34;14/01/2012&#34;</span>
+  |&gt; <span style="color:#b06;font-weight:bold">Lib</span>.<span style="color:#b06;font-weight:bold">Account</span>.print;
+  [%expect{|
+    date || amount || balance
+    14/01/2012 || -500.00 || 2500.00
+    13/01/2012 || 2000.00 || 3000.00
+    10/01/2012 || 1000.00 || 1000.00
+  |}]</code></pre></div>
+<p>Let&rsquo;s first see how we can get this test to green as fast as possible.</p>
+
+<p>The simplest way to make this compile is with <code>lib/account.ml</code>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> create () = ()
+
+<span style="color:#080;font-weight:bold">let</span> deposit _ _ = ()
+
+<span style="color:#080;font-weight:bold">let</span> withdrawal _ _ = ()
+
+<span style="color:#080;font-weight:bold">let</span> print _ =
+  print_endline <span style="color:#d20;background-color:#fff0f0">&#34;TODO&#34;</span></code></pre></div>
+<p>If you now run your tests, you should get a compiling code, but mismatching output, so let&rsquo;s think about the actual implementation.</p>
+
+<p>Now it&rsquo;s time to start thinking about some types. Let&rsquo;s see, what should create return?</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">type</span> account = transaction <span style="color:#888;font-weight:bold">list</span>
+<span style="color:#080">and</span> <span style="color:#080;font-weight:bold">type</span> transaction = {
+    date: <span style="color:#888;font-weight:bold">string</span>;
+    amount: <span style="color:#888;font-weight:bold">float</span>;
+}</code></pre></div>
+<p>Something like this seems ok for the first iteration of this kata (ofcourse having floats for an amount is serious no-go, but for this kata, we&rsquo;ll ignore it!)
+We create an <code>account</code> type, that&rsquo;s just a list of transactions, and thus, create can be defined like:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> create () = []</code></pre></div>
+<p>So this makes <code>deposit</code> and <code>withdrawal</code> trivial to implement:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> deposit ~amount ~on account = {date = on; amount} :: account
+<span style="color:#080;font-weight:bold">let</span> withdrawal ~amount ~on account = {date = on; amount = amount *. -1.} :: account</code></pre></div>
+<p>And now we&rsquo;re ready to implement the print function to get the tests green.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> print account =
+  <span style="color:#080;font-weight:bold">let</span> calculate account =
+    <span style="color:#b06;font-weight:bold">List</span>.fold_right (<span style="color:#080;font-weight:bold">fun</span> transaction (total, x) -&gt; (total +. transaction.amount, (total +. transaction.amount, transaction) :: x)) account (0., [])
+  <span style="color:#080;font-weight:bold">in</span>
+  <span style="color:#080;font-weight:bold">let</span> buffer = <span style="color:#b06;font-weight:bold">Buffer</span>.create (<span style="color:#b06;font-weight:bold">List</span>.length account * 50) <span style="color:#080;font-weight:bold">in</span>
+  <span style="color:#080;font-weight:bold">let</span> <span style="color:#080;font-weight:bold">rec</span> fill_buffer = <span style="color:#080;font-weight:bold">function</span>
+    | [] -&gt; ()
+    | (total, transaction) :: tl -&gt;
+      <span style="color:#b06;font-weight:bold">Buffer</span>.add_string buffer (<span style="color:#b06;font-weight:bold">Printf</span>.sprintf <span style="color:#d20;background-color:#fff0f0">&#34;%s || %.2f || %.2f</span><span style="color:#04d;background-color:#fff0f0">\n</span><span style="color:#d20;background-color:#fff0f0">&#34;</span> transaction.date transaction.amount total);
+      fill_buffer tl
+  <span style="color:#080;font-weight:bold">in</span>
+  <span style="color:#080;font-weight:bold">let</span> (_, calculated) = calculate account <span style="color:#080;font-weight:bold">in</span>
+  <span style="color:#b06;font-weight:bold">Buffer</span>.add_string buffer <span style="color:#d20;background-color:#fff0f0">&#34;date || amount || balance</span><span style="color:#04d;background-color:#fff0f0">\n</span><span style="color:#d20;background-color:#fff0f0">&#34;</span>;
+  fill_buffer calculated;
+  print_string (<span style="color:#b06;font-weight:bold">Buffer</span>.contents buffer)</code></pre></div>
+<p>This is not the most beautiful code, but it makes the tests green. The question is are we happy with it or is it time for refactoring?</p>
+
+<p>We could argue that doing <code>amount *. -1</code> in <code>withdrawal</code> is not very clean, but that&rsquo;s something I&rsquo;m going to leave for now.</p>
+
+<p>The <code>print</code> function is something else though. Let&rsquo;s see if we can clean this up a bit:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> print account =
+  <span style="color:#080;font-weight:bold">let</span> add_balance account =
+    <span style="color:#080;font-weight:bold">let</span> (_, with_calculated_balance) = <span style="color:#b06;font-weight:bold">List</span>.fold_right (
+        <span style="color:#080;font-weight:bold">fun</span> transaction (total, calculated_transactions) -&gt;
+          (total +. transaction.amount, (total +. transaction.amount, transaction) :: calculated_transactions)
+      ) account (0., []) <span style="color:#080;font-weight:bold">in</span>
+    with_calculated_balance
+  <span style="color:#080;font-weight:bold">in</span>
+  <span style="color:#080;font-weight:bold">let</span> to_print_statements account_with_balance =
+    <span style="color:#b06;font-weight:bold">List</span>.map (<span style="color:#080;font-weight:bold">fun</span> (total, transaction) -&gt;
+        <span style="color:#b06;font-weight:bold">Printf</span>.sprintf <span style="color:#d20;background-color:#fff0f0">&#34;%s || %.2f || %.2f</span><span style="color:#04d;background-color:#fff0f0">\n</span><span style="color:#d20;background-color:#fff0f0">&#34;</span> transaction.date transaction.amount total
+      ) account_with_balance
+  <span style="color:#080;font-weight:bold">in</span>
+  <span style="color:#080;font-weight:bold">let</span> print_statements_to_string_with_header print_statements =
+    <span style="color:#080;font-weight:bold">let</span> buffer = <span style="color:#b06;font-weight:bold">Buffer</span>.create (<span style="color:#b06;font-weight:bold">List</span>.length account * 50) <span style="color:#080;font-weight:bold">in</span>
+    <span style="color:#b06;font-weight:bold">Buffer</span>.add_string buffer <span style="color:#d20;background-color:#fff0f0">&#34;date || amount || balance</span><span style="color:#04d;background-color:#fff0f0">\n</span><span style="color:#d20;background-color:#fff0f0">&#34;</span>;
+    <span style="color:#b06;font-weight:bold">List</span>.iter (<span style="color:#b06;font-weight:bold">Buffer</span>.add_string buffer) print_statements;
+    <span style="color:#b06;font-weight:bold">Buffer</span>.contents buffer
+  <span style="color:#080;font-weight:bold">in</span>
+
+  account
+  |&gt; add_balance
+  |&gt; to_print_statements
+  |&gt; print_statements_to_string_with_header
+  |&gt; print_string</code></pre></div>
+<p>This feels a lot better, when you start reading the last lines it tells clearly what it is doing. It&rsquo;s a bit more code, but all functions have better names and have one purpose.</p>
+
+<p>Before we&rsquo;re saying we&rsquo;re done, something still feels off. We pass dates into our public API. That&rsquo;s not how a bank works? After looking a bit better at the bank kata, I found <a href="https://github.com/sandromancuso/bank-kata-outsidein-screencast">this</a> where the dates are not part of the public API.
+How can we fix this with OCaml. Let&rsquo;s find out in part 3.</p>
+
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="https://infinitetree.eu/">Thomas Coopman</a></h4>
+  
+  <p>Software Consultant</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Belgium</span>
+    <span class="author-link icon-link"><a href="https://infinitetree.eu">https://infinitetree.eu</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=The%20Bank%20Kata%20in%20Ocaml%20-%20Part%202%3a%20implementing%20the%20kata&amp;url=https%3a%2f%2finfinitetree.eu%2fblog%2f2018%2f08%2f25%2fthe-bank-kata-in-ocaml---part-2-implementing-the-kata%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2finfinitetree.eu%2fblog%2f2018%2f08%2f25%2fthe-bank-kata-in-ocaml---part-2-implementing-the-kata%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2finfinitetree.eu%2fblog%2f2018%2f08%2f25%2fthe-bank-kata-in-ocaml---part-2-implementing-the-kata%2f&amp;description=The%20Bank%20Kata%20in%20Ocaml%20-%20Part%202%3a%20implementing%20the%20kata"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=https%3a%2f%2finfinitetree.eu%2fblog%2f2018%2f08%2f25%2fthe-bank-kata-in-ocaml---part-2-implementing-the-kata%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'thomascoopmaneu';
+  var disqus_url = 'https:\/\/infinitetree.eu\/blog\/2018\/08\/25\/the-bank-kata-in-ocaml---part-2-implementing-the-kata\/';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Thomas Coopman - Infinite Tree</a> </section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="https://infinitetree.eu/js/jquery.js"></script>
+    <script type="text/javascript" src="https://infinitetree.eu/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://infinitetree.eu/js/index.js"></script>
+    
+</body>
+</html>
+

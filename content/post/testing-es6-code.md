@@ -3,6 +3,7 @@ date = "2015-01-13"
 tags = ["es6", "react", "webpack"]
 title = "Testing ES6 code"
 description = "Testing with webpack and ES6"
+draft = false
 +++
 
 Recently, I've changed my webpack workflow, and switched to [6to5](https://6to5.org/), to be able to write more of my React code in ES6 than the current jsx transpiler supports (and because 6to5 just rocks!). You can find this workflow in my [boilerplate-webpack-react](https://github.com/tcoopman/boilerplate-webpack-react) project. Switching was easy. I've just replaced jsx-loader with 6to5-loader and everything worked correctly.
@@ -16,6 +17,7 @@ Luckely, there exist a [karma](http://karma-runner.github.io/) plugin [webpack-k
 Let me show my setup.
 
 ### Install dependencies
+
 First you need to install all dependencies:
 
 `npm install --save-dev karma karma-mocha karma-webpack karma-chrome-launcher should`
@@ -28,56 +30,48 @@ Next we need to create the karma config file _karma.conf.js_
 
 ```js
 // Karma configuration
-var path = require('path');
+var path = require("path");
 
 module.exports = function(config) {
   config.set({
     // ... normal karma configuration
 
     files: [
-    // all files ending in "_test"
-    'test/*_test.jsx',
-    'test/**/*_test.jsx'
-    // each file acts as entry point for the webpack configuration
+      // all files ending in "_test"
+      "test/*_test.jsx",
+      "test/**/*_test.jsx"
+      // each file acts as entry point for the webpack configuration
     ],
 
+    frameworks: ["mocha"],
 
-    frameworks: ['mocha'],
-
-
-    browsers: ['Chrome'],
-
+    browsers: ["Chrome"],
 
     preprocessors: {
       // add webpack as preprocessor
-      'test/data/*.jsx': ['webpack'],
-      'test/*_test.jsx': ['webpack'],
-      'test/**/*_test.jsx': ['webpack']
+      "test/data/*.jsx": ["webpack"],
+      "test/*_test.jsx": ["webpack"],
+      "test/**/*_test.jsx": ["webpack"]
     },
 
     webpack: {
       // webpack configuration
       output: {
-        path: path.join(__dirname, 'dist'),
-        publicPath: '/',
-        filename: 'app.js',
-        chunkFilename: '[chunkhash].js'
+        path: path.join(__dirname, "dist"),
+        publicPath: "/",
+        filename: "app.js",
+        chunkFilename: "[chunkhash].js"
       },
 
-
       resolve: {
-        extensions: ['', '.js', '.jsx', '.styl'],
+        extensions: ["", ".js", ".jsx", ".styl"],
         packageMains: ["webpack", "browser", "web", "browserify", "main"]
       },
 
-
       module: {
-        loaders: [
-          {test: /\.jsx$/, loaders: ['6to5-loader'] }
-        ]
+        loaders: [{ test: /\.jsx$/, loaders: ["6to5-loader"] }]
       }
     },
-
 
     webpackMiddleware: {
       // webpack-dev-middleware configuration
@@ -86,11 +80,10 @@ module.exports = function(config) {
     },
 
     plugins: [
-      require('karma-chrome-launcher'),
-      require('karma-mocha'),
-      require('karma-webpack')
+      require("karma-chrome-launcher"),
+      require("karma-mocha"),
+      require("karma-webpack")
     ]
-
   });
 };
 ```
@@ -100,10 +93,10 @@ module.exports = function(config) {
 We also add a simple _sanity_test_ to make sure everything is setup correctly
 
 ```js
-import should from 'should';
+import should from "should";
 
-describe('sanity test', () => {
-  it('true should be true', () => {
+describe("sanity test", () => {
+  it("true should be true", () => {
     true.should.be.ok;
   });
 });
@@ -116,6 +109,7 @@ Now, if we want to run our test, we run:
 `node node_modules/karma/bin/karma start karma.conf.js`
 
 This should start Chrome (if you don't have chrome, see the [karma browser configuration](http://karma-runner.github.io/0.12/config/browsers.html)) and print this:
+
 ```bash
 INFO [karma]: Karma v0.12.31 server started at http://localhost:9876/
 INFO [launcher]: Starting browser Chrome
@@ -142,12 +136,10 @@ The steps above give you a working testing environment, now we can test our code
 To test this we create a simple React component _Button.react.jsx_:
 
 ```js
-import React from 'react';
-
+import React from "react";
 
 export default React.createClass({
-  displayName: 'Button',
-
+  displayName: "Button",
 
   render() {
     return <div>button</div>;
@@ -158,21 +150,18 @@ export default React.createClass({
 And we test it in _Button.react_test.jsx_:
 
 ```js
-import React from 'react/addons';
-import should from 'should';
+import React from "react/addons";
+import should from "should";
 
-import Button from '../app/jsx/components/Button.react';
+import Button from "../app/jsx/components/Button.react";
 
 const TestUtils = React.addons.TestUtils;
 
-
-describe('Button', () => {
-  it('renders button div', () => {
-    const button = TestUtils.renderIntoDocument(
-      <Button />
-    );
+describe("Button", () => {
+  it("renders button div", () => {
+    const button = TestUtils.renderIntoDocument(<Button />);
     TestUtils.isCompositeComponent(button).should.be.ok;
-    button.getDOMNode().textContent.should.be.eql('button');
+    button.getDOMNode().textContent.should.be.eql("button");
   });
 });
 ```
@@ -186,10 +175,16 @@ While testing, I ran into a problem. This line in HelloWorld.react.jsx: `var exa
 ```js
 module: {
   loaders: [
-  {test: /\.jsx$/, loaders: ['6to5-loader'] },
-  // Add the image loader
-  {test: /.*\.(gif|png|jpg)$/, loaders: ['file?hash=sha512&digest=hex&size=16&name=[hash].[ext]', 'image-webpack-loader?optimizationLevel=7&interlaced=false']}
-  ]
+    { test: /\.jsx$/, loaders: ["6to5-loader"] },
+    // Add the image loader
+    {
+      test: /.*\.(gif|png|jpg)$/,
+      loaders: [
+        "file?hash=sha512&digest=hex&size=16&name=[hash].[ext]",
+        "image-webpack-loader?optimizationLevel=7&interlaced=false"
+      ]
+    }
+  ];
 }
 ```
 

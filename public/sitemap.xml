@@ -3,8 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml---part-3-injecting-a-clock-with-functors/</loc>
+    <lastmod>2018-08-25T15:00:26+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml---part-2-implementing-the-kata/</loc>
+    <lastmod>2018-08-25T14:45:26+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/blog/2018/08/23/the-bank-kata-in-ocaml-part-1-setting-everything-up/</loc>
+    <lastmod>2018-08-23T16:45:26+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/workshop/elixir-and-nerves-beginner-workshop/</loc>
     <lastmod>2018-03-21T15:16:24+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/blog/2018/02/03/my-summary-of-ddd-europe-2018/</loc>
+    <lastmod>2018-02-03T16:25:24+02:00</lastmod>
   </url>
   
   <url>
@@ -38,6 +58,11 @@
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/blog/2016/04/18/explain-manillen-with-types-and-elm/</loc>
+    <lastmod>2016-04-18T21:01:30+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/resume/</loc>
     <lastmod>2018-03-22T00:00:00+00:00</lastmod>
   </url>
@@ -53,13 +78,28 @@
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/blog/2015/12/04/refactor-till-you-drop/</loc>
+    <lastmod>2015-12-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/blog/2015/01/13/testing-es6-code/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/blog/2014/11/13/flux-and-cqrs/</loc>
+    <lastmod>2014-11-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/blog/2014/10/04/about-the-site-about-me/</loc>
     <lastmod>2014-10-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/blog/2014/09/29/creating-my-first-cordova-app/</loc>
+    <lastmod>2014-09-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -77,13 +117,20 @@
   </url>
   
   <url>
-    <loc>https://infinitetree.eu/workshop/</loc>
-    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
+    <loc>https://infinitetree.eu/tags/2017/</loc>
+    <lastmod>2017-01-03T19:18:13+01:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://infinitetree.eu/tags/2017/</loc>
-    <lastmod>2017-01-03T19:18:13+01:00</lastmod>
+    <loc>https://infinitetree.eu/tags/bank-kata/</loc>
+    <lastmod>2018-08-25T15:00:26+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/blog/</loc>
+    <lastmod>2014-09-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -99,8 +146,26 @@
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/tags/cordova/</loc>
+    <lastmod>2014-09-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/cqrs/</loc>
+    <lastmod>2014-11-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/tags/ddd/</loc>
-    <lastmod>2017-02-08T20:44:40+01:00</lastmod>
+    <lastmod>2018-02-03T16:25:24+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/dddeu/</loc>
+    <lastmod>2018-02-03T16:25:24+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -123,6 +188,12 @@
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/tags/flux/</loc>
+    <lastmod>2014-11-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/tags/frontend/</loc>
     <lastmod>2017-10-28T08:56:00+01:00</lastmod>
     <priority>0</priority>
@@ -137,6 +208,18 @@
   <url>
     <loc>https://infinitetree.eu/tags/goals/</loc>
     <lastmod>2017-01-03T19:18:13+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/kata/</loc>
+    <lastmod>2018-08-25T15:00:26+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/manillen/</loc>
+    <lastmod>2016-04-18T21:01:30+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -166,7 +249,7 @@
   
   <url>
     <loc>https://infinitetree.eu/tags/ocaml/</loc>
-    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
+    <lastmod>2018-08-25T15:00:26+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -184,7 +267,7 @@
   
   <url>
     <loc>https://infinitetree.eu/post/</loc>
-    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
+    <lastmod>2018-08-25T15:00:26+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -214,7 +297,7 @@
   
   <url>
     <loc>https://infinitetree.eu/</loc>
-    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
+    <lastmod>2018-08-25T15:00:26+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -227,6 +310,12 @@
   <url>
     <loc>https://infinitetree.eu/tags/webpack/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/workshop/</loc>
+    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
     <priority>0</priority>
   </url>
   

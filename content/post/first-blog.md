@@ -3,6 +3,7 @@ date = "2014-10-04"
 tags = ["other"]
 title = "About the site, about me"
 description = "I'm Thomas Coopman, a freelancing developer. Hire me."
+draft = false
 +++
 
 My name is Thomas Coopman and I'm a 29 year old developer. Recently I've

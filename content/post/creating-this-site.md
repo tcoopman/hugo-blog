@@ -3,19 +3,20 @@ date = "2014-09-29"
 tags = ["other"]
 title = "Creating this site"
 description = "Why, but mostly how I've created this site."
+draft = false
 +++
 
-*This is not valid anymore. The site is build with hugo*
+_This is not valid anymore. The site is build with hugo_
 
 This blogpost will be a about the why, but mostly about how I've created
 this site.
 
 I've created this site mostly for these reasons:
 
-* Make myself visible on the web.
-* Practice my design and web-development skills.
-* Practice my writing (blog).
-* Record things I've learned for myself. Maybe someone else will find
+- Make myself visible on the web.
+- Practice my design and web-development skills.
+- Practice my writing (blog).
+- Record things I've learned for myself. Maybe someone else will find
   something useful here.
 
 # Content

@@ -22,6 +22,15 @@ In this post I&amp;rsquo;m going to try to explain my choice for Bucklescript. I
     </item>
     
     <item>
+      <title>Explain Manillen with types and Elm</title>
+      <link>https://infinitetree.eu/blog/2016/04/18/explain-manillen-with-types-and-elm/</link>
+      <pubDate>Mon, 18 Apr 2016 21:01:30 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2016/04/18/explain-manillen-with-types-and-elm/</guid>
+      <description>At Domain Drive Design Europe I met the wonderful @Felienne. In the evening we played the card game bridge (a game the Felienne likes a lot). As a West-Vlaming I love the card game Manillen more, of course, and we joked about it. Felienne has the ambition to create an AI to compete at the world championship of Computer Bridge, and I have joked about some similar ambitions of mine at Socrates Belgium, but this blog post has a much more humble goal.</description>
+    </item>
+    
+    <item>
       <title>Modelling money in Elm</title>
       <link>https://infinitetree.eu/blog/2016/04/12/modelling-money-in-elm/</link>
       <pubDate>Tue, 12 Apr 2016 22:28:31 +0200</pubDate>
@@ -30,6 +39,15 @@ In this post I&amp;rsquo;m going to try to explain my choice for Bucklescript. I
       <description>After reading the blog post of Mathias Verraes (@mathiasverraes) on (Type Safety and Money)[http://verraes.net/2016/02/type-safety-and-money/], and after doing a real short modelling attempt in Haskell at Socrates Belgium, I wanted to try to model Money in Elm.
 I don&amp;rsquo;t want to go to deep and too far so I&amp;rsquo;ve set some basic constraints for myself:
  You cannot add money of different currencies (you need an explicit conversion) - Add constraint We also want a Price.</description>
+    </item>
+    
+    <item>
+      <title>Refactor till you drop</title>
+      <link>https://infinitetree.eu/blog/2015/12/04/refactor-till-you-drop/</link>
+      <pubDate>Fri, 04 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2015/12/04/refactor-till-you-drop/</guid>
+      <description>Introduction Iteration 1 function getSymbol(symbolName) { return &amp;#39;replace&amp;#39;; } function escapeRegExp(string) { return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, &amp;#34;\\$1&amp;#34;); } function SymbolReplacer(s) { this.alreadyReplaced = []; this.stringToReplace = s; } //iteration 1 https://sites.google.com/site/unclebobconsultingllc/one-thing-extract-till-you-drop SymbolReplacer.prototype.replace = function() { var symbolPattern = /\$([a-zA-Z]\w*)/g; var matches; while (matches = symbolPattern.exec(this.stringToReplace)) { var symbolName = matches[1]; if (getSymbol(symbolName) !== null &amp;amp;&amp;amp; this.alreadyReplaced.indexOf(symbolName) === -1) { this.alreadyReplaced.push(symbolName); var toReplace = new RegExp(escapeRegExp(matches[0]), &amp;#39;g&amp;#39;); this.stringToReplace = this.stringToReplace.replace(toReplace, getSymbol(symbolName)); } } } var x = new SymbolReplacer(&amp;#39;dit $is een $test $test $test $is $complex gewoon woord&amp;#39;); console.</description>
     </item>
     
   </channel>

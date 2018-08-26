@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" Explain Manillen with types and Elm &middot;  Thomas Coopman - Infinite Tree" />
+  	<meta property="og:site_name" content="Thomas Coopman - Infinite Tree" />
+  	<meta property="og:url" content="https://infinitetree.eu/blog/2016/04/18/explain-manillen-with-types-and-elm/" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2016-04-18T21:01:30&#43;02:00" />
+
+    
+    <meta property="og:article:tag" content="elm" />
+    
+    <meta property="og:article:tag" content="modelling" />
+    
+    <meta property="og:article:tag" content="manillen" />
+    
+    
+
+
+  <title>
+     Explain Manillen with types and Elm &middot;  Thomas Coopman - Infinite Tree
+  </title>
+
+    <meta name="description" content="Thomas Coopman - Software Consultant" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://infinitetree.eu/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="https://infinitetree.eu/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="https://infinitetree.eu/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://infinitetree.eu/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="https://infinitetree.eu/css/table.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
+
+
+    
+      
+          <link href="https://infinitetree.eu/index.xml" rel="alternate" type="application/rss+xml" title="Thomas Coopman - Infinite Tree" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.46" />
+
+    <link rel="canonical" href="https://infinitetree.eu/blog/2016/04/18/explain-manillen-with-types-and-elm/" />
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-56701000-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/contact">Contact</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/resume">Resume</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/workshop">Workshop</a>
+            </li>
+        
+            <h3>Follow me</h3>
+            <li class="nav-opened" role="presentation">
+            	<a href="https://twitter.com/tcoopman">Twitter timeline</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://github.com/tcoopman/">Github repos</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://bitbucket.org/tcoopman/">Bitbucket repos</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://www.linkedin.com/in/thomas-coopman-a6860622?trk=hp-identity-name">Linkedin</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://plus.google.com/u/0/109624499308077610663">Google Plus</a>
+            </li>
+        
+    </ul>
+    
+    
+    <a class="subscribe-button icon-feed" href="https://infinitetree.eu/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">Explain Manillen with types and Elm</h1>
+        <small>Let&#39;s try to explain the card game Manillen in Elm.</small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2016-04-18T21:01:30&#43;02:00">
+            Apr 18, 2016
+          </time>
+        
+         
+          <span class="post-tag small"><a href="https://infinitetree.eu/tags/elm/">#elm</a></span>
+         
+          <span class="post-tag small"><a href="https://infinitetree.eu/tags/modelling/">#modelling</a></span>
+         
+          <span class="post-tag small"><a href="https://infinitetree.eu/tags/manillen/">#manillen</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      <p>At <a href="http://dddeurope.com/">Domain Drive Design Europe</a> I met the wonderful <a href="https://twitter.com/Felienne">@Felienne</a>. In the evening we played the card game bridge (a game the Felienne likes <a href="http://www.felienne.com/archives/4433">a lot</a>). As a <em>West-Vlaming</em> I love the card game <em>Manillen</em> more, of course, and we joked about it. Felienne has the ambition to create an AI to compete at the world championship of Computer Bridge, and I have joked about some similar ambitions of mine at Socrates Belgium, but this blog post has a much more humble goal.
+I want to try to explain the rules of <em>Manillen</em> or <em>Manille</em> to you with Elm. If you are to eager and want to find out more about the game (and the rules), see <a href="https://en.wikipedia.org/wiki/Manille">wikipedia</a>.</p>
+
+<p>So lets start.</p>
+
+<p>These are the valid cards:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">Suit</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Spade</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Club</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Diamond</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Heart</span>
+<span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">Rank</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Manille</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Ace</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">King</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Queen</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Jack</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Nine</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Eight</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Seven</span>
+
+<span style="color:#080;font-weight:bold">type</span> <span style="color:#080;font-weight:bold">alias</span> <span style="color:#888;font-weight:bold">Card</span> <span style="color:#06b;font-weight:bold">=</span> (<span style="color:#888;font-weight:bold">Suit</span>, <span style="color:#888;font-weight:bold">Rank</span>)</code></pre></div>
+<p>The <code>Manille</code> is the number 10 in a card deck.</p>
+
+<p>The game is played with 32 cards (4 * 8), thus, this is the full deck:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#080;font-weight:bold">type</span> <span style="color:#080;font-weight:bold">alias</span> <span style="color:#888;font-weight:bold">Deck</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">List</span> <span style="color:#888;font-weight:bold">Card</span>
+
+<span style="color:#369">deck</span> <span style="color:#06b;font-weight:bold">:</span> <span style="color:#888;font-weight:bold">Deck</span>
+<span style="color:#369">deck</span> <span style="color:#06b;font-weight:bold">=</span> 
+	[ (<span style="color:#888;font-weight:bold">Spade</span>, <span style="color:#888;font-weight:bold">Manille</span>), (<span style="color:#888;font-weight:bold">Club</span>, <span style="color:#888;font-weight:bold">Manille</span>), (<span style="color:#888;font-weight:bold">Diamond</span>, <span style="color:#888;font-weight:bold">Manille</span>), (<span style="color:#888;font-weight:bold">Heart</span>, <span style="color:#888;font-weight:bold">Manille</span>)
+	, (<span style="color:#888;font-weight:bold">Spade</span>, <span style="color:#888;font-weight:bold">Ace</span>),     (<span style="color:#888;font-weight:bold">Club</span>, <span style="color:#888;font-weight:bold">Ace</span>),     (<span style="color:#888;font-weight:bold">Diamond</span>, <span style="color:#888;font-weight:bold">Ace</span>),     (<span style="color:#888;font-weight:bold">Heart</span>, <span style="color:#888;font-weight:bold">Ace</span>)
+	, (<span style="color:#888;font-weight:bold">Spade</span>, <span style="color:#888;font-weight:bold">King</span>),    (<span style="color:#888;font-weight:bold">Club</span>, <span style="color:#888;font-weight:bold">King</span>),    (<span style="color:#888;font-weight:bold">Diamond</span>, <span style="color:#888;font-weight:bold">King</span>),    (<span style="color:#888;font-weight:bold">Heart</span>, <span style="color:#888;font-weight:bold">King</span>)
+	, (<span style="color:#888;font-weight:bold">Spade</span>, <span style="color:#888;font-weight:bold">Queen</span>),   (<span style="color:#888;font-weight:bold">Club</span>, <span style="color:#888;font-weight:bold">Queen</span>),   (<span style="color:#888;font-weight:bold">Diamond</span>, <span style="color:#888;font-weight:bold">Queen</span>),   (<span style="color:#888;font-weight:bold">Heart</span>, <span style="color:#888;font-weight:bold">Queen</span>)
+	, (<span style="color:#888;font-weight:bold">Spade</span>, <span style="color:#888;font-weight:bold">Jack</span>),    (<span style="color:#888;font-weight:bold">Club</span>, <span style="color:#888;font-weight:bold">Jack</span>),    (<span style="color:#888;font-weight:bold">Diamond</span>, <span style="color:#888;font-weight:bold">Jack</span>),    (<span style="color:#888;font-weight:bold">Heart</span>, <span style="color:#888;font-weight:bold">Jack</span>)
+	, (<span style="color:#888;font-weight:bold">Spade</span>, <span style="color:#888;font-weight:bold">Nine</span>),    (<span style="color:#888;font-weight:bold">Club</span>, <span style="color:#888;font-weight:bold">Nine</span>),    (<span style="color:#888;font-weight:bold">Diamond</span>, <span style="color:#888;font-weight:bold">Nine</span>),    (<span style="color:#888;font-weight:bold">Heart</span>, <span style="color:#888;font-weight:bold">Nine</span>)
+	, (<span style="color:#888;font-weight:bold">Spade</span>, <span style="color:#888;font-weight:bold">Eight</span>),   (<span style="color:#888;font-weight:bold">Club</span>, <span style="color:#888;font-weight:bold">Eight</span>),   (<span style="color:#888;font-weight:bold">Diamond</span>, <span style="color:#888;font-weight:bold">Eight</span>),   (<span style="color:#888;font-weight:bold">Heart</span>, <span style="color:#888;font-weight:bold">Eight</span>)
+	, (<span style="color:#888;font-weight:bold">Spade</span>, <span style="color:#888;font-weight:bold">Seven</span>),   (<span style="color:#888;font-weight:bold">Club</span>, <span style="color:#888;font-weight:bold">Seven</span>),   (<span style="color:#888;font-weight:bold">Diamond</span>, <span style="color:#888;font-weight:bold">Seven</span>),   (<span style="color:#888;font-weight:bold">Heart</span>, <span style="color:#888;font-weight:bold">Seven</span>)
+	]</code></pre></div>
+<p>or shorter we could write it like this:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#369">suits</span> <span style="color:#06b;font-weight:bold">=</span>
+  [ <span style="color:#888;font-weight:bold">Spade</span>, <span style="color:#888;font-weight:bold">Club</span>, <span style="color:#888;font-weight:bold">Diamond</span>, <span style="color:#888;font-weight:bold">Heart</span> ]
+
+
+<span style="color:#369">allCardsOfRank</span> <span style="color:#369">rank</span> <span style="color:#06b;font-weight:bold">=</span>
+  <span style="color:#369">suits</span> <span style="color:#06b;font-weight:bold">|&gt;</span> <span style="color:#888;font-weight:bold">List</span><span style="color:#06b;font-weight:bold">.</span><span style="color:#369">map</span> (<span style="color:#06b;font-weight:bold">\</span><span style="color:#369">suit</span> <span style="color:#06b;font-weight:bold">-&gt;</span> ( <span style="color:#369">suit</span>, <span style="color:#369">rank</span> ))
+
+
+<span style="color:#369">ranks</span> <span style="color:#06b;font-weight:bold">=</span>
+  [ <span style="color:#888;font-weight:bold">Manille</span>, <span style="color:#888;font-weight:bold">Ace</span>, <span style="color:#888;font-weight:bold">King</span>, <span style="color:#888;font-weight:bold">Queen</span>, <span style="color:#888;font-weight:bold">Jack</span>, <span style="color:#888;font-weight:bold">Nine</span>, <span style="color:#888;font-weight:bold">Eight</span>, <span style="color:#888;font-weight:bold">Seven</span> ]
+
+
+<span style="color:#369">deck</span> <span style="color:#06b;font-weight:bold">:</span> <span style="color:#888;font-weight:bold">List</span> <span style="color:#888;font-weight:bold">Card</span>
+<span style="color:#369">deck</span> <span style="color:#06b;font-weight:bold">=</span>
+  <span style="color:#369">ranks</span> <span style="color:#06b;font-weight:bold">|&gt;</span> <span style="color:#888;font-weight:bold">List</span><span style="color:#06b;font-weight:bold">.</span><span style="color:#369">concatMap</span> <span style="color:#369">allCardsOfRank</span></code></pre></div>
+<p>but I find the longer version more readable.</p>
+
+<p>So to start playing we need players:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">Player</span>
+  <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Front</span>
+  <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Left</span>
+  <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Back</span>
+  <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Right</span>
+
+
+<span style="color:#369">wulder</span> <span style="color:#06b;font-weight:bold">:</span> ( <span style="color:#888;font-weight:bold">Player</span>, <span style="color:#888;font-weight:bold">Player</span> )
+<span style="color:#369">wulder</span> <span style="color:#06b;font-weight:bold">=</span>
+  ( <span style="color:#888;font-weight:bold">Front</span>, <span style="color:#888;font-weight:bold">Back</span> )
+
+
+<span style="color:#369">zulder</span> <span style="color:#06b;font-weight:bold">:</span> ( <span style="color:#888;font-weight:bold">Player</span>, <span style="color:#888;font-weight:bold">Player</span> )
+<span style="color:#369">zulder</span> <span style="color:#06b;font-weight:bold">=</span>
+  ( <span style="color:#888;font-weight:bold">Left</span>, <span style="color:#888;font-weight:bold">Right</span> )</code></pre></div>
+<p>We play in 2 teams, <em>wulder</em> vs <em>zulder</em> (West-Flemish for <em>we</em> and <em>them</em>)</p>
+
+<p>Before we start playing, I&rsquo;m going to explain how the scoring works and how you can win a game.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#369">points</span> <span style="color:#06b;font-weight:bold">:</span> <span style="color:#888;font-weight:bold">Rank</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">Int</span>
+<span style="color:#369">points</span> <span style="color:#369">rank</span> <span style="color:#06b;font-weight:bold">=</span>
+  <span style="color:#080;font-weight:bold">case</span> <span style="color:#369">rank</span> <span style="color:#080;font-weight:bold">of</span>
+    <span style="color:#888;font-weight:bold">Manille</span> <span style="color:#06b;font-weight:bold">-&gt;</span>
+      <span style="color:#00d;font-weight:bold">5</span>
+
+    <span style="color:#888;font-weight:bold">Ace</span> <span style="color:#06b;font-weight:bold">-&gt;</span>
+      <span style="color:#00d;font-weight:bold">4</span>
+
+    <span style="color:#888;font-weight:bold">King</span> <span style="color:#06b;font-weight:bold">-&gt;</span>
+      <span style="color:#00d;font-weight:bold">3</span>
+
+    <span style="color:#888;font-weight:bold">Queen</span> <span style="color:#06b;font-weight:bold">-&gt;</span>
+      <span style="color:#00d;font-weight:bold">2</span>
+
+    <span style="color:#888;font-weight:bold">Jack</span> <span style="color:#06b;font-weight:bold">-&gt;</span>
+      <span style="color:#00d;font-weight:bold">1</span>
+
+    <span style="color:#369">_</span> <span style="color:#06b;font-weight:bold">-&gt;</span>
+      <span style="color:#00d;font-weight:bold">0</span>
+
+
+<span style="color:#369">score</span> <span style="color:#06b;font-weight:bold">:</span> <span style="color:#888;font-weight:bold">List</span> <span style="color:#888;font-weight:bold">Card</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">Int</span>
+<span style="color:#369">score</span> <span style="color:#369">cards</span> <span style="color:#06b;font-weight:bold">=</span>
+  <span style="color:#080;font-weight:bold">let</span>
+    <span style="color:#369">ranks</span> <span style="color:#06b;font-weight:bold">=</span>
+      <span style="color:#888;font-weight:bold">List</span><span style="color:#06b;font-weight:bold">.</span><span style="color:#369">map</span> <span style="color:#369">snd</span> <span style="color:#369">cards</span>
+
+    <span style="color:#369">allpoints</span> <span style="color:#06b;font-weight:bold">=</span>
+      <span style="color:#888;font-weight:bold">List</span><span style="color:#06b;font-weight:bold">.</span><span style="color:#369">map</span> <span style="color:#369">points</span> <span style="color:#369">ranks</span>
+  <span style="color:#080;font-weight:bold">in</span>
+    <span style="color:#888;font-weight:bold">List</span><span style="color:#06b;font-weight:bold">.</span><span style="color:#369">sum</span> <span style="color:#369">allpoints</span></code></pre></div>
+<p>With elm-test we can see a constraint</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm">[ <span style="color:#369">test</span> <span style="color:#d20;background-color:#fff0f0">&#34;A full deck scores always 60&#34;</span> ((<span style="color:#369">score</span> <span style="color:#369">deck</span>) <span style="color:#06b;font-weight:bold">`</span><span style="color:#369">assertEqual</span><span style="color:#06b;font-weight:bold">`</span> <span style="color:#00d;font-weight:bold">60</span>) ]</code></pre></div>
+<p>And with elm-check (a toolkit for writing property based tests) we see these properties:</p>
+
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="https://infinitetree.eu/">Thomas Coopman</a></h4>
+  
+  <p>Software Consultant</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Belgium</span>
+    <span class="author-link icon-link"><a href="https://infinitetree.eu">https://infinitetree.eu</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=Explain%20Manillen%20with%20types%20and%20Elm&amp;url=https%3a%2f%2finfinitetree.eu%2fblog%2f2016%2f04%2f18%2fexplain-manillen-with-types-and-elm%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2finfinitetree.eu%2fblog%2f2016%2f04%2f18%2fexplain-manillen-with-types-and-elm%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2finfinitetree.eu%2fblog%2f2016%2f04%2f18%2fexplain-manillen-with-types-and-elm%2f&amp;description=Explain%20Manillen%20with%20types%20and%20Elm"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=https%3a%2f%2finfinitetree.eu%2fblog%2f2016%2f04%2f18%2fexplain-manillen-with-types-and-elm%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'thomascoopmaneu';
+  var disqus_url = 'https:\/\/infinitetree.eu\/blog\/2016\/04\/18\/explain-manillen-with-types-and-elm\/';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Thomas Coopman - Infinite Tree</a> </section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="https://infinitetree.eu/js/jquery.js"></script>
+    <script type="text/javascript" src="https://infinitetree.eu/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://infinitetree.eu/js/index.js"></script>
+    
+</body>
+</html>
+

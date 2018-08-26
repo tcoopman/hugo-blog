@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dddeu on Thomas Coopman - Infinite Tree</title>
+    <link>https://infinitetree.eu/tags/dddeu/</link>
+    <description>Recent content in Dddeu on Thomas Coopman - Infinite Tree</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 03 Feb 2018 16:25:24 +0200</lastBuildDate>
+    
+	<atom:link href="https://infinitetree.eu/tags/dddeu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>My summary of DDD Europe 2018</title>
+      <link>https://infinitetree.eu/blog/2018/02/03/my-summary-of-ddd-europe-2018/</link>
+      <pubDate>Sat, 03 Feb 2018 16:25:24 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2018/02/03/my-summary-of-ddd-europe-2018/</guid>
+      <description>Well, that was a blast. DDD Europe 2018 is already over. And I loved it! Because I had lovely conversations, great insights and good learnings, I had the idea to create a summary, mostly for myself.
+Pre conference workshop DIY Event Sourcing Tooling A pre conference workshop by Marijn Huizendveld on Tuesday and Wednesday.
+This workshop about making your own event sourcing tooling was not exactly what I expected it to be.</description>
+    </item>
+    
+  </channel>
+</rss>

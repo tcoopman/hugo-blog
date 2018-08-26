@@ -40,17 +40,21 @@
         <link href="https://infinitetree.eu/tags/modelling/index.xml" rel="alternate" type="application/rss+xml" title="Modelling &middot; Thomas Coopman - Infinite Tree" />
       
     
-    <meta name="generator" content="Hugo 0.37.1" />
+    <meta name="generator" content="Hugo 0.46" />
 
     <link rel="canonical" href="https://infinitetree.eu/tags/modelling/" />
 
     
 <script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-56701000-2', 'auto');
-ga('send', 'pageview');
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-56701000-2', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
     
@@ -188,6 +192,36 @@ The domain I&rsquo;m using in this post is the domain that Michel Grootjans and 
 	   
 <article class="post post">
     <header class="post-header">
+        <h2 class="post-title"><a href="/blog/2016/04/18/explain-manillen-with-types-and-elm/">Explain Manillen with types and Elm</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>At Domain Drive Design Europe I met the wonderful @Felienne. In the evening we played the card game bridge (a game the Felienne likes a lot). As a West-Vlaming I love the card game Manillen more, of course, and we joked about it. Felienne has the ambition to create an AI to compete at the world championship of Computer Bridge, and I have joked about some similar ambitions of mine at Socrates Belgium, but this blog post has a much more humble goal. <a class="read-more" href="/blog/2016/04/18/explain-manillen-with-types-and-elm/">&raquo;</a></p>
+    </section>
+    <footer class="post-meta">
+        
+        
+        
+            Thomas Coopman
+        
+        on
+            
+                <a href="https://infinitetree.eu/tags/elm/">#elm</a>,
+            
+                <a href="https://infinitetree.eu/tags/modelling/">#modelling</a>,
+            
+                <a href="https://infinitetree.eu/tags/manillen/">#manillen</a>,
+            
+        
+        <time class="post-date" datetime="2016-04-18T21:01:30&#43;02:00">
+            18 Apr 2016
+        </time>
+    </footer>
+</article>
+
+	
+	   
+<article class="post post">
+    <header class="post-header">
         <h2 class="post-title"><a href="/blog/2016/04/12/modelling-money-in-elm/">Modelling money in Elm</a></h2>
     </header>
     <section class="post-excerpt">
@@ -212,6 +246,36 @@ I don&rsquo;t want to go to deep and too far so I&rsquo;ve set some basic constr
         
         <time class="post-date" datetime="2016-04-12T22:28:31&#43;02:00">
             12 Apr 2016
+        </time>
+    </footer>
+</article>
+
+	
+	   
+<article class="post post">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/blog/2015/12/04/refactor-till-you-drop/">Refactor till you drop</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>Introduction Iteration 1 function getSymbol(symbolName) { return &#39;replace&#39;; } function escapeRegExp(string) { return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, &#34;\\$1&#34;); } function SymbolReplacer(s) { this.alreadyReplaced = []; this.stringToReplace = s; } //iteration 1 https://sites.google.com/site/unclebobconsultingllc/one-thing-extract-till-you-drop SymbolReplacer.prototype.replace = function() { var symbolPattern = /\$([a-zA-Z]\w*)/g; var matches; while (matches = symbolPattern.exec(this.stringToReplace)) { var symbolName = matches[1]; if (getSymbol(symbolName) !== null &amp;&amp; this.alreadyReplaced.indexOf(symbolName) === -1) { this.alreadyReplaced.push(symbolName); var toReplace = new RegExp(escapeRegExp(matches[0]), &#39;g&#39;); this.stringToReplace = this.stringToReplace.replace(toReplace, getSymbol(symbolName)); } } } var x = new SymbolReplacer(&#39;dit $is een $test $test $test $is $complex gewoon woord&#39;); console. <a class="read-more" href="/blog/2015/12/04/refactor-till-you-drop/">&raquo;</a></p>
+    </section>
+    <footer class="post-meta">
+        
+        
+        
+            Thomas Coopman
+        
+        on
+            
+                <a href="https://infinitetree.eu/tags/elm/">#elm</a>,
+            
+                <a href="https://infinitetree.eu/tags/modelling/">#modelling</a>,
+            
+                <a href="https://infinitetree.eu/tags/ddd/">#DDD</a>,
+            
+        
+        <time class="post-date" datetime="2015-12-04T00:00:00Z">
+            4 Dec 2015
         </time>
     </footer>
 </article>

@@ -48,17 +48,21 @@
       
       
     
-    <meta name="generator" content="Hugo 0.37.1" />
+    <meta name="generator" content="Hugo 0.46" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2016/04/12/modelling-money-in-elm/" />
 
     
 <script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-56701000-2', 'auto');
-ga('send', 'pageview');
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-56701000-2', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
     
@@ -274,7 +278,7 @@ With Elm, these conversions can be typed checked too, although it&rsquo;s a bit 
 <h2 id="update-2016-04-18">Update 2016-04-18</h2>
 
 <p><em>Zach May</em> left a nice comment (Thanks!) on the blog about an alternative solution:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">USD</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">USD</span> 
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">USD</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">USD</span>
 <span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">EUR</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">EUR</span>
 
 <span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">Money</span> <span style="color:#369">a</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Money</span> (<span style="color:#888;font-weight:bold">Int</span>, <span style="color:#369">a</span>)

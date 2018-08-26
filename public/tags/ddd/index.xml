@@ -6,10 +6,21 @@
     <description>Recent content in Ddd on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Feb 2017 20:44:40 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 03 Feb 2018 16:25:24 +0200</lastBuildDate>
     
 	<atom:link href="https://infinitetree.eu/tags/ddd/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>My summary of DDD Europe 2018</title>
+      <link>https://infinitetree.eu/blog/2018/02/03/my-summary-of-ddd-europe-2018/</link>
+      <pubDate>Sat, 03 Feb 2018 16:25:24 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2018/02/03/my-summary-of-ddd-europe-2018/</guid>
+      <description>Well, that was a blast. DDD Europe 2018 is already over. And I loved it! Because I had lovely conversations, great insights and good learnings, I had the idea to create a summary, mostly for myself.
+Pre conference workshop DIY Event Sourcing Tooling A pre conference workshop by Marijn Huizendveld on Tuesday and Wednesday.
+This workshop about making your own event sourcing tooling was not exactly what I expected it to be.</description>
+    </item>
     
     <item>
       <title>Exploring aggregate boundaries in event sourced systems</title>
@@ -30,6 +41,15 @@ The domain I&amp;rsquo;m using in this post is the domain that Michel Grootjans 
       <description>After reading the blog post of Mathias Verraes (@mathiasverraes) on (Type Safety and Money)[http://verraes.net/2016/02/type-safety-and-money/], and after doing a real short modelling attempt in Haskell at Socrates Belgium, I wanted to try to model Money in Elm.
 I don&amp;rsquo;t want to go to deep and too far so I&amp;rsquo;ve set some basic constraints for myself:
  You cannot add money of different currencies (you need an explicit conversion) - Add constraint We also want a Price.</description>
+    </item>
+    
+    <item>
+      <title>Refactor till you drop</title>
+      <link>https://infinitetree.eu/blog/2015/12/04/refactor-till-you-drop/</link>
+      <pubDate>Fri, 04 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2015/12/04/refactor-till-you-drop/</guid>
+      <description>Introduction Iteration 1 function getSymbol(symbolName) { return &amp;#39;replace&amp;#39;; } function escapeRegExp(string) { return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, &amp;#34;\\$1&amp;#34;); } function SymbolReplacer(s) { this.alreadyReplaced = []; this.stringToReplace = s; } //iteration 1 https://sites.google.com/site/unclebobconsultingllc/one-thing-extract-till-you-drop SymbolReplacer.prototype.replace = function() { var symbolPattern = /\$([a-zA-Z]\w*)/g; var matches; while (matches = symbolPattern.exec(this.stringToReplace)) { var symbolName = matches[1]; if (getSymbol(symbolName) !== null &amp;amp;&amp;amp; this.alreadyReplaced.indexOf(symbolName) === -1) { this.alreadyReplaced.push(symbolName); var toReplace = new RegExp(escapeRegExp(matches[0]), &amp;#39;g&amp;#39;); this.stringToReplace = this.stringToReplace.replace(toReplace, getSymbol(symbolName)); } } } var x = new SymbolReplacer(&amp;#39;dit $is een $test $test $test $is $complex gewoon woord&amp;#39;); console.</description>
     </item>
     
   </channel>

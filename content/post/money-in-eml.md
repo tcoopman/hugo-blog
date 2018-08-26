@@ -2,15 +2,15 @@
 date = "2016-04-12T22:28:31+02:00"
 tags = ["elm", "modelling", "DDD"]
 title = "Modelling money in Elm"
+draft = false
 +++
 
 After reading the blog post of Mathias Verraes (@mathiasverraes) on (Type Safety and Money)[http://verraes.net/2016/02/type-safety-and-money/], and after doing a real short modelling attempt in Haskell at Socrates Belgium, I wanted to try to model Money in Elm.
 
 I don't want to go to deep and too far so I've set some basic constraints for myself:
 
-* You cannot add money of different currencies (you need an explicit conversion) - *Add constraint*
-* We also want a Price. A Price is a Money and a VAT amount.
-
+- You cannot add money of different currencies (you need an explicit conversion) - _Add constraint_
+- We also want a Price. A Price is a Money and a VAT amount.
 
 The goal is to explore different ways of modelling the money in Elm and to explore how a type safe language can support our constraints.
 
@@ -24,13 +24,12 @@ There are some different options for modelling the money.
 
 With a Tuple, a Currency and a Float:
 
-``` elm
+```elm
 type alias Money = (Currency, Float)
 type Currency = Euro | Dollar
 ```
 
 Or with union types
-
 
 ```elm
 type Money = Euro Float | Dollar Float
@@ -38,7 +37,7 @@ type Money = Euro Float | Dollar Float
 
 Both these implementations fulfill the requirement of a `Money` type for the `Price`.
 
-These implementations cannot enforce the *add constraint* at compile time. Although, you can enforce that you don't get wrong results:
+These implementations cannot enforce the _add constraint_ at compile time. Although, you can enforce that you don't get wrong results:
 
 ```elm
 add : Money -> Money -> Maybe Money
@@ -57,7 +56,6 @@ When we have the choice between these 2 add type definitions, which one is best?
 I prefer `add : Money -> Money -> Maybe Money` for 2 reasons: (1) Invalid is not an actual type of money and (2) returning Maybe makes it very explicit that this an operation that can fail.
 
 Would it be possible to enforce the constraint of adding only the same currencies on compile time? Yes, like this:
-
 
 ```elm
 type Euro = Euro Float
@@ -142,10 +140,10 @@ Is it worth it of doing it like this? That totally depends on your use case. A l
 
 ## Update 2016-04-18
 
-*Zach May* left a nice comment (Thanks!) on the blog about an alternative solution:
+_Zach May_ left a nice comment (Thanks!) on the blog about an alternative solution:
 
 ```elm
-type USD = USD 
+type USD = USD
 type EUR = EUR
 
 type Money a = Money (Int, a)

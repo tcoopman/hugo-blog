@@ -2,7 +2,7 @@
 date = "2016-04-12T21:28:31+02:00"
 title = "Welcome"
 tags = ["general"]
-
+draft = false
 +++
 
 Welcome to the my new site written in [hugo](http://gohugo.io/).

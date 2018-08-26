@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Manillen on Thomas Coopman - Infinite Tree</title>
+    <link>https://infinitetree.eu/tags/manillen/</link>
+    <description>Recent content in Manillen on Thomas Coopman - Infinite Tree</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Apr 2016 21:01:30 +0200</lastBuildDate>
+    
+	<atom:link href="https://infinitetree.eu/tags/manillen/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Explain Manillen with types and Elm</title>
+      <link>https://infinitetree.eu/blog/2016/04/18/explain-manillen-with-types-and-elm/</link>
+      <pubDate>Mon, 18 Apr 2016 21:01:30 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2016/04/18/explain-manillen-with-types-and-elm/</guid>
+      <description>At Domain Drive Design Europe I met the wonderful @Felienne. In the evening we played the card game bridge (a game the Felienne likes a lot). As a West-Vlaming I love the card game Manillen more, of course, and we joked about it. Felienne has the ambition to create an AI to compete at the world championship of Computer Bridge, and I have joked about some similar ambitions of mine at Socrates Belgium, but this blog post has a much more humble goal.</description>
+    </item>
+    
+  </channel>
+</rss>

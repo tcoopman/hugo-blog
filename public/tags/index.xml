@@ -21,6 +21,24 @@
     </item>
     
     <item>
+      <title>Bank Kata</title>
+      <link>https://infinitetree.eu/tags/bank-kata/</link>
+      <pubDate>Sat, 25 Aug 2018 15:00:26 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/bank-kata/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Blog</title>
+      <link>https://infinitetree.eu/tags/blog/</link>
+      <pubDate>Mon, 29 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Bucklescript</title>
       <link>https://infinitetree.eu/tags/bucklescript/</link>
       <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
@@ -30,11 +48,38 @@
     </item>
     
     <item>
+      <title>Cordova</title>
+      <link>https://infinitetree.eu/tags/cordova/</link>
+      <pubDate>Mon, 29 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/cordova/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cqrs</title>
+      <link>https://infinitetree.eu/tags/cqrs/</link>
+      <pubDate>Thu, 13 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/cqrs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Ddd</title>
       <link>https://infinitetree.eu/tags/ddd/</link>
-      <pubDate>Wed, 08 Feb 2017 20:44:40 +0100</pubDate>
+      <pubDate>Sat, 03 Feb 2018 16:25:24 +0200</pubDate>
       
       <guid>https://infinitetree.eu/tags/ddd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dddeu</title>
+      <link>https://infinitetree.eu/tags/dddeu/</link>
+      <pubDate>Sat, 03 Feb 2018 16:25:24 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/dddeu/</guid>
       <description></description>
     </item>
     
@@ -66,6 +111,15 @@
     </item>
     
     <item>
+      <title>Flux</title>
+      <link>https://infinitetree.eu/tags/flux/</link>
+      <pubDate>Thu, 13 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/flux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Frontend</title>
       <link>https://infinitetree.eu/tags/frontend/</link>
       <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
@@ -89,6 +143,24 @@
       <pubDate>Tue, 03 Jan 2017 19:18:13 +0100</pubDate>
       
       <guid>https://infinitetree.eu/tags/goals/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kata</title>
+      <link>https://infinitetree.eu/tags/kata/</link>
+      <pubDate>Sat, 25 Aug 2018 15:00:26 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/kata/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Manillen</title>
+      <link>https://infinitetree.eu/tags/manillen/</link>
+      <pubDate>Mon, 18 Apr 2016 21:01:30 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/manillen/</guid>
       <description></description>
     </item>
     
@@ -131,7 +203,7 @@
     <item>
       <title>Ocaml</title>
       <link>https://infinitetree.eu/tags/ocaml/</link>
-      <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
+      <pubDate>Sat, 25 Aug 2018 15:00:26 +0200</pubDate>
       
       <guid>https://infinitetree.eu/tags/ocaml/</guid>
       <description></description>

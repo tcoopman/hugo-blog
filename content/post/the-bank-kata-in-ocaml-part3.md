@@ -134,6 +134,7 @@ include Make(struct let now () = "SystemClock" end)
 ```
 
 Where `"SystemClock"` is obviously a real system clock.
+The final code can be found here: https://github.com/tcoopman/bank-kata-ocaml
 
 ## Conclusion
 

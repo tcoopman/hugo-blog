@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  	<meta property="og:title" content=" The Bank Kata in Ocaml: Part 1 setting everything up &middot;  Thomas Coopman - Infinite Tree" />
+  	<meta property="og:site_name" content="Thomas Coopman - Infinite Tree" />
+  	<meta property="og:url" content="https://infinitetree.eu/blog/2018/08/23/the-bank-kata-in-ocaml-part-1-setting-everything-up/" />
+
+    
+  	<meta property="og:type" content="article" />
+
+    <meta property="og:article:published_time" content="2018-08-23T16:45:26&#43;02:00" />
+
+    
+    <meta property="og:article:tag" content="ocaml" />
+    
+    <meta property="og:article:tag" content="bank-kata" />
+    
+    <meta property="og:article:tag" content="kata" />
+    
+    
+
+
+  <title>
+     The Bank Kata in Ocaml: Part 1 setting everything up &middot;  Thomas Coopman - Infinite Tree
+  </title>
+
+    <meta name="description" content="Thomas Coopman - Software Consultant" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://infinitetree.eu/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="https://infinitetree.eu/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="https://infinitetree.eu/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://infinitetree.eu/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="https://infinitetree.eu/css/table.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400|Inconsolata" />
+
+
+    
+      
+          <link href="https://infinitetree.eu/index.xml" rel="alternate" type="application/rss+xml" title="Thomas Coopman - Infinite Tree" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.46" />
+
+    <link rel="canonical" href="https://infinitetree.eu/blog/2018/08/23/the-bank-kata-in-ocaml-part-1-setting-everything-up/" />
+
+    
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-56701000-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/">Blog</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/contact">Contact</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/resume">Resume</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="/workshop">Workshop</a>
+            </li>
+        
+            <h3>Follow me</h3>
+            <li class="nav-opened" role="presentation">
+            	<a href="https://twitter.com/tcoopman">Twitter timeline</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://github.com/tcoopman/">Github repos</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://bitbucket.org/tcoopman/">Bitbucket repos</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://www.linkedin.com/in/thomas-coopman-a6860622?trk=hp-identity-name">Linkedin</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://plus.google.com/u/0/109624499308077610663">Google Plus</a>
+            </li>
+        
+    </ul>
+    
+    
+    <a class="subscribe-button icon-feed" href="https://infinitetree.eu/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">The Bank Kata in Ocaml: Part 1 setting everything up</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2018-08-23T16:45:26&#43;02:00">
+            Aug 23, 2018
+          </time>
+        
+         
+          <span class="post-tag small"><a href="https://infinitetree.eu/tags/ocaml/">#ocaml</a></span>
+         
+          <span class="post-tag small"><a href="https://infinitetree.eu/tags/bank-kata/">#bank-kata</a></span>
+         
+          <span class="post-tag small"><a href="https://infinitetree.eu/tags/kata/">#kata</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      
+
+<p>The goal of this small series of blogs is to implement the <a href="https://github.com/sandromancuso/Bank-kata">Bank kata</a> in OCaml, doing it test and type driven and try to have a clean design. We&rsquo;ll try to implement the kata with outside-in tests. My personal goal is to learn some OCaml along the way. I won&rsquo;t be going into every detail of OCaml, but if you have some experience with an ML language, you should be able to follow along.</p>
+
+<p>I&rsquo;ve got the inspiration of doing this from a nice <a href="https://medium.com/@erik.sacre/clean-architecture-through-outside-in-tdd-64a31de17ccf">blog post</a> from Erik Sacre where he explores outside-in TDD.</p>
+
+<p>This is the outline of the blog posts:</p>
+
+<ol>
+<li>Creating the project: ready for tests</li>
+<li>Implementing a first outside-in test and implemeting it as fast as possible</li>
+<li>Implementing the clock</li>
+</ol>
+
+<h2 id="let-s-get-our-system-ready">Let&rsquo;s get our system ready</h2>
+
+<p>Before we can start, make sure you have <code>opam 2.0</code> (the ocaml package manager) installed on your system. If you haven&rsquo;t got it, go over <a href="https://opam.ocaml.org/doc/2.0/Install.html">here</a> to install it.</p>
+
+<p>If you&rsquo;ve already installed opam, make sure to run <code>opam update</code> regularly to stay up to date with the packages.</p>
+
+<h2 id="creating-the-project">Creating the project</h2>
+
+<p>In our favorite workspace directory we&rsquo;ll go and create a new directory:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir bank-kata
+<span style="color:#038">cd</span> bank-kata
+git init # I won<span style="color:#a61717;background-color:#e3d2d2">&#39;</span>t be showing you the commits</code></pre></div>
+<p>Now we are ready to initialize everything we need for the ocaml project:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">opam switch create . 4.07.0</pre></div>
+<p>This will let us work in the current directory with OCaml 4.07.0. The command has created an <code>_opam</code> folder which we want to add to <code>.gitignore</code>. Also add <code>_build</code> to <code>.gitignore</code>.</p>
+
+<p>At the end of the install there will be some command for you to run to update the local variables, for me (I&rsquo;m using <code>fish</code> instead of <code>bash</code>) this is <code>eval (opam env)</code> so make sure to run that, so all commands are available in your terminal.</p>
+
+<p>Now we are ready to install the base libraries that we need:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">opam install merlin ocp-indent dune</pre></div>
+<p><code>merlin</code> and <code>ocp-indent</code> are 2 tools so your editor can show you compile errors, type information and have some basic indenting. <code>dune</code> is the build tool we&rsquo;ll be using.</p>
+
+<p><em>If you&rsquo;ve did everything correct, you should have <code>dune 1.1.1</code> at least.</em></p>
+
+<p>Now let&rsquo;s create a new folder <code>test</code> with the file <code>dune</code> with these contents:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#369">library</span>
+    (<span style="color:#369">name</span> <span style="color:#369">test</span>)
+    (<span style="color:#369">libraries</span> <span style="color:#369">base</span> <span style="color:#369">stdio</span>)
+    (<span style="color:#369">inline_tests</span>)
+    (<span style="color:#369">preprocess</span> (<span style="color:#369">pps</span> <span style="color:#369">ppx_expect</span>))
+)</code></pre></div>
+<p>This creates a <a href="https://dune.readthedocs.io/">dune</a> library <code>test</code>, with a dependency on libraries <code>base</code> and <code>stdio</code>. The line <code>inline_tests</code> marks this as a test library and the last line includes the <code>ppx_expect</code> ppx to run <a href="https://github.com/janestreet/ppx_expect">expectation tests</a></p>
+
+<p>When we now run <code>dune runtest</code> we&rsquo;ll see that library base can&rsquo;t be found. You&rsquo;ll also see that running dune created a <code>dune-project</code> file in the root directory.</p>
+
+<p>The error output gives us a hint, running that hint we get to the real solution: <code>opam install base stdio</code>.</p>
+
+<p>When we run again we see that <code>ppx_expect</code> can&rsquo;t be found either. No more luck with the hints though :-(. Luckely the solution is the same: <code>opam install ppx_expect</code>.</p>
+
+<p>Now when we run <code>dune runtest</code> again we should have no more errors and no output either (because we haven&rsquo;t written any tests yet).</p>
+
+<h2 id="our-first-sanity-test">Our first sanity test</h2>
+
+<p>Create a file <code>test/test.ml</code> with these contents:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">open</span>! <span style="color:#b06;font-weight:bold">Base</span>
+<span style="color:#080;font-weight:bold">open</span>! <span style="color:#b06;font-weight:bold">Stdio</span>
+
+<span style="color:#080;font-weight:bold">let</span>%expect_test <span style="color:#d20;background-color:#fff0f0">&#34;Sanity&#34;</span> =
+  print_endline <span style="color:#d20;background-color:#fff0f0">&#34;Hello, World!&#34;</span>;
+  [%expect{||}]</code></pre></div>
+<p>The <code>let%expect_test</code> construct let&rsquo;s us test output to stdio in the <code>[%expect{||}]</code> block. Now when you run <code>dune runtest</code> you&rsquo;ll see the error, and you could change the <code>[%expect{||}]</code> block manually. But you can also run <code>dune runtest --auto-promote</code>, this will automatically change your expect lines in the source code to match the new output. Try to be careful with this, but it can be very useful, especially when all your code is in version control.</p>
+
+<p>Before we can move on to the kata, let&rsquo;s make sure we an other directory <code>lib</code> with a <code>dune</code> file:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#369">library</span>
+    (<span style="color:#369">name</span> <span style="color:#369">lib</span>)
+)</code></pre></div>
+<p>In <code>test/dune</code> add <code>lib</code> as a dependency to <code>libraries</code>. As a sanity check you can create a file <code>lib/Sanity.ml</code> with:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> sanity () =
+    print_endline <span style="color:#d20;background-color:#fff0f0">&#34;Hello, World!&#34;</span></code></pre></div>
+<p>and call it from your test:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span>%expect_test <span style="color:#d20;background-color:#fff0f0">&#34;Sanity&#34;</span> =
+  <span style="color:#b06;font-weight:bold">Lib</span>.<span style="color:#b06;font-weight:bold">Sanity</span>.test ();
+  [%expect{| <span style="color:#b06;font-weight:bold">Hello</span>, <span style="color:#b06;font-weight:bold">World</span>! |}]</code></pre></div>
+<p>If your tests still work, you can remove the <code>Sanity</code> file.
+I also removed the <code>test/test.ml</code> file so we have a clean setup to start the actual kata.</p>
+
+<p>In the next part we&rsquo;ll actually start implementing the kata</p>
+
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+    
+
+
+
+
+
+<section class="author">
+  <h4><a href="https://infinitetree.eu/">Thomas Coopman</a></h4>
+  
+  <p>Software Consultant</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Belgium</span>
+    <span class="author-link icon-link"><a href="https://infinitetree.eu">https://infinitetree.eu</a></span>
+  </div>
+</section>
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=The%20Bank%20Kata%20in%20Ocaml%3a%20Part%201%20setting%20everything%20up&amp;url=https%3a%2f%2finfinitetree.eu%2fblog%2f2018%2f08%2f23%2fthe-bank-kata-in-ocaml-part-1-setting-everything-up%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2finfinitetree.eu%2fblog%2f2018%2f08%2f23%2fthe-bank-kata-in-ocaml-part-1-setting-everything-up%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2finfinitetree.eu%2fblog%2f2018%2f08%2f23%2fthe-bank-kata-in-ocaml-part-1-setting-everything-up%2f&amp;description=The%20Bank%20Kata%20in%20Ocaml%3a%20Part%201%20setting%20everything%20up"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=https%3a%2f%2finfinitetree.eu%2fblog%2f2018%2f08%2f23%2fthe-bank-kata-in-ocaml-part-1-setting-everything-up%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'thomascoopmaneu';
+  var disqus_url = 'https:\/\/infinitetree.eu\/blog\/2018\/08\/23\/the-bank-kata-in-ocaml-part-1-setting-everything-up\/';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+  </footer>
+</article>
+
+</main>
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">Thomas Coopman - Infinite Tree</a> </section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="https://infinitetree.eu/js/jquery.js"></script>
+    <script type="text/javascript" src="https://infinitetree.eu/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://infinitetree.eu/js/index.js"></script>
+    
+</body>
+</html>
+

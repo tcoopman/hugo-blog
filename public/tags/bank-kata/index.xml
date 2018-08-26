@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bank Kata on Thomas Coopman - Infinite Tree</title>
+    <link>https://infinitetree.eu/tags/bank-kata/</link>
+    <description>Recent content in Bank Kata on Thomas Coopman - Infinite Tree</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 25 Aug 2018 15:00:26 +0200</lastBuildDate>
+    
+	<atom:link href="https://infinitetree.eu/tags/bank-kata/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The Bank Kata in Ocaml - Part 3: injecting a clock with Functors</title>
+      <link>https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml---part-3-injecting-a-clock-with-functors/</link>
+      <pubDate>Sat, 25 Aug 2018 15:00:26 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml---part-3-injecting-a-clock-with-functors/</guid>
+      <description>So at the end of part 2 we said we don&amp;rsquo;t like that we have to add the date as part of the public API. Which makes sense for a public bank terminal, we do a deposit or withdrawal now.
+So we&amp;rsquo;ll want to remove on from deposit and withdrawal. But where do the dates come from now? Let&amp;rsquo;s introduce a Clock module:
+Let&amp;rsquo;s see if we can rewrite our test to adapt to this new API</description>
+    </item>
+    
+    <item>
+      <title>The Bank Kata in Ocaml - Part 2: implementing the kata</title>
+      <link>https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml---part-2-implementing-the-kata/</link>
+      <pubDate>Sat, 25 Aug 2018 14:45:26 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml---part-2-implementing-the-kata/</guid>
+      <description>In part 1 we&amp;rsquo;ve set everything up, let&amp;rsquo;s implement the kata now. If we check the readme we can see a simple acceptance test, let&amp;rsquo;s start with that.
+We create a file test/account_test.ml:
+open! Base open! Stdio let%expect_test &amp;#34;Printing the statements should contain all transactions&amp;#34; = Lib.Account.create () |&amp;gt; Lib.Account.deposit ~amount:1000.0 ~on:&amp;#34;10/01/2012&amp;#34; |&amp;gt; Lib.Account.deposit ~amount:2000.0 ~on:&amp;#34;13/01/2012&amp;#34; |&amp;gt; Lib.Account.withdrawal ~amount:500.0 ~on:&amp;#34;14/01/2012&amp;#34; |&amp;gt; Lib.Account.print; [%expect{| date || amount || balance 14/01/2012 || -500.</description>
+    </item>
+    
+    <item>
+      <title>The Bank Kata in Ocaml: Part 1 setting everything up</title>
+      <link>https://infinitetree.eu/blog/2018/08/23/the-bank-kata-in-ocaml-part-1-setting-everything-up/</link>
+      <pubDate>Thu, 23 Aug 2018 16:45:26 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2018/08/23/the-bank-kata-in-ocaml-part-1-setting-everything-up/</guid>
+      <description>The goal of this small series of blogs is to implement the Bank kata in OCaml, doing it test and type driven and try to have a clean design. We&amp;rsquo;ll try to implement the kata with outside-in tests. My personal goal is to learn some OCaml along the way. I won&amp;rsquo;t be going into every detail of OCaml, but if you have some experience with an ML language, you should be able to follow along.</description>
+    </item>
+    
+  </channel>
+</rss>

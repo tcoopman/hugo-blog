@@ -6,10 +6,52 @@
     <description>Recent content in Posts on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 Oct 2017 08:56:00 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 25 Aug 2018 15:00:26 +0200</lastBuildDate>
     
 	<atom:link href="https://infinitetree.eu/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Bank Kata in Ocaml - Part 3: injecting a clock with Functors</title>
+      <link>https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml---part-3-injecting-a-clock-with-functors/</link>
+      <pubDate>Sat, 25 Aug 2018 15:00:26 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml---part-3-injecting-a-clock-with-functors/</guid>
+      <description>So at the end of part 2 we said we don&amp;rsquo;t like that we have to add the date as part of the public API. Which makes sense for a public bank terminal, we do a deposit or withdrawal now.
+So we&amp;rsquo;ll want to remove on from deposit and withdrawal. But where do the dates come from now? Let&amp;rsquo;s introduce a Clock module:
+Let&amp;rsquo;s see if we can rewrite our test to adapt to this new API</description>
+    </item>
+    
+    <item>
+      <title>The Bank Kata in Ocaml - Part 2: implementing the kata</title>
+      <link>https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml---part-2-implementing-the-kata/</link>
+      <pubDate>Sat, 25 Aug 2018 14:45:26 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml---part-2-implementing-the-kata/</guid>
+      <description>In part 1 we&amp;rsquo;ve set everything up, let&amp;rsquo;s implement the kata now. If we check the readme we can see a simple acceptance test, let&amp;rsquo;s start with that.
+We create a file test/account_test.ml:
+open! Base open! Stdio let%expect_test &amp;#34;Printing the statements should contain all transactions&amp;#34; = Lib.Account.create () |&amp;gt; Lib.Account.deposit ~amount:1000.0 ~on:&amp;#34;10/01/2012&amp;#34; |&amp;gt; Lib.Account.deposit ~amount:2000.0 ~on:&amp;#34;13/01/2012&amp;#34; |&amp;gt; Lib.Account.withdrawal ~amount:500.0 ~on:&amp;#34;14/01/2012&amp;#34; |&amp;gt; Lib.Account.print; [%expect{| date || amount || balance 14/01/2012 || -500.</description>
+    </item>
+    
+    <item>
+      <title>The Bank Kata in Ocaml: Part 1 setting everything up</title>
+      <link>https://infinitetree.eu/blog/2018/08/23/the-bank-kata-in-ocaml-part-1-setting-everything-up/</link>
+      <pubDate>Thu, 23 Aug 2018 16:45:26 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2018/08/23/the-bank-kata-in-ocaml-part-1-setting-everything-up/</guid>
+      <description>The goal of this small series of blogs is to implement the Bank kata in OCaml, doing it test and type driven and try to have a clean design. We&amp;rsquo;ll try to implement the kata with outside-in tests. My personal goal is to learn some OCaml along the way. I won&amp;rsquo;t be going into every detail of OCaml, but if you have some experience with an ML language, you should be able to follow along.</description>
+    </item>
+    
+    <item>
+      <title>My summary of DDD Europe 2018</title>
+      <link>https://infinitetree.eu/blog/2018/02/03/my-summary-of-ddd-europe-2018/</link>
+      <pubDate>Sat, 03 Feb 2018 16:25:24 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2018/02/03/my-summary-of-ddd-europe-2018/</guid>
+      <description>Well, that was a blast. DDD Europe 2018 is already over. And I loved it! Because I had lovely conversations, great insights and good learnings, I had the idea to create a summary, mostly for myself.
+Pre conference workshop DIY Event Sourcing Tooling A pre conference workshop by Marijn Huizendveld on Tuesday and Wednesday.
+This workshop about making your own event sourcing tooling was not exactly what I expected it to be.</description>
+    </item>
     
     <item>
       <title>Why I choose Bucklescript</title>
@@ -76,6 +118,15 @@ It just happens that Program Phoenix by by Chris McCord, Bruce Tate, and José V
     </item>
     
     <item>
+      <title>Explain Manillen with types and Elm</title>
+      <link>https://infinitetree.eu/blog/2016/04/18/explain-manillen-with-types-and-elm/</link>
+      <pubDate>Mon, 18 Apr 2016 21:01:30 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2016/04/18/explain-manillen-with-types-and-elm/</guid>
+      <description>At Domain Drive Design Europe I met the wonderful @Felienne. In the evening we played the card game bridge (a game the Felienne likes a lot). As a West-Vlaming I love the card game Manillen more, of course, and we joked about it. Felienne has the ambition to create an AI to compete at the world championship of Computer Bridge, and I have joked about some similar ambitions of mine at Socrates Belgium, but this blog post has a much more humble goal.</description>
+    </item>
+    
+    <item>
       <title>Modelling money in Elm</title>
       <link>https://infinitetree.eu/blog/2016/04/12/modelling-money-in-elm/</link>
       <pubDate>Tue, 12 Apr 2016 22:28:31 +0200</pubDate>
@@ -97,6 +148,15 @@ So without further ado, let&amp;rsquo;s start blogging :)</description>
     </item>
     
     <item>
+      <title>Refactor till you drop</title>
+      <link>https://infinitetree.eu/blog/2015/12/04/refactor-till-you-drop/</link>
+      <pubDate>Fri, 04 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2015/12/04/refactor-till-you-drop/</guid>
+      <description>Introduction Iteration 1 function getSymbol(symbolName) { return &amp;#39;replace&amp;#39;; } function escapeRegExp(string) { return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, &amp;#34;\\$1&amp;#34;); } function SymbolReplacer(s) { this.alreadyReplaced = []; this.stringToReplace = s; } //iteration 1 https://sites.google.com/site/unclebobconsultingllc/one-thing-extract-till-you-drop SymbolReplacer.prototype.replace = function() { var symbolPattern = /\$([a-zA-Z]\w*)/g; var matches; while (matches = symbolPattern.exec(this.stringToReplace)) { var symbolName = matches[1]; if (getSymbol(symbolName) !== null &amp;amp;&amp;amp; this.alreadyReplaced.indexOf(symbolName) === -1) { this.alreadyReplaced.push(symbolName); var toReplace = new RegExp(escapeRegExp(matches[0]), &amp;#39;g&amp;#39;); this.stringToReplace = this.stringToReplace.replace(toReplace, getSymbol(symbolName)); } } } var x = new SymbolReplacer(&amp;#39;dit $is een $test $test $test $is $complex gewoon woord&amp;#39;); console.</description>
+    </item>
+    
+    <item>
       <title>Testing ES6 code</title>
       <link>https://infinitetree.eu/blog/2015/01/13/testing-es6-code/</link>
       <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
@@ -104,6 +164,18 @@ So without further ado, let&amp;rsquo;s start blogging :)</description>
       <guid>https://infinitetree.eu/blog/2015/01/13/testing-es6-code/</guid>
       <description>Recently, I&amp;rsquo;ve changed my webpack workflow, and switched to 6to5, to be able to write more of my React code in ES6 than the current jsx transpiler supports (and because 6to5 just rocks!). You can find this workflow in my boilerplate-webpack-react project. Switching was easy. I&amp;rsquo;ve just replaced jsx-loader with 6to5-loader and everything worked correctly.
 Writing code and developing is a breeze with this workflow, especially with react-hot-loader. I didn&amp;rsquo;t look into writing test though yet, and it took me a little while to find out how to do it, so I explain it here.</description>
+    </item>
+    
+    <item>
+      <title>Flux and cqrs</title>
+      <link>https://infinitetree.eu/blog/2014/11/13/flux-and-cqrs/</link>
+      <pubDate>Thu, 13 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2014/11/13/flux-and-cqrs/</guid>
+      <description>About flux and cqrs, what do I want to write about this???
+Things I want to find out. actions in the past: because it&amp;rsquo;s something that has happend. nothing todo about it.
+deleting actions is not possible, only update. Store all actions in an event store for replay?
+How about authentication and validation actions and flux. For example: action &amp;lsquo;MESSAGE_SUBMITTED&amp;rsquo;. But the message must be validated before it is added.</description>
     </item>
     
     <item>
@@ -115,6 +187,24 @@ Writing code and developing is a breeze with this workflow, especially with reac
       <description>My name is Thomas Coopman and I&amp;rsquo;m a 29 year old developer. Recently I&amp;rsquo;ve officially started freelancing/consulting in my spare time. That&amp;rsquo;s the main reason for creating this site and blog.
 On this site you can find some more information about me. At the portfolio page you can see some things I&amp;rsquo;ve created. That page is empty at the moment but it will be coming soon.
 I&amp;rsquo;m a developer, mostly a web-developer (backend and frontend).</description>
+    </item>
+    
+    <item>
+      <title>Creating my first cordova app</title>
+      <link>https://infinitetree.eu/blog/2014/09/29/creating-my-first-cordova-app/</link>
+      <pubDate>Mon, 29 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2014/09/29/creating-my-first-cordova-app/</guid>
+      <description>installation on ubuntu 14.04 prerequisites sudo apt-get install default-jdk
+sudo apt-get install ant
+npm install -g cordova android sdk http://developer.android.com/sdk/index.html
+creating a project in folder cordova create test-app cd test-app
+set the android emulator PATH=$PATH:~/Software/android-sdk-linux_x64/platform-tools/:~/Software/android-sdk-linux_x64/tools/  android installed Android 4.4.2 (API 19)
+add a platform cordova platform add android
+set everything in www run connect device in debugg
+cordova run android
+emulate android tools cordova emulate android
+webview chrome://inspect/#devices https://developer.</description>
     </item>
     
     <item>
