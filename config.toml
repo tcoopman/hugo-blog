@@ -65,10 +65,6 @@ weight = 102
 name = "Linkedin"
 url =  "https://www.linkedin.com/in/thomas-coopman-a6860622?trk=hp-identity-name"
 weight = 103
-[[menu.main]]
-name = "Google Plus"
-url =  "https://plus.google.com/u/0/109624499308077610663"
-weight = 104
 
 [params]
 author = "Thomas Coopman"
