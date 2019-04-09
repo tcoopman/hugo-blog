@@ -40,12 +40,12 @@
         <link href="https://infinitetree.eu/post/index.xml" rel="alternate" type="application/rss+xml" title="Posts &middot; Thomas Coopman - Infinite Tree" />
       
     
-    <meta name="generator" content="Hugo 0.46" />
+    <meta name="generator" content="Hugo 0.54.0" />
 
     <link rel="canonical" href="https://infinitetree.eu/post/" />
 
     
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -110,11 +110,6 @@ if (!doNotTrack) {
             	<a href="https://www.linkedin.com/in/thomas-coopman-a6860622?trk=hp-identity-name">Linkedin</a>
             </li>
         
-            
-            <li class="nav-opened" role="presentation">
-            	<a href="https://plus.google.com/u/0/109624499308077610663">Google Plus</a>
-            </li>
-        
     </ul>
     
     
@@ -165,12 +160,40 @@ if (!doNotTrack) {
 	   
 <article class="post post">
     <header class="post-header">
-        <h2 class="post-title"><a href="/blog/2018/08/25/the-bank-kata-in-ocaml---part-3-injecting-a-clock-with-functors/">The Bank Kata in Ocaml - Part 3: injecting a clock with Functors</a></h2>
+        <h2 class="post-title"><a href="/blog/2019/04/06/the-ergodox-ez-keyboard/">The Ergodox Ez Keyboard</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>I think it was somewhere last year that I felt some pain in some of the fingers of my right hand for the first time. Mostly my thumb and pink felt unconfortable. Around the same period I also felt some pain in my right shoulder. It wasn&rsquo;t exactly at the same time but I found it a little disturbing knowing that as a developper these are things to watch out for. <a class="read-more" href="/blog/2019/04/06/the-ergodox-ez-keyboard/">&raquo;</a></p>
+    </section>
+    <footer class="post-meta">
+        
+        
+        
+            Thomas Coopman
+        
+        on
+            
+                <a href="https://infinitetree.eu/tags/ergonomic/">#Ergonomic</a>,
+            
+                <a href="https://infinitetree.eu/tags/ergodox/">#Ergodox</a>,
+            
+        
+        <time class="post-date" datetime="2019-04-06T10:01:59&#43;02:00">
+            6 Apr 2019
+        </time>
+    </footer>
+</article>
+
+	
+	   
+<article class="post post">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/blog/2018/08/25/the-bank-kata-in-ocaml-part-3-injecting-a-clock-with-functors/">The Bank Kata in Ocaml - Part 3: injecting a clock with Functors</a></h2>
     </header>
     <section class="post-excerpt">
         <p>So at the end of part 2 we said we don&rsquo;t like that we have to add the date as part of the public API. Which makes sense for a public bank terminal, we do a deposit or withdrawal now.
 So we&rsquo;ll want to remove on from deposit and withdrawal. But where do the dates come from now? Let&rsquo;s introduce a Clock module:
-Let&rsquo;s see if we can rewrite our test to adapt to this new API <a class="read-more" href="/blog/2018/08/25/the-bank-kata-in-ocaml---part-3-injecting-a-clock-with-functors/">&raquo;</a></p>
+Let&rsquo;s see if we can rewrite our test to adapt to this new API <a class="read-more" href="/blog/2018/08/25/the-bank-kata-in-ocaml-part-3-injecting-a-clock-with-functors/">&raquo;</a></p>
     </section>
     <footer class="post-meta">
         
@@ -197,12 +220,12 @@ Let&rsquo;s see if we can rewrite our test to adapt to this new API <a class="re
 	   
 <article class="post post">
     <header class="post-header">
-        <h2 class="post-title"><a href="/blog/2018/08/25/the-bank-kata-in-ocaml---part-2-implementing-the-kata/">The Bank Kata in Ocaml - Part 2: implementing the kata</a></h2>
+        <h2 class="post-title"><a href="/blog/2018/08/25/the-bank-kata-in-ocaml-part-2-implementing-the-kata/">The Bank Kata in Ocaml - Part 2: implementing the kata</a></h2>
     </header>
     <section class="post-excerpt">
         <p>In part 1 we&rsquo;ve set everything up, let&rsquo;s implement the kata now. If we check the readme we can see a simple acceptance test, let&rsquo;s start with that.
 We create a file test/account_test.ml:
-open! Base open! Stdio let%expect_test &#34;Printing the statements should contain all transactions&#34; = Lib.Account.create () |&gt; Lib.Account.deposit ~amount:1000.0 ~on:&#34;10/01/2012&#34; |&gt; Lib.Account.deposit ~amount:2000.0 ~on:&#34;13/01/2012&#34; |&gt; Lib.Account.withdrawal ~amount:500.0 ~on:&#34;14/01/2012&#34; |&gt; Lib.Account.print; [%expect{| date || amount || balance 14/01/2012 || -500. <a class="read-more" href="/blog/2018/08/25/the-bank-kata-in-ocaml---part-2-implementing-the-kata/">&raquo;</a></p>
+open! Base open! Stdio let%expect_test &#34;Printing the statements should contain all transactions&#34; = Lib.Account.create () |&gt; Lib.Account.deposit ~amount:1000.0 ~on:&#34;10/01/2012&#34; |&gt; Lib.Account.deposit ~amount:2000.0 ~on:&#34;13/01/2012&#34; |&gt; Lib.Account.withdrawal ~amount:500.0 ~on:&#34;14/01/2012&#34; |&gt; Lib.Account.print; [%expect{| date || amount || balance 14/01/2012 || -500. <a class="read-more" href="/blog/2018/08/25/the-bank-kata-in-ocaml-part-2-implementing-the-kata/">&raquo;</a></p>
     </section>
     <footer class="post-meta">
         
@@ -438,35 +461,6 @@ So at this arbitrary point in time, lets look back and forward
         
         <time class="post-date" datetime="2017-01-03T19:18:13&#43;01:00">
             3 Jan 2017
-        </time>
-    </footer>
-</article>
-
-	
-	   
-<article class="post post">
-    <header class="post-header">
-        <h2 class="post-title"><a href="/blog/2016/06/26/programming-phoenix-review/">Programming Phoenix review</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>Elixir and Phoenix crossed my path multiple times last year. I read a really interesting tutorial on building a web framework from scratch. Furthermore, Phoenix is really popular as an Elm backend, so I decided it was time to dive a bit deeper and learn myself some Phoenix.
-It just happens that Program Phoenix by by Chris McCord, Bruce Tate, and José Valim was published recently, so this seemed like a good opportunity to learn more! <a class="read-more" href="/blog/2016/06/26/programming-phoenix-review/">&raquo;</a></p>
-    </section>
-    <footer class="post-meta">
-        
-        
-        
-            Thomas Coopman
-        
-        on
-            
-                <a href="https://infinitetree.eu/tags/elixir/">#elixir</a>,
-            
-                <a href="https://infinitetree.eu/tags/phoenix/">#phoenix</a>,
-            
-        
-        <time class="post-date" datetime="2016-06-26T10:49:59&#43;02:00">
-            26 Jun 2016
         </time>
     </footer>
 </article>

@@ -48,12 +48,12 @@
       
       
     
-    <meta name="generator" content="Hugo 0.46" />
+    <meta name="generator" content="Hugo 0.54.0" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2018/08/23/the-bank-kata-in-ocaml-part-1-setting-everything-up/" />
 
     
-<script>
+<script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
 	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
@@ -116,11 +116,6 @@ if (!doNotTrack) {
             
             <li class="nav-opened" role="presentation">
             	<a href="https://www.linkedin.com/in/thomas-coopman-a6860622?trk=hp-identity-name">Linkedin</a>
-            </li>
-        
-            
-            <li class="nav-opened" role="presentation">
-            	<a href="https://plus.google.com/u/0/109624499308077610663">Google Plus</a>
             </li>
         
     </ul>
@@ -203,7 +198,7 @@ if (!doNotTrack) {
 <p>In our favorite workspace directory we&rsquo;ll go and create a new directory:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir bank-kata
 <span style="color:#038">cd</span> bank-kata
-git init # I won<span style="color:#a61717;background-color:#e3d2d2">&#39;</span>t be showing you the commits</code></pre></div>
+git init <span style="color:#888"># I won&#39;t be showing you the commits</span></code></pre></div>
 <p>Now we are ready to initialize everything we need for the ocaml project:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">opam switch create . 4.07.0</pre></div>
 <p>This will let us work in the current directory with OCaml 4.07.0. The command has created an <code>_opam</code> folder which we want to add to <code>.gitignore</code>. Also add <code>_build</code> to <code>.gitignore</code>.</p>

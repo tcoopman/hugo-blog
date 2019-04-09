@@ -3,12 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml---part-3-injecting-a-clock-with-functors/</loc>
+    <loc>https://infinitetree.eu/blog/2019/04/06/the-ergodox-ez-keyboard/</loc>
+    <lastmod>2019-04-06T10:01:59+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml-part-3-injecting-a-clock-with-functors/</loc>
     <lastmod>2018-08-25T15:00:26+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml---part-2-implementing-the-kata/</loc>
+    <loc>https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml-part-2-implementing-the-kata/</loc>
     <lastmod>2018-08-25T14:45:26+02:00</lastmod>
   </url>
   
@@ -182,6 +187,18 @@
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/tags/ergodox/</loc>
+    <lastmod>2019-04-06T10:01:59+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/ergonomic/</loc>
+    <lastmod>2019-04-06T10:01:59+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/tags/es6/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -267,7 +284,7 @@
   
   <url>
     <loc>https://infinitetree.eu/post/</loc>
-    <lastmod>2018-08-25T15:00:26+02:00</lastmod>
+    <lastmod>2019-04-06T10:01:59+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -297,7 +314,7 @@
   
   <url>
     <loc>https://infinitetree.eu/</loc>
-    <lastmod>2018-08-25T15:00:26+02:00</lastmod>
+    <lastmod>2019-04-06T10:01:59+02:00</lastmod>
     <priority>0</priority>
   </url>
   

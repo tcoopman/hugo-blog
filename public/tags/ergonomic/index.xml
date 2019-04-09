@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ergonomic on Thomas Coopman - Infinite Tree</title>
+    <link>https://infinitetree.eu/tags/ergonomic/</link>
+    <description>Recent content in Ergonomic on Thomas Coopman - Infinite Tree</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 06 Apr 2019 10:01:59 +0200</lastBuildDate>
+    
+	<atom:link href="https://infinitetree.eu/tags/ergonomic/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The Ergodox Ez Keyboard</title>
+      <link>https://infinitetree.eu/blog/2019/04/06/the-ergodox-ez-keyboard/</link>
+      <pubDate>Sat, 06 Apr 2019 10:01:59 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2019/04/06/the-ergodox-ez-keyboard/</guid>
+      <description>I think it was somewhere last year that I felt some pain in some of the fingers of my right hand for the first time. Mostly my thumb and pink felt unconfortable. Around the same period I also felt some pain in my right shoulder. It wasn&amp;rsquo;t exactly at the same time but I found it a little disturbing knowing that as a developper these are things to watch out for.</description>
+    </item>
+    
+  </channel>
+</rss>
