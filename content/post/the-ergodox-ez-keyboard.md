@@ -7,7 +7,7 @@ comments = true
 share = true
 +++
 
-I think it was somewhere last year that I felt some pain in some of the fingers of my right hand for the first time. Mostly my thumb and pink felt unconfortable.
+I think it was somewhere last year that I felt some pain in some of the fingers of my right hand for the first time. Mostly my thumb and pink felt uncomfortable.
 Around the same period I also felt some pain in my right shoulder. It wasn't exactly at the same time but I found it a little disturbing knowing that as a developper these are things to watch out for.
 Before last year I never had any issues, so I wasn't worried too much and felt that some attention to it would hopefully make it better.
 
@@ -42,7 +42,7 @@ To test this I've done some tests on https://keyhero.com/ and https://typing.io/
 
 Switching back to a regular keyboard already felt a bit weird, so I'm not sure how that will go daily, I won't buy a second Ergodox and won't take it everyday to work, but I'm confident that switching between keyboards will become natural after a while (I'm still pretty capable of switching to Azerty if needed).
 
-My last remark about the keyboard is that it's a mechanical keyboard and I'm not yet sure if I like that 100% (The second day this already feels better than the first day, but it makes more noice than I'm used to).
+My last remark about the keyboard is that it's a mechanical keyboard and I'm not yet sure if I like that 100% (The second day this already feels better than the first day, but it makes more noise than I'm used to).
 
 All in all it's a little early to give solid feedback on the keyboard, but it is fun to play with, feels good and some change of position won't hurt I hope.
 
@@ -52,7 +52,7 @@ I also think that my mouse usage is the biggest issue for the shoulder, and I'm 
 
 As a last thought these things might also help:
 
-1. Regular expercise. I've noticed that in periods that I excercise/fitness, my shoulder got better. If only I didn't find fitness such a dread.
+1. Regular exercise. I've noticed that in periods that I excercise/fitness, my shoulder got better. If only I didn't find fitness such a dread.
 2. I could try to switch my mouse usage between left and right hand. I'm left handed and use my mouse in my right hand, switching should not be that hard if I have a left handed mouse as well.
 3. Have more attention for pain and stop and switch positions when I feel things that don't feel right.
 
