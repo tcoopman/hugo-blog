@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cordova on Thomas Coopman - Infinite Tree</title>
+    <title>cordova on Thomas Coopman - Infinite Tree</title>
     <link>https://infinitetree.eu/tags/cordova/</link>
-    <description>Recent content in Cordova on Thomas Coopman - Infinite Tree</description>
+    <description>Recent content in cordova on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Sep 2014 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://infinitetree.eu/tags/cordova/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 29 Sep 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://infinitetree.eu/tags/cordova/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Creating my first cordova app</title>
       <link>https://infinitetree.eu/blog/2014/09/29/creating-my-first-cordova-app/</link>
@@ -21,12 +17,13 @@
 sudo apt-get install ant
 npm install -g cordova android sdk http://developer.android.com/sdk/index.html
 creating a project in folder cordova create test-app cd test-app
-set the android emulator PATH=$PATH:~/Software/android-sdk-linux_x64/platform-tools/:~/Software/android-sdk-linux_x64/tools/  android installed Android 4.4.2 (API 19)
+set the android emulator PATH=$PATH:~/Software/android-sdk-linux_x64/platform-tools/:~/Software/android-sdk-linux_x64/tools/ android installed Android 4.4.2 (API 19)
 add a platform cordova platform add android
 set everything in www run connect device in debugg
 cordova run android
 emulate android tools cordova emulate android
-webview chrome://inspect/#devices https://developer.</description>
+webview chrome://inspect/#devices https://developer.chrome.com/devtools/docs/remote-debugging#debugging-webviews
+https://issues.apache.org/jira/browse/CB-5487 http://www.</description>
     </item>
     
   </channel>

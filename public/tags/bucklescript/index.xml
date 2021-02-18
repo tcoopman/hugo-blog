@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Bucklescript on Thomas Coopman - Infinite Tree</title>
+    <title>bucklescript on Thomas Coopman - Infinite Tree</title>
     <link>https://infinitetree.eu/tags/bucklescript/</link>
-    <description>Recent content in Bucklescript on Thomas Coopman - Infinite Tree</description>
+    <description>Recent content in bucklescript on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 Oct 2017 08:56:00 +0100</lastBuildDate>
-    
-	<atom:link href="https://infinitetree.eu/tags/bucklescript/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 28 Oct 2017 08:56:00 +0100</lastBuildDate><atom:link href="https://infinitetree.eu/tags/bucklescript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Why I choose Bucklescript</title>
       <link>https://infinitetree.eu/blog/2017/10/28/why-i-choose-bucklescript/</link>

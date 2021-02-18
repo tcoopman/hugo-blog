@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>React on Thomas Coopman - Infinite Tree</title>
+    <title>react on Thomas Coopman - Infinite Tree</title>
     <link>https://infinitetree.eu/tags/react/</link>
-    <description>Recent content in React on Thomas Coopman - Infinite Tree</description>
+    <description>Recent content in react on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 13 Jan 2015 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://infinitetree.eu/tags/react/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 13 Jan 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://infinitetree.eu/tags/react/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Testing ES6 code</title>
       <link>https://infinitetree.eu/blog/2015/01/13/testing-es6-code/</link>
@@ -30,7 +26,7 @@ Writing code and developing is a breeze with this workflow, especially with reac
       <description>About flux and cqrs, what do I want to write about this???
 Things I want to find out. actions in the past: because it&amp;rsquo;s something that has happend. nothing todo about it.
 deleting actions is not possible, only update. Store all actions in an event store for replay?
-How about authentication and validation actions and flux. For example: action &amp;lsquo;MESSAGE_SUBMITTED&amp;rsquo;. But the message must be validated before it is added.</description>
+How about authentication and validation actions and flux. For example: action &amp;lsquo;MESSAGE_SUBMITTED&amp;rsquo;. But the message must be validated before it is added. The MessageStore is responsible for validating because it&amp;rsquo;s specific logic of the store.</description>
     </item>
     
     <item>
@@ -43,12 +39,13 @@ How about authentication and validation actions and flux. For example: action &a
 sudo apt-get install ant
 npm install -g cordova android sdk http://developer.android.com/sdk/index.html
 creating a project in folder cordova create test-app cd test-app
-set the android emulator PATH=$PATH:~/Software/android-sdk-linux_x64/platform-tools/:~/Software/android-sdk-linux_x64/tools/  android installed Android 4.4.2 (API 19)
+set the android emulator PATH=$PATH:~/Software/android-sdk-linux_x64/platform-tools/:~/Software/android-sdk-linux_x64/tools/ android installed Android 4.4.2 (API 19)
 add a platform cordova platform add android
 set everything in www run connect device in debugg
 cordova run android
 emulate android tools cordova emulate android
-webview chrome://inspect/#devices https://developer.</description>
+webview chrome://inspect/#devices https://developer.chrome.com/devtools/docs/remote-debugging#debugging-webviews
+https://issues.apache.org/jira/browse/CB-5487 http://www.</description>
     </item>
     
   </channel>

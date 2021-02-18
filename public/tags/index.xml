@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Thomas Coopman - Infinite Tree</title>
@@ -6,98 +6,40 @@
     <description>Recent content in Tags on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Jan 2017 19:18:13 +0100</lastBuildDate>
-    
-	<atom:link href="https://infinitetree.eu/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 04 Jul 2019 14:54:24 +0200</lastBuildDate><atom:link href="https://infinitetree.eu/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>2017</title>
-      <link>https://infinitetree.eu/tags/2017/</link>
-      <pubDate>Tue, 03 Jan 2017 19:18:13 +0100</pubDate>
-      
-      <guid>https://infinitetree.eu/tags/2017/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Bank Kata</title>
-      <link>https://infinitetree.eu/tags/bank-kata/</link>
-      <pubDate>Sat, 25 Aug 2018 15:00:26 +0200</pubDate>
-      
-      <guid>https://infinitetree.eu/tags/bank-kata/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Blog</title>
-      <link>https://infinitetree.eu/tags/blog/</link>
-      <pubDate>Mon, 29 Sep 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://infinitetree.eu/tags/blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Bucklescript</title>
-      <link>https://infinitetree.eu/tags/bucklescript/</link>
-      <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
-      
-      <guid>https://infinitetree.eu/tags/bucklescript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cordova</title>
-      <link>https://infinitetree.eu/tags/cordova/</link>
-      <pubDate>Mon, 29 Sep 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://infinitetree.eu/tags/cordova/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cqrs</title>
-      <link>https://infinitetree.eu/tags/cqrs/</link>
-      <pubDate>Thu, 13 Nov 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://infinitetree.eu/tags/cqrs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ddd</title>
+      <title>DDD</title>
       <link>https://infinitetree.eu/tags/ddd/</link>
-      <pubDate>Sat, 03 Feb 2018 16:25:24 +0200</pubDate>
+      <pubDate>Thu, 04 Jul 2019 14:54:24 +0200</pubDate>
       
       <guid>https://infinitetree.eu/tags/ddd/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Dddeu</title>
-      <link>https://infinitetree.eu/tags/dddeu/</link>
-      <pubDate>Sat, 03 Feb 2018 16:25:24 +0200</pubDate>
+      <title>event sourcing</title>
+      <link>https://infinitetree.eu/tags/event-sourcing/</link>
+      <pubDate>Thu, 04 Jul 2019 14:54:24 +0200</pubDate>
       
-      <guid>https://infinitetree.eu/tags/dddeu/</guid>
+      <guid>https://infinitetree.eu/tags/event-sourcing/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Elixir</title>
-      <link>https://infinitetree.eu/tags/elixir/</link>
-      <pubDate>Wed, 21 Mar 2018 15:16:24 +0200</pubDate>
+      <title>event store</title>
+      <link>https://infinitetree.eu/tags/event-store/</link>
+      <pubDate>Thu, 04 Jul 2019 14:54:24 +0200</pubDate>
       
-      <guid>https://infinitetree.eu/tags/elixir/</guid>
+      <guid>https://infinitetree.eu/tags/event-store/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Elm</title>
-      <link>https://infinitetree.eu/tags/elm/</link>
-      <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
+      <title>event storming</title>
+      <link>https://infinitetree.eu/tags/event-storming/</link>
+      <pubDate>Thu, 04 Jul 2019 14:54:24 +0200</pubDate>
       
-      <guid>https://infinitetree.eu/tags/elm/</guid>
+      <guid>https://infinitetree.eu/tags/event-storming/</guid>
       <description></description>
     </item>
     
@@ -120,52 +62,16 @@
     </item>
     
     <item>
-      <title>Es6</title>
-      <link>https://infinitetree.eu/tags/es6/</link>
-      <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
+      <title>bank-kata</title>
+      <link>https://infinitetree.eu/tags/bank-kata/</link>
+      <pubDate>Sat, 25 Aug 2018 15:00:26 +0200</pubDate>
       
-      <guid>https://infinitetree.eu/tags/es6/</guid>
+      <guid>https://infinitetree.eu/tags/bank-kata/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Flux</title>
-      <link>https://infinitetree.eu/tags/flux/</link>
-      <pubDate>Thu, 13 Nov 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://infinitetree.eu/tags/flux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Frontend</title>
-      <link>https://infinitetree.eu/tags/frontend/</link>
-      <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
-      
-      <guid>https://infinitetree.eu/tags/frontend/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>General</title>
-      <link>https://infinitetree.eu/tags/general/</link>
-      <pubDate>Tue, 03 Jan 2017 19:18:13 +0100</pubDate>
-      
-      <guid>https://infinitetree.eu/tags/general/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Goals</title>
-      <link>https://infinitetree.eu/tags/goals/</link>
-      <pubDate>Tue, 03 Jan 2017 19:18:13 +0100</pubDate>
-      
-      <guid>https://infinitetree.eu/tags/goals/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Kata</title>
+      <title>kata</title>
       <link>https://infinitetree.eu/tags/kata/</link>
       <pubDate>Sat, 25 Aug 2018 15:00:26 +0200</pubDate>
       
@@ -174,52 +80,7 @@
     </item>
     
     <item>
-      <title>Manillen</title>
-      <link>https://infinitetree.eu/tags/manillen/</link>
-      <pubDate>Mon, 18 Apr 2016 21:01:30 +0200</pubDate>
-      
-      <guid>https://infinitetree.eu/tags/manillen/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Microservices</title>
-      <link>https://infinitetree.eu/tags/microservices/</link>
-      <pubDate>Wed, 27 Sep 2017 14:39:00 +0100</pubDate>
-      
-      <guid>https://infinitetree.eu/tags/microservices/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ml</title>
-      <link>https://infinitetree.eu/tags/ml/</link>
-      <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
-      
-      <guid>https://infinitetree.eu/tags/ml/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Modelling</title>
-      <link>https://infinitetree.eu/tags/modelling/</link>
-      <pubDate>Wed, 08 Feb 2017 20:44:40 +0100</pubDate>
-      
-      <guid>https://infinitetree.eu/tags/modelling/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Nerves</title>
-      <link>https://infinitetree.eu/tags/nerves/</link>
-      <pubDate>Wed, 21 Mar 2018 15:16:24 +0200</pubDate>
-      
-      <guid>https://infinitetree.eu/tags/nerves/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ocaml</title>
+      <title>ocaml</title>
       <link>https://infinitetree.eu/tags/ocaml/</link>
       <pubDate>Sat, 25 Aug 2018 15:00:26 +0200</pubDate>
       
@@ -228,25 +89,25 @@
     </item>
     
     <item>
-      <title>Other</title>
-      <link>https://infinitetree.eu/tags/other/</link>
-      <pubDate>Sat, 04 Oct 2014 00:00:00 +0000</pubDate>
+      <title>elixir</title>
+      <link>https://infinitetree.eu/tags/elixir/</link>
+      <pubDate>Wed, 21 Mar 2018 15:16:24 +0200</pubDate>
       
-      <guid>https://infinitetree.eu/tags/other/</guid>
+      <guid>https://infinitetree.eu/tags/elixir/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Phoenix</title>
-      <link>https://infinitetree.eu/tags/phoenix/</link>
-      <pubDate>Sun, 26 Jun 2016 10:49:59 +0200</pubDate>
+      <title>nerves</title>
+      <link>https://infinitetree.eu/tags/nerves/</link>
+      <pubDate>Wed, 21 Mar 2018 15:16:24 +0200</pubDate>
       
-      <guid>https://infinitetree.eu/tags/phoenix/</guid>
+      <guid>https://infinitetree.eu/tags/nerves/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Raspberry Pi</title>
+      <title>raspberry pi</title>
       <link>https://infinitetree.eu/tags/raspberry-pi/</link>
       <pubDate>Wed, 21 Mar 2018 15:16:24 +0200</pubDate>
       
@@ -255,7 +116,7 @@
     </item>
     
     <item>
-      <title>Rbp</title>
+      <title>rbp</title>
       <link>https://infinitetree.eu/tags/rbp/</link>
       <pubDate>Wed, 21 Mar 2018 15:16:24 +0200</pubDate>
       
@@ -264,16 +125,52 @@
     </item>
     
     <item>
-      <title>React</title>
-      <link>https://infinitetree.eu/tags/react/</link>
-      <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
+      <title>dddeu</title>
+      <link>https://infinitetree.eu/tags/dddeu/</link>
+      <pubDate>Sat, 03 Feb 2018 16:25:24 +0200</pubDate>
       
-      <guid>https://infinitetree.eu/tags/react/</guid>
+      <guid>https://infinitetree.eu/tags/dddeu/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Typescript</title>
+      <title>bucklescript</title>
+      <link>https://infinitetree.eu/tags/bucklescript/</link>
+      <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/bucklescript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>elm</title>
+      <link>https://infinitetree.eu/tags/elm/</link>
+      <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/elm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>frontend</title>
+      <link>https://infinitetree.eu/tags/frontend/</link>
+      <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/frontend/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML</title>
+      <link>https://infinitetree.eu/tags/ml/</link>
+      <pubDate>Sat, 28 Oct 2017 08:56:00 +0100</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/ml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>typescript</title>
       <link>https://infinitetree.eu/tags/typescript/</link>
       <pubDate>Sat, 30 Sep 2017 18:19:24 +0200</pubDate>
       
@@ -282,11 +179,155 @@
     </item>
     
     <item>
-      <title>Webpack</title>
+      <title>microservices</title>
+      <link>https://infinitetree.eu/tags/microservices/</link>
+      <pubDate>Wed, 27 Sep 2017 14:39:00 +0100</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/microservices/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>modelling</title>
+      <link>https://infinitetree.eu/tags/modelling/</link>
+      <pubDate>Wed, 08 Feb 2017 20:44:40 +0100</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/modelling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>2017</title>
+      <link>https://infinitetree.eu/tags/2017/</link>
+      <pubDate>Tue, 03 Jan 2017 19:18:13 +0100</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/2017/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>general</title>
+      <link>https://infinitetree.eu/tags/general/</link>
+      <pubDate>Tue, 03 Jan 2017 19:18:13 +0100</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/general/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>goals</title>
+      <link>https://infinitetree.eu/tags/goals/</link>
+      <pubDate>Tue, 03 Jan 2017 19:18:13 +0100</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/goals/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>phoenix</title>
+      <link>https://infinitetree.eu/tags/phoenix/</link>
+      <pubDate>Sun, 26 Jun 2016 10:49:59 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/phoenix/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>manillen</title>
+      <link>https://infinitetree.eu/tags/manillen/</link>
+      <pubDate>Mon, 18 Apr 2016 21:01:30 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/manillen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>es6</title>
+      <link>https://infinitetree.eu/tags/es6/</link>
+      <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/es6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>react</title>
+      <link>https://infinitetree.eu/tags/react/</link>
+      <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>webpack</title>
       <link>https://infinitetree.eu/tags/webpack/</link>
       <pubDate>Tue, 13 Jan 2015 00:00:00 +0000</pubDate>
       
       <guid>https://infinitetree.eu/tags/webpack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cqrs</title>
+      <link>https://infinitetree.eu/tags/cqrs/</link>
+      <pubDate>Thu, 13 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/cqrs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flux</title>
+      <link>https://infinitetree.eu/tags/flux/</link>
+      <pubDate>Thu, 13 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/flux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>other</title>
+      <link>https://infinitetree.eu/tags/other/</link>
+      <pubDate>Sat, 04 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/other/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blog</title>
+      <link>https://infinitetree.eu/tags/blog/</link>
+      <pubDate>Mon, 29 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cordova</title>
+      <link>https://infinitetree.eu/tags/cordova/</link>
+      <pubDate>Mon, 29 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/cordova/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tag1</title>
+      <link>https://infinitetree.eu/tags/tag1/</link>
+      <pubDate>Fri, 11 Jul 2014 10:54:24 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/tag1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tag2</title>
+      <link>https://infinitetree.eu/tags/tag2/</link>
+      <pubDate>Fri, 11 Jul 2014 10:54:24 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/tags/tag2/</guid>
       <description></description>
     </item>
     

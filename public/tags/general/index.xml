@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>General on Thomas Coopman - Infinite Tree</title>
+    <title>general on Thomas Coopman - Infinite Tree</title>
     <link>https://infinitetree.eu/tags/general/</link>
-    <description>Recent content in General on Thomas Coopman - Infinite Tree</description>
+    <description>Recent content in general on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Jan 2017 19:18:13 +0100</lastBuildDate>
-    
-	<atom:link href="https://infinitetree.eu/tags/general/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 03 Jan 2017 19:18:13 +0100</lastBuildDate><atom:link href="https://infinitetree.eu/tags/general/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2017</title>
       <link>https://infinitetree.eu/blog/2017/01/03/2017/</link>

@@ -48,7 +48,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2014/09/29/creating-my-first-cordova-app/" />
 
@@ -173,66 +173,40 @@ if (!doNotTrack) {
     </header>
 
     <section class="post-content">
-      
-
-<h1 id="installation-on-ubuntu-14-04">installation on ubuntu 14.04</h1>
-
+      <h1 id="installation-on-ubuntu-1404">installation on ubuntu 14.04</h1>
 <h2 id="prerequisites">prerequisites</h2>
-
 <p><code>sudo apt-get install default-jdk</code></p>
-
 <p><code>sudo apt-get install ant</code></p>
-
 <p>npm install -g cordova
 android sdk <a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a></p>
-
 <h1 id="creating-a-project">creating a project</h1>
-
 <p>in folder
 <code>cordova create test-app</code>
 <code>cd test-app</code></p>
-
 <p>set the android emulator
-<code>PATH=$PATH:~/Software/android-sdk-linux_x64/platform-tools/:~/Software/android-sdk-linux_x64/tools/
-</code>
+<code>PATH=$PATH:~/Software/android-sdk-linux_x64/platform-tools/:~/Software/android-sdk-linux_x64/tools/</code>
 <code>android</code>
 installed Android 4.4.2 (API 19)</p>
-
 <p>add a platform
 <code>cordova platform add android</code></p>
-
 <h1 id="set-everything-in-www">set everything in www</h1>
-
 <h1 id="run">run</h1>
-
 <p>connect device in debugg</p>
-
 <p><code>cordova run android</code></p>
-
 <h1 id="emulate">emulate</h1>
-
 <p>android
 tools
 <code>cordova emulate android</code></p>
-
 <h1 id="webview">webview</h1>
-
 <p><code>chrome://inspect/#devices</code>
 <a href="https://developer.chrome.com/devtools/docs/remote-debugging#debugging-webviews">https://developer.chrome.com/devtools/docs/remote-debugging#debugging-webviews</a></p>
-
 <p><a href="https://issues.apache.org/jira/browse/CB-5487">https://issues.apache.org/jira/browse/CB-5487</a>
 <a href="http://www.raymondcamden.com/2014/1/2/Apache-Cordova-33-and-Remote-Debugging-for-Android">http://www.raymondcamden.com/2014/1/2/Apache-Cordova-33-and-Remote-Debugging-for-Android</a></p>
-
 <h1 id="install">install</h1>
-
 <p><code>cordova build android</code></p>
-
 <h1 id="the-project">The project</h1>
-
 <p>React website with React-Router. Make sure you don&rsquo;t set history for location or it will not start.</p>
-
 <h1 id="resources">Resources</h1>
-
 <p><a href="https://www.npmjs.org/package/cordova">0</a>
 <a href="http://cordova.apache.org/">1</a></p>
 

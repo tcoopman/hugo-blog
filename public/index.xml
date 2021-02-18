@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Thomas Coopman - Infinite Tree</title>
@@ -6,10 +6,16 @@
     <description>Recent content on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 06 Apr 2019 10:01:59 +0200</lastBuildDate>
-    
-	<atom:link href="https://infinitetree.eu/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Thu, 04 Jul 2019 14:54:24 +0200</lastBuildDate><atom:link href="https://infinitetree.eu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Event sourcing from the ground up</title>
+      <link>https://infinitetree.eu/workshop/event-sourcing-from-the-ground-up/</link>
+      <pubDate>Thu, 04 Jul 2019 14:54:24 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/workshop/event-sourcing-from-the-ground-up/</guid>
+      <description>Starting with a some rabbling while reading the source of elixir eventstore
+My original idea was to first start with some event storming and then go into programming. But I think it will be very important to have a very clear structure for this workshop so that everyone can follow. Not only that, it will also be very to have a why would you do that. When starting with event storming, maybe we are missing some basics.</description>
+    </item>
     
     <item>
       <title>The Ergodox Ez Keyboard</title>
@@ -204,7 +210,7 @@ Writing code and developing is a breeze with this workflow, especially with reac
       <description>About flux and cqrs, what do I want to write about this???
 Things I want to find out. actions in the past: because it&amp;rsquo;s something that has happend. nothing todo about it.
 deleting actions is not possible, only update. Store all actions in an event store for replay?
-How about authentication and validation actions and flux. For example: action &amp;lsquo;MESSAGE_SUBMITTED&amp;rsquo;. But the message must be validated before it is added.</description>
+How about authentication and validation actions and flux. For example: action &amp;lsquo;MESSAGE_SUBMITTED&amp;rsquo;. But the message must be validated before it is added. The MessageStore is responsible for validating because it&amp;rsquo;s specific logic of the store.</description>
     </item>
     
     <item>
@@ -228,12 +234,13 @@ I&amp;rsquo;m a developer, mostly a web-developer (backend and frontend).</descr
 sudo apt-get install ant
 npm install -g cordova android sdk http://developer.android.com/sdk/index.html
 creating a project in folder cordova create test-app cd test-app
-set the android emulator PATH=$PATH:~/Software/android-sdk-linux_x64/platform-tools/:~/Software/android-sdk-linux_x64/tools/  android installed Android 4.4.2 (API 19)
+set the android emulator PATH=$PATH:~/Software/android-sdk-linux_x64/platform-tools/:~/Software/android-sdk-linux_x64/tools/ android installed Android 4.4.2 (API 19)
 add a platform cordova platform add android
 set everything in www run connect device in debugg
 cordova run android
 emulate android tools cordova emulate android
-webview chrome://inspect/#devices https://developer.</description>
+webview chrome://inspect/#devices https://developer.chrome.com/devtools/docs/remote-debugging#debugging-webviews
+https://issues.apache.org/jira/browse/CB-5487 http://www.</description>
     </item>
     
     <item>
@@ -256,8 +263,7 @@ I&amp;rsquo;ve created this site mostly for these reasons:
       <guid>https://infinitetree.eu/contact/</guid>
       <description>Email
 thomas.coopman@infinitetree.eu
-Phone
-+32 491 08 06 16
+Phone +32 491 08 06 16
 Website
 infinitetree.eu
 Location
@@ -273,12 +279,14 @@ thomascoopman</description>
     </item>
     
     <item>
-      <title></title>
-      <link>https://infinitetree.eu/home/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>Post title</title>
+      <link>https://infinitetree.eu/blog/2014/07/11/post-title/</link>
+      <pubDate>Fri, 11 Jul 2014 10:54:24 +0200</pubDate>
       
-      <guid>https://infinitetree.eu/home/</guid>
-      <description> Infinite Tree      BLOG     </description>
+      <guid>https://infinitetree.eu/blog/2014/07/11/post-title/</guid>
+      <description>written with https://maebert.github.io/themostdangerouswritingapp/#/write?limit=5&amp;amp;type=minutes
+How to make illegal states impossible with Event Sourcing. The problem is that with event sourcing, you don&amp;rsquo;t have any rules on what commands can be send out. Well, you have those rules in the domain, but it&amp;rsquo;s hard to make them explicit in the software.
+That doesn&amp;rsquo;t mean that it&amp;rsquo;s impossible to enforce the domain rules per se. A possible solution is to make your core domain logic, based on the making illegal states impossible and to have your commands validated through this core domain logic.</description>
     </item>
     
   </channel>

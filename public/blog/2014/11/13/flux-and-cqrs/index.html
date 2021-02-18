@@ -48,7 +48,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2014/11/13/flux-and-cqrs/" />
 
@@ -173,67 +173,49 @@ if (!doNotTrack) {
     </header>
 
     <section class="post-content">
-      
-
-<p>About flux and cqrs, what do I want to write about this???</p>
-
+      <p>About flux and cqrs, what do I want to write about this???</p>
 <p>Things I want to find out.
 actions in the past: because it&rsquo;s something that has happend. nothing todo about it.</p>
-
 <p>deleting actions is not possible, only update.
 Store all actions in an event store for replay?</p>
-
 <p>How about authentication and validation actions and flux.
 For example: action &lsquo;MESSAGE_SUBMITTED&rsquo;. But the message must be validated before
 it is added. The MessageStore is responsible for validating because it&rsquo;s specific logic
 of the store.</p>
-
 <p>(If you don&rsquo;t want to solve it like this you have to wait on the server before moving on.
 You can move on as soon as the server says: everything ok.)</p>
-
 <p>There are now 2 possible outcomes:</p>
-
 <ol>
 <li>The message gets validated and it&rsquo;s added to the store.</li>
 <li>The message is invalid and can not be added.</li>
 </ol>
-
 <p>Situation 1 easy: proceed. Situtation 2 is a bit harder. This is how I solve it:
 The store has an error object that gets set if there is an error. Now a component
 can see that the error is set, and that the object is not submitted.</p>
-
 <p>The only problem I have with this setup is that the name of the actions is not a
 real mirror of the business event. For example:</p>
-
 <p>MESSAGE_DELETED. If the MessageStore checks if the user has the necessary authentication
 to execute the delete and stops the delete, the name MESSAGE_DELETED is now
 incorrect. MESSAGE_TRY_DELETE would be better.</p>
-
 <p>The problem also exists between client and server. The server cannot execute
 any of the actions from the client without verification, so every action
 can possible fail.</p>
-
 <p>Replay is still possible, but the names are not good enough&hellip;</p>
-
 <p>Solution for this:</p>
-
 <p>name the actions not in the past.</p>
-
 <p>what about the api???</p>
-
 <p>Flux and API pattern (see blog about it&hellip;)</p>
-
 <p>ActionCreators (API) send the action and also send to the server.
-Wouldn&rsquo;t it be nice to just sent the samen actions to the server? Yes but
-1. probably not necessary to send all actions to the server.
-2. pattern of confirmed, should not be sent to the server again. For example
+Wouldn&rsquo;t it be nice to just sent the samen actions to the server? Yes but</p>
+<ol>
+<li>probably not necessary to send all actions to the server.</li>
+<li>pattern of confirmed, should not be sent to the server again. For example
 message submitted fails on the server because of &hellip;. authentication. The api
 receives a new action: MESSAGE_SUBMITTED_FAILED (good name?). This action
 doesn&rsquo;t need to be sent of to the server again.
-Should the server internally use the same action names??</p>
-
+Should the server internally use the same action names??</li>
+</ol>
 <h2 id="resources">Resources</h2>
-
 <p>gist of &hellip;.
 <a href="https://gist.github.com/abdullin/5953ab4f5eae0a7fc8f9#comment-1326317">https://gist.github.com/abdullin/5953ab4f5eae0a7fc8f9#comment-1326317</a>
 <a href="http://www.code-experience.com/async-requests-with-react-js-and-flux-revisited/">http://www.code-experience.com/async-requests-with-react-js-and-flux-revisited/</a></p>

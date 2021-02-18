@@ -1,15 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ddd on Thomas Coopman - Infinite Tree</title>
+    <title>DDD on Thomas Coopman - Infinite Tree</title>
     <link>https://infinitetree.eu/tags/ddd/</link>
-    <description>Recent content in Ddd on Thomas Coopman - Infinite Tree</description>
+    <description>Recent content in DDD on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 03 Feb 2018 16:25:24 +0200</lastBuildDate>
-    
-	<atom:link href="https://infinitetree.eu/tags/ddd/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Thu, 04 Jul 2019 14:54:24 +0200</lastBuildDate><atom:link href="https://infinitetree.eu/tags/ddd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Event sourcing from the ground up</title>
+      <link>https://infinitetree.eu/workshop/event-sourcing-from-the-ground-up/</link>
+      <pubDate>Thu, 04 Jul 2019 14:54:24 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/workshop/event-sourcing-from-the-ground-up/</guid>
+      <description>Starting with a some rabbling while reading the source of elixir eventstore
+My original idea was to first start with some event storming and then go into programming. But I think it will be very important to have a very clear structure for this workshop so that everyone can follow. Not only that, it will also be very to have a why would you do that. When starting with event storming, maybe we are missing some basics.</description>
+    </item>
     
     <item>
       <title>My summary of DDD Europe 2018</title>

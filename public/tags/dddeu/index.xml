@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Dddeu on Thomas Coopman - Infinite Tree</title>
+    <title>dddeu on Thomas Coopman - Infinite Tree</title>
     <link>https://infinitetree.eu/tags/dddeu/</link>
-    <description>Recent content in Dddeu on Thomas Coopman - Infinite Tree</description>
+    <description>Recent content in dddeu on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 03 Feb 2018 16:25:24 +0200</lastBuildDate>
-    
-	<atom:link href="https://infinitetree.eu/tags/dddeu/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 03 Feb 2018 16:25:24 +0200</lastBuildDate><atom:link href="https://infinitetree.eu/tags/dddeu/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>My summary of DDD Europe 2018</title>
       <link>https://infinitetree.eu/blog/2018/02/03/my-summary-of-ddd-europe-2018/</link>

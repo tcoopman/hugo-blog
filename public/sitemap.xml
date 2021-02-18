@@ -1,10 +1,80 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://infinitetree.eu/tags/ddd/</loc>
+    <lastmod>2019-07-04T14:54:24+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/event-sourcing/</loc>
+    <lastmod>2019-07-04T14:54:24+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/workshop/event-sourcing-from-the-ground-up/</loc>
+    <lastmod>2019-07-04T14:54:24+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/event-store/</loc>
+    <lastmod>2019-07-04T14:54:24+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/event-storming/</loc>
+    <lastmod>2019-07-04T14:54:24+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/</loc>
+    <lastmod>2019-07-04T14:54:24+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/</loc>
+    <lastmod>2019-07-04T14:54:24+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/workshop/</loc>
+    <lastmod>2019-07-04T14:54:24+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/ergodox/</loc>
+    <lastmod>2019-04-06T10:01:59+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/ergonomic/</loc>
+    <lastmod>2019-04-06T10:01:59+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/post/</loc>
+    <lastmod>2019-04-06T10:01:59+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/blog/2019/04/06/the-ergodox-ez-keyboard/</loc>
     <lastmod>2019-04-06T10:01:59+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/bank-kata/</loc>
+    <lastmod>2018-08-25T15:00:26+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/kata/</loc>
+    <lastmod>2018-08-25T15:00:26+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/ocaml/</loc>
+    <lastmod>2018-08-25T15:00:26+02:00</lastmod>
   </url>
   
   <url>
@@ -23,13 +93,58 @@
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/tags/elixir/</loc>
+    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/workshop/elixir-and-nerves-beginner-workshop/</loc>
     <lastmod>2018-03-21T15:16:24+02:00</lastmod>
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/tags/nerves/</loc>
+    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/raspberry-pi/</loc>
+    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/rbp/</loc>
+    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/dddeu/</loc>
+    <lastmod>2018-02-03T16:25:24+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/blog/2018/02/03/my-summary-of-ddd-europe-2018/</loc>
     <lastmod>2018-02-03T16:25:24+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/bucklescript/</loc>
+    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/elm/</loc>
+    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/frontend/</loc>
+    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/ml/</loc>
+    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
   </url>
   
   <url>
@@ -43,7 +158,17 @@
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/tags/typescript/</loc>
+    <lastmod>2017-09-30T18:19:24+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/blog/2017/09/27/a-big-ball-of-frontend/</loc>
+    <lastmod>2017-09-27T14:39:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/microservices/</loc>
     <lastmod>2017-09-27T14:39:00+01:00</lastmod>
   </url>
   
@@ -53,8 +178,33 @@
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/tags/modelling/</loc>
+    <lastmod>2017-02-08T20:44:40+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/2017/</loc>
+    <lastmod>2017-01-03T19:18:13+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/blog/2017/01/03/2017/</loc>
     <lastmod>2017-01-03T19:18:13+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/general/</loc>
+    <lastmod>2017-01-03T19:18:13+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/goals/</loc>
+    <lastmod>2017-01-03T19:18:13+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/phoenix/</loc>
+    <lastmod>2016-06-26T10:49:59+02:00</lastmod>
   </url>
   
   <url>
@@ -64,6 +214,11 @@
   
   <url>
     <loc>https://infinitetree.eu/blog/2016/04/18/explain-manillen-with-types-and-elm/</loc>
+    <lastmod>2016-04-18T21:01:30+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/manillen/</loc>
     <lastmod>2016-04-18T21:01:30+02:00</lastmod>
   </url>
   
@@ -88,8 +243,33 @@
   </url>
   
   <url>
+    <loc>https://infinitetree.eu/tags/es6/</loc>
+    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/react/</loc>
+    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://infinitetree.eu/blog/2015/01/13/testing-es6-code/</loc>
     <lastmod>2015-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/webpack/</loc>
+    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/cqrs/</loc>
+    <lastmod>2014-11-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/flux/</loc>
+    <lastmod>2014-11-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -100,6 +280,21 @@
   <url>
     <loc>https://infinitetree.eu/blog/2014/10/04/about-the-site-about-me/</loc>
     <lastmod>2014-10-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/other/</loc>
+    <lastmod>2014-10-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/blog/</loc>
+    <lastmod>2014-09-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://infinitetree.eu/tags/cordova/</loc>
+    <lastmod>2014-09-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -118,222 +313,22 @@
   </url>
   
   <url>
-    <loc>https://infinitetree.eu/home/</loc>
+    <loc>https://infinitetree.eu/blog/2014/07/11/post-title/</loc>
+    <lastmod>2014-07-11T10:54:24+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://infinitetree.eu/tags/2017/</loc>
-    <lastmod>2017-01-03T19:18:13+01:00</lastmod>
-    <priority>0</priority>
+    <loc>https://infinitetree.eu/tags/tag1/</loc>
+    <lastmod>2014-07-11T10:54:24+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://infinitetree.eu/tags/bank-kata/</loc>
-    <lastmod>2018-08-25T15:00:26+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/blog/</loc>
-    <lastmod>2014-09-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/bucklescript/</loc>
-    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
-    <priority>0</priority>
+    <loc>https://infinitetree.eu/tags/tag2/</loc>
+    <lastmod>2014-07-11T10:54:24+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://infinitetree.eu/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/cordova/</loc>
-    <lastmod>2014-09-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/cqrs/</loc>
-    <lastmod>2014-11-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/ddd/</loc>
-    <lastmod>2018-02-03T16:25:24+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/dddeu/</loc>
-    <lastmod>2018-02-03T16:25:24+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/elixir/</loc>
-    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/elm/</loc>
-    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/ergodox/</loc>
-    <lastmod>2019-04-06T10:01:59+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/ergonomic/</loc>
-    <lastmod>2019-04-06T10:01:59+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/es6/</loc>
-    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/flux/</loc>
-    <lastmod>2014-11-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/frontend/</loc>
-    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/general/</loc>
-    <lastmod>2017-01-03T19:18:13+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/goals/</loc>
-    <lastmod>2017-01-03T19:18:13+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/kata/</loc>
-    <lastmod>2018-08-25T15:00:26+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/manillen/</loc>
-    <lastmod>2016-04-18T21:01:30+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/microservices/</loc>
-    <lastmod>2017-09-27T14:39:00+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/ml/</loc>
-    <lastmod>2017-10-28T08:56:00+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/modelling/</loc>
-    <lastmod>2017-02-08T20:44:40+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/nerves/</loc>
-    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/ocaml/</loc>
-    <lastmod>2018-08-25T15:00:26+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/other/</loc>
-    <lastmod>2014-10-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/phoenix/</loc>
-    <lastmod>2016-06-26T10:49:59+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/post/</loc>
-    <lastmod>2019-04-06T10:01:59+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/raspberry-pi/</loc>
-    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/rbp/</loc>
-    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/react/</loc>
-    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/</loc>
-    <lastmod>2017-01-03T19:18:13+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/</loc>
-    <lastmod>2019-04-06T10:01:59+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/typescript/</loc>
-    <lastmod>2017-09-30T18:19:24+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/tags/webpack/</loc>
-    <lastmod>2015-01-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://infinitetree.eu/workshop/</loc>
-    <lastmod>2018-03-21T15:16:24+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
 </urlset>

@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Modelling on Thomas Coopman - Infinite Tree</title>
+    <title>modelling on Thomas Coopman - Infinite Tree</title>
     <link>https://infinitetree.eu/tags/modelling/</link>
-    <description>Recent content in Modelling on Thomas Coopman - Infinite Tree</description>
+    <description>Recent content in modelling on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Feb 2017 20:44:40 +0100</lastBuildDate>
-    
-	<atom:link href="https://infinitetree.eu/tags/modelling/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 08 Feb 2017 20:44:40 +0100</lastBuildDate><atom:link href="https://infinitetree.eu/tags/modelling/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Exploring aggregate boundaries in event sourced systems</title>
       <link>https://infinitetree.eu/blog/2017/02/08/exploring-aggregate-boundaries-in-event-sourced-systems/</link>

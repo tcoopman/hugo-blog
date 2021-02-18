@@ -48,7 +48,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml-part-3-injecting-a-clock-with-functors/" />
 
@@ -173,13 +173,9 @@ if (!doNotTrack) {
     </header>
 
     <section class="post-content">
-      
-
-<p>So at the end of <a href="https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml-part-2-implementing-the-kata/">part 2</a> we said we don&rsquo;t like that we have to add the date as part of the public API. Which makes sense for a public bank terminal, we do a deposit or withdrawal now.</p>
-
+      <p>So at the end of <a href="https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml-part-2-implementing-the-kata/">part 2</a> we said we don&rsquo;t like that we have to add the date as part of the public API. Which makes sense for a public bank terminal, we do a deposit or withdrawal now.</p>
 <p>So we&rsquo;ll want to remove <code>on</code> from <code>deposit</code> and <code>withdrawal</code>. But where do the dates come from now?
 Let&rsquo;s introduce a <code>Clock</code> module:</p>
-
 <p>Let&rsquo;s see if we can rewrite our test to adapt to this new API</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">open</span>! <span style="color:#b06;font-weight:bold">Base</span>
 <span style="color:#080;font-weight:bold">open</span>! <span style="color:#b06;font-weight:bold">Stdio</span>
@@ -195,18 +191,16 @@ Let&rsquo;s introduce a <code>Clock</code> module:</p>
     14/01/2012 || -500.00 || 2500.00
     13/01/2012 || 2000.00 || 3000.00
     10/01/2012 || 1000.00 || 1000.00
-  |}]</code></pre></div>
-<p>So how do we get a date in.</p>
-
+  |}]
+</code></pre></div><p>So how do we get a date in.</p>
 <p>Let&rsquo;s introduce a <code>Clock</code> module that returns a new <code>Date</code> upon calling <code>now ()</code></p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">module</span> <span style="color:#b06;font-weight:bold">Clock</span> = <span style="color:#080;font-weight:bold">struct</span>
   <span style="color:#080;font-weight:bold">let</span> now () = <span style="color:#d20;background-color:#fff0f0">&#34;SystemClock&#34;</span>
-<span style="color:#080;font-weight:bold">end</span></code></pre></div>
-<p>Well, obviosly, <code>&quot;SystemClock&quot;</code> should be replaced by an actually system clock, but that&rsquo;s not part of the exercise. So now our <code>Account</code> should use this clock:</p>
+<span style="color:#080;font-weight:bold">end</span>
+</code></pre></div><p>Well, obviosly, <code>&quot;SystemClock&quot;</code> should be replaced by an actually system clock, but that&rsquo;s not part of the exercise. So now our <code>Account</code> should use this clock:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> deposit ~amount account = {date = <span style="color:#b06;font-weight:bold">Clock</span>.now (); amount} :: account
-<span style="color:#080;font-weight:bold">let</span> withdrawal ~amount account = {date = <span style="color:#b06;font-weight:bold">Clock</span>.now (); amount = amount *. -1.} :: account</code></pre></div>
-<p>That&rsquo;s trivial to write, and now our test should run but they are red of course, because we get <code>&quot;SystemClock&quot;</code> as the date. In our tests we don&rsquo;t want to pass a system clock. We want to have a test clock. So <code>Clock</code> should be a parameter to the <code>Account</code>. Let&rsquo;s turn our <code>Account</code> into a <a href="https://dev.realworldocaml.org/functors.html">Functor</a></p>
-
+<span style="color:#080;font-weight:bold">let</span> withdrawal ~amount account = {date = <span style="color:#b06;font-weight:bold">Clock</span>.now (); amount = amount *. -1.} :: account
+</code></pre></div><p>That&rsquo;s trivial to write, and now our test should run but they are red of course, because we get <code>&quot;SystemClock&quot;</code> as the date. In our tests we don&rsquo;t want to pass a system clock. We want to have a test clock. So <code>Clock</code> should be a parameter to the <code>Account</code>. Let&rsquo;s turn our <code>Account</code> into a <a href="https://dev.realworldocaml.org/functors.html">Functor</a></p>
 <p>This is almost trivial (once you know how to do it). We transform our module into a functor that takes a Module argument of type <code>Clock_S</code>.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">module</span> <span style="color:#080;font-weight:bold">type</span> <span style="color:#b06;font-weight:bold">Clock_S</span> = <span style="color:#080;font-weight:bold">sig</span>
   <span style="color:#080;font-weight:bold">val</span> now : <span style="color:#888;font-weight:bold">unit</span> -&gt; <span style="color:#888;font-weight:bold">string</span>
@@ -214,15 +208,12 @@ Let&rsquo;s introduce a <code>Clock</code> module:</p>
 
 <span style="color:#080;font-weight:bold">module</span> <span style="color:#b06;font-weight:bold">Make</span>(<span style="color:#b06;font-weight:bold">Clock</span>: <span style="color:#b06;font-weight:bold">Clock_S</span>) = <span style="color:#080;font-weight:bold">struct</span>
   <span style="color:#888">(* implementation of the Account here *)</span>
-<span style="color:#080;font-weight:bold">end</span></code></pre></div>
-<p>What is <code>Clock_S</code>? We can define it as:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">module</span> <span style="color:#080;font-weight:bold">type</span> <span style="color:#b06;font-weight:bold">Clock_S</span> = <span style="color:#080;font-weight:bold">module</span> <span style="color:#080;font-weight:bold">type</span> <span style="color:#080;font-weight:bold">of</span> <span style="color:#b06;font-weight:bold">Clock</span></code></pre></div>
-<p>I&rsquo;ve defined this type in a file <code>common.ml</code> and added <code>open Common</code> at the top of <code>account.ml</code></p>
-
+<span style="color:#080;font-weight:bold">end</span>
+</code></pre></div><p>What is <code>Clock_S</code>? We can define it as:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">module</span> <span style="color:#080;font-weight:bold">type</span> <span style="color:#b06;font-weight:bold">Clock_S</span> = <span style="color:#080;font-weight:bold">module</span> <span style="color:#080;font-weight:bold">type</span> <span style="color:#080;font-weight:bold">of</span> <span style="color:#b06;font-weight:bold">Clock</span>
+</code></pre></div><p>I&rsquo;ve defined this type in a file <code>common.ml</code> and added <code>open Common</code> at the top of <code>account.ml</code></p>
 <p>So it&rsquo;s basically the type of our clock module. We could have explicitly written it like:</p>
-
 <p>Ok, so we transformed our <code>Account</code> into a Functor. How can we use it now in our tests?</p>
-
 <p>In our test we&rsquo;ll need to use <code>Account.Make</code> to create a new <code>Account</code> module. To call <code>Make</code> we pass a Module with type <code>Clock_S</code>.
 Let&rsquo;s create that module. Ideally, we&rsquo;ll want to pass some dates into the module that will be used in our Account.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">module</span> <span style="color:#080;font-weight:bold">type</span> <span style="color:#b06;font-weight:bold">TestDates</span> = <span style="color:#080;font-weight:bold">sig</span>
@@ -235,14 +226,12 @@ Let&rsquo;s create that module. Ideally, we&rsquo;ll want to pass some dates int
     <span style="color:#080;font-weight:bold">let</span> date = <span style="color:#b06;font-weight:bold">D</span>.dates.(!i) <span style="color:#080;font-weight:bold">in</span>
     i := !i + 1;
     date
-<span style="color:#080;font-weight:bold">end</span></code></pre></div>
-<p><code>TestClock</code> is again a functor that takes <code>TestDates</code>, this makes it easy to inject the test dates that we want to use in our test.
+<span style="color:#080;font-weight:bold">end</span>
+</code></pre></div><p><code>TestClock</code> is again a functor that takes <code>TestDates</code>, this makes it easy to inject the test dates that we want to use in our test.
 It keeps a ref <code>i</code> to keep track of how many times it has been called, and returns a different date each time. It&rsquo;s important to see that this code will crash with an <code>index out of bounds</code> exception when we don&rsquo;t provide the correct values in our test setup, but that&rsquo;s ok, even desired for our test.</p>
-
 <p>Now we can change our test like this to make it green again:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> <span style="color:#080;font-weight:bold">module</span> <span style="color:#b06;font-weight:bold">Account</span> = <span style="color:#b06;font-weight:bold">Lib</span>.<span style="color:#b06;font-weight:bold">Account</span>.<span style="color:#b06;font-weight:bold">Make</span>(<span style="color:#b06;font-weight:bold">TestClock</span>(<span style="color:#080;font-weight:bold">struct</span> <span style="color:#080;font-weight:bold">let</span> dates = [|<span style="color:#d20;background-color:#fff0f0">&#34;10/01/2012&#34;</span>; <span style="color:#d20;background-color:#fff0f0">&#34;13/01/2012&#34;</span>; <span style="color:#d20;background-color:#fff0f0">&#34;14/01/2012&#34;</span>|] <span style="color:#080;font-weight:bold">end</span>)) <span style="color:#080;font-weight:bold">in</span></code></pre></div>
-<p>We make a new <code>Account</code> with a <code>TestClock</code> and pass it in the dates that we want.</p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> <span style="color:#080;font-weight:bold">module</span> <span style="color:#b06;font-weight:bold">Account</span> = <span style="color:#b06;font-weight:bold">Lib</span>.<span style="color:#b06;font-weight:bold">Account</span>.<span style="color:#b06;font-weight:bold">Make</span>(<span style="color:#b06;font-weight:bold">TestClock</span>(<span style="color:#080;font-weight:bold">struct</span> <span style="color:#080;font-weight:bold">let</span> dates = [|<span style="color:#d20;background-color:#fff0f0">&#34;10/01/2012&#34;</span>; <span style="color:#d20;background-color:#fff0f0">&#34;13/01/2012&#34;</span>; <span style="color:#d20;background-color:#fff0f0">&#34;14/01/2012&#34;</span>|] <span style="color:#080;font-weight:bold">end</span>)) <span style="color:#080;font-weight:bold">in</span>
+</code></pre></div><p>We make a new <code>Account</code> with a <code>TestClock</code> and pass it in the dates that we want.</p>
 <p>Our complete test looks like this:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span>%expect_test <span style="color:#d20;background-color:#fff0f0">&#34;Printing the statements should contain all transactions&#34;</span> =
   <span style="color:#080;font-weight:bold">let</span> <span style="color:#080;font-weight:bold">module</span> <span style="color:#b06;font-weight:bold">Account</span> = <span style="color:#b06;font-weight:bold">Lib</span>.<span style="color:#b06;font-weight:bold">Account</span>.<span style="color:#b06;font-weight:bold">Make</span>(<span style="color:#b06;font-weight:bold">TestClock</span>(<span style="color:#080;font-weight:bold">struct</span> <span style="color:#080;font-weight:bold">let</span> dates = [|<span style="color:#d20;background-color:#fff0f0">&#34;10/01/2012&#34;</span>; <span style="color:#d20;background-color:#fff0f0">&#34;13/01/2012&#34;</span>; <span style="color:#d20;background-color:#fff0f0">&#34;14/01/2012&#34;</span>|] <span style="color:#080;font-weight:bold">end</span>)) <span style="color:#080;font-weight:bold">in</span>
@@ -256,22 +245,17 @@ It keeps a ref <code>i</code> to keep track of how many times it has been called
     14/01/2012 || -500.00 || 2500.00
     13/01/2012 || 2000.00 || 3000.00
     10/01/2012 || 1000.00 || 1000.00
-  |}]</code></pre></div>
-<p>When we now run our test, they will be green!</p>
-
+  |}]
+</code></pre></div><p>When we now run our test, they will be green!</p>
 <p>We solved our problem of dependency injection with <code>Functors</code>. We could also have injected a function in <code>Account.create</code> with signature <code>unit -&gt; string</code> but by solving it like this we almost had no changes to make to our original code which is a great plus.
 Furthermore it&rsquo;s possible to provide a default implementation that we use in our production code like this:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">include</span> <span style="color:#b06;font-weight:bold">Make</span>(<span style="color:#080;font-weight:bold">struct</span> <span style="color:#080;font-weight:bold">let</span> now () = <span style="color:#d20;background-color:#fff0f0">&#34;SystemClock&#34;</span> <span style="color:#080;font-weight:bold">end</span>)</code></pre></div>
-<p>Where <code>&quot;SystemClock&quot;</code> is obviously a real system clock.
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">include</span> <span style="color:#b06;font-weight:bold">Make</span>(<span style="color:#080;font-weight:bold">struct</span> <span style="color:#080;font-weight:bold">let</span> now () = <span style="color:#d20;background-color:#fff0f0">&#34;SystemClock&#34;</span> <span style="color:#080;font-weight:bold">end</span>)
+</code></pre></div><p>Where <code>&quot;SystemClock&quot;</code> is obviously a real system clock.
 The final code can be found here: <a href="https://github.com/tcoopman/bank-kata-ocaml">https://github.com/tcoopman/bank-kata-ocaml</a></p>
-
 <h2 id="conclusion">Conclusion</h2>
-
 <p>We&rsquo;ve used some basic dependency to inject a <code>Clock</code> into our <code>Account</code>, but we have no other complex design at all.
 If you look at the <a href="https://github.com/sandromancuso/bank-kata-outsidein-screencast/blob/master/src/main/java/com/codurance/Account.java">sample solution of Sandro</a> you&rsquo;ll see that next to the <code>Clock</code> there is also a <code>StatementPrinter</code> and <code>Transactions</code>repository injected. In a real application this would probably be needed, but I don&rsquo;t find that it adds any value at the moment for this simple kata.</p>
-
 <p>A repository might certainly be needed, but for now, you&rsquo;re responsible for keeping the state. If I were to implement a full application I&rsquo;d probably reverts some thing and transfer <code>Account</code> into a pure domain object. I&rsquo;d remove the clock and add <code>on</code> again to <code>deposit</code> and <code>withdrawal</code>. Also, I&rsquo;d change the signature of <code>print</code> (and rename it as well), to return a list of statements.</p>
-
 <p>This would give me a pure <code>Account</code> module with all domain logic that I can use in my Application, where I can inject a <code>Clock</code>, <code>Repository</code> and <code>StatementPrinter</code>.</p>
 
     </section>

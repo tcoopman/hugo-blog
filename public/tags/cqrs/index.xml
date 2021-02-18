@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cqrs on Thomas Coopman - Infinite Tree</title>
+    <title>cqrs on Thomas Coopman - Infinite Tree</title>
     <link>https://infinitetree.eu/tags/cqrs/</link>
-    <description>Recent content in Cqrs on Thomas Coopman - Infinite Tree</description>
+    <description>Recent content in cqrs on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Nov 2014 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://infinitetree.eu/tags/cqrs/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 13 Nov 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://infinitetree.eu/tags/cqrs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Flux and cqrs</title>
       <link>https://infinitetree.eu/blog/2014/11/13/flux-and-cqrs/</link>
@@ -20,7 +16,7 @@
       <description>About flux and cqrs, what do I want to write about this???
 Things I want to find out. actions in the past: because it&amp;rsquo;s something that has happend. nothing todo about it.
 deleting actions is not possible, only update. Store all actions in an event store for replay?
-How about authentication and validation actions and flux. For example: action &amp;lsquo;MESSAGE_SUBMITTED&amp;rsquo;. But the message must be validated before it is added.</description>
+How about authentication and validation actions and flux. For example: action &amp;lsquo;MESSAGE_SUBMITTED&amp;rsquo;. But the message must be validated before it is added. The MessageStore is responsible for validating because it&amp;rsquo;s specific logic of the store.</description>
     </item>
     
   </channel>

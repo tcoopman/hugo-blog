@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ocaml on Thomas Coopman - Infinite Tree</title>
+    <title>ocaml on Thomas Coopman - Infinite Tree</title>
     <link>https://infinitetree.eu/tags/ocaml/</link>
-    <description>Recent content in Ocaml on Thomas Coopman - Infinite Tree</description>
+    <description>Recent content in ocaml on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Aug 2018 15:00:26 +0200</lastBuildDate>
-    
-	<atom:link href="https://infinitetree.eu/tags/ocaml/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 25 Aug 2018 15:00:26 +0200</lastBuildDate><atom:link href="https://infinitetree.eu/tags/ocaml/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Bank Kata in Ocaml - Part 3: injecting a clock with Functors</title>
       <link>https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml-part-3-injecting-a-clock-with-functors/</link>

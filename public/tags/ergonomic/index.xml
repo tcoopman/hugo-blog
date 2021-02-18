@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ergonomic on Thomas Coopman - Infinite Tree</title>
@@ -6,11 +6,7 @@
     <description>Recent content in Ergonomic on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 06 Apr 2019 10:01:59 +0200</lastBuildDate>
-    
-	<atom:link href="https://infinitetree.eu/tags/ergonomic/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 06 Apr 2019 10:01:59 +0200</lastBuildDate><atom:link href="https://infinitetree.eu/tags/ergonomic/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Ergodox Ez Keyboard</title>
       <link>https://infinitetree.eu/blog/2019/04/06/the-ergodox-ez-keyboard/</link>

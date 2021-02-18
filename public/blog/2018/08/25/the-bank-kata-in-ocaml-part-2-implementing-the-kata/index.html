@@ -48,7 +48,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2018/08/25/the-bank-kata-in-ocaml-part-2-implementing-the-kata/" />
 
@@ -174,7 +174,6 @@ if (!doNotTrack) {
 
     <section class="post-content">
       <p>In <a href="https://infinitetree.eu/blog/2018/08/23/the-bank-kata-in-ocaml-part-1-setting-everything-up/">part 1</a> we&rsquo;ve set everything up, let&rsquo;s implement the kata now. If we check the <a href="https://github.com/sandromancuso/Bank-kata">readme</a> we can see a simple acceptance test, let&rsquo;s start with that.</p>
-
 <p>We create a file <code>test/account_test.ml</code>:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">open</span>! <span style="color:#b06;font-weight:bold">Base</span>
 <span style="color:#080;font-weight:bold">open</span>! <span style="color:#b06;font-weight:bold">Stdio</span>
@@ -190,9 +189,8 @@ if (!doNotTrack) {
     14/01/2012 || -500.00 || 2500.00
     13/01/2012 || 2000.00 || 3000.00
     10/01/2012 || 1000.00 || 1000.00
-  |}]</code></pre></div>
-<p>Let&rsquo;s first see how we can get this test to green as fast as possible.</p>
-
+  |}]
+</code></pre></div><p>Let&rsquo;s first see how we can get this test to green as fast as possible.</p>
 <p>The simplest way to make this compile is with <code>lib/account.ml</code>:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> create () = ()
 
@@ -201,22 +199,21 @@ if (!doNotTrack) {
 <span style="color:#080;font-weight:bold">let</span> withdrawal _ _ = ()
 
 <span style="color:#080;font-weight:bold">let</span> print _ =
-  print_endline <span style="color:#d20;background-color:#fff0f0">&#34;TODO&#34;</span></code></pre></div>
-<p>If you now run your tests, you should get a compiling code, but mismatching output, so let&rsquo;s think about the actual implementation.</p>
-
+  print_endline <span style="color:#d20;background-color:#fff0f0">&#34;TODO&#34;</span>
+</code></pre></div><p>If you now run your tests, you should get a compiling code, but mismatching output, so let&rsquo;s think about the actual implementation.</p>
 <p>Now it&rsquo;s time to start thinking about some types. Let&rsquo;s see, what should create return?</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">type</span> account = transaction <span style="color:#888;font-weight:bold">list</span>
 <span style="color:#080">and</span> <span style="color:#080;font-weight:bold">type</span> transaction = {
     date: <span style="color:#888;font-weight:bold">string</span>;
     amount: <span style="color:#888;font-weight:bold">float</span>;
-}</code></pre></div>
-<p>Something like this seems ok for the first iteration of this kata (ofcourse having floats for an amount is serious no-go, but for this kata, we&rsquo;ll ignore it!)
+}
+</code></pre></div><p>Something like this seems ok for the first iteration of this kata (ofcourse having floats for an amount is serious no-go, but for this kata, we&rsquo;ll ignore it!)
 We create an <code>account</code> type, that&rsquo;s just a list of transactions, and thus, create can be defined like:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> create () = []</code></pre></div>
-<p>So this makes <code>deposit</code> and <code>withdrawal</code> trivial to implement:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> create () = []
+</code></pre></div><p>So this makes <code>deposit</code> and <code>withdrawal</code> trivial to implement:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> deposit ~amount ~on account = {date = on; amount} :: account
-<span style="color:#080;font-weight:bold">let</span> withdrawal ~amount ~on account = {date = on; amount = amount *. -1.} :: account</code></pre></div>
-<p>And now we&rsquo;re ready to implement the print function to get the tests green.</p>
+<span style="color:#080;font-weight:bold">let</span> withdrawal ~amount ~on account = {date = on; amount = amount *. -1.} :: account
+</code></pre></div><p>And now we&rsquo;re ready to implement the print function to get the tests green.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> print account =
   <span style="color:#080;font-weight:bold">let</span> calculate account =
     <span style="color:#b06;font-weight:bold">List</span>.fold_right (<span style="color:#080;font-weight:bold">fun</span> transaction (total, x) -&gt; (total +. transaction.amount, (total +. transaction.amount, transaction) :: x)) account (0., [])
@@ -231,11 +228,9 @@ We create an <code>account</code> type, that&rsquo;s just a list of transactions
   <span style="color:#080;font-weight:bold">let</span> (_, calculated) = calculate account <span style="color:#080;font-weight:bold">in</span>
   <span style="color:#b06;font-weight:bold">Buffer</span>.add_string buffer <span style="color:#d20;background-color:#fff0f0">&#34;date || amount || balance</span><span style="color:#04d;background-color:#fff0f0">\n</span><span style="color:#d20;background-color:#fff0f0">&#34;</span>;
   fill_buffer calculated;
-  print_string (<span style="color:#b06;font-weight:bold">Buffer</span>.contents buffer)</code></pre></div>
-<p>This is not the most beautiful code, but it makes the tests green. The question is are we happy with it or is it time for refactoring?</p>
-
+  print_string (<span style="color:#b06;font-weight:bold">Buffer</span>.contents buffer)
+</code></pre></div><p>This is not the most beautiful code, but it makes the tests green. The question is are we happy with it or is it time for refactoring?</p>
 <p>We could argue that doing <code>amount *. -1</code> in <code>withdrawal</code> is not very clean, but that&rsquo;s something I&rsquo;m going to leave for now.</p>
-
 <p>The <code>print</code> function is something else though. Let&rsquo;s see if we can clean this up a bit:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> print account =
   <span style="color:#080;font-weight:bold">let</span> add_balance account =
@@ -261,9 +256,8 @@ We create an <code>account</code> type, that&rsquo;s just a list of transactions
   |&gt; add_balance
   |&gt; to_print_statements
   |&gt; print_statements_to_string_with_header
-  |&gt; print_string</code></pre></div>
-<p>This feels a lot better, when you start reading the last lines it tells clearly what it is doing. It&rsquo;s a bit more code, but all functions have better names and have one purpose.</p>
-
+  |&gt; print_string
+</code></pre></div><p>This feels a lot better, when you start reading the last lines it tells clearly what it is doing. It&rsquo;s a bit more code, but all functions have better names and have one purpose.</p>
 <p>Before we&rsquo;re saying we&rsquo;re done, something still feels off. We pass dates into our public API. That&rsquo;s not how a bank works? After looking a bit better at the bank kata, I found <a href="https://github.com/sandromancuso/bank-kata-outsidein-screencast">this</a> where the dates are not part of the public API.
 How can we fix this with OCaml. Let&rsquo;s find out in part 3.</p>
 

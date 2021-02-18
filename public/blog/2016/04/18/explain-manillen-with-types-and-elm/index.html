@@ -48,7 +48,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2016/04/18/explain-manillen-with-types-and-elm/" />
 
@@ -175,16 +175,13 @@ if (!doNotTrack) {
     <section class="post-content">
       <p>At <a href="http://dddeurope.com/">Domain Drive Design Europe</a> I met the wonderful <a href="https://twitter.com/Felienne">@Felienne</a>. In the evening we played the card game bridge (a game the Felienne likes <a href="http://www.felienne.com/archives/4433">a lot</a>). As a <em>West-Vlaming</em> I love the card game <em>Manillen</em> more, of course, and we joked about it. Felienne has the ambition to create an AI to compete at the world championship of Computer Bridge, and I have joked about some similar ambitions of mine at Socrates Belgium, but this blog post has a much more humble goal.
 I want to try to explain the rules of <em>Manillen</em> or <em>Manille</em> to you with Elm. If you are to eager and want to find out more about the game (and the rules), see <a href="https://en.wikipedia.org/wiki/Manille">wikipedia</a>.</p>
-
 <p>So lets start.</p>
-
 <p>These are the valid cards:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">Suit</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Spade</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Club</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Diamond</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Heart</span>
 <span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">Rank</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Manille</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Ace</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">King</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Queen</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Jack</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Nine</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Eight</span> <span style="color:#06b;font-weight:bold">|</span> <span style="color:#888;font-weight:bold">Seven</span>
 
-<span style="color:#080;font-weight:bold">type</span> <span style="color:#080;font-weight:bold">alias</span> <span style="color:#888;font-weight:bold">Card</span> <span style="color:#06b;font-weight:bold">=</span> (<span style="color:#888;font-weight:bold">Suit</span>, <span style="color:#888;font-weight:bold">Rank</span>)</code></pre></div>
-<p>The <code>Manille</code> is the number 10 in a card deck.</p>
-
+<span style="color:#080;font-weight:bold">type</span> <span style="color:#080;font-weight:bold">alias</span> <span style="color:#888;font-weight:bold">Card</span> <span style="color:#06b;font-weight:bold">=</span> (<span style="color:#888;font-weight:bold">Suit</span>, <span style="color:#888;font-weight:bold">Rank</span>)
+</code></pre></div><p>The <code>Manille</code> is the number 10 in a card deck.</p>
 <p>The game is played with 32 cards (4 * 8), thus, this is the full deck:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#080;font-weight:bold">type</span> <span style="color:#080;font-weight:bold">alias</span> <span style="color:#888;font-weight:bold">Deck</span> <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">List</span> <span style="color:#888;font-weight:bold">Card</span>
 
@@ -198,8 +195,8 @@ I want to try to explain the rules of <em>Manillen</em> or <em>Manille</em> to y
 	, (<span style="color:#888;font-weight:bold">Spade</span>, <span style="color:#888;font-weight:bold">Nine</span>),    (<span style="color:#888;font-weight:bold">Club</span>, <span style="color:#888;font-weight:bold">Nine</span>),    (<span style="color:#888;font-weight:bold">Diamond</span>, <span style="color:#888;font-weight:bold">Nine</span>),    (<span style="color:#888;font-weight:bold">Heart</span>, <span style="color:#888;font-weight:bold">Nine</span>)
 	, (<span style="color:#888;font-weight:bold">Spade</span>, <span style="color:#888;font-weight:bold">Eight</span>),   (<span style="color:#888;font-weight:bold">Club</span>, <span style="color:#888;font-weight:bold">Eight</span>),   (<span style="color:#888;font-weight:bold">Diamond</span>, <span style="color:#888;font-weight:bold">Eight</span>),   (<span style="color:#888;font-weight:bold">Heart</span>, <span style="color:#888;font-weight:bold">Eight</span>)
 	, (<span style="color:#888;font-weight:bold">Spade</span>, <span style="color:#888;font-weight:bold">Seven</span>),   (<span style="color:#888;font-weight:bold">Club</span>, <span style="color:#888;font-weight:bold">Seven</span>),   (<span style="color:#888;font-weight:bold">Diamond</span>, <span style="color:#888;font-weight:bold">Seven</span>),   (<span style="color:#888;font-weight:bold">Heart</span>, <span style="color:#888;font-weight:bold">Seven</span>)
-	]</code></pre></div>
-<p>or shorter we could write it like this:</p>
+	]
+</code></pre></div><p>or shorter we could write it like this:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#369">suits</span> <span style="color:#06b;font-weight:bold">=</span>
   [ <span style="color:#888;font-weight:bold">Spade</span>, <span style="color:#888;font-weight:bold">Club</span>, <span style="color:#888;font-weight:bold">Diamond</span>, <span style="color:#888;font-weight:bold">Heart</span> ]
 
@@ -214,9 +211,8 @@ I want to try to explain the rules of <em>Manillen</em> or <em>Manille</em> to y
 
 <span style="color:#369">deck</span> <span style="color:#06b;font-weight:bold">:</span> <span style="color:#888;font-weight:bold">List</span> <span style="color:#888;font-weight:bold">Card</span>
 <span style="color:#369">deck</span> <span style="color:#06b;font-weight:bold">=</span>
-  <span style="color:#369">ranks</span> <span style="color:#06b;font-weight:bold">|&gt;</span> <span style="color:#888;font-weight:bold">List</span><span style="color:#06b;font-weight:bold">.</span><span style="color:#369">concatMap</span> <span style="color:#369">allCardsOfRank</span></code></pre></div>
-<p>but I find the longer version more readable.</p>
-
+  <span style="color:#369">ranks</span> <span style="color:#06b;font-weight:bold">|&gt;</span> <span style="color:#888;font-weight:bold">List</span><span style="color:#06b;font-weight:bold">.</span><span style="color:#369">concatMap</span> <span style="color:#369">allCardsOfRank</span>
+</code></pre></div><p>but I find the longer version more readable.</p>
 <p>So to start playing we need players:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#080;font-weight:bold">type</span> <span style="color:#888;font-weight:bold">Player</span>
   <span style="color:#06b;font-weight:bold">=</span> <span style="color:#888;font-weight:bold">Front</span>
@@ -232,9 +228,8 @@ I want to try to explain the rules of <em>Manillen</em> or <em>Manille</em> to y
 
 <span style="color:#369">zulder</span> <span style="color:#06b;font-weight:bold">:</span> ( <span style="color:#888;font-weight:bold">Player</span>, <span style="color:#888;font-weight:bold">Player</span> )
 <span style="color:#369">zulder</span> <span style="color:#06b;font-weight:bold">=</span>
-  ( <span style="color:#888;font-weight:bold">Left</span>, <span style="color:#888;font-weight:bold">Right</span> )</code></pre></div>
-<p>We play in 2 teams, <em>wulder</em> vs <em>zulder</em> (West-Flemish for <em>we</em> and <em>them</em>)</p>
-
+  ( <span style="color:#888;font-weight:bold">Left</span>, <span style="color:#888;font-weight:bold">Right</span> )
+</code></pre></div><p>We play in 2 teams, <em>wulder</em> vs <em>zulder</em> (West-Flemish for <em>we</em> and <em>them</em>)</p>
 <p>Before we start playing, I&rsquo;m going to explain how the scoring works and how you can win a game.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm"><span style="color:#369">points</span> <span style="color:#06b;font-weight:bold">:</span> <span style="color:#888;font-weight:bold">Rank</span> <span style="color:#06b;font-weight:bold">-&gt;</span> <span style="color:#888;font-weight:bold">Int</span>
 <span style="color:#369">points</span> <span style="color:#369">rank</span> <span style="color:#06b;font-weight:bold">=</span>
@@ -267,10 +262,10 @@ I want to try to explain the rules of <em>Manillen</em> or <em>Manille</em> to y
     <span style="color:#369">allpoints</span> <span style="color:#06b;font-weight:bold">=</span>
       <span style="color:#888;font-weight:bold">List</span><span style="color:#06b;font-weight:bold">.</span><span style="color:#369">map</span> <span style="color:#369">points</span> <span style="color:#369">ranks</span>
   <span style="color:#080;font-weight:bold">in</span>
-    <span style="color:#888;font-weight:bold">List</span><span style="color:#06b;font-weight:bold">.</span><span style="color:#369">sum</span> <span style="color:#369">allpoints</span></code></pre></div>
-<p>With elm-test we can see a constraint</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm">[ <span style="color:#369">test</span> <span style="color:#d20;background-color:#fff0f0">&#34;A full deck scores always 60&#34;</span> ((<span style="color:#369">score</span> <span style="color:#369">deck</span>) <span style="color:#06b;font-weight:bold">`</span><span style="color:#369">assertEqual</span><span style="color:#06b;font-weight:bold">`</span> <span style="color:#00d;font-weight:bold">60</span>) ]</code></pre></div>
-<p>And with elm-check (a toolkit for writing property based tests) we see these properties:</p>
+    <span style="color:#888;font-weight:bold">List</span><span style="color:#06b;font-weight:bold">.</span><span style="color:#369">sum</span> <span style="color:#369">allpoints</span>
+</code></pre></div><p>With elm-test we can see a constraint</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elm" data-lang="elm">[ <span style="color:#369">test</span> <span style="color:#d20;background-color:#fff0f0">&#34;A full deck scores always 60&#34;</span> ((<span style="color:#369">score</span> <span style="color:#369">deck</span>) <span style="color:#06b;font-weight:bold">`</span><span style="color:#369">assertEqual</span><span style="color:#06b;font-weight:bold">`</span> <span style="color:#00d;font-weight:bold">60</span>) ]
+</code></pre></div><p>And with elm-check (a toolkit for writing property based tests) we see these properties:</p>
 
     </section>
 

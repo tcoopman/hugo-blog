@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tag1 on Thomas Coopman - Infinite Tree</title>
+    <link>https://infinitetree.eu/tags/tag1/</link>
+    <description>Recent content in tag1 on Thomas Coopman - Infinite Tree</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Jul 2014 10:54:24 +0200</lastBuildDate><atom:link href="https://infinitetree.eu/tags/tag1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Post title</title>
+      <link>https://infinitetree.eu/blog/2014/07/11/post-title/</link>
+      <pubDate>Fri, 11 Jul 2014 10:54:24 +0200</pubDate>
+      
+      <guid>https://infinitetree.eu/blog/2014/07/11/post-title/</guid>
+      <description>written with https://maebert.github.io/themostdangerouswritingapp/#/write?limit=5&amp;amp;type=minutes
+How to make illegal states impossible with Event Sourcing. The problem is that with event sourcing, you don&amp;rsquo;t have any rules on what commands can be send out. Well, you have those rules in the domain, but it&amp;rsquo;s hard to make them explicit in the software.
+That doesn&amp;rsquo;t mean that it&amp;rsquo;s impossible to enforce the domain rules per se. A possible solution is to make your core domain logic, based on the making illegal states impossible and to have your commands validated through this core domain logic.</description>
+    </item>
+    
+  </channel>
+</rss>

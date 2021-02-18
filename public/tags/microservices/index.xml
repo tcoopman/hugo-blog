@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Microservices on Thomas Coopman - Infinite Tree</title>
+    <title>microservices on Thomas Coopman - Infinite Tree</title>
     <link>https://infinitetree.eu/tags/microservices/</link>
-    <description>Recent content in Microservices on Thomas Coopman - Infinite Tree</description>
+    <description>Recent content in microservices on Thomas Coopman - Infinite Tree</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Sep 2017 14:39:00 +0100</lastBuildDate>
-    
-	<atom:link href="https://infinitetree.eu/tags/microservices/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 27 Sep 2017 14:39:00 +0100</lastBuildDate><atom:link href="https://infinitetree.eu/tags/microservices/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A big ball of frontend</title>
       <link>https://infinitetree.eu/blog/2017/09/27/a-big-ball-of-frontend/</link>

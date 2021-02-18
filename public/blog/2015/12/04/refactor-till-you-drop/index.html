@@ -48,7 +48,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2015/12/04/refactor-till-you-drop/" />
 
@@ -173,10 +173,7 @@ if (!doNotTrack) {
     </header>
 
     <section class="post-content">
-      
-
-<h1 id="introduction">Introduction</h1>
-
+      <h1 id="introduction">Introduction</h1>
 <h1 id="iteration-1">Iteration 1</h1>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#080;font-weight:bold">function</span> getSymbol(symbolName) {
     <span style="color:#080;font-weight:bold">return</span> <span style="color:#d20;background-color:#fff0f0">&#39;replace&#39;</span>;
@@ -215,8 +212,7 @@ x.replace();
 console.log(x.stringToReplace);
 <span style="color:#080;font-weight:bold">var</span> result = <span style="color:#d20;background-color:#fff0f0">&#39;dit replace een replace replace replace replace replace gewoon woord&#39;</span>;
 console.log(result === x.stringToReplace);
-</code></pre></div>
-<h1 id="iteration-2">Iteration 2</h1>
+</code></pre></div><h1 id="iteration-2">Iteration 2</h1>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">SymbolReplacer.prototype.replace = <span style="color:#080;font-weight:bold">function</span>() {
     <span style="color:#080;font-weight:bold">var</span> symbolPattern = <span style="color:#080;background-color:#fff0ff">/\$([a-zA-Z]\w*)/g</span>;
     <span style="color:#080;font-weight:bold">var</span> matches;
@@ -234,9 +230,7 @@ SymbolReplacer.prototype.replaceAllInstances = <span style="color:#080;font-weig
             <span style="color:#080;font-weight:bold">this</span>.stringToReplace = <span style="color:#080;font-weight:bold">this</span>.stringToReplace.replace(toReplace, getSymbol(symbolName));
     }
 };
-</code></pre></div>
-<h1 id="iteration-3">Iteration 3</h1>
-
+</code></pre></div><h1 id="iteration-3">Iteration 3</h1>
 <p>I just tested the performance. I was wondering why you do the global replace.
 It doesn&rsquo;t seem to have any performance difference (<a href="http://jsperf.com/replace-while-vs-replace-all">http://jsperf.com/replace-while-vs-replace-all</a>)
 so iteration 3</p>
@@ -271,8 +265,7 @@ x.replace();
 console.log(x.stringToReplace);
 <span style="color:#080;font-weight:bold">var</span> result = <span style="color:#d20;background-color:#fff0f0">&#39;dit replace een replace replace replace replace replace gewoon woord&#39;</span>;
 console.log(result === x.stringToReplace);
-</code></pre></div>
-<h1 id="iteration-4-remove-mutable-state">Iteration 4 - remove mutable state</h1>
+</code></pre></div><h1 id="iteration-4---remove-mutable-state">Iteration 4 - remove mutable state</h1>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#080;font-weight:bold">function</span> getSymbol(symbolName) {
     <span style="color:#080;font-weight:bold">return</span> <span style="color:#d20;background-color:#fff0f0">&#39;replace&#39;</span>;
 }
@@ -300,8 +293,7 @@ SymbolReplacer.prototype.replaceInstance = <span style="color:#080;font-weight:b
 console.log(x.replace(<span style="color:#d20;background-color:#fff0f0">&#39;dit $is een $test $test $test $is $complex gewoon woord&#39;</span>));
 <span style="color:#080;font-weight:bold">var</span> result = <span style="color:#d20;background-color:#fff0f0">&#39;dit replace een replace replace replace replace replace gewoon woord&#39;</span>;
 console.log(result === x.replace(<span style="color:#d20;background-color:#fff0f0">&#39;dit $is een $test $test $test $is $complex gewoon woord&#39;</span>));
-</code></pre></div>
-<h1 id="iteration-5-clean-up">Iteration 5 - clean up</h1>
+</code></pre></div><h1 id="iteration-5---clean-up">Iteration 5 - clean up</h1>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#080;font-weight:bold">function</span> getSymbol(symbolName) {
     <span style="color:#080;font-weight:bold">return</span> <span style="color:#d20;background-color:#fff0f0">&#39;replace&#39;</span>;
 }
@@ -325,16 +317,12 @@ console.log(result === x.replace(<span style="color:#d20;background-color:#fff0f
 <span style="color:#080;font-weight:bold">var</span> result = replaceSymbol(<span style="color:#d20;background-color:#fff0f0">&#39;dit $is een $test $test $test $is $complex gewoon woord&#39;</span>);
 <span style="color:#080;font-weight:bold">var</span> expectedResult = <span style="color:#d20;background-color:#fff0f0">&#39;dit replace een replace replace replace replace replace gewoon woord&#39;</span>;
 console.log(expectedResult === result);
-</code></pre></div>
-<p>Things to improve:</p>
-
+</code></pre></div><p>Things to improve:</p>
 <ul>
 <li>symbolPattern as argument (make sure to run new regexp on it)</li>
 <li>don&rsquo;t call getSymbol 2 times</li>
 </ul>
-
 <h1 id="references">References</h1>
-
 <p><a href="http://verraes.net/2013/09/extract-till-you-drop/">1</a>
 <a href="https://sites.google.com/site/unclebobconsultingllc/one-thing-extract-till-you-drop">0</a></p>
 

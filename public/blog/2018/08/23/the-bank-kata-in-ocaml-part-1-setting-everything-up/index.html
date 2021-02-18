@@ -48,7 +48,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2018/08/23/the-bank-kata-in-ocaml-part-1-setting-everything-up/" />
 
@@ -173,86 +173,64 @@ if (!doNotTrack) {
     </header>
 
     <section class="post-content">
-      
-
-<p>The goal of this small series of blogs is to implement the <a href="https://github.com/sandromancuso/Bank-kata">Bank kata</a> in OCaml, doing it test and type driven and try to have a clean design. We&rsquo;ll try to implement the kata with outside-in tests. My personal goal is to learn some OCaml along the way. I won&rsquo;t be going into every detail of OCaml, but if you have some experience with an ML language, you should be able to follow along.</p>
-
+      <p>The goal of this small series of blogs is to implement the <a href="https://github.com/sandromancuso/Bank-kata">Bank kata</a> in OCaml, doing it test and type driven and try to have a clean design. We&rsquo;ll try to implement the kata with outside-in tests. My personal goal is to learn some OCaml along the way. I won&rsquo;t be going into every detail of OCaml, but if you have some experience with an ML language, you should be able to follow along.</p>
 <p>I&rsquo;ve got the inspiration of doing this from a nice <a href="https://medium.com/@erik.sacre/clean-architecture-through-outside-in-tdd-64a31de17ccf">blog post</a> from Erik Sacre where he explores outside-in TDD.</p>
-
 <p>This is the outline of the blog posts:</p>
-
 <ol>
 <li>Creating the project: ready for tests</li>
 <li>Implementing a first outside-in test and implemeting it as fast as possible</li>
 <li>Implementing the clock</li>
 </ol>
-
-<h2 id="let-s-get-our-system-ready">Let&rsquo;s get our system ready</h2>
-
+<h2 id="lets-get-our-system-ready">Let&rsquo;s get our system ready</h2>
 <p>Before we can start, make sure you have <code>opam 2.0</code> (the ocaml package manager) installed on your system. If you haven&rsquo;t got it, go over <a href="https://opam.ocaml.org/doc/2.0/Install.html">here</a> to install it.</p>
-
 <p>If you&rsquo;ve already installed opam, make sure to run <code>opam update</code> regularly to stay up to date with the packages.</p>
-
 <h2 id="creating-the-project">Creating the project</h2>
-
 <p>In our favorite workspace directory we&rsquo;ll go and create a new directory:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir bank-kata
 <span style="color:#038">cd</span> bank-kata
-git init <span style="color:#888"># I won&#39;t be showing you the commits</span></code></pre></div>
-<p>Now we are ready to initialize everything we need for the ocaml project:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">opam switch create . 4.07.0</pre></div>
-<p>This will let us work in the current directory with OCaml 4.07.0. The command has created an <code>_opam</code> folder which we want to add to <code>.gitignore</code>. Also add <code>_build</code> to <code>.gitignore</code>.</p>
-
+git init <span style="color:#888"># I won&#39;t be showing you the commits</span>
+</code></pre></div><p>Now we are ready to initialize everything we need for the ocaml project:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">opam switch create . 4.07.0
+</code></pre></div><p>This will let us work in the current directory with OCaml 4.07.0. The command has created an <code>_opam</code> folder which we want to add to <code>.gitignore</code>. Also add <code>_build</code> to <code>.gitignore</code>.</p>
 <p>At the end of the install there will be some command for you to run to update the local variables, for me (I&rsquo;m using <code>fish</code> instead of <code>bash</code>) this is <code>eval (opam env)</code> so make sure to run that, so all commands are available in your terminal.</p>
-
 <p>Now we are ready to install the base libraries that we need:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">opam install merlin ocp-indent dune</pre></div>
-<p><code>merlin</code> and <code>ocp-indent</code> are 2 tools so your editor can show you compile errors, type information and have some basic indenting. <code>dune</code> is the build tool we&rsquo;ll be using.</p>
-
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">opam install merlin ocp-indent dune
+</code></pre></div><p><code>merlin</code> and <code>ocp-indent</code> are 2 tools so your editor can show you compile errors, type information and have some basic indenting. <code>dune</code> is the build tool we&rsquo;ll be using.</p>
 <p><em>If you&rsquo;ve did everything correct, you should have <code>dune 1.1.1</code> at least.</em></p>
-
 <p>Now let&rsquo;s create a new folder <code>test</code> with the file <code>dune</code> with these contents:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#369">library</span>
     (<span style="color:#369">name</span> <span style="color:#369">test</span>)
     (<span style="color:#369">libraries</span> <span style="color:#369">base</span> <span style="color:#369">stdio</span>)
     (<span style="color:#369">inline_tests</span>)
     (<span style="color:#369">preprocess</span> (<span style="color:#369">pps</span> <span style="color:#369">ppx_expect</span>))
-)</code></pre></div>
-<p>This creates a <a href="https://dune.readthedocs.io/">dune</a> library <code>test</code>, with a dependency on libraries <code>base</code> and <code>stdio</code>. The line <code>inline_tests</code> marks this as a test library and the last line includes the <code>ppx_expect</code> ppx to run <a href="https://github.com/janestreet/ppx_expect">expectation tests</a></p>
-
+)
+</code></pre></div><p>This creates a <a href="https://dune.readthedocs.io/">dune</a> library <code>test</code>, with a dependency on libraries <code>base</code> and <code>stdio</code>. The line <code>inline_tests</code> marks this as a test library and the last line includes the <code>ppx_expect</code> ppx to run <a href="https://github.com/janestreet/ppx_expect">expectation tests</a></p>
 <p>When we now run <code>dune runtest</code> we&rsquo;ll see that library base can&rsquo;t be found. You&rsquo;ll also see that running dune created a <code>dune-project</code> file in the root directory.</p>
-
 <p>The error output gives us a hint, running that hint we get to the real solution: <code>opam install base stdio</code>.</p>
-
 <p>When we run again we see that <code>ppx_expect</code> can&rsquo;t be found either. No more luck with the hints though :-(. Luckely the solution is the same: <code>opam install ppx_expect</code>.</p>
-
 <p>Now when we run <code>dune runtest</code> again we should have no more errors and no output either (because we haven&rsquo;t written any tests yet).</p>
-
 <h2 id="our-first-sanity-test">Our first sanity test</h2>
-
 <p>Create a file <code>test/test.ml</code> with these contents:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">open</span>! <span style="color:#b06;font-weight:bold">Base</span>
 <span style="color:#080;font-weight:bold">open</span>! <span style="color:#b06;font-weight:bold">Stdio</span>
 
 <span style="color:#080;font-weight:bold">let</span>%expect_test <span style="color:#d20;background-color:#fff0f0">&#34;Sanity&#34;</span> =
   print_endline <span style="color:#d20;background-color:#fff0f0">&#34;Hello, World!&#34;</span>;
-  [%expect{||}]</code></pre></div>
-<p>The <code>let%expect_test</code> construct let&rsquo;s us test output to stdio in the <code>[%expect{||}]</code> block. Now when you run <code>dune runtest</code> you&rsquo;ll see the error, and you could change the <code>[%expect{||}]</code> block manually. But you can also run <code>dune runtest --auto-promote</code>, this will automatically change your expect lines in the source code to match the new output. Try to be careful with this, but it can be very useful, especially when all your code is in version control.</p>
-
+  [%expect{||}]
+</code></pre></div><p>The <code>let%expect_test</code> construct let&rsquo;s us test output to stdio in the <code>[%expect{||}]</code> block. Now when you run <code>dune runtest</code> you&rsquo;ll see the error, and you could change the <code>[%expect{||}]</code> block manually. But you can also run <code>dune runtest --auto-promote</code>, this will automatically change your expect lines in the source code to match the new output. Try to be careful with this, but it can be very useful, especially when all your code is in version control.</p>
 <p>Before we can move on to the kata, let&rsquo;s make sure we an other directory <code>lib</code> with a <code>dune</code> file:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#369">library</span>
     (<span style="color:#369">name</span> <span style="color:#369">lib</span>)
-)</code></pre></div>
-<p>In <code>test/dune</code> add <code>lib</code> as a dependency to <code>libraries</code>. As a sanity check you can create a file <code>lib/Sanity.ml</code> with:</p>
+)
+</code></pre></div><p>In <code>test/dune</code> add <code>lib</code> as a dependency to <code>libraries</code>. As a sanity check you can create a file <code>lib/Sanity.ml</code> with:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span> sanity () =
-    print_endline <span style="color:#d20;background-color:#fff0f0">&#34;Hello, World!&#34;</span></code></pre></div>
-<p>and call it from your test:</p>
+    print_endline <span style="color:#d20;background-color:#fff0f0">&#34;Hello, World!&#34;</span>
+</code></pre></div><p>and call it from your test:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ocaml" data-lang="ocaml"><span style="color:#080;font-weight:bold">let</span>%expect_test <span style="color:#d20;background-color:#fff0f0">&#34;Sanity&#34;</span> =
   <span style="color:#b06;font-weight:bold">Lib</span>.<span style="color:#b06;font-weight:bold">Sanity</span>.test ();
-  [%expect{| <span style="color:#b06;font-weight:bold">Hello</span>, <span style="color:#b06;font-weight:bold">World</span>! |}]</code></pre></div>
-<p>If your tests still work, you can remove the <code>Sanity</code> file.
+  [%expect{| <span style="color:#b06;font-weight:bold">Hello</span>, <span style="color:#b06;font-weight:bold">World</span>! |}]
+</code></pre></div><p>If your tests still work, you can remove the <code>Sanity</code> file.
 I also removed the <code>test/test.ml</code> file so we have a clean setup to start the actual kata.</p>
-
 <p>In the next part we&rsquo;ll actually start implementing the kata</p>
 
     </section>

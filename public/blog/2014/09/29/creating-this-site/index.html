@@ -44,7 +44,7 @@
       
       
     
-    <meta name="generator" content="Hugo 0.54.0" />
+    <meta name="generator" content="Hugo 0.80.0" />
 
     <link rel="canonical" href="https://infinitetree.eu/blog/2014/09/29/creating-this-site/" />
 
@@ -165,15 +165,10 @@ if (!doNotTrack) {
     </header>
 
     <section class="post-content">
-      
-
-<p><em>This is not valid anymore. The site is build with hugo</em></p>
-
+      <p><em>This is not valid anymore. The site is build with hugo</em></p>
 <p>This blogpost will be a about the why, but mostly about how I&rsquo;ve created
 this site.</p>
-
 <p>I&rsquo;ve created this site mostly for these reasons:</p>
-
 <ul>
 <li>Make myself visible on the web.</li>
 <li>Practice my design and web-development skills.</li>
@@ -181,41 +176,32 @@ this site.</p>
 <li>Record things I&rsquo;ve learned for myself. Maybe someone else will find
 something useful here.</li>
 </ul>
-
 <h1 id="content">Content</h1>
-
 <p>The contents of this site contain information about me, to make me more
 visible on the web. The site includes a blog with primarly technical content. In
 the first place javascript and web-development although this can change
 depending on my interests at that moment and what I&rsquo;m working about.</p>
-
 <p>Secondly, I&rsquo;ll try to blog about some of my hobbies (hiking for example),
 but that will be very occasional.</p>
-
 <h1 id="framework">Framework</h1>
-
 <p>I&rsquo;ve created this site in <a href="http://facebook.github.io/react/">Reactjs</a>, my
 current favorite javascript framework that I like for the same reasons everyone
 else likes it. There are lots of blogs
 about react so I&rsquo;ll try to keep the redundancy low and only talk about the new
 things.</p>
-
 <p>I&rsquo;m using <a href="https://github.com/rackt/react-router">react-router</a> for the routing.
 At the moment of writing there are some shortcomings
-(mostly no server-side rendering<sup>1</sup>), but these guys are working
+(mostly no server-side rendering<!-- raw HTML omitted -->1<!-- raw HTML omitted -->), but these guys are working
 on that and we can expect it shortly. As soon as server side rendering is
 supported, I&rsquo;ll add it so this site can be easily searched with
 Google, and then it should also be mostly useful without javascript.</p>
-
 <p>For the css I&rsquo;m using the <a href="http://learnboost.github.io/stylus/">stylus</a> preprocessor.
 I&rsquo;ve tried Less and Sass in the past but I like stylus, and this site is a
 good way of exploring it. I try to keep the site low on css and don&rsquo;t
 use a framework like bootstrap or foundation.</p>
-
 <h1 id="blog">Blog</h1>
-
 <p>The blog is written with my own implementation of a React markdown component
-that I&rsquo;ve <a href="https://github.com/tcoopman/markdown-react">published</a><sup>2</sup>. In short, it uses an existing markdown parser,
+that I&rsquo;ve <a href="https://github.com/tcoopman/markdown-react">published</a><!-- raw HTML omitted -->2<!-- raw HTML omitted -->. In short, it uses an existing markdown parser,
 but instead of rendering a html string, it renders React components. The cool
 thing about this is that you can have full control over the React components, so
 you can do all kind of cool things with. For example add a custom subscript
@@ -224,34 +210,25 @@ this blog. Here I render &lt;h2&gt; elements instead of &lt;h1&gt;). Of course y
 all these things if you know something about parsing, but this component makes this
 super easy if you know React, just substitute the main component for your own and
 you&rsquo;re started. I&rsquo;m planning on writing a short blog post about this component too.</p>
-
 <p>Stay tuned!</p>
-
 <h1 id="hosting-and-deploying">Hosting and deploying</h1>
-
 <p>I build this site with gulp and webpack. My boilerplate package
 can be found at <a href="https://github.com/tcoopman/boilerplate-webpack-react">boilerplate-webpack-react</a>.
 This site uses a very similar build, with some adaptations for the blog.</p>
-
 <p>This website is hosted on <a href="https://www.digitalocean.com/">DigitalOcean</a> with Nginx.
 At the moment it&rsquo;s just a static app, but as soon as react-router supports server
 rendering I&rsquo;m going to implement it. I need to set up automatic deployment, probably with git.
 I don&rsquo;t build my site on the server. I push the build to the server.
 When server side rendering is implemented, the way I deploy my code will change
 and I also have a blog about that in the pipeline.</p>
-
 <h1 id="conclusion">Conclusion</h1>
-
 <p>A custom implementation of a blog, custom css and hosted on a vps. And that for
 a static site. It&rsquo;s a bit more work, and you could say it&rsquo;s not a best practice
 to do things this way, but it&rsquo;s a good way to experiment and try new things and
 that&rsquo;s exactly what I want to do with this site.</p>
-
-<hr />
-
-<p><sup>1</sup> This has been fixed in a recent version.</p>
-
-<p><sup>2</sup> I&rsquo;ve switched to <a href="https://github.com/jonschlinkert/remarkable">remarkable</a></p>
+<hr>
+<p><!-- raw HTML omitted -->1<!-- raw HTML omitted --> This has been fixed in a recent version.</p>
+<p><!-- raw HTML omitted -->2<!-- raw HTML omitted --> I&rsquo;ve switched to <a href="https://github.com/jonschlinkert/remarkable">remarkable</a></p>
 
     </section>
 
