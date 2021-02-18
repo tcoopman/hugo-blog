@@ -7,15 +7,17 @@ share = true
 date = "2014-07-11T10:54:24+02:00"
 comments = false
 draft = false
-
 +++
 
 **Email**  
 [thomas.coopman@infinitetree.eu](mailto:thomas.coopman@infinitetree.eu)
-**Phone**  
+
+**Phone** 
 +32 491 08 06 16  
+
 **Website**  
 [infinitetree.eu](https://infinitetree.eu)  
+
 **Location**  
 Aartselaar - Belgium  
 
