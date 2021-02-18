@@ -11,7 +11,7 @@ draft = false
 +++
 
 **Email**  
-[thomas.coopman@infinitetree.eu](mailto:thomas.coopman@infitetree.eu)  
+[thomas.coopman@infinitetree.eu](mailto:thomas.coopman@infinitetree.eu)
 **Phone**  
 +32 491 08 06 16  
 **Website**  
